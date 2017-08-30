@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacturasTable extends Migration
+class CreateCategoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateFacturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_socio');
-            $table->integer('id_usuario');
-            $table->string('meses_cancelados');
-            $table->double('monto');
-            $table->string('forma_pago');
-            $table->timestamp();
+            $table->string('categoria');
+            $table->timestamps();
         });
     }
 

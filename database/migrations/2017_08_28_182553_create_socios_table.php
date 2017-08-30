@@ -15,12 +15,12 @@ class CreateSociosTable extends Migration
     {
         Schema::create('socios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cedula');
+            $table->integer('id_persona');
             $table->string('estado_civil');
-            $table->string('categoria')->unique();
+            $table->integer('id_categoria');
             $table->double('total_pagar');
-            $table->string('ejecutivo_encargado');
             $table->string('empresa');
+            $table->integer('id_usuario');
             $table->string('estado');
             $table->timestamps();
         });
