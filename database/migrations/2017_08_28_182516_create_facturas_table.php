@@ -20,7 +20,8 @@ class CreateFacturasTable extends Migration
             $table->string('meses_cancelados');
             $table->double('monto');
             $table->string('forma_pago');
-            $table->timestamp();
+            $table->string('transaccion_bancaria')->nullable();
+            $table->timestamps();
         });
     }
 
