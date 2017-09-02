@@ -17,7 +17,7 @@ class CreatePersonasTable extends Migration
             $table->increments('id');
             $table->string('cedula')->unique();
             $table->string('primer_nombre');
-            $table->string('segundo_nombre');
+            $table->string('segundo_nombre')->nullable();
             $table->string('primer_apellido');
             $table->string('segundo_apellido');
             $table->date('fecha_nacimiento');
@@ -35,6 +35,6 @@ class CreatePersonasTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('personas');
     }
 }

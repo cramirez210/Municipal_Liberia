@@ -33,6 +33,6 @@ class CreateSociosTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('socios');
     }
 }

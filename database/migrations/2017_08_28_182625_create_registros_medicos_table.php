@@ -34,6 +34,6 @@ class CreateRegistrosMedicosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('registros_medicos');
     }
 }

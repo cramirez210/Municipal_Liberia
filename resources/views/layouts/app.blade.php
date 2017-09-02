@@ -39,7 +39,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ route('register') }}">Registrarse</a></li>
+                                <a  class="nav-link" href="{{ url('/registro_personas') }}">Registrarse</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -32,6 +32,6 @@ class CreateFacturasTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('facturas');
     }
 }
