@@ -37,7 +37,7 @@ class CrearPersonaRequest extends FormRequest
         ];
     }
 
-     public function persona()
+     public function messages()
     {
         return[
 
@@ -54,8 +54,8 @@ class CrearPersonaRequest extends FormRequest
 
             'fecha_nacimiento.required'=> 'Por favor, seleccionar la fecha de nacimiento.',
 
-            'primer_apellido.required'=> 'Por favor, escribir la cédula.',
-            'primer_apellido.max'=>'La cédula no puede ser mayor a 30 caracteres.',
+            'cedula.required'=> 'Por favor, escribir la cédula.',
+            'cedula.max'=>'La cédula no puede ser mayor a 30 caracteres.',
 
             'email.required'=> 'Por favor, escribir el correo electrónico.',
             'email.max'=>'El correo electrónico no puede ser mayor a 150 caracteres.',

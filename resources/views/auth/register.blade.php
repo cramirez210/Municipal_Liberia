@@ -69,6 +69,22 @@
                         </div>
 
 
+<!--________________________________________ Roles  _________________________-->
+                     <div class="form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
+                            <label for="rol" class="col-md-8 form-control-label">Rol</label>
+
+                            <div class="col-md-6">
+                               <select id="rol" name="rol">
+                                   
+                               </select>
+                                @if ($errors->has('rol'))
+                                    <span class="form-control-feedback">
+                                        <strong>{{ $errors->first('rol') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                       
 <!--_____________________________ Botones _________________________________-->
                         <div class="form-group">
                             <div class="col-md-6 ">

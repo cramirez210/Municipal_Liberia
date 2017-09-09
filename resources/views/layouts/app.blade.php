@@ -53,18 +53,71 @@
 
                         @else
 
+<!--___________________________________ Usuarios _______________________-->
+                          
 
-                              <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Registrar Usuario</a>
+                            <li class="nav-link dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                  <p> Usuarios </p> <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" role="menu">
+
+                                        <a class=" nav-link" href="">
+                                          Agregar usuarios
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Listar usuarios
+                                        </a>
+                                         <a class=" nav-link" href="">
+                                          Buscar Usuarios
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Eliminar Usuarios
+                                        </a>
+                                   </div>
+
+
                             </li>
-                            
-                            <li class="nav-item dropdown">
+
+
+<!--___________________________________ Personas _______________________-->
+                          
+
+                            <li class="nav-link dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                  <p> Personas </p> <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" role="menu">
+
+                                         <a class=" nav-link" href="{{ url('/registro_personas') }}" >
+                                          Agregar Personas
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Listar Personas
+                                        </a>
+                                         <a class=" nav-link" href="">
+                                          Buscar Personas
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Eliminar Personas
+                                        </a>
+                                   </div>
+
+
+                            </li>
+
+<!--___________________________________ Salir _______________________-->
+
+
+                            <li class="nav-link dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                   <p> Bienvenido(a) {{ Auth::user()->nombre_usuario}}</p> <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" role="menu">
-                                        <a class=" nav-item" href="{{ route('logout') }}"
+                                        <a class=" nav-link" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Salir
