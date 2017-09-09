@@ -11,7 +11,7 @@ class CategoriaController extends Controller
 
 	public function home(){
 	 
-	 $categorias = Categoria::paginate(1);
+	 $categorias = Categoria::paginate(4);
 
 	        return view('/categoria/create', [
 	            'categorias' => $categorias,

@@ -8,23 +8,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('titulo','Municipal Liberia')</title>
+    <title>{{ config('titulo', 'Municipal Liberia') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
 </head>
 <body>
     <div id="app" class="container">
         <nav id="header" class="navbar navbar-light static-top navbar-toggleable-md bg-faded">
-            <div id="c" class="container">
-                <div class="navbar-header">
+       
+            <div class="container">
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Municipal Liberia
+             <a class="navbar-brand" href="{{ url('/') }}">
+                       Municipal Liberia
                     </a>
-                </div>
+
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
@@ -35,30 +34,101 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
+
+                        @if (Auth::guest()) <!--Si soy un invitado-->
+
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
+                                <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+                            </li>
+
+
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url('/registro_personas') }}">Registrarse</a></li>
+                                <a class="nav-link" href="{{ url('/registro_personas') }}">Registrar Persona</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Registrar Usuario</a>
+                            </li>
+
                         @else
-                            <li class="dropdown">
+
+<!--___________________________________ Usuarios _______________________-->
+                          
+
+                            <li class="nav-link dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                  <p> Usuarios </p> <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" role="menu">
-                                 
-                                        <a class="nav-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                            Salir
+
+                                        <a class=" nav-link" href="">
+                                          Agregar usuarios
                                         </a>
+                                        <a class=" nav-link" href="">
+                                          Listar usuarios
+                                        </a>
+                                         <a class=" nav-link" href="">
+                                          Buscar Usuarios
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Eliminar Usuarios
+                                        </a>
+                                   </div>
+
+
+                            </li>
+
+
+<!--___________________________________ Personas _______________________-->
+                          
+
+                            <li class="nav-link dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                  <p> Personas </p> <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" role="menu">
+
+                                         <a class=" nav-link" href="{{ url('/registro_personas') }}" >
+                                          Agregar Personas
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Listar Personas
+                                        </a>
+                                         <a class=" nav-link" href="">
+                                          Buscar Personas
+                                        </a>
+                                        <a class=" nav-link" href="">
+                                          Eliminar Personas
+                                        </a>
+                                   </div>
+
+
+                            </li>
+
+<!--___________________________________ Salir _______________________-->
+
+
+                            <li class="nav-link dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                  <p> Bienvenido(a) {{ Auth::user()->nombre_usuario}}</p> <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" role="menu">
+                                        <a class=" nav-link" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Salir
+
+                                        </a>
+                                
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    
-                                </div>
+                                   </div>
                             </li>
                         @endif
                     </ul>
@@ -70,14 +140,22 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
-    <style type="text/css">
+    <script
+              src="http://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>
+
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+
+
+     <style type="text/css">
      
      body
      {
-        background-color: #EEEDD7;
+        
      }
 
      #header
@@ -90,3 +168,5 @@
 
 </body>
 </html>
+
+

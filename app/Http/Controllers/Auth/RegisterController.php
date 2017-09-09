@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Persona;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -44,14 +45,17 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
+
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'id_persona' => '',
+            'nombre_usuario' => 'required|string|max:50|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+            //'rol' => 'required|string|max:255',
+        ],['nombre_usuario.required'=>'Por favor, escriba el nombre de usuario','nombre_usuario.unique'=>'El nombre de usuario ya existe, por favor elija uno diferente','nombre_usuario.max'=>'El nombre de usuario no puede ser mayor a 50 caractéres','password.required'=>'Por favor digíte una contraseña','password.min'=>'La contraseña debe de ser mayor a 6 caracteres','password.confirmed'=>'Las contraseñas no coinciden']);
     }
 
     /**
@@ -62,10 +66,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+
+        $persona = $this->encontrarPorCedula($data);
+
+
+        $fill = ['nombre_usuario' => $data['nombre_usuario'],
             'password' => bcrypt($data['password']),
-        ]);
+            'id_persona' => $persona->id, ];
+
+
+        return User::create($fill);
     }
+
+     private function encontrarPorCedula(array $data)
+    {
+         return Persona::where('cedula',$data['id_persona'])->first();
+    }
+
 }

@@ -5,7 +5,7 @@
 
 
 
-<div class="row mb-5">
+<div class="row">
 
 
         <div class="col-md-8 offset-md-2 mt-4">
@@ -21,24 +21,27 @@
 
 <!--_______________________________ Primer Nombre ______________________________-->
 
-                           <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                           <div  class=" col-md-10  form-group @if($errors->has('primer_nombre')) has-danger @endif">
                             <label for="primer_nombre" class="col-md-4 form-control-label">Primer nombre</label>
 
                             <div class="col-md-6">
                                 <input id="primer_nombre" placeholder="Ejemplo: Carlos" type="text" class="form-control" name="primer_nombre" value="{{ old('primer_nombre') }}" required autofocus>
 
-                                @if ($errors->has('primer_nombre'))
-                                    <span class="form-control-feedback">
-                                        <strong>{{ $errors->first('primer_nombre') }}</strong>
-                                    </span>
+                                 @if($errors->has('primer_nombre'))
+                                 @foreach ($errors->get('primer_nombre') as $error)
+                                <div class="form-control-feedback">
+                                    {{ $error }}
+                                </div>
+                                 @endforeach
                                 @endif
+                        
                             </div>
                         </div>
 
 <!--_______________________________ Segundo Nombre ______________________________-->
+ 
 
-
-                      <div class="form-group{{ $errors->has('segundo_nombre') ? ' has-danger' : '' }}">
+                      <div  class=" col-md-10 form-group{{ $errors->has('segundo_nombre') ? ' has-danger' : '' }}">
                             <label for="segundo_nombre" class="col-md-4 form-control-label">Segundo nombre</label>
 
                             <div class="col-md-6">
@@ -74,7 +77,7 @@
 <!--_______________________________ Segundo Apellido  ______________________________-->
 
 
-                     <div class="form-group{{ $errors->has('segundo_apellido') ? ' has-danger' : '' }}">
+                     <div class=" col-md-10 form-group{{ $errors->has('segundo_apellido') ? ' has-danger' : '' }}">
                             <label for="segundo_apellido" class="col-md-4 form-control-label">Segundo apellido</label>
 
                             <div class="col-md-6">
@@ -92,7 +95,7 @@
 <!--_______________________________ Cedula  ______________________________-->
 
 
-                     <div class="form-group{{ $errors->has('cedula') ? ' has-danger' : '' }}">
+                     <div class=" col-md-10 form-group{{ $errors->has('cedula') ? ' has-danger' : '' }}">
                             <label for="cedula" class="col-md-4 form-control-label">Cédula</label>
 
                             <div class="col-md-6">
@@ -110,7 +113,7 @@
 <!--_______________________________ Fecha de nacimiento____________________________-->
 
 
-                     <div class="form-group{{ $errors->has('fecha_nacimiento') ? ' has-danger' : '' }}">
+                     <div  class=" col-md-10  form-group{{ $errors->has('fecha_nacimiento') ? ' has-danger' : '' }}">
                             <label for="fecha_nacimiento" class="col-md-4 form-control-label">Fecha de nacimiento</label>
 
                             <div class="col-md-6">
@@ -146,7 +149,7 @@
 <!--_______________________________ Número de telefono ____________________________-->
 
 
-                     <div class="form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
+                     <div  class=" col-md-10 form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
                             <label for="telefono" class="col-md-4 form-control-label">Número de telefono </label>
 
                             <div class="col-md-6">
