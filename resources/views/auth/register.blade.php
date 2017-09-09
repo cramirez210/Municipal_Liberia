@@ -7,8 +7,8 @@
 
     <div class="col-md-9 offset-md-2 mt-4">
 
-    <h2 class="h3 float-right mt-3">Gestion de usuarios</h2>
-     <h2 class="text-primary">Registrar nuevo usuario</h2>
+    <h2 class="h3 mt-3">Gestion de usuarios</h2>
+    
     
 
     </div>
@@ -21,12 +21,12 @@
       
 
       <li class="nav-item">
-        <a class="nav-link" href="/">Página principal</a>
+         <h5 class="text-primary">Registrar nuevo usuario</h5>
       </li>
      
       <li class="nav-item">
-        <button type="submit" class="btn btn-outline-success" style="margin-left: 89%;">
-                                    Registrar
+        <button type="submit" class="btn btn-outline-info" style="margin-left: 89%;">
+                                    Regresar
                                 </button>
         </li>
     </ul>
@@ -47,12 +47,12 @@
 
 
 <!--_________________________________Persona_______________________________________-->
-<div class="float-left panel-body" style="background-color: ; 
+<div class="float-none" style="background-color: ; 
   width: 50%; margin-left: 10%; height: 600px">
     
     <!--_______________________________ Primer Nombre ______________________________-->
 
-                           <div  class="  col-md-auto form-group @if($errors->has('primer_nombre')) has-danger @endif">
+                           <div  class=" col-md-auto form-group @if($errors->has('primer_nombre')) has-danger @endif">
                             <label for="primer_nombre" class="col-md-4 form-control-label">Primer nombre</label>
 
                             <div class=" col-md-8 ml-5">
@@ -73,7 +73,7 @@
  
 
                       <div  class="col-md-auto  form-group{{ $errors->has('segundo_nombre') ? ' has-danger' : '' }}">
-                            <label for="segundo_nombre" class="col-md-4 form-control-label">Segundo nombre</label>
+                            <label for="segundo_nombre" class="col-md-8 form-control-label">Segundo nombre</label>
 
                             <div class="col-md-8 ml-5 ">
                                 <input id="segundo_nombre" placeholder="Ejemplo: Andrés, opcional*" type="text" class="form-control" name="segundo_nombre" value="{{ old('segundo_nombre') }}">
@@ -149,7 +149,7 @@
 
                             <div class="col-md-8 ml-5">
 
-                                <input type="date" id="fecha_nacimiento" class="form-control" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required autofocus>
+                                <input type="date" placeholder="28/10/1995" id="fecha_nacimiento" class="form-control" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required autofocus>
 
 
                                 @if ($errors->has('fecha_nacimiento'))
@@ -185,7 +185,7 @@
 
 
 
-<div class="float-right " style="  width: 50%; height: 600px;  margin-right: -10%">
+<div class="float-right " style="  width: 50%; height: 600px;  margin-right: -10%; margin-top: -68%;">
 
 <!--_______________________________Correo Electrónico ____________________________-->
 
@@ -266,7 +266,7 @@
                             <label for="nombre_usuario" class="col-md-8 form-control-label">Nombre de usuario</label>
 
                             <div class="col-md-8 ml-5">
-                                <input id="nombre_usuario" type="text" class="form-control" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autofocus>
+                                <input id="nombre_usuario" type="text" class="form-control" placeholder="Ejemplo: carlosR" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required autofocus>
 
                                 @if ($errors->has('nombre_usuario'))
                                     <span class="form-control-feedback">

@@ -54,6 +54,16 @@ class RegisterController extends Controller
             'id_persona' => '',
             'nombre_usuario' => 'required|string|max:50|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'primer_nombre' => ['required','max:25'],
+            'segundo_nombre' => ['max:25'],
+            'primer_apellido' => ['required','max:25'],
+            'segundo_apellido' => ['required','max:25'],
+            'fecha_nacimiento' => ['required'],
+            'cedula' => ['required','max:30'],
+            'email' => ['required','max:150'],
+            'telefono' => ['required','max:50'],
+            'direccion' => ['required','max:260']
+            
             //'rol' => 'required|string|max:255',
         ],['nombre_usuario.required'=>'Por favor, escriba el nombre de usuario','nombre_usuario.unique'=>'El nombre de usuario ya existe, por favor elija uno diferente','nombre_usuario.max'=>'El nombre de usuario no puede ser mayor a 50 caractéres','password.required'=>'Por favor digíte una contraseña','password.min'=>'La contraseña debe de ser mayor a 6 caracteres','password.confirmed'=>'Las contraseñas no coinciden']);
     }
@@ -67,16 +77,25 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        dd('Entró usuario');
         $persona = $this->encontrarPorCedula($data);
+
 
 
         $fill = ['nombre_usuario' => $data['nombre_usuario'],
             'password' => bcrypt($data['password']),
             'id_persona' => $persona->id, ];
 
+            User::create($fill);
 
-        return User::create($fill);
+
+
+        return view('/')
     }
+
+
+
+
 
      private function encontrarPorCedula(array $data)
     {
