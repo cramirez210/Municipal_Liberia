@@ -10,8 +10,7 @@
 
         <div class="col-md-8 offset-md-2 mt-4">
 
-        <h2>Registrar nueva persona</h2>
-        <br>
+        
 
             <div class="panel panel-default">
         
