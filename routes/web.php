@@ -1,4 +1,6 @@
+
 <?php
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,5 @@ Route::get('/nueva/factura', function () {
 Route::get('/registro_personas', 'PersonasController@show_registrar');
 
 Route::post('/registro_personas', 'PersonasController@create');
+
+
