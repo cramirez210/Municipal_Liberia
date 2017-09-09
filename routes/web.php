@@ -33,9 +33,8 @@ Route::get('/registro_personas', 'PersonasController@show_registrar');
 Route::post('/registro_personas', 'PersonasController@create');
 
 
-<<<<<<< HEAD
+
 // Rutas del objeto catalogo
 Route::get('/categoria/home', 'CategoriaController@home');
 Route::post('/categoria/create', 'CategoriaController@create');
-=======
->>>>>>> 816d176877a9d5955ee4a1ffcfce9cee1496a3ff
+
