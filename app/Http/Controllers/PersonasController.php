@@ -19,7 +19,7 @@ class PersonasController extends Controller
     {
 
 
-     /* dd('Entró persona');
+      dd('Entró persona');
    		$persona = Persona::create([
 
    				'primer_nombre'=> $request->input('primer_nombre'),
@@ -34,6 +34,6 @@ class PersonasController extends Controller
 
    			]);
 
-   			return redirect('/')->withSuccess('Persona creada exitosamente!'); */
+   			return redirect('/')->withSuccess('Persona creada exitosamente!'); 
     }
 }

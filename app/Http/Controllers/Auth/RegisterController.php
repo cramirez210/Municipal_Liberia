@@ -7,6 +7,7 @@ use App\Persona;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests\CrearPersonaRequest;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -63,7 +64,7 @@ class RegisterController extends Controller
             'email' => ['required','max:150'],
             'telefono' => ['required','max:50'],
             'direccion' => ['required','max:260']
-            
+
             //'rol' => 'required|string|max:255',
         ],['nombre_usuario.required'=>'Por favor, escriba el nombre de usuario','nombre_usuario.unique'=>'El nombre de usuario ya existe, por favor elija uno diferente','nombre_usuario.max'=>'El nombre de usuario no puede ser mayor a 50 caractéres','password.required'=>'Por favor digíte una contraseña','password.min'=>'La contraseña debe de ser mayor a 6 caracteres','password.confirmed'=>'Las contraseñas no coinciden']);
     }
@@ -77,29 +78,45 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        dd('Entró usuario');
+    
+
+            $persona = new Persona;
+
+            $persona->primer_nombre = $data['primer_nombre'];
+            $persona->segundo_nombre = $data['segundo_nombre'];
+            $persona->primer_apellido= $data['primer_apellido'];
+            $persona->segundo_apellido = $data['segundo_apellido'];
+            $persona->cedula = $data['cedula'];
+            $persona->fecha_nacimiento = $data['fecha_nacimiento'];
+            $persona->email = $data['email'];
+            $persona->telefono = $data['telefono'];
+            $persona->direccion = $data['direccion'];
+
+            $persona->save();
+
+
+     
+
         $persona = $this->encontrarPorCedula($data);
 
 
+        
 
         $fill = ['nombre_usuario' => $data['nombre_usuario'],
             'password' => bcrypt($data['password']),
-            'id_persona' => $persona->id, ];
+            'id_persona' =>$persona->id];
 
             User::create($fill);
 
 
 
-        return view('/')
+       return view ('welcome');
     }
-
-
-
 
 
      private function encontrarPorCedula(array $data)
     {
-         return Persona::where('cedula',$data['id_persona'])->first();
+         return Persona::where('cedula',$data['cedula'])->first();
     }
 
 }
