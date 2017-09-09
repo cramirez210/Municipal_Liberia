@@ -1,3 +1,7 @@
+<div class="panel panel-default">
+     
+    <form class="form-inline" method="POST" action="/categoria/create">
+                        {{ csrf_field() }}
 
     <!--_______________________________ Nombre Categoria ______________________________-->
 
@@ -59,3 +63,5 @@
                 <strong class="text-danger">{{ $errors->first('precio_categoria') }}</strong>
             </span>
         @endif
+
+</div>

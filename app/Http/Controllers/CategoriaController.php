@@ -27,7 +27,7 @@ class CategoriaController extends Controller
 					'precio_categoria'=> $request->input('precio_categoria'),
 			]);
 
-		return redirect('/categoria/home');
+		return redirect('/categoria/home')->withSuccess('Categoria creada exitosamente!');;
 	}
 
 	public function show(Categoria $categoria)
@@ -47,7 +47,7 @@ class CategoriaController extends Controller
 		$categoria->precio_categoria = $request->input('precio_categoria');
 		$categoria->save();
 		
-		return redirect('/categoria/home');
+		return redirect('/categoria/home')->withSuccess('Datos actualizados exitosamente!');;
 	}
    
 }

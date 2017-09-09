@@ -110,7 +110,11 @@ class RegisterController extends Controller
 
 
 
+<<<<<<< HEAD
        return view ('welcome');
+=======
+        return redirect('/');
+>>>>>>> 9465bd4a576632c8ce1d27e9d14a7ec2452ec163
     }
 
 

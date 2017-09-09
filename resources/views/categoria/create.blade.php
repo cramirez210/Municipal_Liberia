@@ -3,20 +3,39 @@
 
 @section('content')
 
- <div class="col-md-8 offset-md-2 mt-4">
-
- <h2 class="h3 float-right">Gestion de Categorias</h2>
+<div class="card text-center mt-4">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <label class="nav-link text-primary" href="#">Listado de Categorias</label>
+      </li>
+    </ul>
+  </div>
+  <div class="card-block">
+    <h4 class="card-title text-primary">Incluir Categoria</h4>
+     <div class="col-md-8 offset-md-2 mt-4">
  <br>
-    <h2 class="h4 text-primary">Incluir Categoria</h2>
- <div class="panel panel-default">
-     
-    <form class="form-inline" method="POST" action="/categoria/create">
-                        {{ csrf_field() }}
-
-
+   
 @include('categoria.formulario')
-<!--_______________________________ Tabla _____________________________-->
 <br>
+    </div>
+    </div>
+
+    </div>
+
+    @if(session('success')) 
+    <br>
+    <span class="text-success mt-4">
+        
+        <label class="alert alert-success">{{ session('success') }}</label>
+
+    </span>
+
+  @endif  
+<!--_______________________________ Tabla _____________________________-->
+<div class="card text-center mt-4"> 
+<div class="col-md-8 offset-md-2 mt-4">
+
 <div class="row">
 
  <div class="table-responsive">
@@ -63,12 +82,15 @@
         </div>
     </div>
 
-</div>
+ </div>
 
+</div>
 
 @endsection
 
 @section('titulo')
+
 Categorias Socios 
 
 @endsection
+
