@@ -29,3 +29,8 @@ Route::get('/nueva/factura', function () {
 Route::get('/registro_personas', 'PersonasController@show_registrar');
 
 Route::post('/registro_personas', 'PersonasController@create');
+
+
+// Rutas del objeto catalogo
+Route::get('/categoria/home', 'CategoriaController@home');
+Route::post('/categoria/create', 'CategoriaController@create');
