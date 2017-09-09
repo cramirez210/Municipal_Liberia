@@ -21,10 +21,33 @@ class CategoriaController extends Controller
 
 	public function create(CreateCategoriaRequest $request)
 	{
-		//dd($request->all());
-		return 'llego';
+
+		$categoria = Categoria::create([
+					'categoria'=> $request->input('categoria'),
+					'precio_categoria'=> $request->input('precio_categoria'),
+			]);
+
+		return redirect('/categoria/home');
 	}
 
+	public function show(Categoria $categoria)
+	{
+		return view('categoria.show',[
+    		'categoria' => $categoria,
+    		]);
+		
+	}
 
+	public function update(CreateCategoriaRequest $request, $id)
+	{
+
+		$categoria = Categoria::find($id);
+
+		$categoria->categoria = $request->input('categoria');
+		$categoria->precio_categoria = $request->input('precio_categoria');
+		$categoria->save();
+		
+		return redirect('/categoria/home');
+	}
    
 }

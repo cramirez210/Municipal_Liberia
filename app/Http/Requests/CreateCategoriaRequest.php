@@ -30,19 +30,5 @@ class CreateCategoriaRequest extends FormRequest
         ];
     }
 
-      public function messages()
-    {
-        return[
 
-            'categoria.required'=> 'Nombre de categoria requerida.',
-            'categoria.max'=>'El Nombre no puede ser mayor a 15 caracteres.',
-
-
-            'precio_categoria.required'=> 'Precio de categoria requerida.',
-            'precio_categoria.min'=>'El precio no puede ser menor a 1 caracteres.',
-
-            'precio_categoria.numeric'=> 'El campo precio solo accepta numeros.',
-            
-         ];
-    }
 }

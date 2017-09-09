@@ -37,4 +37,5 @@ Route::post('/registro_personas', 'PersonasController@create');
 // Rutas del objeto catalogo
 Route::get('/categoria/home', 'CategoriaController@home');
 Route::post('/categoria/create', 'CategoriaController@create');
-
+Route::get('/categoria/{categoria}', 'CategoriaController@show');
+Route::post('/categoria/update/{categoria}', 'CategoriaController@update');
