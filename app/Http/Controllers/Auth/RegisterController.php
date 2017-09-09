@@ -90,7 +90,7 @@ class RegisterController extends Controller
 
 
 
-        return view('/')
+        return redirect('/');
     }
 
 

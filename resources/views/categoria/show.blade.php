@@ -2,10 +2,18 @@
 
 @section('content')
 
-<div class="col-md-8 offset-md-2 mt-4">
-	
-
- <h3 class="h3 text-primary mt-4">Datos a Actualizar</h3>
+<div class="card text-center mt-4">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link text-info" href="/categoria/home">Regresar</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-block">
+    <h4 class="card-title text-primary mt-2">Datos Para Ser Actualizados</h4>
+    
+ <div class="col-md-8 offset-md-2 mt-4">
    
  <form class="form-inline" method="POST" action="/categoria/update/{{$categoria->id}}">
  			{{ csrf_field() }}
@@ -29,18 +37,10 @@
         <label for="precio_categoria" class="col-md-5 form-control-label">Precio Categoria</label>
 
      <div class="col-md-3 mt-2">
-        <input id="precio_categoria" placeholder="Ejemplo: ₡5000" type="text" class="form-control" name="precio_categoria" value="{{ $categoria->precio_categoria }}" required autofocus>
-
-       
+        <input id="precio_categoria" placeholder="Ejemplo: ₡5000" type="text" class="form-control" name="precio_categoria" value="{{ $categoria->precio_categoria }}" required autofocus> 
+    </div>                        
     </div>
-                           
-
-    </div>
-
-
-
     <!--_______________________________ Botón _____________________________-->
-
     <div class="float-right">
         <div class="col-md-6">
             <button type="submit" class="btn btn-warning">
@@ -49,10 +49,7 @@
         </div>
     </div>
 
-
-
-    </form>
-
+ </form>
 
  </div>
 
@@ -69,11 +66,12 @@
                 <strong class="text-danger offset-md-2">{{ $errors->first('precio_categoria') }}</strong>
             </span>
         @endif 
-
+  </div>
+</div>
 
 @endsection
 
 @section('titulo')
-ActuCategorias 
-
+Actualizar Categoria 
 @endsection
+
