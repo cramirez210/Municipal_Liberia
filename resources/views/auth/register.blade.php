@@ -7,6 +7,24 @@
 
     <div class="col-md-9 offset-md-2 mt-4">
 
+        @if(session('success')) 
+
+
+        <div class="card" style="width: 100%; text-align: center;">
+  <div class="card-header">
+    Todo listo!!
+  </div>
+  <div class="card-block">
+    <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
+  </div>
+</div>
+
+
+  @endif  
+
+
+
+
     <h2 class="h3 mt-3">Gestion de usuarios</h2>
     
     
@@ -47,6 +65,8 @@
 
 
 <!--_________________________________Persona_______________________________________-->
+    
+
 <div class="float-none" style="background-color: ; 
   width: 50%; margin-left: 10%; height: 600px">
     

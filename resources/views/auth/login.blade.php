@@ -10,6 +10,15 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
+                          @if(session('success')) 
+                    <br>
+                    <span class="text-success mt-4">
+        
+                 <label class="alert alert-success">{{ session('success') }}</label>
+
+                 </span>
+
+                    @endif 
                         <div class="form-group{{ $errors->has('nombre_usuario') ? ' has-danger' : '' }}">
                             <label for="nombre_usuario" class="col-md-4 form-control-label">Nombre de usuario</label>
 

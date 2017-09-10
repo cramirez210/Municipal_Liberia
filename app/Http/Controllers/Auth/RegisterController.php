@@ -108,15 +108,9 @@ class RegisterController extends Controller
 
             User::create($fill);
 
+       return redirect(route('login'))->withSuccess('Persona creada exitosamente!');
 
-
-<<<<<<< HEAD
-       return view ('welcome');
-=======
-        return redirect('/');
->>>>>>> 9465bd4a576632c8ce1d27e9d14a7ec2452ec163
     }
-
 
      private function encontrarPorCedula(array $data)
     {
