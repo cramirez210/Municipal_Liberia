@@ -41,3 +41,8 @@ Route::post('/categoria/create', 'CategoriaController@create');
 Route::get('/categoria/{categoria}', 'CategoriaController@show');
 Route::post('/categoria/update/{categoria}', 'CategoriaController@update');
 
+// Rutas del objeto estado
+Route::get('/estados/home', 'EstadoController@home');
+Route::post('/estados/create', 'EstadoController@create');
+Route::get('/estados/{estado}', 'EstadoController@show');
+Route::post('/estados/update/{estado}', 'EstadoController@update');
