@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -27,13 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/nueva/factura', function () {
     return view('registrar_factura');
 });
-
-
-
-// Rutas del objeto personas 
-Route::get('/registro_personas', 'PersonasController@show_registrar');
-
-
 
 // Rutas del objeto catalogo
 Route::get('/categoria/home', 'CategoriaController@home');
