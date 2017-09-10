@@ -24,7 +24,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/nueva/factura', function () {
     return view('registrar_factura');
 });
+// Rutasdel objeto personas
 
+Route::get('/personas/listar','PersonasController@home');
+Route::get('personas/mostrar/{persona}','PersonasController@show');
 // Rutas del objeto catalogo
 Route::get('/categoria/home', 'CategoriaController@home');
 Route::post('/categoria/create', 'CategoriaController@create');

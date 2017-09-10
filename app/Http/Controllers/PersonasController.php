@@ -4,36 +4,25 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CrearPersonaRequest;
 use Illuminate\Http\Request;
 use App\Persona;
+use App\User;
 
 class PersonasController extends Controller
 {
-    //
-    //
-    //
-    public function show_registrar()
+    public function home()
     {
-    	return view('personas.registro_personas');
-    } 	
-
-    public function create(CrearPersonaRequest $request)
-    {
-
-
-      dd('Entró persona');
-   		$persona = Persona::create([
-
-   				'primer_nombre'=> $request->input('primer_nombre'),
-   				'segundo_nombre'=> $request->input('segundo_nombre'),
-   				'primer_apellido'=> $request->input('primer_apellido'),
-   				'segundo_apellido'=> $request->input('segundo_apellido'),
-   				'cedula'=> $request->input('cedula'),
-   				'fecha_nacimiento'=> $request->input('fecha_nacimiento'),
-   				'email'=> $request->input('email'),
-   				'telefono'=> $request->input('telefono'),
-   				'direccion'=> $request->input('direccion')
-
-   			]);
-
-   			return redirect('/')->withSuccess('Persona creada exitosamente!'); 
+       $personas = Persona::paginate(9);
+          return view('personas.list', [
+              'personas' => $personas,
+          ]);
     }
+
+    public function show(Persona $persona)
+    {
+
+    	return view('personas.show',[
+    		'persona' => $persona,
+    		'usuario' =>$persona->usuario
+    		]);
+    }
+    
 }

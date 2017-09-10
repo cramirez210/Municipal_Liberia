@@ -10,9 +10,9 @@ class Persona extends Model
    protected $guarded = [];
 
 
-   public function user()
+   public function usuario()
     {
-        return $this->hasOne('App\User','cedula_persona');
+        return $this->hasOne('App\User');
     }
     
 }

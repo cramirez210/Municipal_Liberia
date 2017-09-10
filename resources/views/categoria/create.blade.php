@@ -35,7 +35,7 @@
 <!--_______________________________ Tabla _____________________________-->
 <div class="card text-center mt-4"> 
 <div class="col-md-8 offset-md-2 mt-4">
-
+  
 <div class="row">
 
  <div class="table-responsive">
