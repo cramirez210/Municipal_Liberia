@@ -4,14 +4,14 @@
 
 
 	@if(session('success')) 
+    <br>
+    <span class="text-success mt-4">
+        
+        <label class="alert alert-success">{{ session('success') }}</label>
 
-		<span class="text-success mt-4">
-				
-				<h2>{{ session('success') }}</h2>
+    </span>
 
-		</span>
-
-	@endif	
+  @endif  
 
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 

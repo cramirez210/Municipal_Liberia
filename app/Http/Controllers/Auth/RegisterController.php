@@ -80,7 +80,31 @@ class RegisterController extends Controller
 
     
 
+
             $persona = new Persona;
+
+            $persona->primer_nombre = $data['primer_nombre'];
+            $persona->segundo_nombre = $data['segundo_nombre'];
+            $persona->primer_apellido= $data['primer_apellido'];
+            $persona->segundo_apellido = $data['segundo_apellido'];
+            $persona->cedula = $data['cedula'];
+            $persona->fecha_nacimiento = $data['fecha_nacimiento'];
+            $persona->email = $data['email'];
+            $persona->telefono = $data['telefono'];
+            $persona->direccion = $data['direccion'];
+
+            $persona->save();
+
+    
+        $persona = $this->encontrarPorCedula($data);
+
+
+
+        
+
+        $fill = ['nombre_usuario' => $data['nombre_usuario'],
+            'password' => bcrypt($data['password']),
+            'id_persona' =>$persona->id];
 
             $persona->primer_nombre = $data['primer_nombre'];
             $persona->segundo_nombre = $data['segundo_nombre'];
@@ -100,21 +124,15 @@ class RegisterController extends Controller
         $persona = $this->encontrarPorCedula($data);
 
 
-        
-
         $fill = ['nombre_usuario' => $data['nombre_usuario'],
             'password' => bcrypt($data['password']),
             'id_persona' =>$persona->id];
 
+
             User::create($fill);
 
+       return redirect(route('login'))->withSuccess('Persona creada exitosamente!');
 
-
-<<<<<<< HEAD
-       return view ('welcome');
-=======
-        return redirect('/');
->>>>>>> 9465bd4a576632c8ce1d27e9d14a7ec2452ec163
     }
 
 

@@ -41,12 +41,6 @@
                                 <a class="nav-link" href="{{ route('login') }}">Entrar</a>
                             </li>
 
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/registro_personas') }}">Registrar Persona</a>
-                            </li>
-
-
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">Registrar Usuario</a>
                             </li>
