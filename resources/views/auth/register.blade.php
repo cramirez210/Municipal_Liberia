@@ -7,27 +7,13 @@
 
     <div class="col-md-9 offset-md-2 mt-4">
 
-        @if(session('success')) 
+ @if(session('success')) 
 
-
-        <div class="card" style="width: 100%; text-align: center;">
-  <div class="card-header">
-    Todo listo!!
-  </div>
   <div class="card-block">
     <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
   </div>
-</div>
-
 
   @endif  
-
-
-
-
-    <h2 class="h3 mt-3">Gestion de usuarios</h2>
-    
-    
 
     </div>
 
@@ -41,13 +27,17 @@
       <li class="nav-item">
          <h5 class="text-primary">Registrar nuevo usuario</h5>
       </li>
+
+     
      
       <li class="nav-item">
         <button type="submit" class="btn btn-outline-info" style="margin-left: 89%;">
                                     Regresar
                                 </button>
         </li>
-    </ul>
+
+        
+ 
   </div>
   <div class="card-block">
 
@@ -169,7 +159,16 @@
 
                             <div class="col-md-8 ml-5">
 
-                                <input type="date" placeholder="28/10/1995" id="fecha_nacimiento" class="form-control" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required autofocus>
+                                <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" width="276" />
+    <script>
+        $('#fecha_nacimiento').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: "yyyy-mm-dd",
+            language: "es",
+            iconsLibrary: 'fontawesome',
+            
+        });
+    </script>
 
 
                                 @if ($errors->has('fecha_nacimiento'))
@@ -186,9 +185,12 @@
                             <label for="rol" class="col-md-8 form-control-label">Rol</label>
 
                             <div class="col-md-8 ml-5">
-                               <select id="rol" name="rol">
-                                   
-                               </select>
+                                
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+    <option selected>Roles...</option>
+    
+  </select>
+
                                 @if ($errors->has('rol'))
                                     <span class="form-control-feedback">
                                         <strong>{{ $errors->first('rol') }}</strong>
@@ -298,7 +300,7 @@
 
 <!--________________________________________ Contraseñas _________________________-->
                         <div class=" col-md-auto form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                            <label for="password" class="col-md-4 form-control-label">Password</label>
+                            <label for="password" class="col-md-4 form-control-label">Contraseña</label>
 
                             <div class="col-md-8 ml-5">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -312,7 +314,7 @@
                         </div>
 
                         <div class="col-md-auto ">
-                            <label for="password-confirm" class="col-md-8 form-control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-8 form-control-label">Confirmar contraseña</label>
 
                             <div class="col-md-8 ml-5">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -330,6 +332,7 @@
                                 <button type="submit" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
                                     Registrar
                                 </button>
+
                             </div>
                         </div>
 

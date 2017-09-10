@@ -46,3 +46,4 @@ Route::get('/estados/home', 'EstadoController@home');
 Route::post('/estados/create', 'EstadoController@create');
 Route::get('/estados/{estado}', 'EstadoController@show');
 Route::post('/estados/update/{estado}', 'EstadoController@update');
+
