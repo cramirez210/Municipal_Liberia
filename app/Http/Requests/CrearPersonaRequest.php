@@ -33,13 +33,19 @@ class CrearPersonaRequest extends FormRequest
             'cedula' => ['required','max:30'],
             'email' => ['required','max:150'],
             'telefono' => ['required','max:50'],
-            'direccion' => ['required','max:260']
+            'direccion' => ['required','max:260'],
+            'nombre_usuario' => ['required','max:25'],
+            //'rol'=> ['required','max:50'],
         ];
     }
 
      public function messages()
     {
         return[
+
+
+            'nombre_usuario.required'=> 'Por favor, escribir nombre de usuario.',
+            'nombre_usuario.max'=>'El nombre de usuario no puede ser mayor a 25 caracteres.',
 
             'primer_nombre.required'=> 'Por favor, escribir el primer nombre.',
             'primer_nombre.max'=>'El primer nombre no puede ser mayor a 25 caracteres.',

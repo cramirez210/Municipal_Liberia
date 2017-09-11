@@ -28,6 +28,10 @@ Route::get('/nueva/factura', function () {
 
 Route::get('/personas/listar','PersonasController@home');
 Route::get('personas/mostrar/{persona}','PersonasController@show');
+Route::get('personas/editar/{persona}','PersonasController@show_update');
+Route::post('personas/editar/{persona}','PersonasController@update');
+
+
 // Rutas del objeto catalogo
 Route::get('/categoria/home', 'CategoriaController@home');
 Route::post('/categoria/create', 'CategoriaController@create');

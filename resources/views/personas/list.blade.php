@@ -4,7 +4,13 @@
 @section('content')
 
 
- 
+  @if(session('success')) 
+
+  <div class="mt-4 card-block">
+    <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
+  </div>
+
+  @endif  
         
 <!--_______________________________ Tabla _____________________________-->
 <div class="card text-center mt-4"> 
@@ -43,6 +49,12 @@
             <td class="info"> 
                  <a href="/personas/mostrar/{{ $persona->id }}" class="btn btn-info btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Ver usuario</a>
+                <a href="/personas/editar/{{ $persona->id }}" class="btn btn-warning btn-xs">
+                     <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
+
+                <a href="" class="btn btn-danger btn-xs">
+                     <span class="glyphicon glyphicon-remove-circle"></span>Eliminar</a>
+
             </td>
         </tr>
 

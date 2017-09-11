@@ -126,7 +126,8 @@ class RegisterController extends Controller
 
         $fill = ['nombre_usuario' => $data['nombre_usuario'],
             'password' => bcrypt($data['password']),
-            'id_persona' =>$persona->id];
+            'id_persona' =>$persona->id,
+            'persona_id'=>$persona->id];
 
 
             User::create($fill);

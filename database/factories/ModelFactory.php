@@ -16,9 +16,27 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+    	
+        'nombre_usuario' => $faker->userName,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Persona::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+    	
+        'primer_apellido'=>  $faker->name,
+        'segundo_apellido'=> $faker->name,
+        'cedula' => $faker->randomNumber, 
+        'primer_nombre' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'fecha_nacimiento'=>$faker->date($format = 'Y-m-d', $max = 'now'),
+        'telefono'=>$faker->phoneNumber,
+        'direccion'=>$faker->address, 
+    ];
+});
+
+
