@@ -15,8 +15,8 @@ class CrearLlaveForaneaIdPersonasEnUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->integer('id_persona')->unsigned();
-            $table->foreign('id_persona')->references('id')->on('personas');
+            $table->integer('persona_id')->unsigned();
+            $table->foreign('persona_id')->references('id')->on('personas');
         });
     }
     /**
@@ -28,8 +28,8 @@ class CrearLlaveForaneaIdPersonasEnUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             
-            $table->dropForeign('users_id_persona_foreign'); //Nombre de la tabla_ nombre de la columna _ forein 
-            $table->dropColumn(['id_persona']);
+            $table->dropForeign('users_persona_id_foreign'); //Nombre de la tabla_ nombre de la columna _ forein 
+            $table->dropColumn(['persona_id']);
 
         });
     }

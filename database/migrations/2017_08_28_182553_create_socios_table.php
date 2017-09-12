@@ -15,7 +15,7 @@ class CreateSociosTable extends Migration
     {
         Schema::create('socios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_persona');
+            $table->integer('persona_id');
             $table->string('estado_civil');
             $table->integer('id_categoria');
             $table->double('total_pagar');

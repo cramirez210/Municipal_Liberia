@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
         	 factory(App\User::class)
         	 ->times(1)
         	 ->create([
-        	 	'id_persona'=>$persona->id,
         	 	'persona_id'=>$persona->id,
         	 	]);
 
