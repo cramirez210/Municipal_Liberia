@@ -15,8 +15,8 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_socio');
-            $table->integer('id_usuario');
+            $table->integer('socio_id');
+            $table->integer('usuario_id');
             $table->string('meses_cancelados');
             $table->double('monto');
             $table->string('forma_pago');

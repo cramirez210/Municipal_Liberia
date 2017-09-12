@@ -15,10 +15,10 @@ class CreateColaboradoresTable extends Migration
     {
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_persona');
+            $table->integer('persona_id');
             $table->date('inicio_contrato');
             $table->date('finaliza_contrato')->unique();
-            $table->integer('id_usuario');
+            $table->integer('usuario_id');
             $table->string('estado');
             $table->timestamps();
         });

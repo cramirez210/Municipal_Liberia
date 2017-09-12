@@ -8,14 +8,14 @@ use App\Socio;
 
 class FacturaController extends Controller
 {
-   public function create($id_socio)
+   public function create($socio_id)
     {
-    	$socio = Socio::find($id_socio);
+    	$socio = Socio::find($socio_id);
 
     	return view('registrar_factura', compact('socio'));
     }
 
-    public function store($id_socio)
+    public function store($socio_id)
     {
     	$factura = new Factura;
 
