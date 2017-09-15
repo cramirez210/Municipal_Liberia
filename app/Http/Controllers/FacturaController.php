@@ -8,11 +8,13 @@ use App\Socio;
 
 class FacturaController extends Controller
 {
-   public function create($socio_id)
+   public function create()
     {
-    	$socio = Socio::find($socio_id);
+    	//$socio = Socio::find($socio_id);
 
-    	return view('registrar_factura', compact('socio'));
+    	//return view('registrar_factura', compact('socio'));
+
+        return view('factura.create');
     }
 
     public function store($socio_id)
@@ -45,6 +47,13 @@ class FacturaController extends Controller
         $factura = Factura::find($id);
 
         return view('detail', compact('factura'));
+    }
+
+    public function list()
+    {
+        $facturas = Factura::all();
+
+        return view('factura.list', compact('facturas'));
     }
 
     public function destroy($id)
