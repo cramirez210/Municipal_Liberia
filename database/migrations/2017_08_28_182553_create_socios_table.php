@@ -18,10 +18,9 @@ class CreateSociosTable extends Migration
             $table->integer('persona_id');
             $table->string('estado_civil');
             $table->integer('categoria_id');
-            $table->double('total_pagar');
             $table->string('empresa');
             $table->integer('usuario_id');
-            $table->string('estado');
+            $table->integer('estado_id');
             $table->timestamps();
         });
     }

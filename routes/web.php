@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('/nueva/factura', function () {
     return view('registrar_factura');
 });
@@ -44,6 +45,16 @@ Route::post('/estados/create', 'EstadoController@create');
 Route::get('/estados/{estado}', 'EstadoController@show');
 Route::post('/estados/update/{estado}', 'EstadoController@update');
 
+
 //Rutas del objeto Roles
 
 Route::get('/roles/home','RolesController@index');
+
+// Rutas del objeto socio.
+
+Route::get('/socios/home', 'SociosController@home');
+Route::post('/socios/create', 'SociosController@create');
+
+// Rutas del objeto factura
+Route::get('/factura/create', 'FacturaController@create');
+Route::get('/factura/list', 'FacturaController@list');

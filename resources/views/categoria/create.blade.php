@@ -43,9 +43,9 @@
     <table class="table table-hover ">
         <thead>
             <tr>
-            <th>Categoria</th>
-            <th>Precio Categoria</th>
-            <th>Opciones</th>
+            <th class="text-center">Categoria</th>
+            <th class="text-center">Precio Categoria</th>
+            <th class="text-center">Opciones</th>
             </tr>
         </thead>
     <tbody>
