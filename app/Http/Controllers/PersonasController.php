@@ -13,7 +13,6 @@ class PersonasController extends Controller
 
 
        $usuarios = User::paginate(9);  
-        
 
           return view('personas.list', [
               'usuarios' => $usuarios,
@@ -23,9 +22,12 @@ class PersonasController extends Controller
     public function show(User $user)
     {
 
+
     	return view('personas.show',[
     		'usuario' => $user,
             'persona' => $user->persona,
+            'role' => $user->role,
+
     		]);
     }
 

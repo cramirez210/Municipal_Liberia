@@ -35,7 +35,7 @@ class CrearPersonaRequest extends FormRequest
             'telefono' => ['required','max:50'],
             'direccion' => ['required','max:260'],
             'nombre_usuario' => ['required','max:25'],
-            //'rol'=> ['required','max:50'],
+            'rol'=> ['required'],
         ];
     }
 
@@ -71,6 +71,8 @@ class CrearPersonaRequest extends FormRequest
 
             'direccion.required'=> 'Por favor, escribir la dirección.',
             'direccion.max'=>'La dirección no puede ser mayor a 260 caracteres.',
+
+            'rol'=>'El rol es requerido, por favor seleccione uno',
         ];
     }
 }

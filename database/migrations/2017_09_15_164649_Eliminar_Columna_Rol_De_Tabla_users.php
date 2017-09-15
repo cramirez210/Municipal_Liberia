@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearLlaveForaneaIdPersonasEnUsers extends Migration
+class EliminarColumnaRolDeTablaUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,11 @@ class CrearLlaveForaneaIdPersonasEnUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-            $table->integer('persona_id')->unsigned();
-            $table->foreign('persona_id')->references('id')->on('personas');
             
+            $table->dropColumn('rol');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,10 +27,8 @@ class CrearLlaveForaneaIdPersonasEnUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            
-            $table->dropForeign('users_persona_id_foreign'); //Nombre de la tabla_ nombre de la columna _ forein 
-            $table->dropColumn(['persona_id']);
-
+            //
+            $table->integer('rol');
         });
     }
 }

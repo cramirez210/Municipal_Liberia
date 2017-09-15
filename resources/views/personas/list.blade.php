@@ -29,8 +29,8 @@
     <table class="table table-hover" >
         <thead>
             <tr>
-            <th>Nombre de usuario</th>
-            <th>Opciones</th>
+            <th class="text-center">Nombre de usuario</th>
+            <th class="text-center">Opciones</th>
             </tr>
         </thead>
     <tbody>

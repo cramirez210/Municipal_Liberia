@@ -186,21 +186,20 @@
 
                             <div class="col-md-8 ml-5">
                                
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-    <option selected>Roles...</option>
-   
-  </select>
+                            <select class="form-control" name="rol" id="rol">
+                            @foreach($roles as $role)
+                                 <option> {{ $role->rol }} </option>
+                            @endforeach
+                            </select>
 
-                                @if ($errors->has('rol'))
+                                @if ($errors->has('roles'))
                                     <span class="form-control-feedback">
-                                        <strong>{{ $errors->first('rol') }}</strong>
+                                        <strong>{{ $errors->first('roles') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
-
-
+                        
 </div>
 
 
@@ -260,26 +259,6 @@
                                 @endif
                             </div>
                         </div>
-
-
-<!--______________________________ Usuario ________________________________
-
-    <div class="form-group{{ $errors->has('cedula_persona') ? ' has-danger' : '' }}">
-                            <label for="cedula_persona" class="col-md-4 form-control-label">Cédula de la persona</label>
-
-                            <div class="col-md-6">
-
-                              <input id="cedula_persona" type="text" class="form-control" name="id_persona" value="{{ old('cedula_persona') }}" required autofocus>
-
-                                @if ($errors->has('cedula_persona'))
-                                    <span class="form-control-feedback">
-                                        <strong>{{ $errors->first('cedula_persona') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        -->
 
 
 <!--________________________________ Nombre de usuario __________________________-->

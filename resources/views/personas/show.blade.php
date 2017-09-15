@@ -43,7 +43,7 @@
                             <label for="primer_nombre" class="col-md-4 form-control-label">Primer nombre</label>
 
                             <div class=" col-md-8 ml-5">
-                                <input id="primer_nombre" type="text" class="form-control" name="primer_nombre" value="{{ $persona->primer_nombre }}" disabled>
+                                <input id="primer_nombre" type="text" class="form-control" name="primer_nombre" value="{{ $persona->primer_nombre }}" readonly>
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                             <label for="segundo_nombre" class="col-md-8 form-control-label">Segundo nombre</label>
 
                             <div class="col-md-8 ml-5 ">
-                                <input id="segundo_nombre" placeholder="No posee" type="text" class="form-control" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" disabled>
+                                <input id="segundo_nombre" placeholder="No posee" type="text" class="form-control" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" readonly>
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                             <label for="primer_apellido" class="col-md-4 form-control-label">Primer apellido</label>
 
                             <div class="col-md-8 ml-5 ">
-                                <input id="primer_apellido" type="text" class="form-control" name="primer_apellido" value="{{ $persona->primer_apellido }}" disabled>
+                                <input id="primer_apellido" type="text" class="form-control" name="primer_apellido" value="{{ $persona->primer_apellido }}" readonly>
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                             <label for="segundo_apellido" class="col-md-8 form-control-label">Segundo apellido</label>
 
                             <div class="col-md-8 ml-5">
-                                <input id="segundo_apellido" type="text" class="form-control" name="segundo_apellido" value="{{ $persona->segundo_apellido }}" disabled>
+                                <input id="segundo_apellido" type="text" class="form-control" name="segundo_apellido" value="{{ $persona->segundo_apellido }}" readonly>
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@
                             <label for="cedula" class="col-md-4 form-control-label">Cédula</label>
 
                             <div class="col-md-8 ml-5">
-                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ $persona->cedula }}" disabled>
+                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ $persona->cedula }}" readonly>
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@
 
                             <div class="col-md-8 ml-5">
 
-                                <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" width="276" value="{{ $persona->fecha_nacimiento }}" disabled/>
+                                <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" width="276" value="{{ $persona->fecha_nacimiento }}" readonly/>
  
                       
                             </div>
@@ -122,7 +122,7 @@
                             <label for="email" class="col-md-8 from-control-label">Correo electrónico</label>
 
                             <div class="col-md-8 ml-5">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $persona->email }}" disabled>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $persona->email }}" readonly>
 
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                             <label for="telefono" class="col-md-8 form-control-label">Número de telefono </label>
 
                             <div class="col-md-8 ml-5">
-                                <input id="telefono"type="text" class="form-control" name="telefono" value="{{ $persona->telefono }}" disabled>
+                                <input id="telefono"type="text" class="form-control" name="telefono" value="{{ $persona->telefono }}" readonly>
 
                             </div>
                         </div>         
@@ -145,7 +145,7 @@
                             <label for="direccion" class="col-md-4 form-control-label">Dirección</label>
 
                             <div class="col-md-8 ml-5">
-                                <input style="height: 60px;" id="direccion" type="textarea" class="form-control" name="direccion" value="{{ $persona->direccion }}" disabled></input>
+                                <input style="height: 60px;" id="direccion" type="textarea" class="form-control" name="direccion" value="{{ $persona->direccion }}" readonly></input>
 
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                             <label for="nombre_usuario" class="col-md-8 form-control-label">Nombre de usuario</label>
 
                             <div class="col-md-8 ml-5">
-                                <input id="nombre_usuario" type="text" class="form-control"  name="nombre_usuario" value="{{ $usuario->nombre_usuario }}" disabled>
+                                <input id="nombre_usuario" type="text" class="form-control"  name="nombre_usuario" value="{{ $usuario->nombre_usuario }}" readonly>
 
                               
                             </div>
@@ -165,9 +165,9 @@
 <!--________________________________________ Roles  _________________________-->
                      <div class=" col-md-auto  form-group">
                             <label for="rol" class="col-md-8 form-control-label">Rol</label>
-
+                            
                             <div class="col-md-8 ml-5">
-                            <input id="rol" type="text" class="form-control"  name="rol" value="" disabled>
+                            <input id="rol" type="text" class="form-control"  name="rol" value="{{ $role->rol }}" readonly>
                             
                             </div>
                         </div>
@@ -183,30 +183,9 @@
                      <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
                             </div>
-                        </div>
-
-                    
+                        </div>      
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   </div>

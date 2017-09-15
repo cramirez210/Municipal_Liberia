@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Persona;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -105,7 +106,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-
             $persona = new Persona;
 
             $persona->primer_nombre = $data['primer_nombre'];
@@ -121,12 +121,14 @@ class RegisterController extends Controller
             $persona->save();
 
         $persona = $this->encontrarPorCedula($data);
+        $rol = $this->encontrarRolPorNombre($data);
 
 
         $fill = ['nombre_usuario' => $data['nombre_usuario'],
             'password' => bcrypt($data['password']),
-            'persona_id'=>$persona->id];
-
+            'persona_id'=>$persona->id,
+            'rol_id'=>$rol->id
+            ];
 
             User::create($fill);
 
@@ -138,6 +140,19 @@ class RegisterController extends Controller
      private function encontrarPorCedula(array $data)
     {
          return Persona::where('cedula',$data['cedula'])->first();
+    }
+
+    private function encontrarRolPorNombre(array $data)
+    {
+         return Role::where('rol',$data['rol'])->first();
+    }
+
+    public function showRegistrationForm()
+    {
+        $roles=Role::all();
+         return view('auth.register', [
+              'roles' => $roles,
+          ]);
     }
 
 }

@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/nueva/factura', function () {
     return view('registrar_factura');
 });
-// Rutasdel objeto personas
+// Rutas del objeto personas
 
 Route::get('/personas/listar','PersonasController@home');
 Route::get('personas/mostrar/{user}','PersonasController@show');
@@ -44,3 +44,6 @@ Route::post('/estados/create', 'EstadoController@create');
 Route::get('/estados/{estado}', 'EstadoController@show');
 Route::post('/estados/update/{estado}', 'EstadoController@update');
 
+//Rutas del objeto Roles
+
+Route::get('/roles/home','RolesController@index');
