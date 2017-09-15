@@ -29,29 +29,24 @@
     <table class="table table-hover" >
         <thead>
             <tr>
-            <th>Cédula</th>
-            <th>Primer nombre</th>
-            <th>Primer apellido</th>
+            <th>Nombre de usuario</th>
             <th>Opciones</th>
             </tr>
         </thead>
     <tbody>
 
         
-         @forelse($personas as $persona)
+         @forelse($usuarios as $usuario)
                        
         <tr>
-            <td class="info" > {{$persona->cedula}} </td>
-            <td class="info"> {{$persona->primer_nombre}} </td>
-            <td class="info"> {{$persona->primer_apellido}} </td>
-
+            <td class="info" > {{$usuario->nombre_usuario}} </td>
+   
 
             <td class="info"> 
-                 <a href="/personas/mostrar/{{ $persona->id }}" class="btn btn-info btn-xs">
+                 <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Ver usuario</a>
-                <a href="/personas/editar/{{ $persona->id }}" class="btn btn-warning btn-xs">
+                <a href="/personas/editar/{{ $usuario->id }}" class="btn btn-warning btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
-
                 <a href="" class="btn btn-danger btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Eliminar</a>
 
@@ -68,14 +63,12 @@
     
     </tbody>
 
-        <div class="card-text text-success">Existen {{count($personas)}} usuarios registrados.</div>
-        <br>
     </table>
 
      <div class="mt-2 mx-auto">
-        @if(count($personas))
+        @if(count($usuarios))
 
-       {{ $personas->links('pagination::bootstrap-4') }}
+       {{ $usuarios->links('pagination::bootstrap-4') }}
 
         @endif 
 

@@ -7,13 +7,13 @@
 
     <div class="col-md-9 offset-md-2 mt-4">
 
- @if(session('success')) 
+ @if(session('success'))
 
   <div class="card-block">
     <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
   </div>
 
-  @endif  
+  @endif 
 
     </div>
 
@@ -22,21 +22,21 @@
 <div class="card" style="width: 100%; height: 800px;">
   <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
-      
+     
 
       <li class="nav-item">
          <h5 class="text-primary">Registrar nuevo usuario</h5>
       </li>
 
-     
-     
+    
+    
       <li class="nav-item">
         <button type="submit" class="btn btn-outline-info" style="margin-left: 89%;">
                                     Regresar
                                 </button>
         </li>
 
-        
+       
  
   </div>
   <div class="card-block">
@@ -48,18 +48,18 @@
 
 
             <div class="panel panel-default">
-             
+            
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
 
 
 <!--_________________________________Persona_______________________________________-->
-    
+   
 
-<div class="float-none" style="background-color: ; 
+<div class="float-none" style="background-color: ;
   width: 50%; margin-left: 10%; height: 600px">
-    
+   
     <!--_______________________________ Primer Nombre ______________________________-->
 
                            <div  class=" col-md-auto form-group @if($errors->has('primer_nombre')) has-danger @endif">
@@ -75,7 +75,7 @@
                                 </div>
                                  @endforeach
                                 @endif
-                        
+                       
                             </div>
                         </div>
 
@@ -166,7 +166,7 @@
             format: "yyyy-mm-dd",
             language: "es",
             iconsLibrary: 'fontawesome',
-            
+           
         });
     </script>
 
@@ -185,10 +185,10 @@
                             <label for="rol" class="col-md-8 form-control-label">Rol</label>
 
                             <div class="col-md-8 ml-5">
-                                
+                               
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
     <option selected>Roles...</option>
-    
+   
   </select>
 
                                 @if ($errors->has('rol'))
@@ -241,7 +241,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>         
+                        </div>        
 
 
  <!--_______________________________ Dirección____________________________-->
@@ -342,28 +342,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
 </div>
-
-
-
 
 
 

@@ -35,7 +35,7 @@
 
             <div class="panel panel-default">
              
-                    <form class="form-horizontal" method="POST" action="/personas/editar/{{ $persona->id }}">
+                    <form class="form-horizontal" method="POST" action="/personas/editar/{{ $usuario->id }}">
                         {{ csrf_field() }}
 
 

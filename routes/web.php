@@ -27,9 +27,9 @@ Route::get('/nueva/factura', function () {
 // Rutasdel objeto personas
 
 Route::get('/personas/listar','PersonasController@home');
-Route::get('personas/mostrar/{persona}','PersonasController@show');
-Route::get('personas/editar/{persona}','PersonasController@show_update');
-Route::post('personas/editar/{persona}','PersonasController@update');
+Route::get('personas/mostrar/{user}','PersonasController@show');
+Route::get('personas/editar/{user}','PersonasController@show_update');
+Route::post('personas/editar/{user}','PersonasController@update');
 
 
 // Rutas del objeto catalogo

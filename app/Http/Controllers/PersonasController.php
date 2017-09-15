@@ -10,33 +10,39 @@ class PersonasController extends Controller
 {
     public function home()
     {
-       $personas = Persona::paginate(9);
+
+
+       $usuarios = User::paginate(9);  
+        
+
           return view('personas.list', [
-              'personas' => $personas,
+              'usuarios' => $usuarios,
           ]);
     }
 
-    public function show(Persona $persona)
+    public function show(User $user)
     {
 
     	return view('personas.show',[
-    		'persona' => $persona,
-    		'usuario' =>$persona->usuario
+    		'usuario' => $user,
+            'persona' => $user->persona,
     		]);
     }
 
-    public function show_update(Persona $persona)
+    public function show_update(User $user)
     {
+
         return view('personas.update',[
-        'persona' => $persona,
-        'usuario' =>$persona->usuario
+        'usuario' => $user,
+        'persona' => $user->persona,
         ]);
     }
 
-    public function update(CrearPersonaRequest $request, $id)
+    public function update(CrearPersonaRequest $request,User $user)
     {
-        $persona = Persona::find($id);
-        $usuario = Persona::find($id)->usuario;
+    
+        $persona = $user->persona;
+
 
         $persona->primer_nombre = $request->input('primer_nombre');
         $persona->segundo_nombre = $request->input('segundo_nombre');
@@ -47,11 +53,11 @@ class PersonasController extends Controller
         $persona->email = $request->input('email');
         $persona->telefono = $request->input('telefono');
         $persona->direccion = $request->input('direccion');
-        $usuario->nombre_usuario = $request->input('nombre_usuario');
-        //$usuario->rol = $request->input('rol');
+        $user->nombre_usuario = $request->input('nombre_usuario');
+        //$user->rol = $request->input('rol');
         
         $persona->save();
-        $usuario->save();
+        $user->save();
 
         return redirect('/personas/listar')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
 

@@ -15,6 +15,7 @@ class Persona extends Model
         return $this->hasOne('App\User');
     }
     
+
 }
 
 
