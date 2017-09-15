@@ -23,6 +23,7 @@
         <label for="precio_categoria" class="col-md-5 form-control-label">Precio Categoria</label>
 
      <div class="col-md-3 mt-2">
+        
         <input id="precio_categoria" placeholder="Ejemplo: ₡5000" type="text" class="form-control" name="precio_categoria" value="{{ old('precio_categoria') }}" required autofocus>
 
        

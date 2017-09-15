@@ -44,3 +44,7 @@ Route::post('/estados/create', 'EstadoController@create');
 Route::get('/estados/{estado}', 'EstadoController@show');
 Route::post('/estados/update/{estado}', 'EstadoController@update');
 
+// Rutas del objeto socio.
+
+Route::get('/socios/home', 'SociosController@home');
+Route::post('/socios/create', 'SociosController@create');
