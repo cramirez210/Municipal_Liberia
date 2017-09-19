@@ -8,6 +8,7 @@ use App\Http\Requests\CreateSocioRequest;
 use App\Persona;
 use App\Socio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SociosController extends Controller
 {
@@ -38,9 +39,9 @@ class SociosController extends Controller
 
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $estado = $this->FindIdEstado($request->input('estado_id'));
-        $idUser = Auth::id();
+        $idUser = Auth::user()->id;
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
-        dd($persona);
+        
         if ($persona) {
             
             $socio = Socio::create([
