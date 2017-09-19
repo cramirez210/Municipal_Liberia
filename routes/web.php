@@ -25,12 +25,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/nueva/factura', function () {
     return view('registrar_factura');
 });
-// Rutas del objeto personas
+// Rutas del objeto usuario
 
 Route::get('/personas/listar','PersonasController@home');
 Route::get('personas/mostrar/{user}','PersonasController@show');
 Route::get('personas/editar/{user}','PersonasController@show_update');
 Route::post('personas/editar/{user}','PersonasController@update');
+
+Route::get('usuarios/home','UsuariosController@index');
 
 
 // Rutas del objeto catalogo

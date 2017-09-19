@@ -106,31 +106,45 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+
             $persona = new Persona;
+            $persona = $this->encontrarPorCedula($data);
 
-            $persona->primer_nombre = $data['primer_nombre'];
-            $persona->segundo_nombre = $data['segundo_nombre'];
-            $persona->primer_apellido= $data['primer_apellido'];
-            $persona->segundo_apellido = $data['segundo_apellido'];
-            $persona->cedula = $data['cedula'];
-            $persona->fecha_nacimiento = $data['fecha_nacimiento'];
-            $persona->email = $data['email'];
-            $persona->telefono = $data['telefono'];
-            $persona->direccion = $data['direccion'];
-
-            $persona->save();
-
-        $persona = $this->encontrarPorCedula($data);
-        $rol = $this->encontrarRolPorNombre($data);
-
-
-        $fill = ['nombre_usuario' => $data['nombre_usuario'],
-            'password' => bcrypt($data['password']),
-            'persona_id'=>$persona->id,
-            'rol_id'=>$rol->id
-            ];
-
+            if($persona)
+            {
+                $rol = $this->encontrarRolPorNombre($data);
+                $fill = ['nombre_usuario' => $data['nombre_usuario'],
+                            'password' => bcrypt($data['password']),
+                            'persona_id'=>$persona->id,
+                            'rol_id'=>$rol->id];
             User::create($fill);
+            }
+            else
+            {
+                $persona = new Persona;
+                $persona->primer_nombre = $data['primer_nombre'];
+                $persona->segundo_nombre = $data['segundo_nombre'];
+                $persona->primer_apellido= $data['primer_apellido'];
+                $persona->segundo_apellido = $data['segundo_apellido'];
+                $persona->cedula = $data['cedula'];
+                $persona->fecha_nacimiento = $data['fecha_nacimiento'];
+                $persona->email = $data['email'];
+                $persona->telefono = $data['telefono'];
+                $persona->direccion = $data['direccion'];
+
+                $persona->save();
+
+                $persona = $this->encontrarPorCedula($data);
+                $rol = $this->encontrarRolPorNombre($data);
+
+
+                $fill = ['nombre_usuario' => $data['nombre_usuario'],
+                        'password' => bcrypt($data['password']),
+                        'persona_id'=>$persona->id,
+                        'rol_id'=>$rol->id];
+
+                User::create($fill);
+            }
 
        return redirect(route('login'))->withSuccess('Persona creada exitosamente!');
 
