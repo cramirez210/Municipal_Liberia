@@ -35,11 +35,15 @@ class SociosController extends Controller
 
     public function create(CreateSocioRequest $request)
     {
-
+        
 
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $estado = $this->FindIdEstado($request->input('estado_id'));
         $idUser = Auth::user()->id;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27b16cc69a73cc079bab03f51d979b13a7329627
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
