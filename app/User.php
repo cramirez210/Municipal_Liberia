@@ -39,4 +39,13 @@ class User extends Authenticatable
         return $this->hasOne('App\Role','id');
     }
 
+    public function socio()
+    {
+        return $this->belongsTo('App\Socio');
+    }
+    //Listar Socios de un Usuario
+    public function socios()
+    {
+        return $this->hasMany('App\Socio');
+    }
 }

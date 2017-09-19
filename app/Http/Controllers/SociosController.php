@@ -19,7 +19,17 @@ class SociosController extends Controller
      */
     public function index()
     {
-        //
+        $socios = Socio::paginate(10);
+        
+            return view('/socios/index', [
+                'socios' => $socios,
+                
+            ]);
+
+          //  'persona'=> $socios->persona,
+          //      'categoria'=> $socios->categoria,
+          //      'usuario'=> $socios->usuario,
+          //      'estado'=> $socios->persona,
     }
 
     public function home()

@@ -56,6 +56,7 @@ Route::get('/roles/home','RolesController@index');
 
 Route::get('/socios/home', 'SociosController@home');
 Route::post('/socios/create', 'SociosController@create');
+Route::get('/socios/index', 'SociosController@index');
 
 // Rutas del objeto factura
 Route::get('/factura/create', 'FacturaController@create');
