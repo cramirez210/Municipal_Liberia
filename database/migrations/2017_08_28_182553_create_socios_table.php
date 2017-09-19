@@ -15,13 +15,16 @@ class CreateSociosTable extends Migration
     {
         Schema::create('socios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('persona_id');
+            $table->integer('persona_id')->unsigned();
             $table->string('estado_civil');
-            $table->integer('categoria_id');
+            $table->integer('categoria_id')->unsigned();
             $table->string('empresa');
-            $table->integer('usuario_id');
-            $table->integer('estado_id');
+            $table->integer('usuario_id')->unsigned();
+            $table->integer('estado_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('persona_id')->references('id')->on('personas');
+            
         });
     }
 
