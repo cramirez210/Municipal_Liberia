@@ -9,6 +9,7 @@ use App\Persona;
 use App\Socio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SociosController extends Controller
 {
@@ -19,17 +20,18 @@ class SociosController extends Controller
      */
     public function index()
     {
-        $socios = Socio::paginate(10);
-        
+        $socios = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
+            ->join('users', 'socios.usuario_id', '=', 'users.id')
+            ->join('estados', 'socios.estado_id', '=', 'estados.id')
+            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+            ->get()->paginate();
+
             return view('/socios/index', [
                 'socios' => $socios,
-                
             ]);
-
-          //  'persona'=> $socios->persona,
-          //      'categoria'=> $socios->categoria,
-          //      'usuario'=> $socios->usuario,
-          //      'estado'=> $socios->persona,
+         
     }
 
     public function home()

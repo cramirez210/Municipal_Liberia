@@ -36,14 +36,14 @@
          @forelse($socios as $socio)
                        
         <tr>
-            <td class="info"> {{$socio->$persona->cedula}} </td>
-            <td class="info"> {{$socio->$persona->primer_nombre}} </td>
-            <td class="info"> {{$socio->$persona->primer_apellido}} </td>
-            <td class="info"> {{$socio->$categoria->categoria}} </td>
-            <td class="info"> {{$socio->$usuario->nombre_usuario}} </td>
+            <td class="info"> {{ $socio->cedula }} </td>
+            <td class="info"> {{ $socio->primer_nombre }} </td>
+            <td class="info"> {{ $socio->primer_apellido }} {{ $socio->segundo_apellido }} </td>
+            <td class="info"> {{ $socio->categoria }} </td>
+            <td class="info"> {{ $socio->nombre_usuario }} </td>
             <td class="warning"> 
                  <a href="/estados/{{$socio->id}}" class="btn btn-success btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>{{$socio->$estado->estado}}</a>
+                     <span class="glyphicon glyphicon-remove-circle"></span>{{ $socio->estado }}</a>
             </td>
         </tr>
 
@@ -60,16 +60,15 @@
 
     </tbody>
     </table>
-
-     <div class="mt-2 mx-auto">
+    <div class="mt-2 mx-auto">
         @if(count($socios))
 
        {{ $socios->links('pagination::bootstrap-4') }}
 
         @endif 
-    </div>   
-
-        </div>
+    </div> 
+       
+    </div>
     </div>
 
  </div>
