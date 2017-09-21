@@ -15,10 +15,12 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $usuarios = User::paginate(9);  
-
+        $usuariosAdministrador = User::where("rol_id","=",1)->paginate(10);
+        $usuariosEstandar = User::where("rol_id","=",2)->paginate(10);
+       
         return view('usuarios.listar', [
-              'usuarios' => $usuarios,
+              'usuariosAdministrador' =>  $usuariosAdministrador,
+              'usuariosEstandar' => $usuariosEstandar, 
           ]);
     }
 
