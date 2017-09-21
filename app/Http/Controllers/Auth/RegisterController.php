@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'segundo_apellido' => ['required','max:25'],
             'fecha_nacimiento' => ['required','date_format:Y-m-d'],
             'cedula' => ['required','max:30'],
-            'email' => ['required','max:150'],
+            'email' => ['required','max:150','unique:personas'],
             'telefono' => ['required','numeric'],
             'direccion' => ['required','max:260']
 

@@ -31,7 +31,7 @@ class CrearPersonaRequest extends FormRequest
             'segundo_apellido' => ['required','max:25'],
             'fecha_nacimiento' => ['required'],
             'cedula' => ['required','max:30'],
-            'email' => ['required','max:150'],
+            'email' => ['required','max:150','unique:personas'],
             'telefono' => ['required','max:50'],
             'direccion' => ['required','max:260'],
             'nombre_usuario' => ['required','max:25'],
