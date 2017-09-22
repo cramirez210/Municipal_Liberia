@@ -16,7 +16,7 @@ class CreateRegistrosMedicosTable extends Migration
         Schema::create('registros_medicos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('persona_id');
-            $table->integer('usuario_id');
+            $table->integer('user_id');
             $table->string('tipo_lesion');
             $table->date('fecha_lesion');
             $table->date('fecha_atencion');

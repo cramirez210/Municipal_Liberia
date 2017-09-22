@@ -18,7 +18,7 @@ class CreateColaboradoresTable extends Migration
             $table->integer('persona_id');
             $table->date('inicio_contrato');
             $table->date('finaliza_contrato')->unique();
-            $table->integer('usuario_id');
+            $table->integer('user_id');
             $table->string('estado');
             $table->timestamps();
         });

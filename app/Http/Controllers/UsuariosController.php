@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Socio;
 
 class UsuariosController extends Controller
 {
@@ -51,9 +52,21 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+
+        $socios = $user->socios;
+        $sociosActivos = Socio::where("estado_id","=",1)->paginate(10);
+        $sociosInactivos = Socio::where("estado_id","=",2)->paginate(10);
+
+        
+        return view('usuarios.listarSociosDeUsuario', [
+
+              'sociosActivos' => $sociosActivos,
+              'sociosInactivos' => $sociosInactivos,
+        
+          ]);
+
     }
 
     /**

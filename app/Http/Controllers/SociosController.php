@@ -63,8 +63,8 @@ class SociosController extends Controller
                     'estado_civil'=> $request->input('estado_civil'),
                     'categoria_id'=> $categoria->id,
                     'empresa'=> $request->input('empresa'),
-                    'usuario_id'=> $idUser,
-                    'estado_id'=> $estado->id,
+                    'user_id'=> $idUser,
+                    'estado_id'=> 1, //1 es para Activo por defecto. 
 
             ]);
 
@@ -92,8 +92,8 @@ class SociosController extends Controller
                     'estado_civil'=> $request->input('estado_civil'),
                     'categoria_id'=> $categoria->id,
                     'empresa'=> $request->input('empresa'),
-                    'usuario_id'=> $idUser,
-                    'estado_id'=> $estado->id,
+                    'user_id'=> $idUser,
+                    'estado_id'=> 1, //1 es para Activo por defecto
 
             ]);
 

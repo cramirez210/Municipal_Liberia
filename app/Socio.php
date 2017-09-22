@@ -16,7 +16,7 @@ class Socio extends Model
     // Obterer la persona del socio 
     public function persona()
     {
-    	return $this->hasOne('App\Persona');
+    	return $this->belongsTo('App\Persona');
     }
     // Obtener la categoria del socio
     public function categoria()

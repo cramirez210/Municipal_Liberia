@@ -237,30 +237,6 @@
                         @endif
                 </div>
             </div>            
-<!--________________________________________ Estado  _________________________-->
-            <div class=" col-md-auto  form-group{{ $errors->has('estado_id') ? ' has-danger' : '' }}">
-                <label for="estado_id" class="col-md-8 form-control-label">Estado</label>
-
-                <div class="col-md-8 ml-5">
-                                
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="estadoOption" name="estado_id">
-                       
-                       @forelse($estados as $estado)
-
-                        <option selected>{{ $estado->estado }}</option>
-                        
-                    @empty
-                        <option selected>No se encontro</option>
-                    @endforelse
-                    </select>
-
-                        @if ($errors->has('estado_id'))
-                            <span class="form-control-feedback">
-                                <strong>{{ $errors->first('estado_id') }}</strong>
-                            </span>
-                        @endif
-                </div>
-            </div>  
 
 </div>
 

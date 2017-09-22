@@ -19,11 +19,11 @@
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#tabc" aria-controls="tabc" role="tab" aria-expanded="true">Administradores
+        <a class="nav-link active" data-toggle="tab" href="#tabc" aria-controls="tabc" role="tab" aria-expanded="true">Activos
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tabb" aria-controls="tabb" role="tab">Estándar </a>
+        <a class="nav-link" data-toggle="tab" href="#tabb" aria-controls="tabb" role="tab">Inactivos </a>
       </li>
       
     </ul>
@@ -39,28 +39,30 @@
     <table class="table table-hover" >
         <thead>
             <tr>
-            <th class="text-center">Nombre de usuario</th>
+            <th class="text-center">Cédula</th> 
+            <th class="text-center">Nombre</th>
             <th class="text-center">Opciones</th>
             </tr>
         </thead>
     <tbody>
 
         
-         @forelse($usuariosAdministrador as $usuario)
+         @forelse($sociosActivos as $socioActivo)
                        
         <tr>
-            <td class="info" > {{$usuario->nombre_usuario}} </td>
-   
+            <td class="info" >{{ $socioActivo->persona->cedula }}</td>
+            <td class="info" >{{ $socioActivo->persona->primer_nombre }}</td>
             <td class="info"> 
-                 <a href="socios/{{ $usuario->id }}" class="btn btn-info btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Ver socios relacionados</a>
-            </td>
-        </tr>
+              <a href="" class="btn btn-info btn-xs">
+              <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
 
-        
+              <a href="" class="btn btn-warning btn-xs">
+              <span class="glyphicon glyphicon-remove-circle"></span>Editar socio</a>
+            </td>
+        </tr>   
 
         @empty
-        <div class="card-text text-warning">No existen usuarios registrados.</div>
+        <div class="card-text text-warning">No existen socios activos registrados con este usuario.</div>
         <br>
         @endforelse
 
@@ -70,9 +72,9 @@
     </table>
 
      <div class="mt-2 mx-auto">
-        @if(count($usuariosAdministrador))
+        @if(count($sociosActivos))
 
-       {{ $usuariosAdministrador->links('pagination::bootstrap-4') }}
+       {{ $sociosActivos->links('pagination::bootstrap-4') }}
 
         @endif 
 
@@ -93,28 +95,34 @@
     <table class="table table-hover" >
         <thead>
             <tr>
-            <th class="text-center">Nombre de usuario</th>
+             <th class="text-center">Cédula</th> 
+            <th class="text-center">Nombre</th>
             <th class="text-center">Opciones</th>
             </tr>
         </thead>
     <tbody>
 
         
-         @forelse($usuariosEstandar as $usuario)
+         @forelse($sociosInactivos as $socioInactivo)
                        
         <tr>
-            <td class="info" > {{$usuario->nombre_usuario}} </td>
-   
+            <td class="info" >{{ $socioInactivo->persona->cedula }}</td>
+            <td class="info" >{{ $socioInactivo->persona->primer_nombre }}</td>
             <td class="info"> 
-                 <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Ver socios relacionados</a>
+
+               <a href="" class="btn btn-info btn-xs">
+              <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
+
+              <a href="" class="btn btn-warning btn-xs">
+              <span class="glyphicon glyphicon-remove-circle"></span>Editar socio</a>
+              
             </td>
         </tr>
 
         
 
         @empty
-        <div class="card-text text-warning">No existen usuarios registrados.</div>
+        <div class="card-text text-warning">No existen socios inactivos registrados para este usuario.</div>
         <br>
         @endforelse
 
@@ -124,9 +132,9 @@
     </table>
 
      <div class="mt-2 mx-auto">
-        @if(count($usuariosEstandar))
+        @if(count($sociosInactivos))
 
-       {{ $usuariosEstandar->links('pagination::bootstrap-4') }}
+       {{ $sociosInactivos->links('pagination::bootstrap-4') }}
 
         @endif 
 
@@ -148,6 +156,6 @@
 
 @section('titulo')
 
-Listar Usuarios
+Listar Socios de Usuario
 
 @endsection

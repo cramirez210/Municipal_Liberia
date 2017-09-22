@@ -33,6 +33,7 @@ Route::get('personas/editar/{user}','PersonasController@show_update');
 Route::post('personas/editar/{user}','PersonasController@update');
 
 Route::get('usuarios/home','UsuariosController@index');
+Route::get('usuarios/socios/{user}','UsuariosController@show');
 
 
 // Rutas del objeto catalogo

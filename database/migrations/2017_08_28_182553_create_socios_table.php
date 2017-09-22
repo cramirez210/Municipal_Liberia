@@ -19,7 +19,7 @@ class CreateSociosTable extends Migration
             $table->string('estado_civil');
             $table->integer('categoria_id')->unsigned();
             $table->string('empresa');
-            $table->integer('usuario_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('estado_id')->unsigned();
             $table->timestamps();
 
