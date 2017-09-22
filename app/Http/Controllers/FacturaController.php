@@ -2,28 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateFacturaRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Factura;
 use App\Socio;
 
 class FacturaController extends Controller
 {
-   public function create()
+   public function create($socio_id)
     {
-    	//$socio = Socio::find($socio_id);
+    	$socio = Socio::find($socio_id);
 
-    	//return view('registrar_factura', compact('socio'));
+        $persona = DB::table('personas')
+             ->select('primer_nombre', 'primer_apellido', 'segundo_apellido')
+             ->where('personas.id', $socio->persona_id)
+            ->first();
 
-        return view('factura.create');
+        return view('facturas.create', compact('persona', 'socio'));
     }
 
     public function store($socio_id)
     {
-    	$factura = new Factura;
+        $user_id = Auth::user()->id;
 
-    	$factura->save();
+        $socio = Socio::find($socio_id);
 
-		return redirect('/');
+        $categoria = DB::table('categorias')
+         ->select('precio_categoria')
+         ->where('categorias.id', $socio->categoria_id)
+         ->first();
+
+        $factura = new Factura;
+
+        $factura->socio_id = $socio_id;
+        $factura->user_id = $user_id;
+        $factura->meses_cancelados = request('meses_cancelados');
+        $factura->monto = $categoria->precio_categoria;
+        $factura->forma_pago = request('forma_pago');
+        $factura->transaccion_bancaria = request('transaccion_bancaria');
+        $factura->estado = 1;
+        $factura->save();
+
+        return redirect('/')->withSuccess('Factura creada correctamente');
     }
 
         public function edit($id)

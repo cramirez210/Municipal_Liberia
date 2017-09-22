@@ -62,5 +62,6 @@ Route::get('/socios/indexActivos', 'SociosController@indexActivos');
 Route::get('/socios/indexInactivos', 'SociosController@indexInactivos');
 
 // Rutas del objeto factura
-Route::get('/factura/create', 'FacturaController@create');
-Route::get('/factura/list', 'FacturaController@list');
+Route::get('/facturas/create/{id}', 'FacturaController@create');
+Route::post('/facturas/{id}', 'FacturaController@store');
+Route::get('/facturas/list', 'FacturaController@list');
