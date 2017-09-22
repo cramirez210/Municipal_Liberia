@@ -27,9 +27,9 @@ class SociosController extends Controller
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
             ->get();
-            //dd($socios);
 
-            $sociosPaginados = $this->paginate($socios->toArray(),1);
+
+            $sociosPaginados = $this->paginate($socios->toArray(),10);
 
             return view('/socios/index', [
                 'socios' => $sociosPaginados,
@@ -138,23 +138,7 @@ class SociosController extends Controller
         $persona = Persona::where('cedula',$data)->first();
        return $persona->id;
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Socio $socio)
     {
         $persona = $socio->persona;
@@ -168,12 +152,44 @@ class SociosController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   public function indexActivos()
+   { 
+       $socios = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
+            ->join('users', 'socios.user_id', '=', 'users.id')
+            ->join('estados', 'socios.estado_id', '=', 'estados.id')
+            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+            ->where('estado_id','=','1')
+            ->get();
+
+
+            $sociosPaginados = $this->paginate($socios->toArray(),10);
+
+            return view('/socios/index', [
+                'socios' => $sociosPaginados,
+            ]);
+   }
+
+     public function indexInactivos()
+   { 
+       $socios = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
+            ->join('users', 'socios.user_id', '=', 'users.id')
+            ->join('estados', 'socios.estado_id', '=', 'estados.id')
+            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+            ->where('estado_id','=','2')
+            ->get();
+
+
+            $sociosPaginados = $this->paginate($socios->toArray(),10);
+
+            return view('/socios/index', [
+                'socios' => $sociosPaginados,
+            ]);
+   }
+
     public function edit($id)
     {
         //

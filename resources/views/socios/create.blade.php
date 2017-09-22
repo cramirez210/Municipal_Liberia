@@ -30,7 +30,7 @@
      
      
    <li class="nav-item">
-      <button type="submit" href="/" class="btn btn-outline-info" style="margin-left: 89%;">Regresar</button>
+      <a href="/socios/index" class="btn btn-info" style="margin-left: 89%;">Regresar</a>
    </li>
 
 </div>

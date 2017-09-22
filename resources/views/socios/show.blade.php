@@ -27,12 +27,6 @@
         <label class="nav-link text-primary" href="#">Registrar nuevo socio.</label>
       </li>
 
-     
-     
-   <li class="nav-item">
-      <button type="submit" href="/" class="btn btn-outline-info" style="margin-left: 89%;">Regresar</button>
-   </li>
-
 </div>
 
   <div class="card-block">
@@ -229,7 +223,7 @@
         <div class="form-group mt-3">
             <div class="col-md-6">
 
-                <a href="/usuarios/home" class="btn btn-info" style="margin-left:100%;">
+                <a href="/socios/index" class="btn btn-info" style="margin-left:100%;">
                 <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
             </div>

@@ -60,7 +60,7 @@
         </tr>
 
         @empty
-        <div class="alert alert-info">
+        <div class="alert alert-warning">
        
         <span class="card-text text-warning "> No hay Datos Registradas </span>
 
