@@ -26,12 +26,28 @@ class SociosController extends Controller
             ->join('users', 'socios.usuario_id', '=', 'users.id')
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-            ->get()->paginate();
+            ->get();
+            //dd($socios);
+
+            $sociosPaginados = $this->paginate($socios->toArray(),1);
 
             return view('/socios/index', [
-                'socios' => $socios,
+                'socios' => $sociosPaginados,
             ]);
          
+    }
+
+    public function paginate($items, $perPages)
+    {
+       $pageStart = \Request::get('page',1);
+       $offSet    = ($pageStart * $perPages)-$perPages;
+       $itemsForCurrentPage = array_slice( $items, $offSet, $perPages, TRUE);
+
+       return new \Illuminate\Pagination\LengthAwarePaginator(
+
+        $itemsForCurrentPage, count($items), $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+        ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
     }
 
     public function home()
@@ -47,8 +63,6 @@ class SociosController extends Controller
 
     public function create(CreateSocioRequest $request)
     {
-        
-
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $estado = $this->FindIdEstado($request->input('estado_id'));
         $idUser = Auth::user()->id;

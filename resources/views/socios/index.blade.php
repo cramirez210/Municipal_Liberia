@@ -13,7 +13,15 @@
 
     @endif  
 <!--_______________________________ Tabla _____________________________-->
-<div class="card text-center mt-4"> 
+
+<div class="card text-center mt-4">
+<div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <label class="nav-link text-primary" href="#">Listado de Socios</label>
+      </li>
+    </ul>
+  </div> 
 <div class="col-md-8 offset-md-2 mt-4">
 
 <div class="row">
@@ -29,6 +37,7 @@
             <th class="text-center">Categoria</th>
             <th class="text-center">Ejecutivo</th>
             <th class="text-center">Estado</th>
+            <th class="text-center">Opcion</th>
             </tr>
         </thead>
     <tbody>
@@ -41,9 +50,10 @@
             <td class="info"> {{ $socio->primer_apellido }} {{ $socio->segundo_apellido }} </td>
             <td class="info"> {{ $socio->categoria }} </td>
             <td class="info"> {{ $socio->nombre_usuario }} </td>
+            <td class="info"> {{ $socio->estado }} </td>
             <td class="warning"> 
-                 <a href="/estados/{{$socio->id}}" class="btn btn-success btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>{{ $socio->estado }}</a>
+                 <a href="#" class="btn btn-success btn-xs">
+                     <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
             </td>
         </tr>
 
@@ -59,20 +69,20 @@
        
 
     </tbody>
-    </table>
-    <div class="mt-2 mx-auto">
-        @if(count($socios))
+    </table>  
 
-       {{ $socios->links('pagination::bootstrap-4') }}
-
-        @endif 
-    </div> 
-       
     </div>
     </div>
 
  </div>
 
+<div class="mt-2 mx-auto">
+        @if(count($socios))
+
+       {{ $socios->links('pagination::bootstrap-4') }}
+
+        @endif 
+    </div>
 </div>
 
 @endsection
