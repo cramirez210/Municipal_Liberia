@@ -35,7 +35,7 @@
 
             <div class="panel panel-default">
             
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" action="/facturas/{{$socio->id}}" method="POST">
                         {{ csrf_field() }}
 
             <div class="float-none" style="background-color: ;
@@ -45,10 +45,10 @@
 
               <fieldset disabled>
                       <div class="form-group">
-                        <label for="numero_socio" class="col-md-5 from-control-label">Número de socio
+                        <label for="socio_id" class="col-md-5 from-control-label">Número de socio
                         </label>
                           <div class="col-md-4 ml-5">
-                            <input type="text" id="numero_socio" class="form-control" placeholder="100">
+                            <input type="text" id="socio_id" class="form-control" value="{{$socio->id}}">
                            </div>
                        </div>
                   </fieldset>
@@ -58,7 +58,7 @@
                         <label for="nombre_socio" class="col-md-5 from-control-label">Nombre de socio
                         </label>
                           <div class="col-md-8 ml-5">
-                            <input type="text" id="nombre_socio" class="form-control" placeholder="Jafet Chevez Orias">
+                            <input type="text" id="nombre_socio" class="form-control" value="{{$persona->primer_nombre}} {{$persona->primer_apellido}} {{$persona->segundo_apellido}}">
                            </div>
                        </div>
                   </fieldset>
@@ -67,9 +67,9 @@
 
                         <fieldset disabled>
                             <div class="form-group">
-                              <label for="monto" class="col-md-5 from-control-label">Meses pendientes</label>
-                               <div class="col-md-8 ml-5">
-                                <textarea id="meses_pendientes" type="textarea" placeholder="Enero, Febrero, Marzo." class="form-control" name="meses_pendientes" value="{{ old('meses_pendientes') }}" required autofocus></textarea>
+                              <label for="monto" class="col-md-6 from-control-label">Mensualidades pendientes</label>
+                               <div class="col-md-4 ml-5">
+                                <input type="text" id="mensualidades_pendientes" class="form-control" value="2">
                             </div>
                             </div>
                           </fieldset>
@@ -77,45 +77,45 @@
 
             <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%; margin-top: -37%;">
 
-              <div class="form-group{{ $errors->has('meses_pagar') ? ' has-danger' : '' }}">
-                            <label class="col-md-7 from-control-label">Número de meses a cancelar</label>
-
-                            <div class="col-md-4 ml-5">
-                                <input id="meses_pagar" type="text" class="form-control" name="meses_pagar" value="{{ old('meses_pagar') }}" required autofocus>
-
-                                @if ($errors->has('meses_pagar'))
-                                    <span class="form-control-feedback">
-                                        <strong>{{ $errors->first('meses_pagar') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                       <div class="form-group">
-                            <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
+                            <label class="col-md-7 from-control-label" for="forma_pago">Número de meses a cancelar</label>
                              <div class="col-md-6 ml-5">
-                              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="forma_pago">
+                              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="meses_cancelados">
                                 <option selected>Elegir...</option>
-                                <option value="1">Conectividad</option>
-                                <option value="2">Efectivo</option>
-                                <option value="3">Depósito</option>
-                                <option value="4">Datáfono</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
                               </select>
                              </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('transaccion_bancaria') ? ' has-danger' : '' }}">
-                            <label for="transaccion_bancaria" class="col-md-5 form-control-label">Transacción bancaria</label>
-
-                            <div class="col-md-6 ml-5">
-                                <input id="transaccion_bancaria" type="text" class="form-control" name="transaccion_bancaria" value="{{ old('transaccion_bancaria') }}" required autofocus>
-
-                                @if ($errors->has('transaccion_bancaria'))
-                                    <span class="form-control-feedback">
-                                        <strong>{{ $errors->first('transaccion_bancaria') }}</strong>
-                                    </span>
-                                @endif
+                        <fieldset disabled>
+                            <div class="form-group">
+                              <label for="monto" class="col-md-5 from-control-label">Total a pagar</label>
+                               <div class="col-md-4 ml-5">
+                                <input type="text" name="monto" class="form-control" value="0">
+                               </div>
                             </div>
+                          </fieldset>
+
+                      <div class="form-group">
+                            <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
+                             <div class="col-md-6 ml-5">
+                              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="forma_pago">
+                                <option selected>Elegir...</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Depósito">Depósito</option>
+                              </select>
+                             </div>
                         </div>
               </div>
 
