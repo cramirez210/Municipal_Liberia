@@ -11,7 +11,7 @@ class Categoria extends Model
 
      public function socio()
     {
-    	return $this->belongsTo('App\Socio');
+    	return $this->hasOne('App\socio');
     }
 
     public function socios()

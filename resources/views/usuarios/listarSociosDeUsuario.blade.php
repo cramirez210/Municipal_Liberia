@@ -51,9 +51,9 @@
                        
         <tr>
             <td class="info" >{{ $socioActivo->persona->cedula }}</td>
-            <td class="info" >{{ $socioActivo->persona->primer_nombre }}</td>
+            <td class="info" >{{ $socioActivo->persona->primer_nombre }} {{ $socioActivo->persona->primer_apellido }} {{ $socioActivo->persona->segundo_apellido }}</td>
             <td class="info"> 
-              <a href="" class="btn btn-info btn-xs">
+              <a href="/socios/show/{{ $socioActivo->id }}" class="btn btn-info btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
 
               <a href="" class="btn btn-warning btn-xs">

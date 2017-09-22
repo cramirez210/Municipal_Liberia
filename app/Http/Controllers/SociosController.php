@@ -150,9 +150,17 @@ class SociosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Socio $socio)
     {
-        //
+        $persona = $socio->persona;
+        $categoria = $socio->categoria;
+
+        return view('socios.show',
+        [
+            'socio' => $socio,
+            'persona' => $persona,
+            'categoria' => $categoria,
+        ]);
     }
 
     /**
