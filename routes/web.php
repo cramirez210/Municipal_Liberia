@@ -27,7 +27,7 @@ Route::get('/nueva/factura', function () {
 });
 // Rutas del objeto usuario
 
-Route::get('/personas/listar','PersonasController@home');
+
 Route::get('personas/mostrar/{user}','PersonasController@show');
 Route::get('personas/editar/{user}','PersonasController@show_update');
 Route::post('personas/editar/{user}','PersonasController@update');

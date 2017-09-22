@@ -18,7 +18,7 @@
      
       <li class="nav-item">
 
-         <a href="/personas/listar" class="btn btn-outline-primary"  style="margin-left:89%;">
+         <a href="/usuarios/home" class="btn btn-outline-primary"  style="margin-left:89%;">
         <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
         </li>

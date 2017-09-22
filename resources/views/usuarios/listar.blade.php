@@ -52,8 +52,14 @@
             <td class="info" > {{$usuario->nombre_usuario}} </td>
    
             <td class="info"> 
-                 <a href="socios/{{ $usuario->id }}" class="btn btn-info btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Ver socios relacionados</a>
+                <a href="socios/{{ $usuario->id }}" class="btn btn-success btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Ver socios relacionados</a>
+
+                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Mostrar usuario</a>
+
+                <a href="/personas/editar/{{ $usuario->id }}" class="btn btn-warning btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>
         </tr>
 
@@ -106,8 +112,14 @@
             <td class="info" > {{$usuario->nombre_usuario}} </td>
    
             <td class="info"> 
-                 <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Ver socios relacionados</a>
+                 <a href="socios/{{ $usuario->id }}" class="btn btn-success btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Ver socios relacionados</a>
+
+                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Mostrar usuario</a>
+
+                <a href="/personas/editar/{{ $usuario->id }}" class="btn btn-warning btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>
         </tr>
 

@@ -179,7 +179,7 @@
 <!--_____________________________ Botones _________________________________-->
                         <div class="form-group">
                             <div class="col-md-6 ">
-                                <a href="/personas/listar" class="btn btn-outline-primary btn-lg"  style="margin-left:100%;">
+                                <a href="/usuarios/home" class="btn btn-outline-primary btn-lg"  style="margin-left:100%;">
                      <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
                             </div>
