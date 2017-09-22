@@ -69,21 +69,21 @@
        
 
     </tbody>
-    </table>
-
-     <div class="mt-2 mx-auto">
-        @if(count($categorias))
-
-       {{ $categorias->links('pagination::bootstrap-4') }}
-
-        @endif 
-    </div>   
+    </table>  
 
         </div>
     </div>
 
  </div>
 
+      <div class="mt-2 mx-auto">
+        @if(count($categorias))
+
+       {{ $categorias->links('pagination::bootstrap-4') }}
+
+        @endif 
+    </div> 
+    
 </div>
 
 @endsection

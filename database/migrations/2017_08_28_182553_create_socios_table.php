@@ -21,6 +21,7 @@ class CreateSociosTable extends Migration
             $table->string('empresa');
             $table->integer('user_id')->unsigned();
             $table->integer('estado_id')->unsigned();
+            $table->double('saldo')->nullable();
             $table->timestamps();
 
             $table->foreign('persona_id')->references('id')->on('personas');

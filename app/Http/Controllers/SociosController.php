@@ -23,7 +23,7 @@ class SociosController extends Controller
         $socios = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
-            ->join('users', 'socios.usuario_id', '=', 'users.id')
+            ->join('users', 'socios.user_id', '=', 'users.id')
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
             ->get();
@@ -64,27 +64,42 @@ class SociosController extends Controller
     public function create(CreateSocioRequest $request)
     {
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
-        $estado = $this->FindIdEstado($request->input('estado_id'));
         $idUser = Auth::user()->id;
 
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
             
-            $socio = Socio::create([
+            $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
+
+        } else {
+
+            $this->CrearPersonaAndSocio($request,$categoria,$idUser);
+
+        }
+        
+    
+        return redirect('/socios/home')->withSuccess('Socio creada exitosamente!'); 
+    }
+
+    public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)
+    {
+        $socio = Socio::create([
 
                     'persona_id'=> $persona->id,
                     'estado_civil'=> $request->input('estado_civil'),
                     'categoria_id'=> $categoria->id,
                     'empresa'=> $request->input('empresa'),
                     'user_id'=> $idUser,
-                    'estado_id'=> 1, //1 es para Activo por defecto. 
+                    'estado_id'=> 1,
+                    'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria, //1 es para Activo por defecto. 
 
             ]);
+    }
 
-        } else {
-
-            $NuevaPersona = new Persona;
+    public function CrearPersonaAndSocio(CreateSocioRequest $request,$categoria,$idUser)
+    {
+     $NuevaPersona = new Persona;
 
             $NuevaPersona->primer_nombre = $request->input('primer_nombre');
             $NuevaPersona->segundo_nombre = $request->input('segundo_nombre');
@@ -108,24 +123,14 @@ class SociosController extends Controller
                     'empresa'=> $request->input('empresa'),
                     'user_id'=> $idUser,
                     'estado_id'=> 1, //1 es para Activo por defecto
+                    'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria,
 
-            ]);
-
-        }
-        
-        
-
-        return redirect('/socios/home')->withSuccess('Socio creada exitosamente!'); 
+            ]);   
     }
 
     private function FindIdCategoriaSocio($data)
     {
         return Categoria::where('categoria',$data)->first();
-    }
-
-    private function FindIdEstado($data)
-    {
-       return Estado::where('estado',$data)->first();
     }
 
     private function FindCedulapersona($data)

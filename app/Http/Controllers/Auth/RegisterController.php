@@ -137,7 +137,7 @@ class RegisterController extends Controller
                 $persona = $this->encontrarPorCedula($data);
                 $rol = $this->encontrarRolPorNombre($data);
 
-
+              
                 $fill = ['nombre_usuario' => $data['nombre_usuario'],
                         'password' => bcrypt($data['password']),
                         'persona_id'=>$persona->id,
