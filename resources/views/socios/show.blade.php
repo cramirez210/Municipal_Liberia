@@ -211,7 +211,7 @@
         <div class="form-group mt-3">
             <div class="col-md-6">
 
-                <a href="/usuarios/home" class="btn btn-info" style="margin-left:100%;">
+                <a href="/socios/index" class="btn btn-info" style="margin-left:100%;">
                 <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
             </div>

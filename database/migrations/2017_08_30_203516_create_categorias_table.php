@@ -17,6 +17,7 @@ class CreateCategoriasTable extends Migration
             $table->increments('id');
             $table->string('categoria');
             $table->double('precio_categoria');
+            $table->integer('estado_id')->unsigned();
             $table->timestamps();
         });
     }
