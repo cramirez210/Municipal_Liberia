@@ -35,6 +35,9 @@ class CreateSocioRequest extends FormRequest
             'telefono' => ['required','max:50','min:8'],
             'direccion' => ['required','max:260'],
             'empresa' => ['required','max:25'],
+            'estado_civil' => ['required'],
+            'categoria_id' => ['required'],
+
         ];
     }
 }

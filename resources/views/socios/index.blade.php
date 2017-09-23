@@ -31,6 +31,7 @@
 
 
 </div>
+
 </div>
 
     @if(session('success')) 
@@ -82,7 +83,7 @@
             <th class="text-center">Categoria</th>
             <th class="text-center">Ejecutivo</th>
             <th class="text-center">Estado</th>
-            <th class="text-center">Opcion</th>
+            <th class="text-center col-sm-8">Opcion</th>
             </tr>
         </thead>
     <tbody>
@@ -97,8 +98,12 @@
             <td class="info"> {{ $socio->nombre_usuario }} </td>
             <td class="info"> {{ $socio->estado }} </td>
             <td class="warning"> 
-                 <a href="/socios/show/{{ $socio->id }}" class="btn btn-success btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
+              
+                  <a href="/socios/show/{{ $socio->id }}" class="btn btn-success btn-xs nav-link">
+                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
+
+                  <a href="/socios/show/edit/{{ $socio->id }}" class="btn btn-warning btn-xs nav-link mt-1">
+                  <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>
         </tr>
 

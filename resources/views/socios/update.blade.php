@@ -24,14 +24,9 @@
       
 
       <li class="nav-item">
-        <label class="nav-link text-primary" href="#">Registrar nuevo socio.</label>
+        <label class="nav-link text-primary" href="#">Actualizar socio: {{$persona->primer_nombre}} {{$persona->primer_apellido}} </label>
       </li>
 
-     
-     
-   <li class="nav-item">
-      <button type="submit" href="/" class="btn btn-outline-info" style="margin-left: 89%;">Regresar</button>
-   </li>
 
 </div>
 
@@ -48,7 +43,7 @@
              <!--_______________________________ Formulario ______________________________-->
 
              
-<form class="form-horizontal" method="POST" action="/socios/create">
+<form class="form-horizontal" method="POST" action="/socios/update/{{ $socio->id }}">
                         
     {{ csrf_field() }}
 
@@ -215,7 +210,7 @@
                 <label for="direccion" class="col-md-4 form-control-label">Dirección</label>
 
                 <div class="col-md-8 ml-5">
-                    <textarea id="direccion" type="textarea" placeholder="Ejemplo: Guanacaste, Liberia, del parque central 300m sur ..." class="form-control" name="direccion" value="{{ persona->direccion }}" required autofocus></textarea>
+                    <input id="direccion" type="textarea" placeholder="Ejemplo: Guanacaste, Liberia, del parque central 300m sur ..." class="form-control" name="direccion" value="{{ $persona->direccion }}" required autofocus></input>
 
                         @if ($errors->has('direccion'))
                             <span class="form-control-feedback">
@@ -232,7 +227,7 @@
                 <label for="empresa" class="col-md-8 form-control-label">Empresa</label>
 
                 <div class="col-md-8 ml-5">
-                    <input id="empresa" type="text" class="form-control" placeholder="Ejemplo: Banco Nacional" name="empresa" value="{{ socio->empresa }}" required autofocus>
+                    <input id="empresa" type="text" class="form-control" placeholder="Ejemplo: Banco Nacional" name="empresa" value="{{ $socio->empresa }}" required autofocus>
 
                         @if ($errors->has('empresa'))
                             <span class="form-control-feedback">
@@ -250,16 +245,15 @@
                 <div class="col-md-8 ml-5">
                    
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="estadoCivilOption" name="estado_civil">
-                      
-                        @if( {{socio->estado_civil }} == 'Solteros')
-                        <option selected>Solteros</option>
+                         @if( $socio->estado_civil == "Solteros")
+                        <option selected> Solteros</option>
                         <option>Casados</option>
 
                         @else
 
                         <option>Solteros</option>
                         <option selected>Casados</option>
-
+ 
                         @endif
                     </select>
 
@@ -274,13 +268,13 @@
                                 
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="categoriaOption" name="categoria_id">
                         
-                    <option selected>{{ $socio->categoria }}</option>
+                    <option selected>{{ $categoria->categoria }}</option>
 
-                    @forelse($categorias as $categoria)
+                    @foreach($categorias as $categoria)
 
                         <option>{{ $categoria->categoria }}</option>
                 
-                    @endforelse
+                    @endforeach
 
                     </select>
 
@@ -291,11 +285,15 @@
 
 <!--_____________________________ Botones _________________________________-->
         <div class="form-group mt-3">
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success" style="margin-left:100%;">
-                                    Actualizar
-                </button>
+            <div class="col-md-6 float-right mr-5">
 
+             <button type="submit" class="btn btn-warning btn-xs" style="color: white;">
+                Actualizar
+            </button>
+
+              <a href="/socios/index" class="btn btn-danger btn-xs ml-2">
+              <span class="glyphicon glyphicon-remove-circle"></span>Cancelar </a>
+                
             </div>
         </div>
 

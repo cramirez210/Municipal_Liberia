@@ -190,9 +190,21 @@ class SociosController extends Controller
             ]);
    }
 
-    public function edit($id)
+    public function edit(Socio $socio)
     {
-        //
+        $persona = $socio->persona;
+        $categoria = $socio->categoria;
+        $categorias = Categoria::all();
+
+         return view('socios.update',
+        [
+            'socio' => $socio,
+            'persona' => $persona,
+            'categoria' => $categoria,
+            'categorias' => $categorias,
+        ]);
+
+
     }
 
     /**
@@ -203,13 +215,36 @@ class SociosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showUpdate(Socio $socio)
+    public function update(CreateSocioRequest $request, Socio $socio)
     {
+        $persona = $socio->persona;
         
-    }
-    public function update(Request $request, $id)
-    {
-        //
+
+        // Actualizar objeto persona ----------------------------------------------------------
+        $persona->primer_nombre = $request->input('primer_nombre');
+        $persona->segundo_nombre = $request->input('segundo_nombre');
+        $persona->primer_apellido = $request->input('primer_apellido');
+        $persona->segundo_apellido = $request->input('segundo_apellido');
+        $persona->fecha_nacimiento = $request->input('fecha_nacimiento');
+        $persona->cedula = $request->input('cedula');
+        $persona->email = $request->input('email');
+        $persona->telefono = $request->input('telefono');
+        $persona->direccion = $request->input('direccion');
+
+        // Actualizar objeto socio --------------------------------------------------------------
+       
+        $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id')); //Encontrar el objeto categoria.
+        $socio->empresa = $request->input('empresa');
+        $socio->estado_civil = $request->input('estado_civil');
+        $socio->categoria_id = $categoria->id;
+
+        $persona->save();
+        $socio->save();
+
+         return redirect('/socios/index')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
+
+
+
     }
 
     /**

@@ -56,7 +56,7 @@
               <a href="/socios/show/{{ $socioActivo->id }}" class="btn btn-info btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
 
-              <a href="" class="btn btn-warning btn-xs">
+              <a href="/socios/show/edit/{{ $socioActivo->id }}" class="btn btn-warning btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Editar socio</a>
             </td>
         </tr>   
@@ -107,18 +107,15 @@
                        
         <tr>
             <td class="info" >{{ $socioInactivo->persona->cedula }}</td>
-            <td class="info" >{{ $socioInactivo->persona->primer_nombre }}</td>
+            <td class="info" >{{ $socioInactivo->persona->primer_nombre }} {{ $socioInactivo->persona->primer_apellido }} {{ $socioInactivo->persona->segundo_apellido }}</td>
             <td class="info"> 
-
-               <a href="" class="btn btn-info btn-xs">
+              <a href="/socios/show/{{ $socioInactivo->id }}" class="btn btn-info btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
 
-              <a href="" class="btn btn-warning btn-xs">
+              <a href="/socios/show/edit/{{ $socioInactivo->id }}" class="btn btn-warning btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Editar socio</a>
-              
             </td>
-        </tr>
-
+        </tr>  
         
 
         @empty

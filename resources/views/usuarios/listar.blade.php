@@ -11,6 +11,38 @@
   </div>
 
   @endif  
+
+<div class="card text-center mt-4">
+  <div class="card-header text-primary">
+    Filtro de búsqueda para usuarios.
+  </div>
+
+  <div class="card-block">
+
+
+
+  <form class="form-inline" style="margin-left: 29%;">
+  
+
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+    <option selected>Criterio...</option>
+    <option value="1">Cédula</option>
+    <option value="2">Nombre de usuario</option>
+  </select>
+
+  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+        <input type="text" class="form-control" placeholder="Criterio">
+        <span class="input-group-btn">
+        <button class="btn btn-info" type="button">Buscar usuario</button>
+        </span>
+  </label>
+
+</form>  
+
+
+</div>
+
+</div>
         
 <!--_______________________________ Tabla _____________________________-->
 
@@ -25,6 +57,20 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tabb" aria-controls="tabb" role="tab">Estándar </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-primary" href="/register">Nuevo usuario</a>
+      </li>
+
+       <li class="nav-item dropdown " style="margin-left: 57%;">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/socios/indexActivos">Usuarios Activos</a>
+         <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/socios/indexInactivos">Usuarios Inactivos</a>
+            
+        </div>
+    </li>
+
       
     </ul>
   </div>
