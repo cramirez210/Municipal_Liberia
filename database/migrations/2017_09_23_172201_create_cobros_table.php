@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearLlavesForeings extends Migration
+class CreateCobrosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CrearLlavesForeings extends Migration
      */
     public function up()
     {
-        Schema::table('socios', function (Blueprint $table) {
-            //
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+        Schema::create('cobros', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('factura_id')->unsigned();
+            $table->foreign('factura_id')->references('id')->on('facturas');
+            $table->integer('estado_id')->unsigned();
             $table->foreign('estado_id')->references('id')->on('estados');
-        });
-
-        Schema::table('facturas', function (Blueprint $table) {
-            $table->foreign('estado_id')->references('id')->on('estados');
+            $table->timestamps();
         });
     }
 
@@ -32,8 +32,6 @@ class CrearLlavesForeings extends Migration
      */
     public function down()
     {
-        Schema::table('facturas', function (Blueprint $table) {
-            $table->dropForeign('socios_estado_id_foreing');
-        });
+        Schema::dropIfExists('cobros');
     }
 }

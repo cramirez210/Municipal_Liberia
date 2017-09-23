@@ -21,6 +21,7 @@ class CreateFacturasTable extends Migration
             $table->double('monto');
             $table->string('forma_pago');
             $table->string('transaccion_bancaria')->nullable();
+            $table->integer('estado_id')->unsigned();
             $table->timestamps();
         });
     }

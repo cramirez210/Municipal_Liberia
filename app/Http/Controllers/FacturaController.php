@@ -42,7 +42,7 @@ class FacturaController extends Controller
         $factura->monto = $categoria->precio_categoria;
         $factura->forma_pago = request('forma_pago');
         $factura->transaccion_bancaria = request('transaccion_bancaria');
-        $factura->estado = 1;
+        $factura->estado_id = 3;
         $factura->save();
 
         return redirect('/')->withSuccess('Factura creada correctamente');
