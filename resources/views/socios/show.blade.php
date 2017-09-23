@@ -2,20 +2,7 @@
 
 @section('content')
 
-   <div class="row">
-
-    <div class="col-md-9 offset-md-2 mt-4">
-
- @if(session('success')) 
-
-  <div class="card-block">
-    <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-  </div>
-
-  @endif  
-
-    </div>
-
+   <div class="row mt-4">
 
 
 <div class="card" style="width: 100%; height: 800px;">
@@ -27,11 +14,6 @@
         <label class="nav-link text-primary" href="#">Registrar nuevo socio.</label>
       </li>
 
-     
-     
-   <li class="nav-item">
-      <button type="submit" href="/" class="btn btn-outline-info" style="margin-left: 89%;">Regresar</button>
-   </li>
 
 </div>
 
