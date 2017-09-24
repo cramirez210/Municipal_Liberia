@@ -25,6 +25,7 @@ class CategoriaController extends Controller
 		$categoria = Categoria::create([
 					'categoria'=> $request->input('categoria'),
 					'precio_categoria'=> $request->input('precio_categoria'),
+					'estado_id' => 1,
 			]);
 
 		return redirect('/categoria/home')->withSuccess('Categoria creada exitosamente!');
