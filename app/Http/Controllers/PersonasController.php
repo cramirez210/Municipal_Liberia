@@ -5,6 +5,7 @@ use App\Http\Requests\CrearPersonaRequest;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\User;
+use App\Role; 
 
 class PersonasController extends Controller
 {
@@ -21,6 +22,8 @@ class PersonasController extends Controller
 
     public function show(User $user)
     {
+         $role = $user->role;
+
 
 
     	return view('personas.show',[
@@ -33,10 +36,14 @@ class PersonasController extends Controller
 
     public function show_update(User $user)
     {
+        $roles = Role::all();
+        $role = $user->role;
 
         return view('personas.update',[
         'usuario' => $user,
         'persona' => $user->persona,
+        'roles' => $roles,
+        'role' => $role,
         ]);
     }
 
@@ -56,13 +63,21 @@ class PersonasController extends Controller
         $persona->telefono = $request->input('telefono');
         $persona->direccion = $request->input('direccion');
         $user->nombre_usuario = $request->input('nombre_usuario');
-        //$user->rol = $request->input('rol');
+
         
+        $role = $this->FindRoleByName($request->input('rol'));
+        $user->rol_id = $role->id;
+
         $persona->save();
         $user->save();
 
         return redirect('/usuarios/home')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
 
+    }
+
+     private function FindRoleByName($data)
+    {
+        return Role::where('rol',$data)->first();
     }
     
 }

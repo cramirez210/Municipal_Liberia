@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne('App\Role','id');
+        return $this->belongsTo('App\Role','rol_id');
     }
 
     public function socio()

@@ -3,7 +3,7 @@
 @section('content')
 <!--El container no se necesita por que ya se implementó-->
 
-    <div class="row">
+    <div class="row mt-4">
 
 <div class="card" style="width: 100%; height: 800px;">
   <div class="card-header">
@@ -11,20 +11,8 @@
       
 
       <li class="nav-item">
-         <h5 class="text-primary">Actualizar usuario</h5>
-      </li>
-
-     
-     
-      <li class="nav-item">
-
-         <a href="/usuarios/home" class="btn btn-outline-primary"  style="margin-left:89%;">
-        <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
-
-        </li>
-
-        
- 
+         <h5 class="text-primary">Actualizar usuario {{ $persona->primer_nombre }} {{ $persona->primer_apellido }}</h5>
+      </li> 
 
   </div>
   <div class="card-block">
@@ -169,26 +157,20 @@
 
 
 <!--________________________________________ Roles  _________________________-->
-                     <div class=" col-md-auto  form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
-                            <label for="rol" class="col-md-8 form-control-label">Rol</label>
-
+                    <div class=" col-md-auto  form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
+                        <label for="rol" class="col-md-8 form-control-label">Rol</label>
                             <div class="col-md-8 ml-5">
-                                
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-    <option selected>Roles...</option>
-    
-  </select>
+                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="rol" name="rol">
+                        
+                                    <option selected>{{ $role->rol }}</option>
 
-                                @if ($errors->has('rol'))
-                                    <span class="form-control-feedback">
-                                        <strong>{{ $errors->first('rol') }}</strong>
-                                    </span>
-                                @endif
+                                        @foreach($roles as $rol)
+                                            <option>{{ $rol->rol }}</option>
+                                        @endforeach
+
+                                </select>
                             </div>
-                        </div>
-
-
-
+                    </div>
 </div>
 
 
@@ -268,20 +250,24 @@
 </div>
 
 <!--_____________________________ Botones _________________________________-->
-                        <div class="form-group">
-                            <div class="col-md-6 ">
-                                <button type="submit" class="btn btn-outline-warning btn-lg" style="margin-left:100%;">
-                                    Actualizar
-                                </button>
+                    <div class="form-group">
 
-                            </div>
+                        <div class="col-md-6 float-right mr-5">
+
+                            <button type="submit" class="btn btn-warning btn-xs" style="color: white;">
+                                Actualizar
+                            </button>
+
+                            <a href="/usuarios/home" class="btn btn-danger btn-xs ml-2">
+                            <span class="glyphicon glyphicon-remove-circle"></span>Cancelar </a>
+                
                         </div>
+                    </div>
 
-                    </form>
+                </form>
+            </div>
         </div>
     </div>
-
-  </div>
 </div>
 
 
