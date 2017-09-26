@@ -160,7 +160,7 @@ class SociosController extends Controller
             ->join('users', 'socios.user_id', '=', 'users.id')
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-            ->where('estado_id','=','1')
+            ->where('socios.estado_id','=','1')
             ->get();
 
 
@@ -179,7 +179,7 @@ class SociosController extends Controller
             ->join('users', 'socios.user_id', '=', 'users.id')
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-            ->where('estado_id','=','2')
+            ->where('socios.estado_id','=','2')
             ->get();
 
 
