@@ -1,11 +1,3 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>Llamado de emergencia</title>
-</head>
-<body>
-    Reporte
-</body>
-</html>
+<h1>Bienvenid@ {{$data['name']}}</h1>
+<a href="{{url()}}/auth/confirm/email/{{$data['email']}}/confirm_token/{{$data['confirm_token']}}">Confirmar mi cuenta</a>
+

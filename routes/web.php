@@ -47,11 +47,6 @@ Route::post('/estados/create', 'EstadoController@create');
 Route::get('/estados/{estado}', 'EstadoController@show');
 Route::post('/estados/update/{estado}', 'EstadoController@update');
 
-
-//Rutas del objeto Roles
-
-Route::get('/roles/home','RolesController@index');
-
 // Rutas del objeto socio.
 
 Route::get('/socios/home', 'SociosController@home');
@@ -80,5 +75,11 @@ Route::get('/facturas/socio/{id}','FacturaController@ObtenerFacturasPorSocio');
 
 
 //Rutas para correo 
-Route::get('/enviar/correo','CorreoController@enviar');
+Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
+
+//Rutas para el objeto roles 
+Route::get('/roles/index', 'RolesController@index');
+Route::post('/roles/create', 'RolesController@create');
+Route::get('/roles/{role}', 'RolesController@show');
+Route::post('/roles/update/{role}', 'RolesController@update');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateRolesRequest;
 use App\Role;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
 class RolesController extends Controller
 {
@@ -14,8 +16,8 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate(10);
-        return view('roles.list', [
+        $roles = Role::paginate(4);
+        return view('roles.agregarRoles', [
               'roles' => $roles,
           ]);
     }
@@ -25,9 +27,16 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreateRolesRequest $request)
     {
-        //
+
+        $role = Role::create(
+            [
+                    'rol'=> $request->input('rol'),
+                    'descripcion'=> $request->input('descripcion'),
+            ]);
+
+        return redirect('/roles/index')->withSuccess('Role creado exitosamente!');
     }
 
     /**
