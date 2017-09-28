@@ -66,6 +66,10 @@ Route::get('/facturas/create/{id}', 'FacturaController@create');
 Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 Route::post('/facturas/{id}', 'FacturaController@store');
 
+Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado');
+Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
+Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
+
 Route::get('/facturas/list', 'FacturaController@list');
 
 
@@ -75,6 +79,7 @@ Route::get('/facturas/socio/{id}','FacturaController@ObtenerFacturasPorSocio');
 
 
 //Rutas para correo 
+
 Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
 
@@ -83,3 +88,5 @@ Route::get('/roles/index', 'RolesController@index');
 Route::post('/roles/create', 'RolesController@create');
 Route::get('/roles/{role}', 'RolesController@show');
 Route::post('/roles/update/{role}', 'RolesController@update');
+
+

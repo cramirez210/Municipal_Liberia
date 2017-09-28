@@ -211,7 +211,7 @@
                 </div>
             </div>         
 
-            <!--________________________________________ Precio Categoria  _________________________-->
+            <!--________________________________________ Monto Pagar  _________________________-->
             <div class=" col-md-auto  form-group">
                 <label for="monto" class="col-md-8 form-control-label">Monto a pagar</label>
 
@@ -223,7 +223,21 @@
                 </div>
 
                 </div>
-            </div>           
+            </div>  
+
+            <!--________________________________________ Estado  _________________________-->
+            <div class=" col-md-auto  form-group">
+                <label for="monto" class="col-md-8 form-control-label">Estado</label>
+
+                <div class="col-md-8 ml-5">
+                                
+                    <div class="col-md-8 ml-5">
+                    <input id="monto" type="text" class="form-control" name="monto" value="{{ $estado->estado }}" readonly>
+                    
+                </div>
+
+                </div>
+            </div>         
 
 </div>
 

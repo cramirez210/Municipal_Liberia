@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use App\Estado;
+use App\Http\Controllers\FacturaController;
 use App\Http\Requests\CreateSocioRequest;
 use App\Persona;
 use App\Socio;
@@ -143,12 +144,14 @@ class SociosController extends Controller
     {
         $persona = $socio->persona;
         $categoria = $socio->categoria;
+        $estado = $socio->estado;
 
         return view('socios.show',
         [
             'socio' => $socio,
             'persona' => $persona,
             'categoria' => $categoria,
+            'estado' => $estado,
         ]);
     }
 
@@ -276,15 +279,36 @@ class SociosController extends Controller
     public function cambiarEstado($id)
     {
         $socio = Socio::find($id);
-
-
+        $objeto = new FacturaController;
+        $facturas = $objeto->ObtenerPorSocioEstado($id);
+        //dd($facturas->all());
         if ($socio->estado_id == 2) {
            
+            
+            
+            if (count($facturas)>=1) {
+
+                return redirect('/socios/show/'.$id)->withSuccess(' ERROR -- Socio con facturas perdientes!');
+            } else {
+                
+                $socio->estado_id = 1;
+                $socio->save();
+            }
             
 
           return redirect('/socios/show/'.$id)->withSuccess('Socio Activado Exitosamente!');
 
         } else {
+
+          if (count($facturas)>1) {
+
+
+                return redirect('/socios/show/'.$id)->withSuccess('ERROR -- Socio con facturas perdientes!');
+            } else {
+                
+                $socio->estado_id = 2;
+                $socio->save();
+            }  
             
 
           return redirect('/socios/show/'.$id)->withSuccess('Socio Inactivado Exitosamente!');
