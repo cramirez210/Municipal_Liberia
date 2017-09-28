@@ -49,11 +49,11 @@ class FacturaController extends Controller
         return redirect('/')->withSuccess('Factura creada correctamente');
     }
 
-    public function generar_facturas(){
+    public function GenerarFacturas(){
 
         $user_id = Auth::user()->id;
         $socios_controller = new SociosController;
-        $socios_activos = $socios_controller->listarPorEstado(1);
+        $socios_activos = $socios_controller->sociosPorEstado(1);
 
         foreach ($socios_activos as $socio) {
         $categoria = DB::table('categorias')
@@ -67,8 +67,8 @@ class FacturaController extends Controller
         $factura->user_id = $user_id;
         $factura->meses_cancelados = 0;
         $factura->monto = $categoria->precio_categoria;
-        $factura->forma_pago = "efectivo";
-        $factura->transaccion_bancaria = "1001";
+        $factura->forma_pago = "";
+        $factura->transaccion_bancaria = "";
         $factura->estado_id = 1;
         $factura->save();
         }
@@ -98,11 +98,37 @@ class FacturaController extends Controller
         return view('detail', compact('factura'));
     }
 
-    public function list()
-    {
-        $facturas = Factura::all();
+    public function ObtenerFacturas(){
+        return DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
+            ->join('estados', 'facturas.estado_id', '=', 'estados.id')
+            ->select('personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id', 'facturas.socio_id', 'facturas.created_at', 'estados.estado')
+            ->get();
+    }
 
-        return view('factura.list', compact('facturas'));
+    public function ObtenerFacturasPorCriterio($texto_criterio, $valor_criterio)
+    {
+            $facturas = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
+            ->join('estados', 'facturas.estado_id', '=', 'estados.id')
+            ->select('personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id', 'facturas.socio_id', 'facturas.created_at', 'estados.estado')
+            ->where($texto_criterio, $valor_criterio)
+            ->get();
+
+        return $facturas;
+    }
+
+    public function ObtenerFacturasPorSocio($socio_id)
+    {
+        $socios_controller = new SociosController;
+
+        $facturas_criterio = $this->ObtenerFacturasPorCriterio('facturas.socio_id', $socio_id);
+
+        $facturas = $socios_controller->paginate($facturas_criterio->toArray(),10);
+        
+        return view('facturas.list', compact('facturas'));
     }
 
     public function destroy($id)

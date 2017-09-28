@@ -152,7 +152,7 @@ class SociosController extends Controller
         ]);
     }
 
-   public function listarPorEstado($id)
+   public function sociosPorEstado($id)
    {
        $socios = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
@@ -163,15 +163,21 @@ class SociosController extends Controller
 
             ->where('socios.estado_id','=',$id)
             ->get();
-            
-            $sociosPaginados = $this->paginate($socios->toArray(),10);
+
+            return $socios;
+           
+   }
+
+   public function listarPorEstado($id)
+   {
+       $socios = $this->sociosPorEstado($id);
+
+        $sociosPaginados = $this->paginate($socios->toArray(),10);
 
             return view('/socios/index', [
                 'socios' => $sociosPaginados,
             ]);
    }
-
-
     public function edit(Socio $socio)
     {
         $persona = $socio->persona;

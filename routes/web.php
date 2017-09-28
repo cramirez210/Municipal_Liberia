@@ -67,6 +67,7 @@ Route::post('/socios/update/{socio}','SociosController@update');
 
 // Rutas del objeto factura
 Route::get('/facturas/create/{id}', 'FacturaController@create');
+Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 Route::post('/facturas/{id}', 'FacturaController@store');
-Route::get('/facturas/list', 'FacturaController@list');
-Route::get('/facturas/generar', 'FacturaController@generar_facturas');
+Route::get('/facturas/list/{id}', 'FacturaController@ObtenerFacturasPorEstado');
+Route::get('/facturas/socio/{id}','FacturaController@ObtenerFacturasPorSocio');

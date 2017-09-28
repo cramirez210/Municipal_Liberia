@@ -11,9 +11,21 @@
       
 
       <li class="nav-item">
-        <label class="nav-link text-primary" href="#">Registrar nuevo socio.</label>
+        <label class="nav-link text-primary" href="#">Informacion del Socio.</label>
       </li>
 
+     <li class="nav-item dropdown " id="opciones" style="margin-left: 67%;">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
+        
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Actualizar</a>
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Activar</a>
+
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Inactivar</a>
+        </div>
+    </li>
 
 </div>
 

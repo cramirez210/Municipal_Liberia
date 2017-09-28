@@ -21,7 +21,7 @@
       </li>
     </ul>
   </div>
-<div class="col-md-8 offset-md-2 mt-4">
+<div class="col-md-10 offset-md-1 mt-2">
 <div class="row">
 
  <div class="table-responsive">
@@ -31,6 +31,8 @@
             <tr>
             <th>N° de factura</th>
             <th>Socio</th>
+            <th>Fecha</th>
+            <th>Estado</th>
             <th>Opciones</th>
             </tr>
         </thead>
@@ -42,7 +44,11 @@
         <tr>
             <td class="info" > {{$factura->id}} </td>
 
-            <td class="info" > Jafet Chevez Orias </td>
+            <td class="info" > {{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}</td>
+
+            <td class="info" > {{$factura->created_at}} </td>
+
+            <td class="info" > {{$factura->estado}} </td>
 
             <td class="info"> 
                  <a href="#" class="btn btn-info btn-xs">
@@ -56,7 +62,7 @@
         </tr>
 
         @empty
-        <div class="card-text text-warning">No existen usuarios registrados.</div>
+        <div class="card-text text-warning">No existen facturas registradas.</div>
         <br>
         @endforelse
 
@@ -67,7 +73,13 @@
 
         </div>
     </div>
+<div class="mt-2 mx-auto">
+        @if(count($facturas))
 
+       {{ $facturas->links('pagination::bootstrap-4') }}
+
+        @endif 
+    </div>
  </div>
 
 </div>
