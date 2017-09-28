@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFacturaRequest;
@@ -124,9 +125,9 @@ class FacturaController extends Controller
     {
         $socios_controller = new SociosController;
 
-        $facturas_criterio = $this->ObtenerFacturasPorCriterio('facturas.socio_id', $socio_id);
+        $lista_facturas = $this->ObtenerFacturasPorCriterio('facturas.socio_id', $socio_id);
 
-        $facturas = $socios_controller->paginate($facturas_criterio->toArray(),10);
+        $facturas = $socios_controller->paginate($lista_facturas->toArray(),10);
         
         return view('facturas.list', compact('facturas'));
     }
@@ -135,9 +136,9 @@ class FacturaController extends Controller
     {
         $socios_controller = new SociosController;
 
-        $facturas_criterio = $this->ObtenerFacturasPorCriterio('facturas.estado_id', $estado_id);
+        $lista_facturas = $this->ObtenerFacturasPorCriterio('facturas.estado_id', $estado_id);
 
-        $facturas = $socios_controller->paginate($facturas_criterio->toArray(),10);
+        $facturas = $socios_controller->paginate($lista_facturas->toArray(),10);
         
         return view('facturas.list', compact('facturas'));
     }
@@ -160,9 +161,9 @@ class FacturaController extends Controller
 
      $socios_controller = new SociosController;
 
-     $facturas_criterio = $this->ObtenerPorSocioEstado($socio_id,$estado_id);
+     $lista_facturas = $this->ObtenerPorSocioEstado($socio_id,$estado_id);
 
-     $facturas = $socios_controller->paginate($facturas_criterio->toArray(),10);
+     $facturas = $socios_controller->paginate($lista_facturas->toArray(),10);
         
      return view('facturas.list', compact('facturas'));
 
