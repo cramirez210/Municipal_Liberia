@@ -59,8 +59,7 @@ Route::post('/socios/create', 'SociosController@create');
 Route::get('/socios/index', 'SociosController@index');
 Route::get('/socios/show/{socio}','SociosController@show');
 
-Route::get('/socios/indexActivos', 'SociosController@indexActivos');
-Route::get('/socios/indexInactivos', 'SociosController@indexInactivos');
+Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado');
 
 Route::get('/socios/show/edit/{socio}','SociosController@edit');
 Route::post('/socios/update/{socio}','SociosController@update');

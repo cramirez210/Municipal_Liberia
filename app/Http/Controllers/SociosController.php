@@ -152,34 +152,15 @@ class SociosController extends Controller
         ]);
     }
 
-   public function indexActivos()
-   { 
+   public function listarPorEstado($id)
+   {
        $socios = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
             ->join('users', 'socios.user_id', '=', 'users.id')
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-            ->where('socios.estado_id','=','1')
-            ->get();
-
-
-            $sociosPaginados = $this->paginate($socios->toArray(),10);
-
-            return view('/socios/index', [
-                'socios' => $sociosPaginados,
-            ]);
-   }
-
-     public function indexInactivos()
-   { 
-       $socios = DB::table('socios')
-            ->join('personas', 'socios.persona_id', '=', 'personas.id')
-            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
-            ->join('users', 'socios.user_id', '=', 'users.id')
-            ->join('estados', 'socios.estado_id', '=', 'estados.id')
-            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-            ->where('socios.estado_id','=','2')
+            ->where('socios.estado_id','=',$id)
             ->get();
 
 
@@ -206,14 +187,6 @@ class SociosController extends Controller
 
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function update(CreateSocioRequest $request, Socio $socio)
     {
@@ -247,14 +220,4 @@ class SociosController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

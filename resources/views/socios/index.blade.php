@@ -58,9 +58,9 @@
          <li class="nav-item dropdown " style="margin-left: 62%;">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="/socios/indexActivos">Socios Activos</a>
+            <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
          <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/socios/indexInactivos">Socios Inactivos</a>
+            <a class="dropdown-item" href="/socios/listarPorEstado/2">Socios Inactivos</a>
             
         </div>
     </li>
