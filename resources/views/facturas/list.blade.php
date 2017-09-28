@@ -45,11 +45,11 @@
             <td class="info" > Jafet Chevez Orias </td>
 
             <td class="info"> 
-                 <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs">
+                 <a href="#" class="btn btn-info btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Detalles</a>
-                <a href="/personas/editar/{{ $usuario->id }}" class="btn btn-warning btn-xs">
+                <a href="#" class="btn btn-warning btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
-                <a href="" class="btn btn-danger btn-xs">
+                <a href="#" class="btn btn-danger btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Eliminar</a>
 
             </td>
@@ -64,15 +64,6 @@
     </tbody>
 
     </table>
-
-     <div class="mt-2 mx-auto">
-        @if(count($facturas))
-
-       {{ $facturas->links('pagination::bootstrap-4') }}
-
-        @endif 
-
-    </div>   
 
         </div>
     </div>

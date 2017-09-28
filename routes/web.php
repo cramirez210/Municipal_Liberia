@@ -69,3 +69,4 @@ Route::post('/socios/update/{socio}','SociosController@update');
 Route::get('/facturas/create/{id}', 'FacturaController@create');
 Route::post('/facturas/{id}', 'FacturaController@store');
 Route::get('/facturas/list', 'FacturaController@list');
+Route::get('/facturas/generar', 'FacturaController@generar_facturas');

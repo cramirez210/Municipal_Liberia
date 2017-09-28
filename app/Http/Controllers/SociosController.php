@@ -163,7 +163,6 @@ class SociosController extends Controller
 
             ->where('socios.estado_id','=',$id)
             ->get();
-
             
             $sociosPaginados = $this->paginate($socios->toArray(),10);
 

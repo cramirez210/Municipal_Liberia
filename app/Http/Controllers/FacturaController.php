@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFacturaRequest;
+use App\Http\Controllers\SociosController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -48,8 +49,34 @@ class FacturaController extends Controller
         return redirect('/')->withSuccess('Factura creada correctamente');
     }
 
-        public function edit($id)
-    {
+    public function generar_facturas(){
+
+        $user_id = Auth::user()->id;
+        $socios_controller = new SociosController;
+        $socios_activos = $socios_controller->listarPorEstado(1);
+
+        foreach ($socios_activos as $socio) {
+        $categoria = DB::table('categorias')
+         ->select('precio_categoria')
+         ->where('categorias.id', $socio->categoria_id)
+         ->first();
+
+        $factura = new Factura;
+
+        $factura->socio_id = $socio->id;
+        $factura->user_id = $user_id;
+        $factura->meses_cancelados = 0;
+        $factura->monto = $categoria->precio_categoria;
+        $factura->forma_pago = "efectivo";
+        $factura->transaccion_bancaria = "1001";
+        $factura->estado_id = 1;
+        $factura->save();
+        }
+
+        return redirect('/')->withSuccess('Factura creada correctamente');
+            }
+
+    public function edit($id){
     	$factura = Factura::find($id);
 
 		return view('edit', compact('factura'));
