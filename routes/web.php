@@ -70,3 +70,7 @@ Route::post('/socios/update/{socio}','SociosController@update');
 Route::get('/facturas/create/{id}', 'FacturaController@create');
 Route::post('/facturas/{id}', 'FacturaController@store');
 Route::get('/facturas/list', 'FacturaController@list');
+
+
+//Rutas para correo 
+Route::get('/enviar/correo','CorreoController@enviar');

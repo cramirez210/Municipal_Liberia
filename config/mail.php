@@ -2,6 +2,12 @@
 
 return [
 
+     //  'ssl' => [
+     //     'allow_self_signed' => false,
+     //     'verify_peer' => false,
+     //     'verify_peer_name' => false,
+     // ],
+       
     /*
     |--------------------------------------------------------------------------
     | Mail Driver
@@ -119,5 +125,9 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
+
+
+
 
 ];

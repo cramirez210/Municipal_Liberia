@@ -115,6 +115,7 @@ class RegisterController extends Controller
                 $rol = $this->encontrarRolPorNombre($data);
                 $fill = ['nombre_usuario' => $data['nombre_usuario'],
                             'password' => bcrypt($data['password']),
+                            'email' =>  $data['email'],
                             'persona_id'=>$persona->id,
                             'rol_id'=>$rol->id];
             User::create($fill);
@@ -140,6 +141,7 @@ class RegisterController extends Controller
               
                 $fill = ['nombre_usuario' => $data['nombre_usuario'],
                         'password' => bcrypt($data['password']),
+                        'email' =>  $data['email'],
                         'persona_id'=>$persona->id,
                         'rol_id'=>$rol->id];
 
