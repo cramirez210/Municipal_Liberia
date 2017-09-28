@@ -199,7 +199,6 @@ class SociosController extends Controller
     {
         $persona = $socio->persona;
         
-
         // Actualizar objeto persona ----------------------------------------------------------
         $persona->primer_nombre = $request->input('primer_nombre');
         $persona->segundo_nombre = $request->input('segundo_nombre');
@@ -223,8 +222,74 @@ class SociosController extends Controller
 
          return redirect('/socios/index')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
 
+    }
+
+    public function buscarSocio(Request $request)
+    {
+        //dd($request->All());
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|numeric|max:999999999',
+            ],
+            [
+            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            ]);
+    
+        $socio = $this->obtenerSocioPorCriterio($request->input('Criterio'),$request->input('valor'));
+
+        $socioPaginado = $this->paginate($socio->toArray(),10);
+
+            return view('/socios/index', [
+                'socios' => $socioPaginado,
+            ]);
+    }
+
+    public function obtenerSocioPorCriterio($Criterio, $valor)
+    {
+        if ($Criterio == 1) {
+
+            $socios = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
+            ->join('users', 'socios.user_id', '=', 'users.id')
+            ->join('estados', 'socios.estado_id', '=', 'estados.id')
+            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+
+            ->where('personas.cedula','=',$valor)
+            ->get();
+
+        } else {
+            $socios = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
+            ->join('users', 'socios.user_id', '=', 'users.id')
+            ->join('estados', 'socios.estado_id', '=', 'estados.id')
+            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+
+            ->where('socios.id','=',$valor)
+            ->get();
+        }
+            return $socios;
+    }
+
+    public function cambiarEstado($id)
+    {
+        $socio = Socio::find($id);
 
 
+        if ($socio->estado_id == 2) {
+           
+            
+
+          return redirect('/socios/show/'.$id)->withSuccess('Socio Activado Exitosamente!');
+
+        } else {
+            
+
+          return redirect('/socios/show/'.$id)->withSuccess('Socio Inactivado Exitosamente!');
+        }
+        
     }
 
 }
