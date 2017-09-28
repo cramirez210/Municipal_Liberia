@@ -160,16 +160,18 @@ class SociosController extends Controller
             ->join('users', 'socios.user_id', '=', 'users.id')
             ->join('estados', 'socios.estado_id', '=', 'estados.id')
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+
             ->where('socios.estado_id','=',$id)
             ->get();
 
-
+            
             $sociosPaginados = $this->paginate($socios->toArray(),10);
 
             return view('/socios/index', [
                 'socios' => $sociosPaginados,
             ]);
    }
+
 
     public function edit(Socio $socio)
     {
