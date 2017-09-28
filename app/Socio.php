@@ -41,6 +41,6 @@ class Socio extends Model
     // Obtener el estado del socio
     public function estado()
     {
-    	return $this->hasOne('App\Estado');
+    	return $this->belongsTo('App\Estado');
     }
 }

@@ -151,6 +151,7 @@
     </div>
 
     <div class="card-footer text-muted">
+        Se encontraron {{ count($socios) }} resultados. 
 
     </div>
 </div>

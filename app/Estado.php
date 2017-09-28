@@ -11,6 +11,6 @@ class Estado extends Model
 
 	 public function socio()
     {
-    	return $this->belongsTo('App\Socio');
+    	return $this->hasMany('App\Socio');
     }
 }
