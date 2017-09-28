@@ -60,7 +60,8 @@ Route::get('/socios/index', 'SociosController@index');
 Route::get('/socios/show/{socio}','SociosController@show');
 
 Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado');
-
+Route::get('/socios/find','SociosController@buscarSocio');
+Route::get('/socios/estado/{id}','SociosController@cambiarEstado');
 Route::get('/socios/show/edit/{socio}','SociosController@edit');
 Route::post('/socios/update/{socio}','SociosController@update');
 

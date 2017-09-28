@@ -4,6 +4,13 @@
 
    <div class="row mt-4">
 
+@if(session('success')) 
+
+  <div class="card-block">
+    <label class=" card-title alert alert-warning" style="width: 100%;">{{ session('success') }}</label>
+  </div>
+
+  @endif 
 
 <div class="card" style="width: 100%; height: 800px;">
   <div class="card-header">
@@ -18,12 +25,15 @@
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
         
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Actualizar</a>
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Activar</a>
+            <a class="dropdown-item text-warning" href="/socios/show/edit/{{ $socio->id }}">Actualizar</a>
 
+            @if($socio->estado_id == 2)
         <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Inactivar</a>
+            <a class="dropdown-item text-success" href="/socios/estado/{{ $socio->id }}">Activar</a>
+            @else
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="/socios/estado/{{ $socio->id }}">Inactivar</a>
+            @endif
         </div>
     </li>
 
