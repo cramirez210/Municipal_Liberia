@@ -59,18 +59,26 @@ Route::post('/socios/create', 'SociosController@create');
 Route::get('/socios/index', 'SociosController@index');
 Route::get('/socios/show/{socio}','SociosController@show');
 
-Route::get('/socios/indexActivos', 'SociosController@indexActivos');
-Route::get('/socios/indexInactivos', 'SociosController@indexInactivos');
-
+Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado');
+Route::get('/socios/find','SociosController@buscarSocio');
+Route::get('/socios/estado/{id}','SociosController@cambiarEstado');
 Route::get('/socios/show/edit/{socio}','SociosController@edit');
 Route::post('/socios/update/{socio}','SociosController@update');
 
 
 // Rutas del objeto factura
 Route::get('/facturas/create/{id}', 'FacturaController@create');
+Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 Route::post('/facturas/{id}', 'FacturaController@store');
+
 Route::get('/facturas/list', 'FacturaController@list');
+
+
+
+Route::get('/facturas/list/{id}', 'FacturaController@ObtenerFacturasPorEstado');
+Route::get('/facturas/socio/{id}','FacturaController@ObtenerFacturasPorSocio');
 
 
 //Rutas para correo 
 Route::get('/enviar/correo','CorreoController@enviar');
+
