@@ -70,6 +70,21 @@ Route::post('/socios/update/{socio}','SociosController@update');
 Route::get('/facturas/create/{id}', 'FacturaController@create');
 Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 Route::post('/facturas/{id}', 'FacturaController@store');
+<<<<<<< HEAD
 Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado');
 Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
 Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
+=======
+
+Route::get('/facturas/list', 'FacturaController@list');
+
+
+
+Route::get('/facturas/list/{id}', 'FacturaController@ObtenerFacturasPorEstado');
+Route::get('/facturas/socio/{id}','FacturaController@ObtenerFacturasPorSocio');
+
+
+//Rutas para correo 
+Route::get('/enviar/correo','CorreoController@enviar');
+
+>>>>>>> f492dc05c519c6b4a15dcd9cc25c897deaf4b16e

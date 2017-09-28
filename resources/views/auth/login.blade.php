@@ -67,6 +67,8 @@
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     ¿Ha olvidado su contraseña?
                                 </a>
+
+                                
                             </div>
                         </div>
                     </form>
