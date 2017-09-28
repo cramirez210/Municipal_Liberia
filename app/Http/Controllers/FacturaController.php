@@ -98,7 +98,7 @@ class FacturaController extends Controller
         return view('detail', compact('factura'));
     }
 
-    public function ObtenerFacturas(){
+    public function list(){
         return DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
@@ -107,7 +107,7 @@ class FacturaController extends Controller
             ->get();
     }
 
-    public function ObtenerFacturasPorCriterio($texto_criterio, $valor_criterio)
+    public function ObtenerPorCriterio($texto_criterio, $valor_criterio)
     {
             $facturas = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
@@ -120,7 +120,7 @@ class FacturaController extends Controller
         return $facturas;
     }
 
-    public function ObtenerFacturasPorSocio($socio_id)
+    public function ListarPorSocio($socio_id)
     {
         $socios_controller = new SociosController;
 
@@ -131,7 +131,7 @@ class FacturaController extends Controller
         return view('facturas.list', compact('facturas'));
     }
 
-        public function ObtenerFacturasPorEstado($estado_id)
+        public function ListarPorEstado($estado_id)
     {
         $socios_controller = new SociosController;
 
@@ -144,7 +144,6 @@ class FacturaController extends Controller
 
         public function ObtenerPorSocioEstado($socio_id, $estado_id){
 
-
            $facturas = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
@@ -155,6 +154,18 @@ class FacturaController extends Controller
             ->get();
 
         return $facturas;
+    }
+
+    public function ListarPorSocioEstado($socio_id, $estado_id){
+
+     $socios_controller = new SociosController;
+
+     $facturas_criterio = $this->ObtenerPorSocioEstado($socio_id,$estado_id);
+
+     $facturas = $socios_controller->paginate($facturas_criterio->toArray(),10);
+        
+     return view('facturas.list', compact('facturas'));
+
     }
 
     public function destroy($id)
