@@ -55,7 +55,7 @@
         <a class="nav-link text-primary" href="/socios/home">Nuevo Socios</a>
       </li>
   
-         <li class="nav-item dropdown " style="margin-left: 57%;">
+         <li class="nav-item dropdown " style="margin-left: 60%;">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
@@ -63,21 +63,6 @@
             <a class="dropdown-item" href="/socios/listarPorEstado/2">Socios Inactivos</a>
         </div>
     </li>
-
-    <li class="nav-item dropdown " id="opciones" style="margin-left: 0%;">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" value="1">Ver informacion</a>
-         <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" value="2">Actualizar</a>
-
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" value="3">Inactivar</a>
-
-        </div>
-    </li>
-
-
     </ul>
     
   </div> 
