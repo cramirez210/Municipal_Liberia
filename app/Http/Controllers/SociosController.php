@@ -163,7 +163,7 @@ class SociosController extends Controller
             ->where('estado_id','=','1')
             ->get();
 
-
+            
             $sociosPaginados = $this->paginate($socios->toArray(),10);
 
             return view('/socios/index', [

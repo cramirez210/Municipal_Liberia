@@ -55,15 +55,28 @@
         <a class="nav-link text-primary" href="/socios/home">Nuevo Socios</a>
       </li>
   
-         <li class="nav-item dropdown " style="margin-left: 62%;">
+         <li class="nav-item dropdown " style="margin-left: 57%;">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/socios/indexActivos">Socios Activos</a>
          <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/socios/indexInactivos">Socios Inactivos</a>
-            
         </div>
     </li>
+
+    <li class="nav-item dropdown " id="opciones" style="margin-left: 0%;">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" value="1">Ver informacion</a>
+         <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" value="2">Actualizar</a>
+
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" value="3">Inactivar</a>
+
+        </div>
+    </li>
+
 
     </ul>
     
@@ -99,9 +112,12 @@
             <td class="info"> {{ $socio->estado }} </td>
             <td class="warning"> 
               
-                  <a href="/socios/show/{{ $socio->id }}" class="btn btn-success btn-xs nav-link">
+             
+
+              <a href="/socios/show/{{ $socio->id }}" class="btn btn-success btn-xs nav-link">
                   <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
 
+                  
                   <a href="/socios/show/edit/{{ $socio->id }}" class="btn btn-warning btn-xs nav-link mt-1">
                   <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>

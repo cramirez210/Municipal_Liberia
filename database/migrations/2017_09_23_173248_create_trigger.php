@@ -14,7 +14,7 @@ class CreateTrigger extends Migration
     public function up()
     {
         DB::unprepared('CREATE TRIGGER insert_cobro AFTER INSERT ON facturas FOR EACH ROW
-                BEGIN INSERT INTO cobros (user_id, factura_id, estado_id, created_at, updated_at) VALUES (NEW.user_id, NEW.id, 1, now(), null); END');
+                BEGIN INSERT INTO cobros (user_id, factura_id, estado_id, created_at, updated_at) VALUES (NEW.user_id, NEW.id,4, now(), null); END');
     }
 
     /**
