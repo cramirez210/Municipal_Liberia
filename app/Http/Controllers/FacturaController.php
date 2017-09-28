@@ -120,6 +120,20 @@ class FacturaController extends Controller
         return $facturas;
     }
 
+    public function ObtenerPorSocioEstado($socio_id){
+
+                    $facturas = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
+            ->join('estados', 'facturas.estado_id', '=', 'estados.id')
+            ->select('personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id', 'facturas.socio_id', 'facturas.created_at', 'estados.estado')
+            ->where('facturas.socio_id', $socio_id)
+            ->whereIn('facturas.estado_id', [1])
+            ->get();
+
+        return $facturas;
+    }
+
     public function ObtenerFacturasPorSocio($socio_id)
     {
         $socios_controller = new SociosController;
