@@ -81,5 +81,6 @@ Route::get('/roles/index', 'RolesController@index');
 Route::post('/roles/create', 'RolesController@create');
 Route::get('/roles/{role}', 'RolesController@show');
 Route::post('/roles/update/{role}', 'RolesController@update');
-
+//Rutas para configuracion.
+Route::get('/conf/index', 'ConfiguracionController@index');
 
