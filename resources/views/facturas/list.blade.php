@@ -28,10 +28,7 @@
 
   <div class="card-block">
 
-
-
-  <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;">
-  
+  <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;"> 
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
     <option selected value="1">Cedula</option>
@@ -68,9 +65,6 @@
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-primary" href="#">Nueva factura</a>
-      </li>
   
          <li class="nav-item dropdown " style="margin-left: 60%;">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
@@ -85,7 +79,7 @@
     </ul>
     
   </div> 
-<div class="col-md-8 offset-md-2 mt-4">
+<div class="col-md-9 offset-md-1 mt-4">
 
 <div class="row">
 
@@ -95,6 +89,7 @@
         <thead>
             <tr>
             <th class="text-center">N° de factura</th>
+            <th class="text-center">N° de socio</th>
             <th class="text-center">Nombre</th>
             <th class="text-center">Apellidos</th>
             <th class="text-center">Fecha</th>
@@ -108,6 +103,7 @@
                        
         <tr>
             <td class="info"> {{ $factura->id }} </td>
+            <td class="info"> {{ $factura->socio_id }} </td>
             <td class="info"> {{ $factura->primer_nombre }} </td>
             <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{ $factura->created_at }} </td>

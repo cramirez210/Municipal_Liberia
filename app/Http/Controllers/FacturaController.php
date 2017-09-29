@@ -57,7 +57,17 @@ class FacturaController extends Controller
         $socios_activos = $socios_controller->sociosPorEstado(1);
 
         foreach ($socios_activos as $socio) {
-        $categoria = DB::table('categorias')
+
+            $facturas_pendientes = $this->ObtenerPorSocioEstado($socio->id, 1);
+
+            if(count($facturas_pendientes) === 3){
+                $socioBD = Socio::find($socio->id);
+
+                $socioBD->estado_id = 2;
+                $socioBD->save();
+            }
+            else{
+         $categoria = DB::table('categorias')
          ->select('precio_categoria')
          ->where('categorias.id', $socio->categoria_id)
          ->first();
@@ -72,9 +82,9 @@ class FacturaController extends Controller
         $factura->transaccion_bancaria = "";
         $factura->estado_id = 1;
         $factura->save();
+            }
         }
-
-        return redirect('/')->withSuccess('Factura creada correctamente');
+        return redirect('/')->withSuccess('Facturas creada correctamente');
             }
 
     public function edit($id){

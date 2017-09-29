@@ -21,10 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('/nueva/factura', function () {
-    return view('registrar_factura');
-});
 // Rutas del objeto usuario
 
 Route::get('personas/mostrar/{user}','PersonasController@show');
