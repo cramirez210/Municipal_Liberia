@@ -229,7 +229,6 @@ class SociosController extends Controller
 
     public function buscarSocio(Request $request)
     {
-        //dd($request->All());
        $this->validate($request,
             [
             'Criterio' => 'required',

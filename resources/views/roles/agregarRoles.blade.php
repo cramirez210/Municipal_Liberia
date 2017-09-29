@@ -118,7 +118,7 @@
             <td class="info"> {{ $role->rol }} </td>
             <td class="info"> {{ $role->descripcion }} </td>
             <td class="warning"> 
-                 <a href="#" class="btn btn-success btn-xs">
+                 <a href="/role/show/{{ $role->id }}" class="btn btn-success btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>
         </tr>

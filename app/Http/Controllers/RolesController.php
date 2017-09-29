@@ -56,9 +56,13 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+
+        return view('roles.show',[
+            'role' => $role,
+            ]);
+        
     }
 
     /**
@@ -67,9 +71,16 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(CreateRolesRequest $request, $id)
     {
-        //
+
+        $role = Role::find($id);
+
+        $role->rol = $request->input('rol');
+        $role->descripcion = $request->input('descripcion');
+        $role->save();
+        
+        return redirect('/roles/index')->withSuccess('Datos actualizados exitosamente!');
     }
 
     /**
@@ -79,7 +90,7 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         //
     }
