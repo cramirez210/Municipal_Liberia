@@ -48,13 +48,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Entrar</a>
                             </li>
-  
-                        @else
-
-<!--___________________________________ else _______________________-->
+                            
                             <li class="nav-item">
                                 <a class="nav-link text-primary" href="{{ route('register') }}">Registrar Usuario</a>
                             </li>
+                        @else
+
+<!--___________________________________ else _______________________-->
+                            
 
 
                             <li class="nav-item dropdown ml-2">
