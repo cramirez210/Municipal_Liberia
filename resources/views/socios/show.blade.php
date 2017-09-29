@@ -34,6 +34,9 @@
         <div class="dropdown-divider"></div>
             <a class="dropdown-item text-danger" href="/socios/estado/{{ $socio->id }}">Inactivar</a>
             @endif
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-info" href="/socios/index">Regresar</a>
         </div>
     </li>
 

@@ -9,6 +9,11 @@
       <li class="nav-item">
         <label class="nav-link text-primary" href="#">Listado de Categorias</label>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-primary" href="/conf/index" style="margin-left: 76%;">Regresar a Configuracion</a>
+      </li>
+      
     </ul>
   </div>
   <div class="card-block">
@@ -83,7 +88,9 @@
 
         @endif 
     </div> 
-    
+    <div class="card-footer text-muted">
+        
+    </div>
 </div>
 
 @endsection
