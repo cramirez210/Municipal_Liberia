@@ -86,5 +86,10 @@ Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\Aut
 //Rutas para el objeto roles 
 Route::get('/roles/index', 'RolesController@index');
 Route::post('/roles/create', 'RolesController@create');
+
 Route::get('/role/show/{role}', 'RolesController@show');
 Route::post('/role/update/{role}', 'RolesController@update');
+
+
+//Rutas para configuracion.
+Route::get('/conf/index', 'ConfiguracionController@index');

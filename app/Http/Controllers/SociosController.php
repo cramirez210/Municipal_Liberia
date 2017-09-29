@@ -280,7 +280,7 @@ class SociosController extends Controller
     {
         $socio = Socio::find($id);
         $objeto = new FacturaController;
-        $facturas = $objeto->ObtenerPorSocioEstado($id);
+        $facturas = $objeto->ObtenerPorSocioEstado($id, 3);
         //dd($facturas->all());
         if ($socio->estado_id == 2) {
            
