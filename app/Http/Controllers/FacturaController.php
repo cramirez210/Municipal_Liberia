@@ -100,12 +100,18 @@ class FacturaController extends Controller
     }
 
     public function list(){
-        return DB::table('socios')
+        $socios_controller = new SociosController;
+
+        $facturas = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
             ->join('estados', 'facturas.estado_id', '=', 'estados.id')
             ->select('personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id', 'facturas.socio_id', 'facturas.created_at', 'estados.estado')
             ->get();
+
+        $facturas = $socios_controller->paginate($facturas->toArray(),5);
+        
+        return view('facturas.list', compact('facturas'));
     }
 
     public function ObtenerPorCriterio($texto_criterio, $valor_criterio)
@@ -125,9 +131,9 @@ class FacturaController extends Controller
     {
         $socios_controller = new SociosController;
 
-        $lista_facturas = $this->ObtenerFacturasPorCriterio('facturas.socio_id', $socio_id);
+        $facturas = $this->ObtenerPorCriterio('facturas.socio_id', $socio_id);
 
-        $facturas = $socios_controller->paginate($lista_facturas->toArray(),10);
+        $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
         return view('facturas.list', compact('facturas'));
     }
@@ -136,9 +142,9 @@ class FacturaController extends Controller
     {
         $socios_controller = new SociosController;
 
-        $lista_facturas = $this->ObtenerFacturasPorCriterio('facturas.estado_id', $estado_id);
+        $facturas = $this->ObtenerPorCriterio('facturas.estado_id', $estado_id);
 
-        $facturas = $socios_controller->paginate($lista_facturas->toArray(),10);
+        $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
         return view('facturas.list', compact('facturas'));
     }
@@ -161,9 +167,9 @@ class FacturaController extends Controller
 
      $socios_controller = new SociosController;
 
-     $lista_facturas = $this->ObtenerPorSocioEstado($socio_id,$estado_id);
+     $facturas = $this->ObtenerPorSocioEstado($socio_id,$estado_id);
 
-     $facturas = $socios_controller->paginate($lista_facturas->toArray(),10);
+     $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
      return view('facturas.list', compact('facturas'));
 

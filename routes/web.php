@@ -65,17 +65,10 @@ Route::post('/socios/update/{socio}','SociosController@update');
 Route::get('/facturas/create/{id}', 'FacturaController@create');
 Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 Route::post('/facturas/{id}', 'FacturaController@store');
-
 Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado');
 Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
 Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
-
 Route::get('/facturas/list', 'FacturaController@list');
-
-
-
-Route::get('/facturas/list/{id}', 'FacturaController@ObtenerFacturasPorEstado');
-Route::get('/facturas/socio/{id}','FacturaController@ObtenerFacturasPorSocio');
 
 
 //Rutas para correo 
