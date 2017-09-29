@@ -25,7 +25,7 @@ class CreateRolesRequest extends FormRequest
     {
         return [
             //
-             'rol' => ['required', 'max:20'],
+            'rol' => ['required', 'max:20'],
             'descripcion' => ['required'],
         ];
     }
