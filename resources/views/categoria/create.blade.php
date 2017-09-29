@@ -5,13 +5,13 @@
 
 <div class="card text-center mt-4">
   <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
+    <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
-        <label class="nav-link text-primary" href="#">Listado de Categorias</label>
+        <label class="nav-link text-primary" href="#"><h5> Listado de Categorias </h5></label>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/conf/index" style="margin-left: 76%;">Regresar a Configuracion</a>
+        <a class="nav-link text-primary" href="/conf/index"> <h5> Regresar a Configuracion </h5></a>
       </li>
       
     </ul>

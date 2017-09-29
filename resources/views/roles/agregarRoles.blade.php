@@ -3,12 +3,20 @@
 
 @section('content')
 
+
+
 <div class="card text-center mt-4">
   <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
+    <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
-        <label class="nav-link text-primary" href="#">Listado de roles</label>
+        <label class="nav-link text-primary" href="#"><h5> Listado de roles </h5></label>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-primary" href="/conf/index"> <h5> Regresar a Configuracion </h5></a>
+      </li>
+
+
     </ul>
   </div>
   <div class="card-block">
@@ -145,8 +153,14 @@
 
         @endif 
     </div> 
-    
+
+     <div class="card-footer text-muted">
+        
+    </div>
+     
 </div>
+
+
 
 @endsection
 
