@@ -29,11 +29,10 @@
   <div class="card-block">
 
 
-
   <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;">
   
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
     <option selected value="1">Cedula</option>
     <option value="2">Numero de Socio</option>
   </select>

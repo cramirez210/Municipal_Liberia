@@ -55,9 +55,6 @@
             <td class="info"> 
               <a href="/socios/show/{{ $socioActivo->id }}" class="btn btn-info btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
-
-              <a href="/socios/show/edit/{{ $socioActivo->id }}" class="btn btn-warning btn-xs">
-              <span class="glyphicon glyphicon-remove-circle"></span>Editar socio</a>
             </td>
         </tr>   
 
@@ -101,8 +98,7 @@
             </tr>
         </thead>
     <tbody>
-
-        
+           
          @forelse($sociosInactivos as $socioInactivo)
                        
         <tr>
@@ -111,9 +107,6 @@
             <td class="info"> 
               <a href="/socios/show/{{ $socioInactivo->id }}" class="btn btn-info btn-xs">
               <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
-
-              <a href="/socios/show/edit/{{ $socioInactivo->id }}" class="btn btn-warning btn-xs">
-              <span class="glyphicon glyphicon-remove-circle"></span>Editar socio</a>
             </td>
         </tr>  
         

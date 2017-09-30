@@ -21,11 +21,11 @@
 
 
 
-  <form class="form-inline" style="margin-left: 29%;">
+  <form class="form-inline"  method="GET" action="/usuarios/find" style="margin-left: 29%;">
   
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-    <option selected>Criterio...</option>
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0"  id="inlineFormCustomSelect">
+
     <option value="1">Cédula</option>
     <option value="2">Nombre de usuario</option>
   </select>

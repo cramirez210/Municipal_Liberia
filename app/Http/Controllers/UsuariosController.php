@@ -102,4 +102,24 @@ class UsuariosController extends Controller
     {
         //
     }
+
+    public function buscarUsuario(Request $request)
+    {
+       $this->validate($request,
+            [
+            'criterio' => 'required',
+            'valor' => 'required|numeric|max:999999999',
+            ],
+            [
+            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            ]);
+    
+        $socio = $this->obtenerSocioPorCriterio($request->input('Criterio'),$request->input('valor'));
+
+        $socioPaginado = $this->paginate($socio->toArray(),10);
+
+            return view('/socios/index', [
+                'socios' => $socioPaginado,
+            ]);
+    }
 }

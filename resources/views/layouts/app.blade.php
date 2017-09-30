@@ -24,7 +24,8 @@
 </head>
 <body>
     <div id="app" class="container">
-        <nav id="header" class="navbar navbar-light static-top navbar-toggleable-md bg-faded">
+        <nav id="header" class="navbar navbar-light static-top navbar-toggleable-md bg-faded  "> 
+          <!-- fixed-top -->
        
             <div class="container">
 
