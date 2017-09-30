@@ -63,17 +63,17 @@
 <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
+        <a class="nav-link text-primary" href="/facturas/list">Listado de Cobros</a>
       </li>
   
          <li class="nav-item dropdown " style="margin-left: 60%;">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="/facturas/list">Todas las facturas</a>
+            <a class="dropdown-item" href="/cobros/list">Todas los cobros</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/3">Facturas pendientes</a>
+            <a class="dropdown-item" href="/cobros/list/3">Cobros pendientes</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
+            <a class="dropdown-item" href="/cobros/list/4">Cobros cancelados</a>
         </div>
     </li>
     <li class="nav-item">
@@ -92,9 +92,9 @@
         <thead>
             <tr>
             <th class="text-center">N° de factura</th>
-            <th class="text-center">N° de socio</th>
             <th class="text-center">Nombre</th>
             <th class="text-center">Apellidos</th>
+            <th class="text-center">Monto</th>
             <th class="text-center">Fecha</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Opcion</th>
@@ -102,19 +102,19 @@
         </thead>
     <tbody>
 
-         @forelse($facturas as $factura)
+         @forelse($cobros as $cobro)
                        
         <tr>
-            <td class="info"> {{ $factura->id }} </td>
-            <td class="info"> {{ $factura->socio_id }} </td>
-            <td class="info"> {{ $factura->primer_nombre }} </td>
-            <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
-            <td class="info"> {{ $factura->created_at }} </td>
-            <td class="info"> {{ $factura->estado }} </td>
+            <td class="info"> {{ $cobro->factura_id }} </td>
+            <td class="info"> {{ $cobro->primer_nombre }} </td>
+            <td class="info"> {{ $cobro->primer_apellido }} {{ $cobro->segundo_apellido }} </td>
+            <td class="info"> {{ $cobro->monto }} </td>
+            <td class="info"> {{ $cobro->created_at }} </td>
+            <td class="info"> {{ $cobro->estado }} </td>
             <td class="warning"> 
-              @if($factura->estado_id == 3)
-              <a href="/facturas/edit/{{$factura->id}}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Cobrar</a>
+              @if($cobro->estado_id == 3)
+              <a href="#" class="btn btn-success">
+                  <span class="glyphicon glyphicon-remove-circle"></span>Pagar</a>
               @else
               <a href="#" class="btn btn-success">
                   <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
@@ -140,15 +140,15 @@
  </div>
 
 <div class="mt-2 mx-auto">
-        @if(count($facturas))
+        @if(count($cobros))
 
-       {{ $facturas->links('pagination::bootstrap-4') }}
+       {{ $cobros->links('pagination::bootstrap-4') }}
 
         @endif 
     </div>
 
     <div class="card-footer text-muted">
-        Se encontraron {{ count($facturas) }} resultados.
+        Se encontraron {{ count($cobros) }} resultados.
 
     </div>
 </div>
@@ -157,6 +157,6 @@
 
 @section('titulo')
 
-Facturas
+Cobros
 
 @endsection

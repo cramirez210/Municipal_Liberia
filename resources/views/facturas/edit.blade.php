@@ -35,20 +35,52 @@
 
             <div class="panel panel-default">
             
-                    <form class="form-horizontal" action="/facturas/pagar/{{$socio->id}}" method="POST">
+                    <form class="form-horizontal" action="/facturas/update/{{$factura->id}}" method="POST">
                         {{ csrf_field() }}
 
             <div class="float-none" style="background-color: ;
               width: 50%; margin-left: 10%; height: 330px">
 
-<!--_________________________________Socio_______________________________________-->
 
               <fieldset disabled>
+                      <div class="form-group">
+                        <label for="factura_id" class="col-md-5 from-control-label">Número de factura
+                        </label>
+                          <div class="col-md-4 ml-5">
+                            <input type="text" id="factura_id" class="form-control" value="{{$factura->id}}">
+                           </div>
+                       </div>
+                  </fieldset>
+
+                  <fieldset disabled>
                       <div class="form-group">
                         <label for="socio_id" class="col-md-5 from-control-label">Número de socio
                         </label>
                           <div class="col-md-4 ml-5">
-                            <input type="text" id="socio_id" class="form-control" value="{{$socio->id}}">
+                            <input type="text" id="socio_id" class="form-control" value="{{$factura->socio_id}}">
+                           </div>
+                       </div>
+                  </fieldset>
+
+                  <fieldset disabled>
+                      <div class="form-group">
+                        <label for="meses_cancelados" class="col-md-8 from-control-label">Número de meses a cancelar
+                        </label>
+                          <div class="col-md-4 ml-5">
+                            <input type="text" id="meses_cancelados" name="meses_cancelados" class="form-control" value="1">
+                           </div>
+                       </div>
+                  </fieldset>
+            </div>
+
+            <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%; margin-top: -37%;">
+
+              <fieldset disabled>
+                      <div class="form-group">
+                        <label for="created_at" class="col-md-6 from-control-label">Fecha y hora de factura
+                        </label>
+                          <div class="col-md-8 ml-5">
+                            <input type="text" id="created_at" class="form-control" value="{{$factura->created_at}}">
                            </div>
                        </div>
                   </fieldset>
@@ -58,52 +90,10 @@
                         <label for="nombre_socio" class="col-md-5 from-control-label">Nombre de socio
                         </label>
                           <div class="col-md-8 ml-5">
-                            <input type="text" id="nombre_socio" class="form-control" value="{{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}}">
+                            <input type="text" id="nombre_socio" class="form-control" value="{{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}">
                            </div>
                        </div>
                   </fieldset>
-
-<!--_________________________________Factura_______________________________________-->
-
-                        <fieldset disabled>
-                            <div class="form-group">
-                              <label for="facturas_pendientes" class="col-md-6 from-control-label">Mensualidades pendientes</label>
-                               <div class="col-md-4 ml-5">
-                                <input type="text" id="facturas_pendientes" class="form-control" value="{{$facturas_pendientes}}">
-                            </div>
-                            </div>
-                          </fieldset>
-                          <a class="col-md-4 ml-5" href="/facturas/list/3">ver detalle de pendientes</a>
-            </div>
-
-            <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%; margin-top: -37%;">
-
-                      <div class="form-group">
-                            <label class="col-md-7 from-control-label" for="forma_pago">Número de meses a cancelar</label>
-                             <div class="col-md-6 ml-5">
-                              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="meses_cancelados">
-                                <option value="0" selected>Elegir...</option>
-                                @if($facturas_pendientes >= 1)
-                                <option value="1">1</option>
-                                @endif
-                                @if($facturas_pendientes >= 2)
-                                <option value="2">2</option>
-                                @endif
-                                @if($facturas_pendientes == 3)
-                                <option value="3">3</option>
-                                @endif
-                              </select>
-                             </div>
-                        </div>
-
-                        <fieldset disabled>
-                            <div class="form-group">
-                              <label for="monto" class="col-md-5 from-control-label">Total a pagar</label>
-                               <div class="col-md-4 ml-5">
-                                <input type="text" name="monto" class="form-control" value="0">
-                               </div>
-                            </div>
-                          </fieldset>
 
                       <div class="form-group">
                             <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
