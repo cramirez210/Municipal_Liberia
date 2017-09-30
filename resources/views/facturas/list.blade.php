@@ -71,11 +71,14 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/list">Todas las facturas</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/1">Facturas pendientes</a>
+            <a class="dropdown-item" href="/facturas/list/3">Facturas pendientes</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/3">Facturas canceladas</a>
+            <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link text-primary" href="{{ URL::previous() }}">Regresar</a>
+      </li>
     </ul>
     
   </div> 
@@ -109,8 +112,13 @@
             <td class="info"> {{ $factura->created_at }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning"> 
+              @if($factura->estado_id == 3)
+              <a href="/facturas/edit/{{$factura->id}}" class="btn btn-success">
+                  <span class="glyphicon glyphicon-remove-circle"></span>Cobrar</a>
+              @else
               <a href="#" class="btn btn-success">
                   <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
+              @endif
             </td>
         </tr>
 
