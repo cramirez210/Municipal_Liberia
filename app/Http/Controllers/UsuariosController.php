@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
 use App\Role;
 use App\Socio;
+use App\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
 {
@@ -16,13 +19,18 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $usuariosAdministrador = User::where("rol_id","=",1)->paginate(10);
-        $usuariosEstandar = User::where("rol_id","=",2)->paginate(10);
-       
-        return view('usuarios.listar', [
-              'usuariosAdministrador' =>  $usuariosAdministrador,
-              'usuariosEstandar' => $usuariosEstandar, 
-          ]);
+      
+        $usuarios = DB::table('users')
+            ->join('personas', 'users.persona_id', '=', 'personas.id')
+            ->join('roles','users.rol_id', '=', 'roles.id')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+            ->get();
+
+            $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
+
+            return view('usuarios.listar', [
+                'usuarios' => $usuariosPaginados,
+            ]);
     }
 
     /**
@@ -108,18 +116,54 @@ class UsuariosController extends Controller
        $this->validate($request,
             [
             'criterio' => 'required',
-            'valor' => 'required|numeric|max:999999999',
-            ],
-            [
-            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            'valor' => 'required',
             ]);
-    
-        $socio = $this->obtenerSocioPorCriterio($request->input('Criterio'),$request->input('valor'));
+      
+        $usuario = $this->obtenerUsuarioPorCriterio($request->input('criterio'),$request->input('valor'));
 
-        $socioPaginado = $this->paginate($socio->toArray(),10);
+        $usuarioPaginado = $this->paginate($usuario->toArray(),10);
 
-            return view('/socios/index', [
-                'socios' => $socioPaginado,
+            return view('usuarios.listar', [
+                'usuarios' => $usuarioPaginado,
             ]);
     }
+
+     private function obtenerUsuarioPorCriterio($criterio, $valor)
+    {
+        if ($criterio == 1) {
+
+
+            $usuarios = DB::table('users')
+            ->join('personas', 'users.persona_id', '=', 'personas.id')
+            ->join('roles','users.rol_id', '=', 'roles.id')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+
+            ->where('personas.cedula','=',$valor)
+            ->get();
+
+        } else {
+             $usuarios = DB::table('users')
+            ->join('personas', 'users.persona_id', '=', 'personas.id')
+            ->join('roles','users.rol_id', '=', 'roles.id')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+
+            ->where('users.nombre_usuario','=',$valor)
+            ->get();
+        }
+            return $usuarios;
+    }
+
+    public function paginate($items, $perPages)
+    {
+       $pageStart = \Request::get('page',1);
+       $offSet    = ($pageStart * $perPages)-$perPages;
+       $itemsForCurrentPage = array_slice( $items, $offSet, $perPages, TRUE);
+
+       return new \Illuminate\Pagination\LengthAwarePaginator(
+
+        $itemsForCurrentPage, count($items), $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+        ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+    }
+
 }

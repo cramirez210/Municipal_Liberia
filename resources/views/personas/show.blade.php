@@ -13,7 +13,11 @@
         <li class="nav-item">
             <h5 class="text-primary">  Usuario {{ $usuario->nombre_usuario }}</h5>
         </li>
- 
+        <li class="nav-item">
+             <a href="/personas/editar/{{ $usuario->id }}" class="btn btn-warning btn-xs">
+                <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
+        </li>
+    </ul>
   </div>
   
 <div class="card-block">
