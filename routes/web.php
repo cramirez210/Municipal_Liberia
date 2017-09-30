@@ -68,6 +68,11 @@ Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
 Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
 Route::get('/facturas/list', 'FacturaController@list');
 
+//Rutas del objeto cobro
+Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado');
+Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
+Route::get('/cobros/{user}/{id}','CobroController@ListarPorUsuarioEstado');
+Route::get('/cobros/list', 'CobroController@list');
 
 //Rutas para correo 
 

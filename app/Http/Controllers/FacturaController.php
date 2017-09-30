@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFacturaRequest;
 use App\Http\Controllers\SociosController;
+use App\Http\Controllers\CobroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -43,8 +44,11 @@ class FacturaController extends Controller
 
         foreach ($facturas as $factura) {
             $facturaBD = Factura::find($factura->id);
+            $cobro_controller = new CobroController;
 
-            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $factura->precio_categoria, $forma_pago, null, 4);   
+            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $factura->precio_categoria, $forma_pago, null, 4);
+
+            $cobro_controller->GenerarCobroUsuario($factura->id, 3);
         }
 
         return redirect('/')->withSuccess('Operación exitosa');
@@ -80,7 +84,7 @@ class FacturaController extends Controller
          $factura = new Factura;       
          $categoria = $this->ObtenerCategoriaDeSocio($socio);
 
-         $this->store($factura, $socio->id, 0, $categoria->precio_categoria, '', '', 3);
+         $this->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, 3);
             }
         }
         return redirect('/')->withSuccess('Facturas creada correctamente');
@@ -118,6 +122,8 @@ class FacturaController extends Controller
 
     public function update($id)
     {
+        $cobro_controller = new CobroController;
+
     	$factura = Factura::find($id);
         $socio = Socio::find($factura->socio_id);
         $user_id = Auth::user()->id;
@@ -126,6 +132,8 @@ class FacturaController extends Controller
         $categoria = $this->ObtenerCategoriaDeSocio($socio);
 
         $this->store($factura, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, 4);
+
+        $cobro_controller->GenerarCobroUsuario($factura->id, 3);
 
 		return redirect('/');
     }
