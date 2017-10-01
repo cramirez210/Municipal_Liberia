@@ -32,7 +32,7 @@
   <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;">
   
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
     <option selected value="1">Cedula</option>
     <option value="2">Numero de Socio</option>
   </select>
@@ -74,8 +74,8 @@
         <a class="nav-link text-primary" href="/socios/home">Nuevo Socios</a>
       </li>
   
-         <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+         <li class="nav-item dropdown mt-2">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
          <div class="dropdown-divider"></div>
