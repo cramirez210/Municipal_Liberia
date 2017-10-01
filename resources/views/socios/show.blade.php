@@ -52,6 +52,17 @@
     <!--_________________________________Persona_______________________________________-->
     
     <div class="d-inline-block col-md-5"> 
+
+          <!--_______________________________ Numero de socio ______________________________-->
+
+            <div  class=" col-md-auto form-group">
+            <label for="numeroSocio" class="col-md-8 rm-control-label">Número de socio</label>
+
+                <div class=" col-md-auto ml-5">
+                    <input id="numeroSocio" type="text" class="form-control" name="primer_nombre" value="{{ $persona->id }}"  readonly>
+
+                </div>
+            </div>
   
     <!--_______________________________ Primer Nombre ______________________________-->
 
@@ -66,7 +77,7 @@
 
 <!--_______________________________ Segundo Nombre ______________________________-->
  
-
+            @if($persona->segundo_nombre !== null)
             <div  class="col-md-auto  form-group">
             <label for="segundo_nombre" class="col-md-8 form-control-label">Segundo nombre</label>
 
@@ -75,7 +86,7 @@
 
                 </div>
             </div>
-
+            @endif
 
 <!--_______________________________ Primer Apellido  ______________________________-->
 

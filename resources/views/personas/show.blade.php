@@ -38,15 +38,16 @@
 
 <!--_______________________________ Segundo Nombre ______________________________-->
  
+ @if($persona->segundo_nombre !== null)
+            <div  class="col-md-auto  form-group">
+            <label for="segundo_nombre" class="col-md-8 form-control-label">Segundo nombre</label>
 
-                      <div  class="col-md-auto  form-group">
+                <div class="col-md-auto ml-5 ">
+                    <input id="segundo_nombre"  type="text" class="form-control" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" readonly>
 
-                            <label for="segundo_nombre" class="col-md-8 form-control-label">Segundo nombre</label>
-
-                            <div class="col-md-auto ml-5 ">
-                                <input id="segundo_nombre" placeholder="No posee" type="text" class="form-control" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" readonly>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            @endif
 
 
 <!--_______________________________ Primer Apellido  ______________________________-->
