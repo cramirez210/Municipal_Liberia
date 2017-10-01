@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CrearUsuariosRequest;
+use App\Persona;
 use App\Role;
 use App\Socio;
 use App\User;
@@ -17,6 +19,17 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+        public function showCreate()
+    {
+             $roles=Role::all();
+              return view('auth.register', [
+              'roles' => $roles,
+          ]);
+    }
+
+
     public function index()
     {
       
@@ -33,15 +46,74 @@ class UsuariosController extends Controller
             ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CrearUsuariosRequest $request)
     {
-        //
+
+          $persona = new Persona;
+            $persona = $this->encontrarPorCedula($request);
+
+            if($persona)
+            {
+                $rol = $this->encontrarRolPorNombre($request);
+                $fill = ['nombre_usuario' => $request['nombre_usuario'],
+                            'password' => bcrypt($request['password']),
+                            'email' =>  $request['email'],
+                            'persona_id'=>$persona->id,
+                            'rol_id'=>$rol->id];
+            User::create($fill);
+            }
+            else
+            {
+                $persona = new Persona;
+                $persona->primer_nombre = $request['primer_nombre'];
+                $persona->segundo_nombre = $request['segundo_nombre'];
+                $persona->primer_apellido= $request['primer_apellido'];
+                $persona->segundo_apellido = $request['segundo_apellido'];
+                $persona->cedula = $request['cedula'];
+                $persona->fecha_nacimiento = $request['fecha_nacimiento'];
+                $persona->email = $request['email'];
+                $persona->telefono = $request['telefono'];
+                $persona->direccion = $request['direccion'];
+
+                $persona->save();
+
+                $persona = $this->encontrarPorCedula($request);
+                $rol = $this->encontrarRolPorNombre($request);
+
+              
+                $fill = ['nombre_usuario' => $request['nombre_usuario'],
+                        'password' => bcrypt($request['password']),
+                        'email' =>  $request['email'],
+                        'persona_id'=>$persona->id,
+                        'rol_id'=>$rol->id];
+
+                User::create($fill);
+            }
+
+       return redirect(url('usuarios/showCreate'))->withSuccess('Usuario creado exitosamente!');
     }
+
+
+    
+
+
+
+     private function encontrarPorCedula(CrearUsuariosRequest $request)
+    {
+         return Persona::where('cedula',$request['cedula'])->first();
+    }
+
+    private function encontrarRolPorNombre(CrearUsuariosRequest $request)
+    {
+         return Role::where('rol',$request['rol'])->first();
+    }
+
 
     /**
      * Store a newly created resource in storage.

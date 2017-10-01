@@ -51,7 +51,7 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link text-primary" href="{{ route('register') }}">Registrar Usuario</a>
+                                <a class="nav-link text-primary" href="/usuarios/showCreate">Registrar Usuario</a>
                             </li>
                         @else
 

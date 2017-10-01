@@ -225,7 +225,7 @@
                     <div class=" col-md-auto  form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
                         <label for="rol" class="col-md-auto form-control-label">Rol</label>
                             <div class="col-md-auto ml-5">
-                                <select class="formcontrol-" id="rol" name="rol">
+                                <select class="form-control" id="rol" name="rol">
                         
                                     <option selected>{{ $role->rol }}</option>
 

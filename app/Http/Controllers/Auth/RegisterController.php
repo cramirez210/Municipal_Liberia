@@ -49,6 +49,8 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
 
      */
+
+
     protected function validator(array $data)
     {
 
@@ -105,7 +107,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
 
             $persona = new Persona;
             $persona = $this->encontrarPorCedula($data);

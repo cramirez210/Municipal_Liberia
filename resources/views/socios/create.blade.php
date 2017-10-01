@@ -2,7 +2,7 @@
 
 @section('content')
 
-   <div class="row">
+   <div class="container ml-4">
 
     <div class="col-md-9 offset-md-2 mt-4">
 
@@ -17,41 +17,22 @@
     </div>
 
 
-
-<div class="card" style="width: 100%; height: 800px;">
+<div class="card mt-4" style="width: 90%; height: 85%;">
   <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
+    <ul class="nav nav-pills nav-fill card-header-pills">
       
 
       <li class="nav-item">
-        <label class="nav-link text-primary" href="#">Registrar nuevo socio.</label>
+        <label class="nav-link text-primary" href="#"><h5>Registrar nuevo socio</h5></label>
       </li>
-
-     
-     
-   <li class="nav-item">
-      <a href="/socios/index" class="btn btn-info" style="margin-left: 89%;">Regresar</a>
-   </li>
 
 </div>
 
   <div class="card-block">
 
-
-
-
-    <div class="col-md-10  mt-4">
-
-
-       	<div class="panel panel-default">
-             
              <!--_______________________________ Formulario ______________________________-->
 
              @include('socios.formulario')
-
-
-        </div>
-    </div>
 
   </div>
 </div>

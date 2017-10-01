@@ -25,17 +25,11 @@
             <li class="nav-item">
                 <h5 class="text-primary">Registrar nuevo usuario</h5>
             </li>
-            
-            <li class="nav-item">
-                <button type="submit" class="btn btn-info">
-                    Regresar
-                </button>
-            </li>
     </div>
 
   <div class="card-block" >
             
-                    <form class="container-fluid mt-4 w-100" method="POST" action="{{ route('register') }}" >
+                    <form class="container-fluid mt-4 w-100" method="POST" action="/usuarios/create" >
                         {{ csrf_field() }}
 
         <div> <!-- No tocar div -->
@@ -290,13 +284,20 @@
 
 
 <!--_____________________________ Botones _________________________________-->
+                       
                         <center class="form-group mt-3">
-                             <div class="row-fluid">
-                                <button type="submit" class="btn btn-success btn-xs">
-                                    Registrar
-                                </button>
-                            </div>
-                        </center>
+            <div class="row-fluid">
+
+             <button type="submit" class="btn btn-success btn-xs" style="color: white;">
+                Registrar
+            </button>
+
+              <a href="/usuarios/home" class="btn btn-info btn-xs ml-2">
+              <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
+                
+            </div>
+        </center>
+    
             </div>
                     </form>
 

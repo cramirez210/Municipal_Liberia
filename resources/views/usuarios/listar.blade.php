@@ -56,7 +56,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/register">Nuevo usuario</a>
+        <a class="nav-link text-primary" href="/usuarios/showCreate">Nuevo usuario</a>
       </li>
 
     </ul>
