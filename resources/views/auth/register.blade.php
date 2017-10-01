@@ -292,8 +292,11 @@
                 Registrar
             </button>
 
+
               <a href="/usuarios/home" class="btn btn-info btn-xs ml-2">
               <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
+
+             
                 
             </div>
         </center>

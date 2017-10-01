@@ -15,9 +15,26 @@
 
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 
+<div class="jumbotron mt-4">
+ 
 
-<h1 class="mt-5"> En Mantenimiento </h1>
+<h1 class="h1"> En Mantenimiento </h1>
 <h3 class="card-text text-muted"> Josué, Jafet, Carlos </h1>
+
+	<div class="list-group mt-5">
+  <a href="#" class="list-group-item active">
+    Acciones
+  </a>
+  <a href="/usuarios/home" class="list-group-item">Usuarios</a>
+  <a href="/socios/index" class="list-group-item">Socios</a>
+  <a href="/facturas/list" class="list-group-item">Facturación</a>
+  <a href="/conf/index" class="list-group-item">Configuración</a>
+</div>
+
+</div>
+
+
+
 
 @endsection
 
