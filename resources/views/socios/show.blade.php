@@ -22,8 +22,8 @@
         <label class="nav-link text-primary" href="#">Informacion del Socio.</label>
       </li>
 
-     <li class="nav-item dropdown " id="opciones">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
+     <li class="nav-item dropdown mt-2" id="opciones">
+        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
         
         <div class="dropdown-menu">
             <a class="dropdown-item text-warning" href="/socios/show/edit/{{ $socio->id }}">Actualizar</a>

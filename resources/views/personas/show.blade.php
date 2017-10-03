@@ -5,6 +5,13 @@
 
 <div class="container ml-4">
 
+<div class="col-md-9 offset-md-2 mt-4">
+        @if(session('success')) 
+            <div class="card-block">
+                <label class=" card-title alert alert-warning" style="width: 100%;">{{ session('success') }}</label>
+            </div>
+        @endif 
+  </div>
 
 
 <div class="card mt-5" style="width: 90%; height: 85%;">
@@ -13,10 +20,25 @@
         <li class="nav-item">
             <h5 class="text-primary">  Usuario {{ $usuario->nombre_usuario }}</h5>
         </li>
-        <li class="nav-item">
-             <a href="/personas/editar/{{ $usuario->id }}" class="btn btn-warning btn-xs">
-                <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
-        </li>
+        <li class="nav-item dropdown mt-2" id="opciones">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
+        
+        <div class="dropdown-menu">
+            <a class="dropdown-item text-warning" href="/personas/editar/{{ $usuario->id }}">Actualizar</a>
+
+            @if($usuario->estado_id == 2)
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-success" href="/usuario/estado/{{ $usuario->id }}">Activar</a>
+            @else
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="/usuario/estado/{{ $usuario->id }}">Inactivar</a>
+            @endif
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-info" href="/usuarios/home">Regresar</a>
+        </div>
+    </li>
+
     </ul>
   </div>
   
