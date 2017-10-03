@@ -19,16 +19,16 @@
  
 
 <h1 class="h1"> En Mantenimiento </h1>
-<h3 class="card-text text-muted"> Josué, Jafet, Carlos </h1>
 
 	<div class="list-group mt-5">
   <a href="#" class="list-group-item active">
-    Acciones
+    Acceder a:
   </a>
-  <a href="/usuarios/home" class="list-group-item">Usuarios</a>
-  <a href="/socios/index" class="list-group-item">Socios</a>
-  <a href="/facturas/index" class="list-group-item">Facturación</a>
-  <a href="/conf/index" class="list-group-item">Configuración</a>
+  <a href="/facturas/list" class="list-group-item">Todas las facturas</a>
+  <a href="/facturas/list/3" class="list-group-item">Facturas pendientes</a>
+  <a href="/facturas/list/4" class="list-group-item">Facturas pagadas</a>
+  <a href="/facturas/buscar" class="list-group-item">Facturas de un socio específico</a>
+  <a href="/facturas/socio/buscar" class="list-group-item">Recuento mensual de facturación</a>
 </div>
 
 </div>
@@ -38,12 +38,6 @@
 
 @endsection
 
-
-
-
-
-
-
 @section('titulo')
-    ASMLG | Municipal Liberia
+    Facturación
 @endsection

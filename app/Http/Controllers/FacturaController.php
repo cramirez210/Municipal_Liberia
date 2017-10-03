@@ -15,6 +15,10 @@ use App\Socio;
 class FacturaController extends Controller
 {
 
+    public function index(){
+        return view('facturas.index');
+    }
+
     public function create($socio_id){
 
         $socio = DB::table('socios')
@@ -219,6 +223,27 @@ class FacturaController extends Controller
         
      return view('facturas.list', compact('facturas'));
 
+    }
+
+    public function BuscarPorSocio(){
+        return view('facturas.buscar');
+    }
+
+    public function BuscarSocio(Request $request)
+    {
+       $socios_controller = new SociosController;
+
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|numeric|max:999999999',
+            ],
+            [
+            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            ]);
+       $valor = $request->input('valor');
+
+        return $this->ListarPorSocio($valor);
     }
 
     public function destroy($id)
