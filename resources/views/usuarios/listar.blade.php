@@ -58,6 +58,14 @@
       <li class="nav-item">
         <a class="nav-link text-primary" href="/usuarios/showCreate">Nuevo usuario</a>
       </li>
+      <li class="nav-item dropdown mt-2">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/usuarios/listarPorEstado/1">Socios Activos</a>
+         <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/usuarios/listarPorEstado/2">Socios Inactivos</a>
+        </div>
+    </li>
 
     </ul>
   </div>

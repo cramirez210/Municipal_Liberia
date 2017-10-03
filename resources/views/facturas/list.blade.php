@@ -61,7 +61,7 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
+    <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
       </li>
@@ -82,7 +82,7 @@
     </ul>
     
   </div> 
-<div class="col-md-9 offset-md-1 mt-4">
+<div class="col-md-10 offset-md-1 mt-4">
 
 <div class="row">
 
@@ -91,11 +91,11 @@
     <table class="table table-hover ">
         <thead>
             <tr>
-            <th class="text-center">N° de factura</th>
-            <th class="text-center">N° de socio</th>
-            <th class="text-center">Nombre</th>
+            <th class="text-center">N° factura</th>
+            <th class="text-center">Socio</th>
             <th class="text-center">Apellidos</th>
             <th class="text-center">Fecha</th>
+            <th class="text-center">Monto</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Opcion</th>
             </tr>
@@ -106,10 +106,10 @@
                        
         <tr>
             <td class="info"> {{ $factura->id }} </td>
-            <td class="info"> {{ $factura->socio_id }} </td>
             <td class="info"> {{ $factura->primer_nombre }} </td>
             <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{ $factura->created_at }} </td>
+            <td class="info"> {{ $factura->monto }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning"> 
               @if($factura->estado_id == 3)

@@ -80,7 +80,7 @@ class SociosController extends Controller
         }
         
     
-        return redirect('/socios/home')->withSuccess('Socio creada exitosamente!'); 
+        return redirect('/socios/home')->withSuccess('Socio creado exitosamente!'); 
     }
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)

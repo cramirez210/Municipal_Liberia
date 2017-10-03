@@ -65,7 +65,9 @@ class UsuariosController extends Controller
                             'password' => bcrypt($request['password']),
                             'email' =>  $request['email'],
                             'persona_id'=>$persona->id,
-                            'rol_id'=>$rol->id];
+                            'rol_id'=>$rol->id,
+                            'estado_id'=>1
+                        ];
             User::create($fill);
             }
             else
@@ -91,17 +93,15 @@ class UsuariosController extends Controller
                         'password' => bcrypt($request['password']),
                         'email' =>  $request['email'],
                         'persona_id'=>$persona->id,
-                        'rol_id'=>$rol->id];
+                        'rol_id'=>$rol->id,
+                        'estado_id'=>1
+                    ];
 
                 User::create($fill);
             }
 
        return redirect(url('usuarios/showCreate'))->withSuccess('Usuario creado exitosamente!');
     }
-
-
-    
-
 
 
      private function encontrarPorCedula(CrearUsuariosRequest $request)
@@ -237,5 +237,50 @@ class UsuariosController extends Controller
         ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
         );
     }
+    public function listarPorEstado($id)
+    {
+        $usuarios = $this->usuariosPorEstado($id);
+
+        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
+
+            return view('usuarios.listar', [
+                'usuarios' => $usuariosPaginados,
+            ]);
+    }
+
+
+     public function usuariosPorEstado($id)
+   {
+       $usuarios = DB::table('users')
+            ->join('personas', 'users.persona_id', '=', 'personas.id')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'users.nombre_usuario')
+
+            ->where('users.estado_id','=',$id)
+            ->get();
+
+            return $usuarios;
+   }
+
+   public function cambiarEstado(User $user)
+   {
+        $estado = $user->estado;
+        if ($estado->estado_id == 1) 
+        {
+                
+            $user->estado_id = 2;
+            $user->save();
+        
+
+          return redirect('/personas/mostrar/'.$user->id)->withSuccess('Usuario Inactivado Exitosamente!');
+        } 
+        else 
+        {
+
+            $user->estado_id = 1;
+            $user->save();
+        
+          return redirect('/personas/mostrar/'.$user->id)->withSuccess('Usuario Activado Exitosamente!');
+        }
+   }
 
 }

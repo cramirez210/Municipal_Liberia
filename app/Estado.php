@@ -13,4 +13,8 @@ class Estado extends Model
     {
     	return $this->hasMany('App\Socio');
     }
+    public function usuario()
+    {
+    	return $this->hasOne('App\User');
+    }
 }

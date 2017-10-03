@@ -15,35 +15,28 @@
 
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 
-
 <div class="jumbotron mt-4">
  <center><img width="110" height="120" src="http://www.monstruolocura.com/saprissa/wp-content/uploads/2015/06/Municipal-Liberia-Logo1.png" >
-<h1 class="h1 d-inline ml-4"> En Mantenimiento </h1></center>
-
+<h1 class="h1 d-inline ml-4"> En Mantenimiento </h1>
 
 	<div class="list-group mt-4">
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
-  <a href="/usuarios/home" class="list-group-item">Administración de los usuarios</a>
-  <a href="/socios/index" class="list-group-item">Administración de los socios</a>
-  <a href="/facturas/index" class="list-group-item">Administracion de la facturación</a>
-  <a href="/cobros/index" class="list-group-item">Administracion de cobros</a>
-  <a href="/conf/index" class="list-group-item">Administración de la configuración</a>
+  <a href="/cobros/list" class="list-group-item">Todos los cobros</a>
+  <a href="/cobros/list/3" class="list-group-item">Cobros pendientes</a>
+  <a href="/cobros/list/4" class="list-group-item">Cobros pagados</a>
+  <a href="/cobros/buscar" class="list-group-item">Cobros de un ejecutivo específico</a>
+  <a href="/cobros/recuento" class="list-group-item">Recuento mensual de cobros</a>
 </div>
 
 </div>
+
 
 
 
 @endsection
 
-
-
-
-
-
-
 @section('titulo')
-    ASMLG | Municipal Liberia
+    Facturación
 @endsection
