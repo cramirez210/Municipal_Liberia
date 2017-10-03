@@ -229,16 +229,17 @@ class SociosController extends Controller
 
     public function buscarSocio(Request $request)
     {
+        //dd($request->all());
        $this->validate($request,
             [
-            'Criterio' => 'required',
+            'criterio' => 'required',
             'valor' => 'required|numeric|max:999999999',
             ],
             [
             'valor.max'=>'Solo se admiten hasta 9 digitos.',
             ]);
     
-        $socio = $this->obtenerSocioPorCriterio($request->input('Criterio'),$request->input('valor'));
+        $socio = $this->obtenerSocioPorCriterio($request->input('criterio'),$request->input('valor'));
 
         $socioPaginado = $this->paginate($socio->toArray(),10);
 
