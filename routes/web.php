@@ -23,44 +23,47 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Rutas del objeto usuario
 
-Route::get('personas/mostrar/{user}','PersonasController@show');
-Route::get('personas/editar/{user}','PersonasController@show_update');
-Route::post('personas/editar/{user}','PersonasController@update');
+Route::get('/personas/mostrar/{user}','PersonasController@show');
+Route::get('/personas/editar/{user}','PersonasController@show_update');
+Route::post('/personas/editar/{user}','PersonasController@update');
 
-Route::get('usuarios/home','UsuariosController@index');
-Route::get('usuarios/socios/{user}','UsuariosController@show');
-Route::get('usuarios/find','UsuariosController@buscarUsuario');
-Route::get('usuarios/showCreate','UsuariosController@showCreate');
-Route::post('usuarios/create','UsuariosController@create');
+Route::get('/usuarios/home','UsuariosController@index')->middleware('auth');
+Route::get('/usuarios/socios/{user}','UsuariosController@show')->middleware('auth');
+Route::get('/usuarios/find','UsuariosController@buscarUsuario')->middleware('auth');
+Route::get('/usuarios/showCreate','UsuariosController@showCreate');
+Route::post('/usuarios/create','UsuariosController@create');
+Route::get('/usuarios/listarPorEstado/{id}','UsuariosController@listarPorEstado')->middleware('auth');
+Route::get('/usuario/estado/{user}','UsuariosController@cambiarEstado')->middleware('auth');
 
 
 // Rutas del objeto catalogo
-Route::get('/categoria/home', 'CategoriaController@home');
-Route::post('/categoria/create', 'CategoriaController@create');
-Route::get('/categoria/{categoria}', 'CategoriaController@show');
-Route::post('/categoria/update/{categoria}', 'CategoriaController@update');
+Route::get('/categoria/home', 'CategoriaController@home')->middleware('auth');;
+Route::post('/categoria/create', 'CategoriaController@create')->middleware('auth');;
+Route::get('/categoria/{categoria}', 'CategoriaController@show')->middleware('auth');;
+Route::post('/categoria/update/{categoria}', 'CategoriaController@update')->middleware('auth');;
 
 // Rutas del objeto estado
-Route::get('/estados/home', 'EstadoController@home');
-Route::post('/estados/create', 'EstadoController@create');
-Route::get('/estados/{estado}', 'EstadoController@show');
-Route::post('/estados/update/{estado}', 'EstadoController@update');
+Route::get('/estados/home', 'EstadoController@home')->middleware('auth');;
+Route::post('/estados/create', 'EstadoController@create')->middleware('auth');;
+Route::get('/estados/{estado}', 'EstadoController@show')->middleware('auth');;
+Route::post('/estados/update/{estado}', 'EstadoController@update')->middleware('auth');;
 
 // Rutas del objeto socio.
 
-Route::get('/socios/home', 'SociosController@home');
-Route::post('/socios/create', 'SociosController@create');
-Route::get('/socios/index', 'SociosController@index');
-Route::get('/socios/show/{socio}','SociosController@show');
+Route::get('/socios/home', 'SociosController@home')->middleware('auth');;
+Route::post('/socios/create', 'SociosController@create')->middleware('auth');;
+Route::get('/socios/index', 'SociosController@index')->middleware('auth');;
+Route::get('/socios/show/{socio}','SociosController@show')->middleware('auth');;
 
-Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado');
-Route::get('/socios/find','SociosController@buscarSocio');
-Route::get('/socios/estado/{id}','SociosController@cambiarEstado');
-Route::get('/socios/show/edit/{socio}','SociosController@edit');
-Route::post('/socios/update/{socio}','SociosController@update');
+Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado')->middleware('auth');;
+Route::get('/socios/find','SociosController@buscarSocio')->middleware('auth');;
+Route::get('/socios/estado/{id}','SociosController@cambiarEstado')->middleware('auth');;
+Route::get('/socios/show/edit/{socio}','SociosController@edit')->middleware('auth');;
+Route::post('/socios/update/{socio}','SociosController@update')->middleware('auth');;
 
 
 // Rutas del objeto factura
+<<<<<<< HEAD
 Route::get('/facturas/index', 'FacturaController@index');
 Route::get('/facturas/create/{id}', 'FacturaController@create');
 Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
@@ -90,19 +93,39 @@ Route::get('/cobros/recuento', 'CobroController@BuscarRecuento');
 Route::post('/cobros/recuento/buscar','CobroController@recuento');
 Route::get('/cobros/recuento/{mes}/{anio}', 'CobroController@ListarPorFecha');
 Route::get('/cobros/recuento/{mes}/{anio}/{estado}', 'CobroController@ListarPorFechaEstado');
+=======
+Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;
+Route::get('/facturas/create/{id}', 'FacturaController@create')->middleware('auth');;
+Route::post('/facturas/pagar/{id}', 'FacturaController@pagar')->middleware('auth');;
+Route::get('/facturas/edit/{id}', 'FacturaController@edit')->middleware('auth');;
+Route::get('/facturas/generar', 'FacturaController@GenerarFacturas')->middleware('auth');;
+Route::post('/facturas/update/{id}', 'FacturaController@update')->middleware('auth');;
+Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado')->middleware('auth');;
+Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio')->middleware('auth');;
+Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado')->middleware('auth');;
+Route::get('/facturas/buscar','FacturaController@BuscarPorSocio')->middleware('auth');;
+Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio')->middleware('auth');;
+Route::get('/facturas/list', 'FacturaController@list')->middleware('auth');;
+
+//Rutas del objeto cobro
+Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado')->middleware('auth');;
+Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario')->middleware('auth');;
+Route::get('/cobros/{user}/{id}','CobroController@ListarPorUsuarioEstado')->middleware('auth');;
+Route::get('/cobros/list', 'CobroController@list')->middleware('auth');;
+>>>>>>> 5fdc134b4eab3c6408a78d55005bd79df1e2805a
 
 //Rutas para correo 
 
-Route::get('auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
+Route::get('/auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
 
 //Rutas para el objeto roles 
-Route::get('/roles/index', 'RolesController@index');
-Route::post('/roles/create', 'RolesController@create');
+Route::get('/roles/index', 'RolesController@index')->middleware('auth');;
+Route::post('/roles/create', 'RolesController@create')->middleware('auth');;
 
-Route::get('/role/show/{role}', 'RolesController@show');
-Route::post('/role/update/{role}', 'RolesController@update');
+Route::get('/role/show/{role}', 'RolesController@show')->middleware('auth');;
+Route::post('/role/update/{role}', 'RolesController@update')->middleware('auth');;
 
 
 //Rutas para configuracion.
-Route::get('/conf/index', 'ConfiguracionController@index');
+Route::get('/conf/index', 'ConfiguracionController@index')->middleware('auth');;

@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         
-        'nombre_usuario', 'password','cedula','persona_id','rol_id','email',
+        'nombre_usuario', 'password','cedula','persona_id','rol_id','email','estado_id',
     ];
 
     /**
@@ -47,6 +47,10 @@ class User extends Authenticatable
     public function socios()
     {
         return $this->hasMany('App\Socio');
+    }
+    public function estado()
+    {
+        return $this->belongsTo('App\Estado');
     }
 
 }
