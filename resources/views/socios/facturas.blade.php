@@ -59,9 +59,6 @@
             <a class="dropdown-item" href="/facturas/{{$socio->socio_id}}/4">Facturas canceladas</a>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-primary" href="{{ URL::previous() }}">Regresar</a>
-      </li>
     </ul>
     
   </div> 
@@ -104,7 +101,7 @@
         @empty
         <div class="alert alert-warning">
        
-        <span class="card-text text-warning "> No hay facturas registradas </span>
+        <span class="card-text text-warning "> No se encontraron facturas </span>
 
         </div>
         <br>

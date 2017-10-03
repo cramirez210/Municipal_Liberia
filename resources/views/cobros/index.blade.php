@@ -26,8 +26,9 @@
   <a href="/cobros/list" class="list-group-item">Todos los cobros</a>
   <a href="/cobros/list/3" class="list-group-item">Cobros pendientes</a>
   <a href="/cobros/list/4" class="list-group-item">Cobros pagados</a>
-  <a href="/cobros/buscar" class="list-group-item">Cobros de un ejecutivo específico</a>
-  <a href="/cobros/recuento" class="list-group-item">Recuento mensual de cobros</a>
+  <a href="#" class="list-group-item">Cobros de un ejecutivo específico</a>
+  <a href="#" class="list-group-item">Registrar cobros realizados por un ejecutivo específico</a>
+  <a href="#" class="list-group-item">Recuento mensual de cobros</a>
 </div>
 
 </div>

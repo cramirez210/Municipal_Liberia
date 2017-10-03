@@ -20,17 +20,46 @@ class FacturaController extends Controller
         return view('facturas.index');
     }
 
-    public function create($socio_id){
+    public function buscar_socio(){
+        return view('facturas.buscar_socio');
+    }
 
-        $socio = DB::table('socios')
-             ->join('personas', 'socios.persona_id', 'personas.id')
-             ->select('socios.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido')
-             ->where('socios.id', $socio_id)
-            ->first();
+    public function create(Request $request){
 
-        $facturas_pendientes = count($this->ObtenerPorSocioEstado($socio_id, 3));
+        $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|numeric|max:999999999',
+            ],
+            [
+            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            ]);
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $socio = $this->ObtenerSocioPorCriterio($criterio, $valor);
+
+        if($socio != null){
+
+            $facturas_pendientes = count($this->ObtenerPorSocioEstado($socio->id, 3));
+
+            if($facturas_pendientes > 0){
+                $socio = DB::table('socios')
+           ->join('personas', 'socios.persona_id', 'personas.id')
+         ->select('socios.id', 'personas.*')
+         ->where('socios.id', $socio->id)
+         ->first();
 
         return view('facturas.create', compact('socio', 'facturas_pendientes'));
+    }else{
+        return redirect('/facturas/pagar/buscar')->withSuccess('El socio no tiene facturas pendientes.');
+    }
+
+           
+        }else{
+        return redirect('/facturas/pagar/buscar')->withSuccess('El dato ingresado no corrresponde a ninguno de nuestros socios.');
+        }
     }
 
     public function pagar($socio_id){
@@ -56,7 +85,7 @@ class FacturaController extends Controller
             $cobro_controller->GenerarCobroUsuario($factura->id, 3);
         }
 
-        return redirect('/')->withSuccess('Operación exitosa');
+        return redirect('/facturas/index')->withSuccess('Operación exitosa');
     }
 
    public function edit($factura_id)
@@ -76,7 +105,9 @@ class FacturaController extends Controller
         $socios_controller = new SociosController;
         $socios_activos = $socios_controller->sociosPorEstado(1);
 
-        foreach ($socios_activos as $socio) {
+        if(count($socios_activos) > 0){
+
+            foreach ($socios_activos as $socio) {
 
             $facturas_pendientes = $this->ObtenerPorSocioEstado($socio->id, 3);
 
@@ -92,7 +123,12 @@ class FacturaController extends Controller
          $this->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, 3);
             }
         }
-        return redirect('/')->withSuccess('Facturas creada correctamente');
+        return redirect('/facturas/index')->withSuccess('Operación exitosa');
+        } else{
+        return redirect('/facturas/index')->withSuccess('No hay socios registrados en el sistema');
+        }
+
+        
             }
 
     public function store($factura, $socio_id, $meses_cancelados, $precio_categoria, $forma_pago, $transaccion_bancaria, $estado_id){
@@ -140,7 +176,7 @@ class FacturaController extends Controller
 
         $cobro_controller->GenerarCobroUsuario($factura->id, 3);
 
-		return redirect('/');
+		 return redirect('/facturas/index')->withSuccess('Operación exitosa');
     }
 
     public function show($id)
@@ -232,9 +268,21 @@ class FacturaController extends Controller
 
      $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
-     $socio = $facturas[0];
-        
-        return view('socios.facturas', compact('facturas', 'socio'));
+        if(count($facturas) > 0){
+
+            $socio = $facturas[0];
+
+            return view('socios.facturas', compact('facturas', 'socio'));
+        }
+        else{
+        $socio = DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido')
+            ->where('socios.id', $socio_id)
+            ->first();
+
+            return view('socios.facturas', compact('facturas', 'socio'));
+    }
 
     }
 
@@ -260,7 +308,10 @@ class FacturaController extends Controller
 
        $socio = $this->ObtenerSocioPorCriterio($criterio, $valor);
 
+       if($socio!=null)
        return $this->ListarPorSocio($socio->id);
+       else
+        return redirect('/facturas/buscar')->withSuccess('No se ha encontrado al socio');
 
     }
 
@@ -293,7 +344,13 @@ class FacturaController extends Controller
         $facturas_pendientes = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 3));
         $facturas_pagas = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 4));
 
-        return view('facturas.recuento_mes', compact('facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'mes', 'anio'));
+        if($facturas_fecha > 0){
+
+            return view('facturas.recuento_mes', compact('facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'mes', 'anio'));
+        }else{
+            return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en el mes');
+        }
+        
     }
 
     public function ListarPorFecha($mes, $anio){

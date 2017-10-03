@@ -76,9 +76,6 @@
             <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-primary" href="{{ URL::previous() }}">Regresar</a>
-      </li>
     </ul>
     
   </div> 
@@ -116,7 +113,7 @@
               <a href="/facturas/edit/{{$factura->id}}" class="btn btn-success">
                   <span class="glyphicon glyphicon-remove-circle"></span>Cobrar</a>
               @else
-              <a href="#" class="btn btn-success">
+              <a href="/facturas/show/id/{{$factura->id}}" class="btn btn-success">
                   <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
               @endif
             </td>
@@ -125,7 +122,7 @@
         @empty
         <div class="alert alert-warning">
        
-        <span class="card-text text-warning "> No hay facturas registradas </span>
+        <span class="card-text text-warning "> No se encontraron facturas </span>
 
         </div>
         <br>

@@ -64,8 +64,9 @@ Route::post('/socios/update/{socio}','SociosController@update')->middleware('aut
 
 // Rutas del objeto factura
 Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;
-Route::get('/facturas/create/{id}', 'FacturaController@create')->middleware('auth');;
+Route::post('/facturas/create', 'FacturaController@create')->middleware('auth');;
 Route::post('/facturas/pagar/{id}', 'FacturaController@pagar')->middleware('auth');;
+Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio')->middleware('auth');;
 Route::get('/facturas/edit/{id}', 'FacturaController@edit')->middleware('auth');;
 Route::get('/facturas/generar', 'FacturaController@GenerarFacturas')->middleware('auth');;
 Route::post('/facturas/update/{id}', 'FacturaController@update')->middleware('auth');;

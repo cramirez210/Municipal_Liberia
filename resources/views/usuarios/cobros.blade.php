@@ -59,9 +59,6 @@
             <a class="dropdown-item" href="/cobros/{{$user->user_id}}/4">Cobros cancelados</a>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-primary" href="{{ URL::previous() }}">Regresar</a>
-      </li>
     </ul>
     
   </div> 

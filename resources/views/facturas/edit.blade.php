@@ -20,13 +20,6 @@
                     <li class="nav-item">
                        <h5 class="text-primary">Registrar nueva factura</h5>
                     </li>
-                  
-                    <li class="nav-item">
-                      <button type="submit" class="btn btn-outline-info" style="margin-left: 89%;">
-                                                  Regresar
-                                              </button>
-                      </li>
-
                 </div>
 
               <div class="card-block">
@@ -99,7 +92,6 @@
                             <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="forma_pago">
-                                <option selected>Elegir...</option>
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Depósito">Depósito</option>
                               </select>
@@ -110,9 +102,9 @@
 
                         <div class="form-group">
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
-                                    Registrar
-                                </button>
+                                <a href="{{ URL::previous() }}" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
+                                   Regresar
+                                </a>
                             </div>
                         </div>
                     </form>

@@ -20,12 +20,6 @@
                     <li class="nav-item">
                        <h5 class="text-primary">Detalle de factura</h5>
                     </li>
-                  
-                    <li class="nav-item">
-                      <button type="submit" class="btn btn-outline-info" style="margin-left: 89%;">
-                                                  Regresar
-                                              </button>
-                      </li>
 
                 </div>
 
@@ -38,35 +32,10 @@
     <!--_______________________________ Primer Nombre ______________________________-->
 
                            <div  class=" col-md-auto form-group">
-                            <label for="primer_nombre" class="col-md-8 form-control-label">Primer nombre</label>
+                            <label for="nombre" class="col-md-8 form-control-label">Socio</label>
 
                             <div class=" col-md-auto ml-5">
-                                <input id="primer_nombre" type="text" class="form-control" name="primer_nombre" value="{{ $factura->primer_nombre }}" readonly>
-                            </div>
-                        </div>
-
-
-<!--_______________________________ Primer Apellido  ______________________________-->
-
-
-                     <div class="col-md-auto  form-group">
-
-                            <label for="primer_apellido" class="col-md-8 form-control-label">Primer apellido</label>
-
-                            <div class="col-md-auto ml-5 ">
-                                <input id="primer_apellido" type="text" class="form-control" name="primer_apellido" value="{{ $factura->primer_apellido }}" readonly>
-                            </div>
-                        </div>
-
-
-<!--_______________________________ Segundo Apellido  ______________________________-->
-
-
-                     <div class="col-md-auto form-group">
-                            <label for="segundo_apellido" class="col-md-8 form-control-label">Segundo apellido</label>
-
-                            <div class="col-md-auto ml-5">
-                                <input id="segundo_apellido" type="text" class="form-control" name="segundo_apellido" value="{{ $factura->segundo_apellido }}" readonly>
+                                <input id="nombre" type="text" class="form-control" name="nombre" value="{{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }}" readonly>
                             </div>
                         </div>
 
@@ -81,10 +50,6 @@
                                 <input id="socio_id" type="text" class="form-control" name="socio_id" value="{{ $factura->socio_id }}" readonly>
                             </div>
                         </div>
-</div>
-
-
-<div class="col-md-5 float-right">
 
 <!--_______________________________Correo Electrónico ____________________________-->
 
@@ -109,6 +74,12 @@
                                 <input type="text" class="form-control" id="created_at" name="created_at" width="276" value="{{ $factura->created_at }}" readonly/>
                             </div>
                         </div>
+
+</div>
+
+
+<div class="col-md-5 float-right">
+
 
 
 <!--_______________________________ Número de telefono ____________________________-->
@@ -159,9 +130,9 @@
 
                         <div class="form-group">
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
-                                    Registrar
-                                </button>
+                                <a href="{{ URL::previous() }}" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
+                                   Regresar
+                                </a>
                             </div>
                         </div>
                     </form>

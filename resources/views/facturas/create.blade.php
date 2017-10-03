@@ -18,14 +18,8 @@
                   <ul class="nav nav-pills card-header-pills">
 
                     <li class="nav-item">
-                       <h5 class="text-primary">Registrar nueva factura</h5>
+                       <h5 class="text-primary">Registrar pago de factura</h5>
                     </li>
-                  
-                    <li class="nav-item">
-                      <button type="submit" class="btn btn-outline-info" style="margin-left: 89%;">
-                                                  Regresar
-                                              </button>
-                      </li>
 
                 </div>
 
@@ -82,7 +76,6 @@
                             <label class="col-md-7 from-control-label" for="forma_pago">Número de meses a cancelar</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="meses_cancelados">
-                                <option value="0" selected>Elegir...</option>
                                 @if($facturas_pendientes >= 1)
                                 <option value="1">1</option>
                                 @endif
@@ -96,20 +89,10 @@
                              </div>
                         </div>
 
-                        <fieldset disabled>
-                            <div class="form-group">
-                              <label for="monto" class="col-md-5 from-control-label">Total a pagar</label>
-                               <div class="col-md-4 ml-5">
-                                <input type="text" name="monto" class="form-control" value="0">
-                               </div>
-                            </div>
-                          </fieldset>
-
                       <div class="form-group">
                             <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="forma_pago">
-                                <option selected>Elegir...</option>
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Depósito">Depósito</option>
                               </select>
