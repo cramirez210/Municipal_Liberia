@@ -63,37 +63,6 @@ Route::post('/socios/update/{socio}','SociosController@update')->middleware('aut
 
 
 // Rutas del objeto factura
-<<<<<<< HEAD
-Route::get('/facturas/index', 'FacturaController@index');
-Route::get('/facturas/create/{id}', 'FacturaController@create');
-Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
-Route::get('/facturas/edit/{id}', 'FacturaController@edit');
-Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
-Route::post('/facturas/update/{id}', 'FacturaController@update');
-Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado');
-Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
-Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
-Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
-Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio');
-Route::get('/facturas/list', 'FacturaController@list');
-Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento');
-Route::post('/facturas/recuento/buscar','FacturaController@recuento');
-Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha');
-Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado');
-
-//Rutas del objeto cobro
-Route::get('/cobros/index', 'CobroController@index');
-Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado');
-Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
-Route::get('/cobros/{user}/{id}','CobroController@ListarPorUsuarioEstado');
-Route::get('/cobros/list', 'CobroController@list');
-Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
-Route::post('/cobros/buscar/user','CobroController@BuscarUsuario');
-Route::get('/cobros/recuento', 'CobroController@BuscarRecuento');
-Route::post('/cobros/recuento/buscar','CobroController@recuento');
-Route::get('/cobros/recuento/{mes}/{anio}', 'CobroController@ListarPorFecha');
-Route::get('/cobros/recuento/{mes}/{anio}/{estado}', 'CobroController@ListarPorFechaEstado');
-=======
 Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;
 Route::get('/facturas/create/{id}', 'FacturaController@create')->middleware('auth');;
 Route::post('/facturas/pagar/{id}', 'FacturaController@pagar')->middleware('auth');;
@@ -106,13 +75,23 @@ Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado')->m
 Route::get('/facturas/buscar','FacturaController@BuscarPorSocio')->middleware('auth');;
 Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio')->middleware('auth');;
 Route::get('/facturas/list', 'FacturaController@list')->middleware('auth');;
+Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento')->middleware('auth');;
+Route::post('/facturas/recuento/buscar','FacturaController@recuento')->middleware('auth');;
+Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha')->middleware('auth');;
+Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado')->middleware('auth');;
 
 //Rutas del objeto cobro
+Route::get('/cobros/index', 'CobroController@index')->middleware('auth');;
 Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado')->middleware('auth');;
 Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario')->middleware('auth');;
 Route::get('/cobros/{user}/{id}','CobroController@ListarPorUsuarioEstado')->middleware('auth');;
 Route::get('/cobros/list', 'CobroController@list')->middleware('auth');;
->>>>>>> 5fdc134b4eab3c6408a78d55005bd79df1e2805a
+Route::get('/cobros/buscar','CobroController@BuscarPorUsuario')->middleware('auth');;
+Route::post('/cobros/buscar/user','CobroController@BuscarUsuario')->middleware('auth');;
+Route::get('/cobros/recuento', 'CobroController@BuscarRecuento')->middleware('auth');;
+Route::post('/cobros/recuento/buscar','CobroController@recuento')->middleware('auth');;
+Route::get('/cobros/recuento/{mes}/{anio}', 'CobroController@ListarPorFecha')->middleware('auth');;
+Route::get('/cobros/recuento/{mes}/{anio}/{estado}', 'CobroController@ListarPorFechaEstado')->middleware('auth');;
 
 //Rutas para correo 
 

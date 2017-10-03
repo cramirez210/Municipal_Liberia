@@ -16,11 +16,10 @@
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 
 <div class="jumbotron mt-4">
- 
+ <center><img width="110" height="120" src="http://www.monstruolocura.com/saprissa/wp-content/uploads/2015/06/Municipal-Liberia-Logo1.png" >
+<h1 class="h1 d-inline ml-4"> En Mantenimiento </h1>
 
-<h1 class="h1"> En Mantenimiento </h1>
-
-	<div class="list-group mt-5">
+	<div class="list-group mt-4">
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>

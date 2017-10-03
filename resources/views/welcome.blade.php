@@ -25,20 +25,11 @@
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
-<<<<<<< HEAD
-  <a href="/usuarios/home" class="list-group-item">Usuarios</a>
-  <a href="/socios/index" class="list-group-item">Socios</a>
-  <a href="/facturas/index" class="list-group-item">Facturación</a>
-  <a href="/cobros/index" class="list-group-item">Cobros</a>
-  <a href="/conf/index" class="list-group-item">Configuración</a>
-</div>
-=======
   <a href="/usuarios/home" class="list-group-item">Administración de los usuarios</a>
   <a href="/socios/index" class="list-group-item">Administración de los socios</a>
   <a href="/facturas/index" class="list-group-item">Administracion de la facturación</a>
+  <a href="/cobros/index" class="list-group-item">Administracion de cobros</a>
   <a href="/conf/index" class="list-group-item">Administración de la configuración</a>
->>>>>>> 5fdc134b4eab3c6408a78d55005bd79df1e2805a
-
 </div>
 
 </div>
