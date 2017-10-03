@@ -19,20 +19,18 @@
  
 
 <h1 class="h1"> En Mantenimiento </h1>
-<h3 class="card-text text-muted"> Josué, Jafet, Carlos </h1>
 
 	<div class="list-group mt-5">
   <a href="#" class="list-group-item active">
-    Acciones
+    Acceder a:
   </a>
-  <a href="/usuarios/home" class="list-group-item">Usuarios</a>
-  <a href="/socios/index" class="list-group-item">Socios</a>
-  <a href="/facturas/index" class="list-group-item">Facturación</a>
-  <a href="/conf/index" class="list-group-item">Configuración</a>
+  <a href="/usuarios/home" class="list-group-item">Administración de los usuarios</a>
+  <a href="/socios/index" class="list-group-item">Administración de los socios</a>
+  <a href="/facturas/index" class="list-group-item">Administracion de la facturación</a>
+  <a href="/conf/index" class="list-group-item">Administración de la configuración</a>
 </div>
 
 </div>
-
 
 
 
