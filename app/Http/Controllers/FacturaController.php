@@ -145,9 +145,9 @@ class FacturaController extends Controller
 
     public function show($id)
     {
-        $factura = Factura::find($id);
+        $factura = $this->ObtenerPorId($id);
 
-        return view('detail', compact('factura'));
+        return view('facturas.detail', compact('factura'));
     }
 
     public function list(){
@@ -171,11 +171,19 @@ class FacturaController extends Controller
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('facturas', 'facturas.socio_id', '=', 'socios.id')
             ->join('estados', 'facturas.estado_id', '=', 'estados.id')
-            ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.*', 'estados.estado')
+            ->join('users', 'facturas.user_id', '=', 'users.id')
+            ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.*', 'estados.estado', 'users.nombre_usuario')
             ->where($columna, $valor)
             ->get();
 
         return $facturas;
+    }
+
+    public function ObtenerPorId($id){
+
+        $factura = $this->ObtenerPorCriterio('facturas.id', $id);
+
+        return $factura[0];
     }
 
     public function ListarPorSocio($socio_id)

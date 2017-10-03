@@ -63,22 +63,23 @@ Route::post('/socios/update/{socio}','SociosController@update')->middleware('aut
 
 
 // Rutas del objeto factura
-Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;
-Route::get('/facturas/create/{id}', 'FacturaController@create')->middleware('auth');;
-Route::post('/facturas/pagar/{id}', 'FacturaController@pagar')->middleware('auth');;
-Route::get('/facturas/edit/{id}', 'FacturaController@edit')->middleware('auth');;
-Route::get('/facturas/generar', 'FacturaController@GenerarFacturas')->middleware('auth');;
-Route::post('/facturas/update/{id}', 'FacturaController@update')->middleware('auth');;
-Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado')->middleware('auth');;
-Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio')->middleware('auth');;
-Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado')->middleware('auth');;
-Route::get('/facturas/buscar','FacturaController@BuscarPorSocio')->middleware('auth');;
-Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio')->middleware('auth');;
-Route::get('/facturas/list', 'FacturaController@list')->middleware('auth');;
-Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento')->middleware('auth');;
-Route::post('/facturas/recuento/buscar','FacturaController@recuento')->middleware('auth');;
-Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha')->middleware('auth');;
-Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado')->middleware('auth');;
+Route::get('/facturas/index', 'FacturaController@index');
+Route::get('/facturas/create/{id}', 'FacturaController@create');
+Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
+Route::get('/facturas/edit/{id}', 'FacturaController@edit');
+Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
+Route::post('/facturas/update/{id}', 'FacturaController@update');
+Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado');
+Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
+Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
+Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
+Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio');
+Route::get('/facturas/list', 'FacturaController@list');
+Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento');
+Route::post('/facturas/recuento/buscar','FacturaController@recuento');
+Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha');
+Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado');
+Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 
 //Rutas del objeto cobro
 Route::get('/cobros/index', 'CobroController@index')->middleware('auth');;
