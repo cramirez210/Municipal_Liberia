@@ -73,12 +73,23 @@ Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
 Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
 Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio');
 Route::get('/facturas/list', 'FacturaController@list');
+Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento');
+Route::post('/facturas/recuento/buscar','FacturaController@recuento');
+Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha');
+Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado');
 
 //Rutas del objeto cobro
+Route::get('/cobros/index', 'CobroController@index');
 Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado');
 Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
 Route::get('/cobros/{user}/{id}','CobroController@ListarPorUsuarioEstado');
 Route::get('/cobros/list', 'CobroController@list');
+Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
+Route::post('/cobros/buscar/user','CobroController@BuscarUsuario');
+Route::get('/cobros/recuento', 'CobroController@BuscarRecuento');
+Route::post('/cobros/recuento/buscar','CobroController@recuento');
+Route::get('/cobros/recuento/{mes}/{anio}', 'CobroController@ListarPorFecha');
+Route::get('/cobros/recuento/{mes}/{anio}/{estado}', 'CobroController@ListarPorFechaEstado');
 
 //Rutas para correo 
 

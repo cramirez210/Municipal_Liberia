@@ -28,6 +28,7 @@
   <a href="/usuarios/home" class="list-group-item">Usuarios</a>
   <a href="/socios/index" class="list-group-item">Socios</a>
   <a href="/facturas/index" class="list-group-item">Facturación</a>
+  <a href="/cobros/index" class="list-group-item">Cobros</a>
   <a href="/conf/index" class="list-group-item">Configuración</a>
 </div>
 

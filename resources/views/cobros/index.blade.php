@@ -24,14 +24,17 @@
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
-  <a href="/facturas/list" class="list-group-item">Todas las facturas</a>
-  <a href="/facturas/list/3" class="list-group-item">Facturas pendientes</a>
-  <a href="/facturas/list/4" class="list-group-item">Facturas pagadas</a>
-  <a href="/facturas/buscar" class="list-group-item">Facturas de un socio específico</a>
-  <a href="/facturas/recuento" class="list-group-item">Recuento mensual de facturación</a>
+  <a href="/cobros/list" class="list-group-item">Todos los cobros</a>
+  <a href="/cobros/list/3" class="list-group-item">Cobros pendientes</a>
+  <a href="/cobros/list/4" class="list-group-item">Cobros pagados</a>
+  <a href="/cobros/buscar" class="list-group-item">Cobros de un ejecutivo específico</a>
+  <a href="/cobros/recuento" class="list-group-item">Recuento mensual de cobros</a>
 </div>
 
 </div>
+
+
+
 
 @endsection
 
