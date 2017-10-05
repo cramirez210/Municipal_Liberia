@@ -42,11 +42,11 @@ class FacturaController extends Controller
 
         if($socio != null){
 
-            $facturas_pendientes = count($this->ObtenerPorSocioEstado($socio->id, 3));
+            $facturas_pendientes = count($this->ObtenerPorSocioEstado($socio->socio_id, 3));
 
             if($facturas_pendientes > 0){
                 $socio = $this->select_socio()
-                        ->where('socios.id', $socio->id)
+                        ->where('socios.id', $socio->socio_id)
                         ->first();
 
                 $monto = DB::table('facturas')
