@@ -20,17 +20,6 @@
     </span>
 </div>
 @endif
-
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-   <h4>Socio: #{{$socio->socio_id}}</h4> 
-  </div>
-
-  <div class="card-block">
-  <h5><label>Nombre: </label> </h5>{{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}}
-</div>
-</div>
-
     @if(session('success')) 
     <br>
     <span class="text-success mt-4">
@@ -40,10 +29,39 @@
     </span>
 
     @endif  
+
+    <div class="card text-center mt-4">
+  <div class="card-header text-primary">
+    Filtro de Busqueda
+  </div>
+
+  <div class="card-block">
+
+     <form class="form-inline" method="POST" action="/facturas/buscar/socio" style="margin-left: 29%;"> 
+    {{ csrf_field() }}
+
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+    <option selected value="1">Numero de Socio</option>
+    <option value="2">Cédula</option>
+  </select>
+
+  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+
+        <span class="input-group-btn">
+        <button class="btn btn-info" type="submit">Buscar</button>
+        </span>
+
+  </label>
+  </form>  
+
+</div>
+</div>
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
 <div class="card-header">
+  <div class="card-tittle text-primary"><b>Facturas del socio: N° {{$socio->socio_id}}</b></div>
     <ul class="nav nav-pills card-header-pills">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/socio/{{$socio->socio_id}}">Listado de Facturas</a>
@@ -62,57 +80,11 @@
     </ul>
     
   </div> 
-<div class="col-md-9 offset-md-1 mt-4">
+<div class="col-md-auto offset-md-1 mt-4">
 
 <div class="row">
 
- <div class="table-responsive">
-        
-    <table class="table table-hover ">
-        <thead>
-            <tr>
-            <th class="text-center">N° de factura</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Categoria</th>
-            <th class="text-center">Monto</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Opcion</th>
-            </tr>
-        </thead>
-    <tbody>
-
-         @forelse($facturas as $factura)
-                       
-        <tr>
-            <td class="info"> {{ $factura->id }} </td>
-            <td class="info"> {{ $factura->created_at }} </td>
-            <td class="info"> {{ $factura->categoria }} </td>
-            <td class="info"> {{ $factura->monto }} </td>
-            <td class="info"> {{ $factura->estado }} </td>
-            <td class="warning"> 
-              @if($factura->estado_id == 3)
-              <a href="/facturas/edit/{{$factura->id}}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Cobrar</a>
-              @else
-              <a href="#" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
-              @endif
-            </td>
-        </tr>
-
-        @empty
-        <div class="alert alert-warning">
-       
-        <span class="card-text text-warning "> No se encontraron facturas </span>
-
-        </div>
-        <br>
-        @endforelse
-
-    </tbody>
-    </table>  
-
-    </div>
+  @include('facturas.table')
     </div>
 
  </div>

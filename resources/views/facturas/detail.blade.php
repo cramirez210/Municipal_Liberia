@@ -86,7 +86,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="{{ URL::previous() }}" class="btn btn-outline-success btn-lg">
+                                <a href="/facturas/list" class="btn btn-outline-success btn-lg">
                                    Regresar
                                 </a>
                             </div>
