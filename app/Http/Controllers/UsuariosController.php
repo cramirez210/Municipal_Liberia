@@ -32,20 +32,25 @@ class UsuariosController extends Controller
 
     public function index()
     {
-      
-        $usuarios = DB::table('users')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
-            ->get();
-
-            $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
-
-            return view('usuarios.listar', [
-                'usuarios' => $usuariosPaginados,
-            ]);
+        return view('usuarios.listar',[
+            'usuarios' => null
+        ]);
     }
 
+    public function listarTodosLosUsuarios()
+    {
+        $usuarios = DB::table('users')
+        ->join('personas', 'users.persona_id', '=', 'personas.id')
+        ->join('roles','users.rol_id', '=', 'roles.id')
+        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+        ->get();
+
+        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
+
+        return view('usuarios.listar', [
+        'usuarios' => $usuariosPaginados,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -264,7 +269,8 @@ class UsuariosController extends Controller
    public function cambiarEstado(User $user)
    {
         $estado = $user->estado;
-        if ($estado->estado_id == 1) 
+        
+        if ($estado->id == 1) 
         {
                 
             $user->estado_id = 2;

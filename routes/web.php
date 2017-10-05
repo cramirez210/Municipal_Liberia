@@ -34,6 +34,7 @@ Route::get('/usuarios/showCreate','UsuariosController@showCreate');
 Route::post('/usuarios/create','UsuariosController@create');
 Route::get('/usuarios/listarPorEstado/{id}','UsuariosController@listarPorEstado')->middleware('auth');
 Route::get('/usuario/estado/{user}','UsuariosController@cambiarEstado')->middleware('auth');
+Route::get('/usuarios/listarTodos','UsuariosController@listarTodosLosUsuarios')->middleware('auth');
 
 
 // Rutas del objeto catalogo
@@ -60,7 +61,7 @@ Route::get('/socios/find','SociosController@buscarSocio')->middleware('auth');;
 Route::get('/socios/estado/{id}','SociosController@cambiarEstado')->middleware('auth');;
 Route::get('/socios/show/edit/{socio}','SociosController@edit')->middleware('auth');;
 Route::post('/socios/update/{socio}','SociosController@update')->middleware('auth');;
-
+Route::get('/socios/listarTodos','SociosController@listarTodosLosSocios')->middleware('auth');
 
 // Rutas del objeto factura
 Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;

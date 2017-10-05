@@ -59,7 +59,7 @@
         </tr>   
 
         @empty
-        <div class="card-text text-warning">No existen socios activos registrados con este usuario.</div>
+        <div class="card-text text-warning">No existen socios relacionados con este usuario.</div>
         <br>
         @endforelse
 

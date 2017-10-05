@@ -21,6 +21,14 @@ class SociosController extends Controller
      */
     public function index()
     {
+        return view('/socios/index',[
+            'socios' => null,
+
+        ]);
+    }
+
+    public function listarTodosLosSocios()
+    {
         $socios = DB::table('socios')
             ->join('personas', 'socios.persona_id', '=', 'personas.id')
             ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
@@ -29,13 +37,11 @@ class SociosController extends Controller
             ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
             ->get();
 
-
             $sociosPaginados = $this->paginate($socios->toArray(),10);
 
             return view('/socios/index', [
                 'socios' => $sociosPaginados,
             ]);
-         
     }
 
     public function paginate($items, $perPages)

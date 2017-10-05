@@ -61,10 +61,13 @@
       <li class="nav-item dropdown mt-2">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="/usuarios/listarPorEstado/1">Socios Activos</a>
+            <a class="dropdown-item" href="/usuarios/listarPorEstado/1">Usuarios Activos</a>
          <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/usuarios/listarPorEstado/2">Socios Inactivos</a>
+            <a class="dropdown-item" href="/usuarios/listarPorEstado/2">Usuarios Inactivos</a>
+             <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/usuarios/listarTodos">Todos los usuarios</a>
         </div>
+      
     </li>
 
     </ul>
@@ -89,7 +92,7 @@
         </thead>
     <tbody>
 
-        
+        @if($usuarios !== null)
          @forelse($usuarios as $usuario)
                        
         <tr>
@@ -127,6 +130,8 @@
         @endif 
 
     </div>   
+
+    @endif
 
         </div>
     </div>

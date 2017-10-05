@@ -80,6 +80,8 @@
             <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
          <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/socios/listarPorEstado/2">Socios Inactivos</a>
+           <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/socios/listarTodos">Todos los Soccios</a>  
         </div>
     </li>
     </ul>
@@ -104,6 +106,8 @@
             </tr>
         </thead>
     <tbody>
+
+      @if($socios!==null)
 
          @forelse($socios as $socio)
                        
@@ -154,6 +158,7 @@
 
     </div>
 </div>
+@endif
 
 @endsection
 
