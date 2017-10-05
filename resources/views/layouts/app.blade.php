@@ -20,6 +20,7 @@
     <link href="http://code.gijgo.com/1.5.1/css/gijgo.css" rel="stylesheet" type="text/css" />
 
 
+    <link rel="stylesheet" href=".public/css/app.css">
 
 </head>
 <body>
