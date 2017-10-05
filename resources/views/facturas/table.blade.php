@@ -28,11 +28,11 @@
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning"> 
               @if($factura->estado_id == 3)
-              <a href="/facturas/edit/{{$factura->id}}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Cobrar</a>
+              <a href="/facturas/edit/{{$factura->id}}" class="btn btn-success btn-sm">
+                  Cobrar</a>
               @else
-              <a href="/facturas/show/id/{{$factura->id}}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
+              <a href="/facturas/show/id/{{$factura->id}}" class="btn btn-success btn-sm">
+                 Detalle</a>
               @endif
             </td>
         </tr>

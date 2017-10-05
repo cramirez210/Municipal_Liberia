@@ -345,9 +345,12 @@ class FacturaController extends Controller
         $facturas_pendientes = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 3));
         $facturas_pagas = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 4));
 
+        $porcentaje_pagas = number_format(($facturas_pagas / $facturas_fecha) * 100, 2, '.', '');
+        $porcentaje_pendientes = number_format(($facturas_pendientes / $facturas_fecha) * 100, 2, '.', '');
+
         if($facturas_fecha > 0){
 
-            return view('facturas.recuento_mes', compact('facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'mes', 'anio'));
+            return view('facturas.recuento_mes', compact('facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'mes', 'anio', 'porcentaje_pagas', 'porcentaje_pendientes'));
         }else{
             return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en el mes');
         }
