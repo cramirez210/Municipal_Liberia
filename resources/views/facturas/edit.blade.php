@@ -13,9 +13,9 @@
 
            </div>
 
-              <div class="card" style="width: 100%; height: 530px;">
+              <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills">
+                  <ul class="nav nav-pills card-header-pills ml-5">
 
                     <li class="nav-item">
                        <h5 class="text-primary">Registrar nueva factura</h5>
@@ -25,70 +25,56 @@
               <div class="card-block">
 
                 <div class="col-md-10  mt-5">
-
-            <div class="panel panel-default">
             
                     <form class="form-horizontal" action="/facturas/update/{{$factura->id}}" method="POST">
                         {{ csrf_field() }}
 
-            <div class="float-none" style="background-color: ;
-              width: 50%; margin-left: 10%; height: 330px">
+            <div class="float-left" style="background-color: ;
+              width: 50%; margin-left: 10%; height: auto">
 
+<!--_________________________________Socio_______________________________________-->
+               <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
 
-              <fieldset disabled>
-                      <div class="form-group">
-                        <label for="factura_id" class="col-md-5 from-control-label">Número de factura
-                        </label>
-                          <div class="col-md-4 ml-5">
-                            <input type="text" id="factura_id" class="form-control" value="{{$factura->id}}">
-                           </div>
-                       </div>
-                  </fieldset>
+               <div class="col-md-10 mt-4">
+                <b>Número de socio:</b> 
+                {{$factura->socio_id}}
+              </div>
+              
+              <div class="col-md-10 mt-3">
+                <b>Nombre completo:</b> 
+                {{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}
+              </div>
 
-                  <fieldset disabled>
-                      <div class="form-group">
-                        <label for="socio_id" class="col-md-5 from-control-label">Número de socio
-                        </label>
-                          <div class="col-md-4 ml-5">
-                            <input type="text" id="socio_id" class="form-control" value="{{$factura->socio_id}}">
-                           </div>
-                       </div>
-                  </fieldset>
-
-                  <fieldset disabled>
-                      <div class="form-group">
-                        <label for="meses_cancelados" class="col-md-8 from-control-label">Número de meses a cancelar
-                        </label>
-                          <div class="col-md-4 ml-5">
-                            <input type="text" id="meses_cancelados" name="meses_cancelados" class="form-control" value="1">
-                           </div>
-                       </div>
-                  </fieldset>
+              <div class="col-md-10 mt-3">
+                <b>Categoría:</b> 
+                {{$factura->categoria}}
+              </div>
+      
+              <div class="card-block">
             </div>
+       </div>
 
-            <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%; margin-top: -37%;">
 
-              <fieldset disabled>
-                      <div class="form-group">
-                        <label for="created_at" class="col-md-6 from-control-label">Fecha y hora de factura
-                        </label>
-                          <div class="col-md-8 ml-5">
-                            <input type="text" id="created_at" class="form-control" value="{{$factura->created_at}}">
-                           </div>
-                       </div>
-                  </fieldset>
+              <div class="float-right " style="width: 50%; height: auto;  margin-right: -10%;">
 
-                  <fieldset disabled>
-                      <div class="form-group">
-                        <label for="nombre_socio" class="col-md-5 from-control-label">Nombre de socio
-                        </label>
-                          <div class="col-md-8 ml-5">
-                            <input type="text" id="nombre_socio" class="form-control" value="{{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}">
-                           </div>
-                       </div>
-                  </fieldset>
+                <h4 class="card-title col-md-8 mt-2">Información de factura</h4>
 
-                      <div class="form-group">
+                <div class="col-md-10 mt-3">
+                <b>Número de factura:</b> 
+                {{$factura->id}}
+              </div>
+
+              <div class="col-md-10 mt-3">
+                 <b>Monto a pagar:</b> 
+                 {{$factura->monto}}
+               </div>
+               
+               <div class="col-md-10 mt-3">
+                 <b>Fecha:</b> 
+                 {{$factura->created_at}}
+               </div>
+
+                <div class="form-group mt-3">
                             <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="forma_pago">
@@ -100,13 +86,16 @@
               </div>
 
 
-                        <div class="form-group">
+              <center class="form-group mt-3">
+                <div class="form-group">
                             <div class="col-md-6">
-                                <a href="{{ URL::previous() }}" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
-                                   Regresar
-                                </a>
+                                <button type="submit" class="btn btn-outline-success btn-lg mt-5">
+                                    Registrar
+                                </button>
                             </div>
                         </div>
+              </center>
+                        
                     </form>
               </div>         
            </div>

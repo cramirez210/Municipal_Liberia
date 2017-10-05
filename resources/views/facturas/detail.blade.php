@@ -13,9 +13,9 @@
 
            </div>
 
-              <div class="card" style="width: 100%; height: 530px;">
+              <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills">
+                  <ul class="nav nav-pills card-header-pills ml-5">
 
                     <li class="nav-item">
                        <h5 class="text-primary">Detalle de factura</h5>
@@ -25,118 +25,72 @@
 
              <div class="card-block">
     <div class="container-fluid mt-4 w-100">
-        <div> <!-- No tocar-->
-             
-<!--_________________________________Persona_______________________________________-->
-        <div class="d-inline-block col-md-5">
-    <!--_______________________________ Primer Nombre ______________________________-->
+<!--_________________________________Socio_______________________________________-->
+        <div class="float-left col-md-5">
 
-                           <div  class=" col-md-auto form-group">
-                            <label for="nombre" class="col-md-8 form-control-label">Socio</label>
+          <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
 
-                            <div class=" col-md-auto ml-5">
-                                <input id="nombre" type="text" class="form-control" name="nombre" value="{{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }}" readonly>
-                            </div>
-                        </div>
+               <div class="col-md-15 mt-3">
+                <b>Número de socio:</b> 
+                {{$factura->socio_id}}
+              </div>
+              
+              <div class="col-md-15 mt-3">
+                <b>Nombre completo:</b> 
+                {{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}
+              </div>
 
-
-<!--_______________________________ Cedula  ______________________________-->
-
-
-                     <div class=" col-md-auto  form-group">
-                            <label for="socio_id" class="col-md-4 form-control-label">N° de socio</label>
-
-                            <div class="col-md-auto ml-5">
-                                <input id="socio_id" type="text" class="form-control" name="socio_id" value="{{ $factura->socio_id }}" readonly>
-                            </div>
-                        </div>
-
-<!--_______________________________Correo Electrónico ____________________________-->
-
-
-                        <div class="col-md-auto  form-group">
-                            <label for="factura_id" class="col-md-8 from-control-label">N° de factura</label>
-
-                            <div class="col-md-auto ml-5">
-                                <input id="factura_id" type="text" class="form-control" name="factura_id" value="{{ $factura->id }}" readonly>
-
-                            </div>
-                        </div>
-
-<!--_______________________________ Fecha de factura____________________________-->
-
-
-                     <div  class=" col-md-auto   form-group">
-                            <label for="created_at" class="col-md-8 form-control-label">Fecha de factura</label>
-
-                            <div class="col-md-auto ml-5">
-
-                                <input type="text" class="form-control" id="created_at" name="created_at" width="276" value="{{ $factura->created_at }}" readonly/>
-                            </div>
-                        </div>
+              <div class="col-md-15 mt-3">
+                <b>Categoría:</b> 
+                {{$factura->categoria}}
+              </div>
 
 </div>
 
 
-<div class="col-md-5 float-right">
+<div class="col-md-6 float-right">
 
+                  <h4 class="card-title col-md-8 mt-2">Información de factura</h4>
 
+              <div class="col-md-15 mt-3">
+                <b>Número de factura:</b> 
+                {{$factura->id}}
+              </div>
+              
+              <div class="col-md-15 mt-3">
+                <b>Monto:</b> 
+                {{$factura->monto}}
+              </div>
 
-<!--_______________________________ Número de telefono ____________________________-->
+              <div class="col-md-15 mt-3">
+                <b>Fecha de factura:</b> 
+                {{$factura->created_at}}
+              </div>
 
-                     <div  class=" col-md-auto  form-group">
-                            <label for="monto" class="col-md-8 form-control-label">Monto </label>
+              <div class="col-md-15 mt-3">
+                <b>Fecha de pago:</b> 
+                {{$factura->updated_at}}
+              </div>
 
-                            <div class="col-md-auto ml-5">
-                                <input id="monto" type="text" class="form-control" name="monto" value="{{ $factura->monto }}" readonly>
-
-                            </div>
-                        </div>         
-
- <!--_______________________________ Dirección____________________________-->
-
-            <div class="col-md-auto  form-group">
-                            <label for="nombre_usuario" class="col-md-4 form-control-label">Cobrador</label>
-
-                            <div class="col-md-auto ml-5">
-                                <input style="height: 60px;" id="nombre_usuario" type="textarea" class="form-control" name="nombre_usuario" value="{{ $factura->nombre_usuario }}" readonly></input>
-
-                            </div>
-                        </div>
-
-<!--________________________________ Nombre de usuario __________________________-->
-
-                        <div class=" mt-3 col-md-auto  form-group">
-                            <label for="updated_at" class="col-md-8 form-control-label">Fecha de cobro</label>
-
-                            <div class="col-md-auto ml-5">
-                                <input id="updated_at" type="text" class="form-control"  name="updated_at" value="{{ $factura->updated_at }}" readonly>
-
-                              
-                            </div>
-                        </div>
-
-<!--________________________________ Nombre de usuario __________________________-->
-
-                        <div class=" mt-3 col-md-auto  form-group">
-                            <label for="forma_pago" class="col-md-8 form-control-label">Forma de pago</label>
-
-                            <div class="col-md-auto ml-5">
-                                <input id="forma_pago" type="text" class="form-control"  name="forma_pago" value="{{ $factura->forma_pago }}" readonly>
-                            </div>
-                        </div>
+              <div class="col-md-15 mt-3">
+                <b>Forma de pago:</b> 
+                {{$factura->forma_pago}}
+              </div>
+              
+              <div class="col-md-15 mt-3">
+                <b>Cobrador:</b> 
+                {{$factura->nombre_usuario}}
+              </div>
 </div>
 
 
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <a href="{{ URL::previous() }}" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
+                            <div class="col-md-6 mt-4 ml-3 float-right">
+                                <a href="{{ URL::previous() }}" class="btn btn-outline-success btn-lg">
                                    Regresar
                                 </a>
                             </div>
                         </div>
-                    </form>
-              </div>         
            </div>
         </div>
       </div>

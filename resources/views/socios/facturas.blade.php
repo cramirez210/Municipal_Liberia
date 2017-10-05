@@ -46,7 +46,7 @@
 <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
+        <a class="nav-link text-primary" href="/facturas/socio/{{$socio->socio_id}}">Listado de Facturas</a>
       </li>
   
          <li class="nav-item dropdown " style="margin-left: 60%;">
@@ -73,6 +73,7 @@
             <tr>
             <th class="text-center">N° de factura</th>
             <th class="text-center">Fecha</th>
+            <th class="text-center">Categoria</th>
             <th class="text-center">Monto</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Opcion</th>
@@ -85,6 +86,7 @@
         <tr>
             <td class="info"> {{ $factura->id }} </td>
             <td class="info"> {{ $factura->created_at }} </td>
+            <td class="info"> {{ $factura->categoria }} </td>
             <td class="info"> {{ $factura->monto }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning"> 

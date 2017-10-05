@@ -25,8 +25,8 @@
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
-    <option selected value="1">Cedula</option>
-    <option value="2">Numero de Socio</option>
+    <option selected value="1">Numero de Socio</option>
+    <option value="2">Cédula</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">

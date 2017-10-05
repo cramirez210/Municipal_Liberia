@@ -25,11 +25,20 @@
   </a>
   <a href="/facturas/generar" class="list-group-item">Generar facturas del mes</a>
   <a href="/facturas/pagar/buscar" class="list-group-item">Pago de facturas pendientes de un socio</a>
-  <a href="/facturas/list" class="list-group-item">Ver todas las facturas</a>
-  <a href="/facturas/list/3" class="list-group-item">Ver facturas pendientes</a>
-  <a href="/facturas/list/4" class="list-group-item">Ver facturas pagadas</a>
-  <a href="/facturas/buscar" class="list-group-item">Ver facturas de un socio específico</a>
-  <a href="/facturas/recuento" class="list-group-item">Ver recuento mensual de facturación</a>
+  <ul class="list-group-item">
+    <li class="list-unstyled dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/facturas/list">Todas las facturas</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/facturas/list/3">Facturas pendientes</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
+        </div>
+    </li>
+  </ul>
+  <a href="/facturas/buscar" class="list-group-item">Buscar facturas de un socio específico</a>
+  <a href="/facturas/recuento" class="list-group-item">Buscar recuento mensual de facturación</a>
 </div>
 
 </div>

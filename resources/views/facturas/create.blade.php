@@ -13,9 +13,9 @@
 
            </div>
 
-              <div class="card" style="width: 100%; height: 530px;">
+              <div class="card" style="width: 100%; height: 520px;">
                 <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills">
+                  <ul class="nav nav-pills card-header-pills ml-5">
 
                     <li class="nav-item">
                        <h5 class="text-primary">Registrar pago de factura</h5>
@@ -29,51 +29,50 @@
 
             <div class="panel panel-default">
             
-                    <form class="form-horizontal" action="/facturas/pagar/{{$socio->id}}" method="POST">
+                    <form class="form-horizontal" action="/facturas/pagar/{{$socio->socio_id}}" method="POST">
                         {{ csrf_field() }}
 
-            <div class="float-none" style="background-color: ;
+            <div class="float-left" style="background-color: ;
               width: 50%; margin-left: 10%; height: 330px">
 
 <!--_________________________________Socio_______________________________________-->
+               <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
 
-              <fieldset disabled>
-                      <div class="form-group">
-                        <label for="socio_id" class="col-md-5 from-control-label">Número de socio
-                        </label>
-                          <div class="col-md-4 ml-5">
-                            <input type="text" id="socio_id" class="form-control" value="{{$socio->id}}">
-                           </div>
-                       </div>
-                  </fieldset>
+               <div class="col-md-5 mt-4">
+                <b>Número de socio:</b> 
+                {{$socio->socio_id}}
+              </div>
+              
+              <div class="col-md-5 mt-3">
+                <b>Nombre completo:</b> 
+                {{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}}
+              </div>
 
-                  <fieldset disabled>
-                      <div class="form-group">
-                        <label for="nombre_socio" class="col-md-5 from-control-label">Nombre de socio
-                        </label>
-                          <div class="col-md-8 ml-5">
-                            <input type="text" id="nombre_socio" class="form-control" value="{{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}}">
-                           </div>
-                       </div>
-                  </fieldset>
+              <div class="col-md-5 mt-3">
+                <b>Categoría:</b> 
+                {{$socio->categoria}}
+              </div>
 
-<!--_________________________________Factura_______________________________________-->
-
-                        <fieldset disabled>
-                            <div class="form-group">
-                              <label for="facturas_pendientes" class="col-md-6 from-control-label">Mensualidades pendientes</label>
-                               <div class="col-md-4 ml-5">
-                                <input type="text" id="facturas_pendientes" class="form-control" value="{{$facturas_pendientes}}">
-                            </div>
-                            </div>
-                          </fieldset>
-                          <a class="col-md-4 ml-5" href="/facturas/list/3">ver detalle de pendientes</a>
+              <div class="col-md-7 mt-3">
+                <b>Mensualidades pendientes:</b> 
+                {{$facturas_pendientes}}
+                <a class="col-md-4" href="/facturas/{{$socio->socio_id}}/3">ver lista de pendientes</a>
+              </div>
+               
+               <div class="col-md-6 mt-3">
+                 <b>Monto total a pagar:</b>
+                 {{$monto}} 
+               </div>
+               
+               
+              <div class="card-block">
             </div>
+       </div>
 
-            <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%; margin-top: -37%;">
-
+            <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%;">
+              <h4 class="card-title col-md-7 mt-2">Información de pago</h4>
                       <div class="form-group">
-                            <label class="col-md-7 from-control-label" for="forma_pago">Número de meses a cancelar</label>
+                            <label class="col-md-7 mt-3 from-control-label" for="forma_pago">Número de meses a cancelar</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="meses_cancelados">
                                 @if($facturas_pendientes >= 1)
@@ -90,7 +89,7 @@
                         </div>
 
                       <div class="form-group">
-                            <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
+                            <label class="col-md-4 mt-3 from-control-label" for="forma_pago">Forma de pago</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="forma_pago">
                                 <option value="Efectivo">Efectivo</option>
@@ -102,8 +101,8 @@
 
 
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-outline-success btn-lg" style="margin-left:100%;">
+                            <div class="col-md-6 float-right">
+                                <button type="submit" class="btn btn-outline-success btn-lg">
                                     Registrar
                                 </button>
                             </div>
