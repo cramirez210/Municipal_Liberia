@@ -78,7 +78,7 @@
         </div>
     </li>
     <li class="nav-item">
-      <a href="/facturas/index" class="nav-link text-primary">Volver al menú</a>
+      <a href="/facturas/index" class="nav-link text-primary">Menú</a>
     </li>
     </ul>
     

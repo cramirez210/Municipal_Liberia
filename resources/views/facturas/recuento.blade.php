@@ -14,7 +14,7 @@
   @endif  
 
   @if(count($errors))
-<div>
+<div> 
 <br>
 <span class="text-danger mt-4">
         @if($errors->has('mes'))
@@ -36,32 +36,45 @@
 
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    Filtro de Busqueda
+    <b class="ml-5">Filtro de Busqueda</b> 
   </div>
 
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/facturas/recuento" style="margin-left: 29%;"> 
+  <form class="form col-md-6" method="POST" action="/facturas/recuento" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
-     <label for="mes" class="col-md-auto form-control-label"><h4>Mes y año</h4></label>
+     <label class="col-md-auto form-control-label"><h4>Inicio</h4></label>
 
                             <div class="col-md-auto ml-3">
-                              <input placeholder="Mes" type="date" class="form-control" name="mes"  />
-/
-                              <input placeholder="Año" type="date" class="form-control" name="año"  />
+                              <div class="form-group">
+                                <input placeholder="Ejemplo: 1997-09-06" type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" />
+                              </div>
+                              
+                            </div>
+    <label class="col-md-auto form-control-label mt-3"><h4>Fin</h4></label>
+
+                            <div class="col-md-auto ml-3">
+                              <div class="form-group">
+                                <input placeholder="Ejemplo: 2010-09-06" type="text" class="form-control" id="fecha_fin" name="fecha_fin" />
+                              </div>
+                              
                             </div>
 
-        <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">Buscar</button>
+        <span class="col-md-3 ml-5 mt-5">
+        <button class="btn btn-info d-inline-block ml-4 mt-3" type="submit">Buscar</button>
+        <a href="/facturas/index" class="btn btn-warning d-inline-block mt-3 mr-5">Cancelar</a>
         </span>
 
-  </label>
+        <script>
+                    $('#fecha_inicio').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
+                    $('#fecha_fin').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
+                    </script>
   </form>  
 
   <center class="mt-3 ml-4">
     
-  <a href="/facturas/index" class="mr-5">Cancelar</a>
+  
   </center>
 
 </div>

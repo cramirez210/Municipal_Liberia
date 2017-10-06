@@ -24,6 +24,7 @@
     Acceder a:
   </a>
   <a href="/facturas/generar" class="list-group-item">Generar facturas del mes</a>
+  <a href="/facturas/imprimir" class="list-group-item">Imprimir facturas</a>
   <a href="/facturas/pagar/buscar" class="list-group-item">Pago de facturas</a>
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
