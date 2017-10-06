@@ -66,6 +66,7 @@ Route::get('/socios/listarTodos','SociosController@listarTodosLosSocios')->middl
 // Rutas del objeto factura
 Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;
 Route::post('/facturas/create', 'FacturaController@create')->middleware('auth');;
+Route::post('/facturas/confirmar/{id}', 'FacturaController@ConfirmarPago')->middleware('auth');;
 Route::post('/facturas/pagar/{id}', 'FacturaController@pagar')->middleware('auth');;
 Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio')->middleware('auth');;
 Route::get('/facturas/edit/{id}', 'FacturaController@edit')->middleware('auth');;
@@ -75,10 +76,11 @@ Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado')->middlewa
 Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio')->middleware('auth');;
 Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado')->middleware('auth');;
 Route::get('/facturas/buscar','FacturaController@BuscarPorSocio')->middleware('auth');;
-Route::post('/facturas/buscar/socio','FacturaController@BuscarSocio')->middleware('auth');;
+Route::post('/facturas/buscar','FacturaController@BuscarSocio')->middleware('auth');;
 Route::get('/facturas/list', 'FacturaController@list')->middleware('auth');;
 Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento')->middleware('auth');;
-Route::post('/facturas/recuento/buscar','FacturaController@recuento')->middleware('auth');;
+Route::post('/facturas/recuento','FacturaController@recuento')->middleware('auth');;
+Route::get('/facturas/recuento/show/m', 'FacturaController@MostrarRecuento')->middleware('auth');;
 Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha')->middleware('auth');;
 Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado')->middleware('auth');;
 Route::get('/facturas/show/id/{id}', 'FacturaController@show')->middleware('auth');;

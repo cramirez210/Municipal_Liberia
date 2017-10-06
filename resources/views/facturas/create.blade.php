@@ -13,14 +13,10 @@
 
            </div>
 
-              <div class="card" style="width: 100%; height: 520px;">
-                <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills ml-5">
-
-                    <li class="nav-item">
-                       <h5 class="text-primary">Registrar pago de factura</h5>
-                    </li>
-
+              <div class="card" style="width: 100%; height: auto;">
+                <div class="card-header text-center text-primary">
+                  <b>Pago de factura</b> 
+                  <a href="{{URL::previous()}}" class="float-right mr-5">Regresar</a>
                 </div>
 
               <div class="card-block">
@@ -29,7 +25,7 @@
 
             <div class="panel panel-default">
             
-                    <form class="form-horizontal" action="/facturas/pagar/{{$socio->socio_id}}" method="POST">
+                    <form class="form-horizontal" action="/facturas/confirmar/{{$socio->socio_id}}" method="POST">
                         {{ csrf_field() }}
 
             <div class="float-left" style="background-color: ;
@@ -69,21 +65,24 @@
             </div>
        </div>
 
-            <div class="float-right " style="  width: 50%; height: 330px;  margin-right: -10%;">
+            <div class="float-right " style="  width: 50%; height: auto;  margin-right: -10%;">
               <h4 class="card-title col-md-7 mt-2">Información de pago</h4>
                       <div class="form-group">
                             <label class="col-md-7 mt-3 from-control-label" for="forma_pago">Número de meses a cancelar</label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="meses_cancelados">
-                                @if($facturas_pendientes >= 1)
                                 <option value="1">1</option>
-                                @endif
-                                @if($facturas_pendientes >= 2)
                                 <option value="2">2</option>
-                                @endif
-                                @if($facturas_pendientes == 3)
                                 <option value="3">3</option>
-                                @endif
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
                               </select>
                              </div>
                         </div>
@@ -103,7 +102,7 @@
                         <div class="form-group">
                             <div class="col-md-6 float-right">
                                 <button type="submit" class="btn btn-outline-success btn-lg">
-                                    Registrar
+                                    Continuar
                                 </button>
                             </div>
                         </div>

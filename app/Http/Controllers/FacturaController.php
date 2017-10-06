@@ -66,7 +66,7 @@ class FacturaController extends Controller
         }
     }
 
-    public function pagar($socio_id){
+    public function pagar(Request $request, $socio_id){
 
         $meses_cancelados = request('meses_cancelados');
         $forma_pago = request('forma_pago');
@@ -77,16 +77,77 @@ class FacturaController extends Controller
            ->limit($meses_cancelados)
            ->get();
 
+           $this->PagarPendientes($facturas, $forma_pago);
+
+           $meses_pendientes = count($facturas);
+
+           $meses_cancelados = $meses_cancelados - $meses_pendientes;
+
+           if($meses_cancelados > 0)
+            $this->PagarAdelantado($socio_id, $meses_cancelados, $forma_pago);
+
+        return redirect('/facturas/index')->withSuccess('Operación exitosa');
+    }
+
+    public function ConfirmarPago($socio_id){
+
+        $meses_cancelados = request('meses_cancelados');
+        $user_id = Auth::user()->id;
+
+        $user = DB::table('users')->where('users.id', $user_id)->first();
+
+        $socio = $this->select_socio()
+        ->where('socios.id', $socio_id)
+        ->first();
+
+        $var = array('meses_cancelados' => request('meses_cancelados'),
+            'monto' => $meses_cancelados * $socio->precio_categoria,
+            'fecha_pago' => Carbon::now(),
+            'forma_pago' => request('forma_pago'),
+            'nombre_usuario' => $user->nombre_usuario
+            );
+
+        return view('facturas.pago', compact('socio', 'var'));
+    }
+
+
+    public function PagarPendientes($facturas, $forma_pago){
+
         foreach ($facturas as $factura) {
             $facturaBD = Factura::find($factura->id);
+
+            $fecha = Carbon::now();
             $cobro_controller = new CobroController;
 
-            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $factura->precio_categoria, $forma_pago, null, 4);
+            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $factura->precio_categoria, $forma_pago, null, $fecha, 4);
 
             $cobro_controller->GenerarCobroUsuario($factura->id, 3);
         }
+    }
 
-        return redirect('/facturas/index')->withSuccess('Operación exitosa');
+    public function PagarAdelantado($socio_id, $meses_cancelar, $forma_pago){
+
+        $categoria = DB::table('socios')
+                     ->join('categorias', 'socios.categoria_id', 'categorias.id')
+                     ->select('categorias.precio_categoria')
+                     ->where('socios.id', $socio_id)
+                     ->first();
+
+        for($i = 0; $i < $meses_cancelar; $i++){
+
+        $ultima_factura = DB::table('facturas')
+                   ->where('facturas.socio_id', $socio_id)
+                   ->latest()
+                   ->first();
+
+         $factura = new Factura;       
+         
+         $fecha = new Carbon($ultima_factura->created_at);
+         $fecha->addMonth();
+
+         $this->store($factura, $socio_id, 1, $categoria->precio_categoria, $forma_pago, null, $fecha, 4);
+        }
+
     }
 
    public function edit($factura_id)
@@ -114,11 +175,36 @@ class FacturaController extends Controller
                 $this->InactivarSocio($socio->id);
             }
             else{
-         
+        $ultima_factura = DB::table('facturas')
+                   ->where('facturas.socio_id', $socio->id)
+                   ->latest()
+                   ->first();    
+         $fecha_actual = Carbon::now();
+
+         if($ultima_factura == null){
          $factura = new Factura;       
          $categoria = $this->ObtenerCategoriaDeSocio($socio);
 
-         $this->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, 3);
+         $this->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, $fecha_actual, 3);
+         }
+         else{
+         
+         $fecha_ultima_factura = new Carbon($ultima_factura->created_at);
+         $fecha_ultima_factura->format('Y-m-d');
+         $fecha_actual->format('Y-m-d');
+
+         $diff = $fecha_actual->diffInDays($fecha_ultima_factura);
+
+         if($diff >= 27 && $diff <= 31){
+         $factura = new Factura;       
+         $categoria = $this->ObtenerCategoriaDeSocio($socio);
+
+         $this->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, $fecha_actual, 3);
+         }
+         }
+         
+
+         
             }
         }
         return redirect('/facturas/index')->withSuccess('Operación exitosa');
@@ -129,7 +215,7 @@ class FacturaController extends Controller
         
             }
 
-    public function store($factura, $socio_id, $meses_cancelados, $precio_categoria, $forma_pago, $transaccion_bancaria, $estado_id){
+    public function store($factura, $socio_id, $meses_cancelados, $precio_categoria, $forma_pago, $transaccion_bancaria, $fecha, $estado_id){
 
         $user_id = Auth::user()->id;
 
@@ -139,6 +225,7 @@ class FacturaController extends Controller
         $factura->monto = $precio_categoria;
         $factura->forma_pago = $forma_pago;
         $factura->transaccion_bancaria = $transaccion_bancaria;
+        $factura->created_at = $fecha;
         $factura->estado_id = $estado_id;
 
         $factura->save();
@@ -238,10 +325,20 @@ class FacturaController extends Controller
         $facturas = $this->ObtenerPorCriterio('facturas.socio_id', $socio_id);
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
-
-        $socio = $facturas[0];
         
-        return view('socios.facturas', compact('facturas', 'socio'));
+        if(count($facturas) > 0){
+
+            $socio = $facturas[0];
+
+            return view('socios.facturas', compact('facturas', 'socio'));
+        }
+        else{
+        $socio = $this->select_socio()
+            ->where('socios.id', $socio_id)
+            ->first();
+
+            return view('socios.facturas', compact('facturas', 'socio'));
+    }
     }
 
         public function ListarPorEstado($estado_id)
@@ -312,7 +409,8 @@ class FacturaController extends Controller
        $socio = $this->ObtenerSocioPorCriterio($criterio, $valor);
 
        if($socio!=null)
-       return $this->ListarPorSocio($socio->socio_id);
+       
+       return redirect('/facturas/socio/'.$socio->socio_id);
        else
         return redirect('/facturas/buscar')->withSuccess('No se ha encontrado al socio');
 
@@ -338,21 +436,27 @@ class FacturaController extends Controller
     }
 
     public function recuento(){
+         $this->validate(request(),
+            [
+            'mes' => 'required|numeric',
+            'año' => 'required|numeric',
+            ]);
+
         $mes = request('mes');
-        $anio = request('anio');
+        $anio = request('año');
 
         $facturas_fecha = count($this->ObtenerPorFecha($mes, $anio));
+
+        if($facturas_fecha > 0){
         $facturas_pendientes = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 3));
         $facturas_pagas = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 4));
 
         $porcentaje_pagas = number_format(($facturas_pagas / $facturas_fecha) * 100, 2, '.', '');
         $porcentaje_pendientes = number_format(($facturas_pendientes / $facturas_fecha) * 100, 2, '.', '');
 
-        if($facturas_fecha > 0){
-
             return view('facturas.recuento_mes', compact('facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'mes', 'anio', 'porcentaje_pagas', 'porcentaje_pendientes'));
         }else{
-            return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en el mes');
+            return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
         }
         
     }

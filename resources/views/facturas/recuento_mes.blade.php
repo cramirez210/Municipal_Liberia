@@ -13,10 +13,10 @@
 
   @endif  
 
-	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
     <b>Recuento de facturación del mes {{$mes}} del año {{$anio}}</b> 
+    <a href="{{URL::previous()}}" class="float-right mr-5">Regresar</a>
   </div>
 
   <div class="card-block"> 

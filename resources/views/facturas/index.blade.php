@@ -24,7 +24,7 @@
     Acceder a:
   </a>
   <a href="/facturas/generar" class="list-group-item">Generar facturas del mes</a>
-  <a href="/facturas/pagar/buscar" class="list-group-item">Pago de facturas pendientes de un socio</a>
+  <a href="/facturas/pagar/buscar" class="list-group-item">Pago de facturas</a>
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>

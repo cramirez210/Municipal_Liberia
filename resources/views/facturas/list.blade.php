@@ -28,7 +28,7 @@
 
   <div class="card-block">
 
-     <form class="form-inline" method="POST" action="/facturas/buscar/socio" style="margin-left: 29%;"> 
+     <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
@@ -76,6 +76,9 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
         </div>
+    </li>
+    <li class="nav-item">
+      <a href="{{URL::previous()}}" class="nav-link text-primary mr-5">Regresar</a>
     </li>
     </ul>
     

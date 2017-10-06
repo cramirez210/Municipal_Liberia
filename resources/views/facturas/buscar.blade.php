@@ -13,15 +13,35 @@
 
   @endif  
 
+@if(count($errors))
+<div>
+<br>
+<span class="text-danger mt-4">
+        @if($errors->has('valor'))
+          <span class="form-control-feedback">
+            <strong>{{ $errors->first('valor') }}</strong>
+          </span>
+        @endif
+        <br>
+        @if($errors->has('Criterio'))
+          <span class="form-control-feedback">
+            <strong>{{ $errors->first('Criterio') }}</strong>
+          </span>
+        @endif
+    </span>
+</div>
+@endif
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    Filtro de Busqueda
+    <div class="card-tittle">
+      <b>Buscar socio</b>
+    </div> 
   </div>
 
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/facturas/buscar/socio" style="margin-left: 29%;"> 
+  <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
@@ -37,7 +57,12 @@
         </span>
 
   </label>
-  </form>  
+  </form> 
+
+  <center class="mt-3 ml-4">
+    
+  <a href="/facturas/index" class="mr-5">Cancelar</a>
+  </center> 
 
 </div>
 </div>

@@ -14,35 +14,32 @@
            </div>
 
               <div class="card" style="width: 100%; height: auto;">
-                <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills ml-5">
-
-                    <li class="nav-item">
-                       <h5 class="text-primary">Detalle de factura</h5>
-                    </li>
-
+                <div class="card-header text-center text-primary">
+                  <b>Pago de factura</b>
                 </div>
 
              <div class="card-block">
     <div class="container-fluid mt-4 w-100">
-<!--_________________________________Socio_______________________________________-->
+      <form class="form-horizontal" action="/facturas/pagar/{{$socio->socio_id}}" method="POST">
+                        {{ csrf_field() }}
         <div class="float-left col-md-5">
 
           <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
 
                <div class="col-md-15 mt-3">
                 <b>Número de socio:</b> 
-                {{$factura->socio_id}}
+                {{$socio->socio_id}}
+                <input type="hidden" name="socio_id" value="{{$socio->socio_id}}">
               </div>
               
               <div class="col-md-15 mt-3">
                 <b>Nombre completo:</b> 
-                {{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}
+                {{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Categoría:</b> 
-                {{$factura->categoria}}
+                {{$socio->categoria}}
               </div>
 
 </div>
@@ -53,44 +50,42 @@
                   <h4 class="card-title col-md-8 mt-2">Información de factura</h4>
 
               <div class="col-md-15 mt-3">
-                <b>Número de factura:</b> 
-                {{$factura->id}}
+                <b>Número de meses a pagar:</b> 
+                {{$var['meses_cancelados']}}
+                <input type="hidden" name="meses_cancelados" value="{{$var['meses_cancelados']}}">
               </div>
               
               <div class="col-md-15 mt-3">
-                <b>Monto:</b> 
-                {{$factura->monto}}
-              </div>
-
-              <div class="col-md-15 mt-3">
-                <b>Fecha de factura:</b> 
-                {{$factura->created_at}}
+                <b>Monto total:</b> 
+                {{$var['monto']}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Fecha de pago:</b> 
-                {{$factura->updated_at}}
+                {{$var['fecha_pago']}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Forma de pago:</b> 
-                {{$factura->forma_pago}}
+                {{$var['forma_pago']}}
+                <input type="hidden" name="forma_pago" value="{{$var['forma_pago']}}">
               </div>
               
               <div class="col-md-15 mt-3">
                 <b>Cobrador:</b> 
-                {{$factura->nombre_usuario}}
+                {{$var['nombre_usuario']}}
               </div>
 </div>
 
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="{{URL::previous()}}" class="btn btn-outline-success btn-lg">
-                                   Regresar
-                                </a>
+                                <button type="submit" class="btn btn-outline-success btn-lg">
+                                    Confirmar
+                                </button>
                             </div>
                         </div>
+                      </form>
            </div>
         </div>
       </div>
