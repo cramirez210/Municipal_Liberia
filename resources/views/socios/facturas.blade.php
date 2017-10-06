@@ -78,7 +78,7 @@
         </div>
     </li>
     <li class="nav-item">
-      <a href="{{URL::previous()}}" class="nav-link text-primary">Regresar</a>
+      <a href="/facturas/index" class="nav-link text-primary">Volver al menú</a>
     </li>
     </ul>
     
