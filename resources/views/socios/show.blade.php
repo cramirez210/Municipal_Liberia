@@ -53,6 +53,17 @@
     
     <div class="d-inline-block col-md-5"> 
 
+
+        <!--________________________________________Imagen__________________________________-->
+
+          <div  class=" col-md-auto form-group">
+            <label for="imagen" class="col-md-8 rm-control-label">Fotografía de socio</label>
+
+                <div class=" col-md-auto ml-5">
+                      <a href="/socios/showImagen/{{ $socio->id }}"> <img class="img-thumbnail" src="{{ Storage::disk('public')->url($socio->urlImagen) }}"> </a>
+                </div>
+            </div>
+      
           <!--_______________________________ Numero de socio ______________________________-->
 
             <div  class=" col-md-auto form-group">
@@ -124,6 +135,16 @@
             </div>
 
 
+
+
+
+
+
+    </div>
+  
+
+<div class="col-md-5 float-right ">
+
 <!--_______________________________ Fecha de nacimiento____________________________-->
 
 
@@ -147,15 +168,6 @@
                     <input id="email" type="email" class="form-control" name="email" value="{{ $persona->email }}" readonly>
                 </div>
             </div>
-
-
-
-
-    </div>
-  
-
-<div class="col-md-5 float-right ">
-
 
 <!--_______________________________ Número de telefono ____________________________-->
 

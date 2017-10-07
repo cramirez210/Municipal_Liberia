@@ -62,6 +62,7 @@ Route::get('/socios/estado/{id}','SociosController@cambiarEstado')->middleware('
 Route::get('/socios/show/edit/{socio}','SociosController@edit')->middleware('auth');;
 Route::post('/socios/update/{socio}','SociosController@update')->middleware('auth');;
 Route::get('/socios/listarTodos','SociosController@listarTodosLosSocios')->middleware('auth');
+Route::get('/socios/showImagen/{socio}','SociosController@showImagen')->middleware('auth');
 
 // Rutas del objeto factura
 Route::get('/facturas/index', 'FacturaController@index')->middleware('auth');;

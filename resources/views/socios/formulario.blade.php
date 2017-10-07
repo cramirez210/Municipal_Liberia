@@ -1,5 +1,5 @@
 
-<form class="container-fluid mt-4 w-100" method="POST" action="/socios/create">
+<form class="container-fluid mt-4 w-100" method="POST" action="/socios/create" enctype="multipart/form-data">
                         
     {{ csrf_field() }}
 
@@ -240,6 +240,23 @@
                         @endif
                 </div>
             </div>            
+
+<!--________________________________________ Foto  _________________________-->
+            <div class=" col-md-auto  form-group{{ $errors->has('imagen') ? ' has-danger' : '' }}">
+                <label for="imagen" class="col-md-8 form-control-label">Fotografía</label>
+
+                <div class="col-md-auto mt-2">
+                                
+                     <input type="file" class="form-control-file" name="imagen"> 
+
+                        @if ($errors->has('file'))
+                            <span class="form-control-feedback">
+                                <strong>{{ $errors->first('file') }}</strong>
+                            </span>
+                        @endif
+                </div>
+            </div>       
+
 
 </div>
 

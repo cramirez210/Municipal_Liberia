@@ -91,6 +91,9 @@ class SociosController extends Controller
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)
     {
+
+        $imagen = $request->file('imagen');
+
         $socio = Socio::create([
 
                     'persona_id'=> $persona->id,
@@ -100,13 +103,14 @@ class SociosController extends Controller
                     'user_id'=> $idUser,
                     'estado_id'=> 1,
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria, //1 es para Activo por defecto. 
-
+                    'urlImagen' => $imagen->store('socios','public'),
             ]);
     }
 
     public function CrearPersonaAndSocio(CreateSocioRequest $request,$categoria,$idUser)
     {
      $NuevaPersona = new Persona;
+
 
             $NuevaPersona->primer_nombre = $request->input('primer_nombre');
             $NuevaPersona->segundo_nombre = $request->input('segundo_nombre');
@@ -118,10 +122,12 @@ class SociosController extends Controller
             $NuevaPersona->telefono = $request->input('telefono');
             $NuevaPersona->direccion = $request->input('direccion');
 
+
             $NuevaPersona->save();
             
             $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
-
+            $imagen = $request->file('imagen');
+            dd($imagen);
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
@@ -131,6 +137,7 @@ class SociosController extends Controller
                     'user_id'=> $idUser,
                     'estado_id'=> 1, //1 es para Activo por defecto
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria,
+                    'urlImagen' => $imagen->store('socios','public'),
 
             ]);   
     }
@@ -151,6 +158,7 @@ class SociosController extends Controller
         $persona = $socio->persona;
         $categoria = $socio->categoria;
         $estado = $socio->estado;
+
 
         return view('socios.show',
         [
@@ -221,7 +229,13 @@ class SociosController extends Controller
 
         // Actualizar objeto socio --------------------------------------------------------------
        
+
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id')); //Encontrar el objeto categoria.
+        
+        if($request->file('imagen') !== null)
+        {
+            $socio->urlImagen = $request->file('imagen')->store('socios', 'public');
+        }
         $socio->empresa = $request->input('empresa');
         $socio->estado_civil = $request->input('estado_civil');
         $socio->categoria_id = $categoria->id;
@@ -320,6 +334,14 @@ class SociosController extends Controller
           return redirect('/socios/show/'.$id)->withSuccess('Socio Inactivado Exitosamente!');
         }
         
+    }
+
+
+    public function showImagen(Socio $socio)
+    {
+        return view('socios.showImagen', [
+                'socio' => $socio,
+            ]);
     }
 
 }

@@ -37,7 +37,7 @@
              <!--_______________________________ Formulario ______________________________-->
 
              
-<form class="container-fluid mt-4 w-100" method="POST" action="/socios/update/{{ $socio->id }}">
+<form class="container-fluid mt-4 w-100" method="POST" action="/socios/update/{{ $socio->id }}" enctype="multipart/form-data">
                         
     {{ csrf_field() }}
 
@@ -45,8 +45,21 @@
     <!--_________________________________Persona_______________________________________-->
     
     <div class="d-inline-block col-md-5"> 
-  
+
+     <!--________________________________________Imagen__________________________________-->
+
+          <div  class=" col-md-auto form-group">
+            <label for="imagen" class="col-md-10 rm-control-label">Actualizar fotografía de socio</label>
+
+                <div class=" col-md-auto ml-5">
+                      <a href="/socios/showImagen/{{ $socio->id }}"> <img class="img-thumbnail" src="{{ Storage::disk('public')->url($socio->urlImagen) }}"> </a>
+                      <input type="file" class="form-control-file mt-3" name="imagen"> 
+                </div>
+            </div>
+
     <!--_______________________________ Primer Nombre ______________________________-->
+
+
 
             <div  class=" col-md-auto form-group @if($errors->has('primer_nombre')) has-danger @endif">
             <label for="primer_nombre" class="col-md-8 form-control-label">Primer nombre</label>
@@ -117,7 +130,13 @@
             </div>
 
 
-<!--_______________________________ Cedula  ______________________________-->
+
+    </div>
+  
+
+<div class="col-md-5 float-right">
+
+    <!--_______________________________ Cedula  ______________________________-->
 
 
             <div class=" col-md-auto  form-group{{ $errors->has('cedula') ? ' has-danger' : '' }}">
@@ -135,7 +154,8 @@
             </div>
 
 
-<!--_______________________________ Fecha de nacimiento____________________________-->
+
+    <!--_______________________________ Fecha de nacimiento____________________________-->
 
 
             <div  class=" col-md-auto   form-group{{ $errors->has('fecha_nacimiento') ? ' has-danger' : '' }}">
@@ -156,11 +176,6 @@
                         @endif
                 </div>
             </div>
-
-    </div>
-  
-
-<div class="col-md-5 float-right">
 
     <!--_______________________________Correo Electrónico ____________________________-->
 
