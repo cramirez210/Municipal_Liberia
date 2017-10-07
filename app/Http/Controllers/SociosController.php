@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use App\Estado;
-use App\Http\Controllers\FacturaController;
+use App\Factura;
 use App\Http\Requests\CreateSocioRequest;
 use App\Persona;
 use App\Socio;
@@ -299,7 +299,7 @@ class SociosController extends Controller
     public function cambiarEstado($id)
     {
         $socio = Socio::find($id);
-        $objeto = new FacturaController;
+        $objeto = new Factura;
         $facturas = $objeto->ObtenerPorSocioEstado($id, 3);
         //dd($facturas->all());
         if ($socio->estado_id == 2) {

@@ -69,7 +69,7 @@
 
               <div class="col-md-15 mt-3">
                 <b>Fecha de pago:</b> 
-                {{$factura->updated_at}}
+                {{$factura->fecha_pago}}
               </div>
 
               <div class="col-md-15 mt-3">
