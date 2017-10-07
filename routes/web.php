@@ -86,7 +86,7 @@ Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha'
 Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado')->middleware('auth');;
 Route::get('/facturas/show/id/{id}', 'FacturaController@show')->middleware('auth');;
 Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes')->middleware('auth');;
-Route::post('/facturas/imprimir','FacturaController@imprimir')->middleware('auth');;
+Route::get('/imprimir/{id}','FacturaController@imprimir')->middleware('auth');;
 
 //Rutas del objeto cobro
 Route::get('/cobros/index', 'CobroController@index')->middleware('auth');;

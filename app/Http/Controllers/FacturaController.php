@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFacturaRequest;
 use App\Http\Controllers\SociosController;
 use App\Http\Controllers\CobroController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -162,6 +163,7 @@ class FacturaController extends Controller
 
     public function GenerarFacturas(){
 
+        $pdf_controller = new PdfController;
         $socios_controller = new SociosController;
         $socios_activos = $socios_controller->sociosPorEstado(1);
 
@@ -203,9 +205,6 @@ class FacturaController extends Controller
          $this->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, $fecha_actual, 3);
          }
          }
-         
-
-         
             }
         }
         return redirect('/facturas/index')->withSuccess('Operación exitosa');
@@ -513,14 +512,10 @@ class FacturaController extends Controller
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
 
-        return view('facturas.imprimir', compact('facturas'));
+        return view('facturas.pendientes', compact('facturas'));
     }
 
-    public function imprimir(){
-
-        $facturas = Input::except('_token');
-
-        foreach ($facturas as $id) {
+    public function imprimir($id){
 
         $cobro_controller = new CobroController;
 
@@ -533,11 +528,8 @@ class FacturaController extends Controller
         $this->store($factura, $socio->id, 1, $categoria->precio_categoria, $factura->forma_pago, null, Carbon::now(), 4);
 
         $cobro_controller->GenerarCobroUsuario($factura->id, 3);
-        }
 
-         return redirect('/facturas/index')->withSuccess('Operación exitosa');
-
-        
+         return redirect('/facturas/imprimir')->withSuccess('Operación exitosa');
     }
 
     public function destroy($id)
