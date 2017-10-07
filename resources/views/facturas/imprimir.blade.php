@@ -61,24 +61,17 @@
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
+  <form class="form mr-5" method="POST" action="/facturas/imprimir" style="width: 100%;"> 
+    {{ csrf_field() }}
 <div class="card-header">
+  <div class="card-tittle text-primary">
+    <b>Imprimir facturas</b>
+  </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
-      </li>
-  
-         <li class="nav-item dropdown " style="margin-left: 60%;">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="/facturas/list">Todas las facturas</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/3">Facturas pendientes</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
-        </div>
-    </li>
     <li class="nav-item">
-      <a href="/facturas/index" class="nav-link text-primary mr-5">Menú</a>
+      <span class="col-md-3 ml-5 mt-5">
+        <button class="btn btn-link float-right mr-5" type="submit">Imprimir</button>
+        </span>
     </li>
     </ul>
     
@@ -86,8 +79,47 @@
 <div class="col-md-auto offset-md-1 mt-4">
 
 <div class="row">
+  <div class="table-responsive mr-5">
+        
+    <table class="table table-hover ">
+        <thead>
+            <tr>
+            <th class="text-center">N° factura</th>
+            <th class="text-center">Socio</th>
+            <th class="text-center">Apellidos</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Opcion</th>
+            </tr>
+        </thead>
+    <tbody>
 
-  @include('facturas.table')
+         @forelse($facturas as $factura)
+                       
+        <tr>
+            <td class="info"> {{ $factura->id }} </td>
+            <td class="info"> {{ $factura->primer_nombre }} </td>
+            <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
+            <td class="info"> {{ $factura->created_at }} </td>
+            <td class="warning"> 
+              <div class="form-group">
+                <input class="form-check-input" type="checkbox" name="{{$factura->id}}" value="{{$factura->id}}">
+              </div>
+            </td>
+        </tr>
+
+        @empty
+        <div class="alert alert-warning">
+       
+        <span class="card-text text-warning "> No se encontraron facturas </span>
+
+        </div>
+        <br>
+        @endforelse
+
+    </tbody>
+    </table>  
+
+    </div>
     </div>
 
  </div>
@@ -104,6 +136,7 @@
         Se encontraron {{ count($facturas) }} resultados.
 
     </div>
+  </form>
 </div>
 
 @endsection

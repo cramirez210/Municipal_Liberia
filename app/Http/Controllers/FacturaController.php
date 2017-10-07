@@ -8,6 +8,7 @@ use App\Http\Controllers\SociosController;
 use App\Http\Controllers\CobroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Factura;
 use App\Socio;
@@ -257,7 +258,7 @@ class FacturaController extends Controller
 
         $categoria = $this->ObtenerCategoriaDeSocio($socio);
 
-        $this->store($factura, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, 4);
+        $this->store($factura, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, Carbon::now(), 4);
 
         $cobro_controller->GenerarCobroUsuario($factura->id, 3);
 
@@ -438,74 +439,105 @@ class FacturaController extends Controller
     public function recuento(){
          $this->validate(request(),
             [
-            'mes' => 'required|numeric',
-            'año' => 'required|numeric',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date',
             ]);
 
-        $mes = request('mes');
-        $anio = request('año');
+        $fecha_inicio = request('fecha_inicio');
+        $fecha_fin = request('fecha_fin');
 
-        $facturas_fecha = count($this->ObtenerPorFecha($mes, $anio));
+        $facturas_fecha = count($this->ObtenerPorFecha($fecha_inicio, $fecha_fin));
 
         if($facturas_fecha > 0){
-        $facturas_pendientes = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 3));
-        $facturas_pagas = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 4));
+        $facturas_pendientes = count($this->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 3));
+        $facturas_pagas = count($this->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 4));
 
         $porcentaje_pagas = number_format(($facturas_pagas / $facturas_fecha) * 100, 2, '.', '');
         $porcentaje_pendientes = number_format(($facturas_pendientes / $facturas_fecha) * 100, 2, '.', '');
 
-            return view('facturas.recuento_mes', compact('facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'mes', 'anio', 'porcentaje_pagas', 'porcentaje_pendientes'));
+            return view('facturas.recuento_mes', compact('fecha_inicio', 'fecha_fin', 'facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'porcentaje_pagas', 'porcentaje_pendientes'));
         }else{
             return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
         }
         
     }
 
-    public function ListarPorFecha($mes, $anio){
+    public function ListarPorFecha($fecha_inicio, $fecha_fin){
 
         $socios_controller = new SociosController;
 
-        $facturas = $this->ObtenerPorFecha($mes, $anio);
+        $facturas = $this->ObtenerPorFecha($fecha_inicio, $fecha_fin);
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
         return view('facturas.list', compact('facturas'));
     }
 
-    public function ListarPorFechaEstado($mes, $anio, $estado_id){
+    public function ListarPorFechaEstado($fecha_inicio, $fecha_fin, $estado_id){
 
         $socios_controller = new SociosController;
 
-        $facturas = $this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', $estado_id);
+        $facturas = $this->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', $estado_id);
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
         return view('facturas.list', compact('facturas'));
     }
 
-    public function ObtenerPorFecha($mes, $anio){
+    public function ObtenerPorFecha($fecha_inicio, $fecha_fin){
      
-     $select = $this->select();
-     
-     $facturas = $select
-            ->whereMonth('facturas.created_at', $mes)
-            ->whereYear('facturas.created_at', $anio)
+     $facturas = $this->select()
+            ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin))
             ->get();
 
         return $facturas;   
     }
 
-    public function ObtenerPorFechaCriterio($mes, $anio, $columna, $valor){
+    public function ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, $columna, $valor){
    
     $select = $this->select();
     
     $facturas = $select
-            ->whereMonth('facturas.created_at', $mes)
-            ->whereYear('facturas.created_at', $anio)
+            ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin))
             ->where($columna, $valor)
             ->get();
 
         return $facturas;   
+    }
+
+    public function facturas_pendientes(){
+
+        $facturas = $this->ObtenerPorCriterio('facturas.estado_id', 3);
+
+        $socios_controller = new SociosController;
+
+        $facturas = $socios_controller->paginate($facturas->toArray(),5);
+
+        return view('facturas.imprimir', compact('facturas'));
+    }
+
+    public function imprimir(){
+
+        $facturas = Input::except('_token');
+
+        foreach ($facturas as $id) {
+
+        $cobro_controller = new CobroController;
+
+        $factura = Factura::find($id);
+        $socio = Socio::find($factura->socio_id);
+        $user_id = Auth::user()->id;
+
+        $categoria = $this->ObtenerCategoriaDeSocio($socio);
+
+        $this->store($factura, $socio->id, 1, $categoria->precio_categoria, $factura->forma_pago, null, Carbon::now(), 4);
+
+        $cobro_controller->GenerarCobroUsuario($factura->id, 3);
+        }
+
+         return redirect('/facturas/index')->withSuccess('Operación exitosa');
+
+        
     }
 
     public function destroy($id)
