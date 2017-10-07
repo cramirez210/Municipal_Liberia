@@ -67,17 +67,9 @@
   <div class="card-tittle text-primary">
     <b>Imprimir facturas</b>
   </div>
-    <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
-    <li class="nav-item">
-      <span class="col-md-3 ml-5 mt-5">
-        <button class="btn btn-link float-right mr-5" type="submit">Imprimir</button>
-        </span>
-    </li>
-    </ul>
     
   </div> 
 <div class="col-md-auto offset-md-1 mt-4">
-
 <div class="row">
   <div class="table-responsive mr-5">
         
@@ -101,9 +93,10 @@
             <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{ $factura->created_at }} </td>
             <td class="warning"> 
-              <div class="form-group">
-                <input class="form-check-input" type="checkbox" name="{{$factura->id}}" value="{{$factura->id}}">
+              <div style="display: none;">
+                   @include('facturas.factura')
               </div>
+              <a href="/imprimir/{{$factura->id}}" class="btn btn-success btn-sm" onclick="javascript:imprSelec('factura')">Imprimir</a>
             </td>
         </tr>
 
