@@ -108,6 +108,7 @@
                 <div class="col-md-auto ml-5">
 
                     <input placeholder="2017-09-06" type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" />
+                    
                     <script>
                     $('#fecha_nacimiento').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
                     </script>
