@@ -19,7 +19,7 @@
 
     <link href="http://code.gijgo.com/1.5.1/css/gijgo.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href=".public/css/app.css">
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
     <script src="http://code.gijgo.com/1.5.1/js/gijgo.js" type="text/javascript"></script>
     <script src="/js/main.js"></script>
@@ -98,24 +98,6 @@
               crossorigin="anonymous"></script>
 
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-
-
-
-     <style type="text/css">
-     
-     body
-     {
-        
-     }
-
-     #header
-     {
-        box-shadow: 8px 5px 3px  #888888;
-     }
-
-
-    </style>
 
 </body>
 </html>
