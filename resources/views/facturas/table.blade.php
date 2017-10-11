@@ -1,11 +1,12 @@
 
  <div class="table-responsive mr-5">
         
-    <table class="table table-hover ">
+    <table id="table" class="table table-hover ">
         <thead>
             <tr>
             <th class="text-center">N° factura</th>
-            <th class="text-center">Socio</th>
+            <th class="text-center">N° socio</th>
+            <th class="text-center">Nombre</th>
             <th class="text-center">Apellidos</th>
             <th class="text-center">Categoria</th>
             <th class="text-center">Monto</th>
@@ -20,6 +21,7 @@
                        
         <tr>
             <td class="info"> {{ $factura->id }} </td>
+            <td class="info"> {{ $factura->socio_id }} </td>
             <td class="info"> {{ $factura->primer_nombre }} </td>
             <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{ $factura->categoria }} </td>
