@@ -110,36 +110,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
     <script src="http://code.gijgo.com/1.5.1/js/gijgo.js" type="text/javascript"></script>
-      
-    <script type="text/javascript">
-      
-      function imprSelec($factura){
-
-        var ficha=document.getElementById($factura);
-        var ventimp=window.open(' ','popimpr');
-        ventimp.document.write(ficha.innerHTML);
-        ventimp.document.close();
-        ventimp.print();
-        ventimp.close();
-    }
-    </script>
-
-
-
-     <style type="text/css">
-     
-     body
-     {
-        
-     }
-
-     #header
-     {
-        box-shadow: 8px 5px 3px  #888888;
-     }
-
-
-    </style>
 
 </body>
 </html>
