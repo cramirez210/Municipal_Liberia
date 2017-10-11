@@ -31,18 +31,14 @@
      <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
-    <option selected value="1">Numero de Socio</option>
-    <option value="2">Cédula</option>
+  <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+    <option selected value="0">N° de factura</option>
+    <option value="1">Nombre</option>
+    <option value="2">Fecha</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
-
-        <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">Buscar</button>
-        </span>
-
+        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
   </label>
   </form>  
 
@@ -77,8 +73,7 @@
         <thead>
             <tr>
             <th class="text-center">N° factura</th>
-            <th class="text-center">Socio</th>
-            <th class="text-center">Apellidos</th>
+            <th class="text-center">Nombre completo</th>
             <th class="text-center">Fecha</th>
             <th class="text-center">Opcion</th>
             </tr>
@@ -89,8 +84,7 @@
                        
         <tr>
             <td class="info"> {{ $factura->id }} </td>
-            <td class="info"> {{ $factura->primer_nombre }} </td>
-            <td class="info"> {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
+            <td class="info"> {{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{ $factura->created_at }} </td>
             <td class="warning"> 
               <div style="display: none;">

@@ -21,6 +21,7 @@ class SociosController extends Controller
      */
     public function index()
     {
+
         return view('/socios/index',[
             'socios' => null,
 
@@ -125,7 +126,7 @@ class SociosController extends Controller
             
             $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
             $imagen = $request->file('imagen');
-       
+
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
@@ -247,7 +248,6 @@ class SociosController extends Controller
 
     public function buscarSocio(Request $request)
     {
-        //dd($request->all());
        $this->validate($request,
             [
             'criterio' => 'required',
@@ -258,7 +258,6 @@ class SociosController extends Controller
             ]);
     
         $socio = $this->obtenerSocioPorCriterio($request->input('criterio'),$request->input('valor'));
-
         $socioPaginado = $this->paginate($socio->toArray(),10);
 
             return view('/socios/index', [
@@ -299,7 +298,7 @@ class SociosController extends Controller
         $socio = Socio::find($id);
         $objeto = new Factura;
         $facturas = $objeto->ObtenerPorSocioEstado($id, 3);
-        //dd($facturas->all());
+
         if ($socio->estado_id == 2) {
            
             

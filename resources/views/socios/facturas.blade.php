@@ -40,18 +40,13 @@
      <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
-    <option selected value="1">Numero de Socio</option>
-    <option value="2">Cédula</option>
+  <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+    <option selected value="0">N° de factura</option>
+    <option value="5">Fecha</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
-
-        <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">Buscar</button>
-        </span>
-
+        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
   </label>
   </form>  
 
