@@ -12,9 +12,9 @@
           </span>
         @endif
         <br>
-        @if($errors->has('Criterio'))
+        @if($errors->has('criterio'))
           <span class="form-control-feedback">
-            <strong>{{ $errors->first('Criterio') }}</strong>
+            <strong>{{ $errors->first('criterio') }}</strong>
           </span>
         @endif
     </span>
@@ -32,13 +32,13 @@
   <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;">
   
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
-    <option selected value="1">Cedula</option>
-    <option value="2">Numero de Socio</option>
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
+    <option value="1">Cedula</option>
+    <option selected value="2">Numero de Socio</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        <input type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
 
         <span class="input-group-btn">
         <button class="btn btn-info" type="submit">Buscar !</button>
@@ -68,22 +68,19 @@
 <div class="card-header">
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/socios/index">Listado de Socios</a>
+         <a class="nav-link text-primary" href="/socios/home">Nuevo Socios</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-primary" href="/socios/home">Nuevo Socios</a>
+
+      <li class="nav-item dropdown mt-2">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/socios/listarPorEstado/1">Todos los Socios</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
+        <a class="dropdown-item" href="/socios/listarPorEstado/2">Socios Inactivos</a> 
+        <div class="dropdown-divider"></div> 
+      </div>
       </li>
-  
-         <li class="nav-item dropdown mt-2">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
-         <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/socios/listarPorEstado/2">Socios Inactivos</a>
-           <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/socios/listarTodos">Todos los Soccios</a>  
-        </div>
-    </li>
     </ul>
     
   </div> 
@@ -96,7 +93,7 @@
     <table class="table table-hover ">
         <thead>
             <tr>
-            <th class="text-center">Cedula</th>
+            <th class="text-center">Carnet</th>
             <th class="text-center">Nombre</th>
             <th class="text-center">Apellidos</th>
             <th class="text-center">Categoria</th>
@@ -112,13 +109,13 @@
          @forelse($socios as $socio)
                        
         <tr>
-            <td class="info"> {{ $socio->cedula }} </td>
-            <td class="info"> {{ $socio->primer_nombre }} </td>
-            <td class="info"> {{ $socio->primer_apellido }} {{ $socio->segundo_apellido }} </td>
-            <td class="info"> {{ $socio->categoria }} </td>
-            <td class="info"> {{ $socio->nombre_usuario }} </td>
-            <td class="info"> {{ $socio->estado }} </td>
-            <td class="warning"> 
+            <td class="info text-center"> {{ $socio->id }} </td>
+            <td class="info text-center"> {{ $socio->primer_nombre }} </td>
+            <td class="info text-center"> {{ $socio->primer_apellido }} {{ $socio->segundo_apellido }} </td>
+            <td class="info text-center"> {{ $socio->categoria }} </td>
+            <td class="info text-center"> {{ $socio->nombre_usuario }} </td>
+            <td class="info text-center"> {{ $socio->estado }} </td>
+            <td class="warning text-center"> 
               
               <a href="/socios/show/{{ $socio->id }}" class="btn btn-success">
                   <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>

@@ -270,7 +270,7 @@
                                 Registrar
                             </button>
 
-                            <a href="/socios/index" class="btn btn-info btn-xs ml-2">
+                            <a href="{{ URL::previous() }}" class="btn btn-info btn-xs ml-2">
                             <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
                 
                         </div>
