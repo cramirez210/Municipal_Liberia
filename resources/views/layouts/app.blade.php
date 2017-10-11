@@ -20,6 +20,8 @@
 
     <link href="http://code.gijgo.com/1.5.1/css/gijgo.css" rel="stylesheet" type="text/css" />
 
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href=".public/css/app.css">
 
 </head>
@@ -88,7 +90,7 @@
 
     </div>
 
-   <!-- Scripts -->
+     <!-- Scripts -->
 
     <script
               src="http://code.jquery.com/jquery-3.2.1.min.js"
