@@ -22,7 +22,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <script src="http://code.gijgo.com/1.5.1/js/gijgo.js" type="text/javascript"></script>
-    <script src="/js/js.js"></script>
+    <script src="/js/main.js"></script>
 
 </head>
 <body>
