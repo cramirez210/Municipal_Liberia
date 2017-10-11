@@ -127,7 +127,7 @@ class SociosController extends Controller
             
             $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
             $imagen = $request->file('imagen');
-            dd($imagen);
+            
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
