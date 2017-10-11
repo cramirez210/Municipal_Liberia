@@ -32,13 +32,20 @@
   <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;">
   
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
+  <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
+    @if(count($socios))
     <option value="1">Cedula</option>
     <option selected value="2">Numero de Socio</option>
+    <option value="3">Categoria</option>
+    @else
+    <option value="1">Cedula</option>
+    <option selected value="2">Numero de Socio</option>
+    @endif
+    
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus onkeyup="filtrar()">
 
         <span class="input-group-btn">
         <button class="btn btn-info" type="submit">Buscar !</button>
@@ -90,7 +97,7 @@
 
  <div class="table-responsive">
         
-    <table class="table table-hover ">
+    <table id="table" class="table table-hover ">
         <thead>
             <tr>
             <th class="text-center">Carnet</th>

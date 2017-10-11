@@ -16,7 +16,6 @@
 
     </div>
 
-
 <div class="card mt-4" style="width: 90%; height: 85%;">
   <div class="card-header">
     <ul class="nav nav-pills nav-fill card-header-pills">
