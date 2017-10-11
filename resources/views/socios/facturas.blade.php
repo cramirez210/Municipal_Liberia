@@ -42,7 +42,7 @@
 
   <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
-    <option value="6">Fecha</option>
+    <option value="5">Fecha</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
