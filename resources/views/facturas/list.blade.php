@@ -40,7 +40,7 @@
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrarFacturas()" required autofocus>
+        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
   </label>
   </form>  
 

@@ -8,17 +8,17 @@
         ventimp.close();
     }
 
-  function filtrarFacturas() {
-  var select, valor, input, filter, table, tr, td, i;
+  function filtrar() {
+  var select, valor_select, input, filter, table, tr, td, i;
   select = document.getElementById("select");
-  valor = select.options[select.selectedIndex].value;
+  valor_select = select.options[select.selectedIndex].value;
   input = document.getElementById("valor");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[valor];
+    td = tr[i].getElementsByTagName("td")[valor_select];
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
