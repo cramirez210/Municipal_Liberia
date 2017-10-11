@@ -121,13 +121,11 @@ class SociosController extends Controller
             $NuevaPersona->email = $request->input('email');
             $NuevaPersona->telefono = $request->input('telefono');
             $NuevaPersona->direccion = $request->input('direccion');
-
-
             $NuevaPersona->save();
             
             $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
             $imagen = $request->file('imagen');
-            dd($imagen);
+       
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
