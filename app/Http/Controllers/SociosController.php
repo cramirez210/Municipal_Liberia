@@ -75,6 +75,13 @@ class SociosController extends Controller
 
     public function home(Request $request)
     {
+        $this->validate($request,
+            [
+            'radio' => 'required',
+            ],
+            [
+            'radio.required'=>'Seleccione un Ejecutivo!',
+            ]);
         $objeto = new UsuariosController;
         //$ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('radio'));
         $ejecutivo = User::find($request->input('radio'));
@@ -91,6 +98,7 @@ class SociosController extends Controller
 
     public function create(CreateSocioRequest $request)
     {
+        //dd($request->all());
         $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));

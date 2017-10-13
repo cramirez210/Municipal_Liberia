@@ -2,25 +2,6 @@
 
 @section('content')
 
-@if(count($errors))
-<div>
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('valor'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('valor') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('criterio'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('criterio') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif
-
 <div class="card text-center mt-4">
   <div class="card-header">
     
@@ -48,6 +29,18 @@
 
 </div>
 
+@if(count($errors))
+<div >
+<br>
+  <span class="text-danger mt-4">
+        @if($errors->has('radio'))
+          <span class="form-control-feedback">
+            <strong>{{ $errors->first('radio') }}</strong>
+          </span>
+        @endif
+  </span>
+</div>
+@endif
     @if(session('success')) 
     <br>
     <span class="text-success mt-4">  
