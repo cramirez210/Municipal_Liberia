@@ -16,25 +16,57 @@
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    Recuento de cobros realizados el mes {{$mes}} del año {{$anio}}
+   <b>Recuento de cobros realizados del {{$fecha_inicio}} al {{$fecha_fin}}</b> 
   </div>
 
   <div class="card-block"> 
-  <p>En el mes {{$mes}} del año {{$anio}} se realizaron {{$cobros_fecha}} cobros, de los cuales {{$cobros_pendientes}} están pendientes de pago por parte de los ejecutivos, mientras que los restantes {{$cobros_pagos}} ya fueron cancelados por los respectivos encargados.</p>
+  <p>Del {{$fecha_inicio}} al {{$fecha_fin}} se realizaron {{$cobros_fecha}} cobros, de los cuales {{$cobros_pendientes}} están pendientes de pago por parte de los ejecutivos, mientras que los restantes {{$cobros_pagos}} ya fueron cancelados por los respectivos encargados.</p>
 </div>
 
- <div class="list-group mt-5">
-  <a href="#" class="list-group-item active">
-    Ir a:
-  </a>
-  <a href="/cobros/recuento/{{$mes}}/{{$anio}}" class="list-group-item">Cobros realizados el mes {{$mes}} del año {{$anio}}</a>
-  <a href="/cobros/recuento/{{$mes}}/{{$anio}}/3" class="list-group-item">Cobros pendientes del mes {{$mes}} del año {{$anio}}</a>
-  <a href="/cobros/recuento/{{$mes}}/{{$anio}}/4" class="list-group-item">Cobros pagados del mes {{$mes}} del año {{$anio}}</a>
+  <div class="card-block"> 
+  <p><b>De lo anterior, deducimos que:</b></p>
+
+  <div class="table-responsive mr-5">
+        
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th class="text-center">Cobros efectuados</th>
+            <th class="text-center">Cobros cancelados</th>
+            <th class="text-center">Porcentaje (%)</th>
+            <th class="text-center">Cobros vigentes</th>
+            <th class="text-center">Porcentaje (%)</th>
+            </tr>
+        </thead>
+    <tbody>
+                       
+        <tr>
+            <td class="info"> {{$cobros_fecha}} </td>
+            <td class="info"> {{$cobros_pagos}}</td>
+            <td class="info"> {{$porcentaje_pagos}}%</td>
+            <td class="info"> {{$cobros_pendientes}}</td>
+            <td class="info"> {{$porcentaje_pendientes}}%</td>
+        </tr>
+        <tr>
+            <td class="info"> 
+              <a href="/cobros/recuento/{{$fecha_inicio}}/{{$fecha_fin}}">Ver cobros efectuados</a> </td>
+            <td class="info">
+               <a href="/cobros/recuento/{{$fecha_inicio}}/{{$fecha_fin}}/4">Ver cobros cancelados</a> </td>
+               <td></td>
+            <td class="info"> 
+              <a href="/cobros/recuento/{{$fecha_inicio}}/{{$fecha_fin}}/3">Ver cobros vigentes</a></td>
+              <td></td>
+        </tr>
+
+    </tbody>
+    </table>  
+
+    </div>
 </div>
 </div>
 
 @endsection
 
 @section('titulo')
-    Facturación
+    Cobros
 @endsection

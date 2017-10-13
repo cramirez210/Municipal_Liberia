@@ -21,7 +21,7 @@
 
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/cobros/buscar/user" style="margin-left: 29%;"> 
+  <form class="form-inline" method="POST" action="/cobros/buscar/anular" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">

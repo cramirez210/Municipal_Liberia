@@ -21,16 +21,6 @@
 </div>
 @endif
 
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-   <h4>Usuario: {{$user->nombre_usuario}}</h4> 
-  </div>
-
-  <div class="card-block">
-  <h5><label>Nombre: </label> </h5>{{$user->primer_nombre}} {{$user->primer_apellido}} {{$user->segundo_apellido}}
-</div>
-</div>
-
     @if(session('success')) 
     <br>
     <span class="text-success mt-4">
@@ -44,6 +34,7 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
+  <div class="card-tittle">Cobros del usuario: {{$user->nombre_usuario}}</div>
     <ul class="nav nav-pills card-header-pills">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/list">Listado de Cobros</a>
@@ -62,55 +53,11 @@
     </ul>
     
   </div> 
-<div class="col-md-9 offset-md-1 mt-4">
+<div class="col-md-10 offset-md-1 mt-4">
 
 <div class="row">
 
- <div class="table-responsive">
-        
-    <table class="table table-hover ">
-        <thead>
-            <tr>
-            <th class="text-center">N° de factura</th>
-            <th class="text-center">Monto</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Opcion</th>
-            </tr>
-        </thead>
-    <tbody>
-
-         @forelse($cobros as $cobro)
-                       
-        <tr>
-            <td class="info"> {{ $cobro->factura_id }} </td>
-            <td class="info"> {{ $cobro->monto }} </td>
-            <td class="info"> {{ $cobro->created_at }} </td>
-            <td class="info"> {{ $cobro->estado }} </td>
-            <td class="warning"> 
-              @if($cobro->estado_id == 3)
-              <a href="#" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Pagar</a>
-              @else
-              <a href="#" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
-              @endif
-            </td>
-        </tr>
-
-        @empty
-        <div class="alert alert-warning">
-       
-        <span class="card-text text-warning "> No hay facturas registradas </span>
-
-        </div>
-        <br>
-        @endforelse
-
-    </tbody>
-    </table>  
-
-    </div>
+  @include('cobros.table')
     </div>
 
  </div>

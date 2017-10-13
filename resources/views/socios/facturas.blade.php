@@ -30,7 +30,8 @@
 
     @endif  
 
-    <div class="card text-center mt-4">
+@if(count($facturas))
+ <div class="card text-center mt-4">
   <div class="card-header text-primary">
     Filtro de Busqueda
   </div>
@@ -52,6 +53,8 @@
 
 </div>
 </div>
+@endif
+ 
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">

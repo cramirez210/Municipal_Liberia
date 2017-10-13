@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\SociosController;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Cobro;
+use Carbon\Carbon;
 
 class CobroController extends Controller
 {
@@ -15,91 +17,72 @@ class CobroController extends Controller
         return view('cobros.index');
     }
 
-    public function GenerarCobroUsuario($factura_id, $estado_id){
-
-        $user_id = Auth::user()->id;
-
-        $cobro = new Cobro;
-
-        $cobro->user_id = $user_id;
-        $cobro->factura_id = $factura_id;
-        $cobro->estado_id = $estado_id;
-
-        $cobro->save();
-    }
-
-    public function ObtenerPorCriterio($columna, $valor)
-    {
-            $cobros = DB::table('cobros')
-            ->join('users', 'cobros.user_id', '=', 'users.id')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->join('facturas', 'cobros.factura_id', '=', 'facturas.id')
-            ->join('estados', 'cobros.estado_id', '=', 'estados.id')
-            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado')
-            ->where($columna, $valor)
-            ->get();
-
-        return $cobros;
-    }
-
-    public function ObtenerPorUsuarioEstado($user_id, $estado_id){
-    	$cobros = DB::table('cobros')
-            ->join('users', 'cobros.user_id', '=', 'users.id')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->join('facturas', 'cobros.factura_id', '=', 'facturas.id')
-            ->join('estados', 'cobros.estado_id', '=', 'estados.id')
-            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado')
-            ->where('cobros.user_id', $user_id)
-            ->whereIn('cobros.estado_id', [$estado_id])
-            ->get();
-
-        return $cobros;
-    }
-
     public function list()
     {
-        $cobros = DB::table('cobros')
-            ->join('users', 'cobros.user_id', '=', 'users.id')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->join('facturas', 'cobros.factura_id', '=', 'facturas.id')
-            ->join('estados', 'cobros.estado_id', '=', 'estados.id')
-            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado')
-            ->get();
+        $model_cobro = new Cobro;
 
-        $cobros = $this->paginar($cobros);
+        $cobros = $model_cobro->select()
+                  ->get();
+
+        $cobros = $model_cobro->paginar($cobros);
 
         return view('cobros.list', compact('cobros'));
     }
 
     public function ListarPorUsuario($user_id)
     {
-        $cobros = $this->ObtenerPorCriterio('cobros.user_id', $user_id);
+        $model_cobro = new Cobro;
+
+        $cobros = $model_cobro->ObtenerPorCriterio('cobros.user_id', $user_id);
 
         $user = $cobros[0];
 
-        $cobros = $this->paginar($cobros);
+        $cobros = $model_cobro->paginar($cobros);
         
         return view('usuarios.cobros', compact('cobros', 'user'));
     }
 
         public function ListarPorEstado($estado_id)
     {
-        $cobros = $this->ObtenerPorCriterio('cobros.estado_id', $estado_id);
+        $model_cobro = new Cobro;
 
-        $cobros = $this->paginar($cobros);
+        $cobros = $model_cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id);
+
+        $cobros = $model_cobro->paginar($cobros);
         
         return view('cobros.list', compact('cobros'));
     }
 
-    public function ListarPorUsuarioEstado($user_id, $estado_id){
+    public function ListarPorUsuarioEstado($user_id, $estado_id)
+    {
+     $model_cobro = new Cobro;
 
-     $cobros = $this->ObtenerPorUsuarioEstado($user_id, $estado_id);
+     $cobros = $model_cobro->ObtenerPorUsuarioEstado($user_id, $estado_id);
 
      $user = $cobros[0];
 
-     $cobros = $this->paginar($cobros);
+     $cobros = $model_cobro->paginar($cobros);
         
      return view('usuarios.cobros', compact('cobros', 'user'));
+
+    }
+
+     public function AnularPorEstado($estado_id)
+    {
+        $model_cobro = new Cobro;
+
+        $cobros = $model_cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id);
+        
+        return view('cobros.anular', compact('cobros'));
+    }
+
+    public function AnularPorUsuarioEstado($user_id, $estado_id)
+    {
+     $model_cobro = new Cobro;
+
+     $cobros = $model_cobro->ObtenerPorUsuarioEstado($user_id, $estado_id);
+        
+     return view('cobros.anular', compact('cobros'));
 
     }
 
@@ -118,27 +101,12 @@ class CobroController extends Controller
        $criterio = $request->input('Criterio');
        $valor = $request->input('valor');
 
-       $user = $this->ObtenerUsuarioPorCriterio($criterio, $valor);
+       $model_cobro = new Cobro;
+
+       $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        return $this->ListarPorUsuario($user->id);
 
-    }
-
-    public function ObtenerUsuarioPorCriterio($criterio, $valor){
-        if($criterio == 1){
-            $user = DB::table('users')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->select('users.id')
-            ->where('personas.cedula', $valor)
-            ->first();
-        }else{
-            $user = DB::table('users')
-            ->select('users.id')
-            ->where('users.nombre_usuario', $valor)
-            ->first();
-        }
-
-        return $user;
     }
 
      public function BuscarRecuento(){
@@ -146,72 +114,108 @@ class CobroController extends Controller
     }
 
     public function recuento(){
-        $mes = request('mes');
-        $anio = request('anio');
+        $fecha_inicio = request('fecha_inicio');
+        $fecha_fin = request('fecha_fin');
+        $model_cobro = new Cobro;
 
-        $cobros_fecha = count($this->ObtenerPorFecha($mes, $anio));
-        $cobros_pendientes = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 3));
-        $cobros_pagos = count($this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', 4));
+        $cobros_fecha = count($model_cobro->ObtenerPorFecha($fecha_inicio, $fecha_fin));
 
-        return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'cobros_pagos', 'mes', 'anio'));
+        if($cobros_fecha > 0){
+         $cobros_pendientes = count($model_cobro->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 3));
+         $cobros_pagos = count($model_cobro->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 4));
+
+         $porcentaje_pagos = number_format(($cobros_pagos / $cobros_fecha) * 100, 2, '.', '');
+         $porcentaje_pendientes = number_format(($cobros_pendientes / $cobros_fecha) * 100, 2, '.', '');
+
+        return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'fecha_inicio', 'fecha_fin'));
+        }else
+        return redirect('/cobros/recuento')->withSuccess('No se encontraron cobros en la fecha solicitada');
+        
+    }
+
+    public function BuscarParaAnular(){
+        return view('cobros.buscar_anular');
+    }
+
+    public function BuscarAnular(Request $request)
+    {
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            ]);
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $model_cobro = new Cobro;
+
+       $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       return $this->AnularPorUsuarioEstado($user->id, 3);
+
     }
 
     public function ListarPorFecha($mes, $anio){
+        $model_cobro = new Cobro;
 
-        $socios_controller = new SociosController;
+        $cobros = $model_cobro->ObtenerPorFecha($mes, $anio);
 
-        $cobros = $this->ObtenerPorFecha($mes, $anio);
-
-        $cobros = $socios_controller->paginate($cobros->toArray(),5);
+        $cobros = $model_cobro->paginar($cobros);
         
         return view('cobros.list', compact('cobros'));
     }
 
     public function ListarPorFechaEstado($mes, $anio, $estado_id){
 
-        $socios_controller = new SociosController;
+        $model_cobro = new Cobro;
 
-        $cobros = $this->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', $estado_id);
+        $cobros = $model_cobro->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', $estado_id);
 
-        $cobros = $socios_controller->paginate($cobros->toArray(),5);
+        $cobros = $model_cobro->paginar($cobros);
         
         return view('cobros.list', compact('cobros'));
     }
 
-    public function ObtenerPorFecha($mes, $anio){
-     $cobros = DB::table('cobros')
-            ->join('users', 'cobros.user_id', '=', 'users.id')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->join('facturas', 'cobros.factura_id', '=', 'facturas.id')
-            ->join('estados', 'cobros.estado_id', '=', 'estados.id')
-            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado')
-            ->whereMonth('cobros.created_at', $mes)
-            ->whereYear('cobros.created_at', $anio)
-            ->get();
+    public function confirmar(){
+        $model_cobro = new Cobro;
 
-        return $cobros;   
+        $cobros = Input::except('_token');
+
+        $user = $model_cobro->select()
+        ->where('facturas.id', head($cobros))
+        ->first();
+
+        $monto = DB::table('cobros')
+        ->join('facturas', 'cobros.factura_id', 'facturas.id')
+        ->whereIn('facturas.id', $cobros)
+        ->sum('facturas.monto');
+
+        $fecha = Carbon::now()->format('Y-m-d');
+
+        return view('cobros.confirmar', compact('cobros', 'user', 'monto', 'fecha'));
     }
 
-    public function ObtenerPorFechaCriterio($mes, $anio, $columna, $valor){
-     $cobros = DB::table('cobros')
-            ->join('users', 'cobros.user_id', '=', 'users.id')
-            ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->join('facturas', 'cobros.factura_id', '=', 'facturas.id')
-            ->join('estados', 'cobros.estado_id', '=', 'estados.id')
-            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado')
-            ->whereMonth('cobros.created_at', $mes)
-            ->whereYear('cobros.created_at', $anio)
-            ->where($columna, $valor)
-            ->get();
+    public function anular(){
+        $cobros = Input::except('_token');
 
-        return $cobros;   
+        foreach ($cobros as $cobro) {
+            DB::table('cobros')
+            ->where('factura_id', $cobro)
+            ->update(array('estado_id' => 4));
+        }
+
+        return view('cobros.index')->withSuccess('Éxito');
     }
 
-    public function paginar($cobros){
-    	$socios_controller = new SociosController;
 
-    	$cobros = $socios_controller->paginate($cobros->toArray(),5);
+    public function show($id){
+        $model_cobro = new Cobro;
 
-    	return $cobros;
+        $cobro = $model_cobro->select()
+                ->where('cobros.id', $id)
+                ->first();
+
+        return view('cobros.detail', compact('cobro'));
     }
 }

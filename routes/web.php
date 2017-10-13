@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 	// Cobros
 	Route::get('/cobros/recuento', 'CobroController@BuscarRecuento');
-	Route::post('/cobros/recuento/buscar','CobroController@recuento');
+	Route::post('/cobros/recuento','CobroController@recuento');
 	Route::get('/cobros/recuento/{mes}/{anio}', 'CobroController@ListarPorFecha');
 	Route::get('/cobros/recuento/{mes}/{anio}/{estado}', 'CobroController@ListarPorFechaEstado');
 	Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento');
@@ -96,12 +96,19 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 //Rutas del objeto cobro
 	Route::get('/cobros/index', 'CobroController@index');
+	Route::get('/cobros/show/{id}','CobroController@show');
 	Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado');
 	Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
-	Route::get('/cobros/{user}/{id}','CobroController@ListarPorUsuarioEstado');
+	Route::get('/cobros/list/{user}/{id}','CobroController@ListarPorUsuarioEstado');
 	Route::get('/cobros/list', 'CobroController@list');
+	Route::get('/cobros/anular/{id}', 'CobroController@AnularPorEstado');
+	Route::get('/cobros/anular/{user}/{id}', 'CobroController@AnularPorUsuarioEstado');
+	Route::post('/cobros/confirmar', 'CobroController@confirmar');
+	Route::post('/cobros/anular', 'CobroController@anular');
 	Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
 	Route::post('/cobros/buscar/user','CobroController@BuscarUsuario');
+	Route::get('/cobros/buscar/anular','CobroController@BuscarParaAnular');
+	Route::post('/cobros/buscar/anular','CobroController@BuscarAnular');
 
 });
 
