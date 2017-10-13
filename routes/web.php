@@ -69,17 +69,19 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 	Route::group(['middleware' => ['auth','EjecutivoyAdministrador']], function() {
 
+	Route::get('/socios/asignarEjecutivo', 'SociosController@asignarEjecutivo');
+
 	Route::post('/socios/create', 'SociosController@create');
 	Route::get('/socios/show/edit/{socio}','SociosController@edit');
 	Route::post('/socios/update/{socio}','SociosController@update');
 	// Rutas del objeto factura
-Route::get('/facturas/index', 'FacturaController@index');
-Route::post('/facturas/create', 'FacturaController@create');
-Route::post('/facturas/confirmar/{id}', 'FacturaController@ConfirmarPago');
-Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
-Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio');
+	Route::get('/facturas/index', 'FacturaController@index');
+	Route::post('/facturas/create', 'FacturaController@create');
+	Route::post('/facturas/confirmar/{id}', 'FacturaController@ConfirmarPago');
+	Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
+	Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio');
 
-Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
+	Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 
 	Route::get('/facturas/list/{id}', 'FacturaController@ListarPorEstado');
 	Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
@@ -123,8 +125,7 @@ Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 	Route::get('/usuarios/listarTodos','UsuariosController@listarTodosLosUsuarios');
 
 	// Rutas del objeto socio.
-
-	Route::get('/socios/home', 'SociosController@home');
+	Route::post('/socios/home', 'SociosController@home');
 	Route::get('/socios/index', 'SociosController@index');
 	Route::get('/socios/show/{socio}','SociosController@show');
 	Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado');

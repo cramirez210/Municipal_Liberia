@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Estado;
 use App\Factura;
+use App\Http\Controllers\UsuariosController;
 use App\Http\Requests\CreateSocioRequest;
 use App\Persona;
 use App\Socio;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,22 +60,42 @@ class SociosController extends Controller
         );
     }
 
-    public function home()
+    public function asignarEjecutivo()
     {
+         $objeto = new UsuariosController;
+        $usuarios = $objeto->obtenerUsuariosEjecutivos();
+
+        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
+
+            return view('/socios/asignarEjecutivo', [
+                'usuarios' => $usuariosPaginados,
+            ]);
+    }
+
+
+    public function home(Request $request)
+    {
+        $objeto = new UsuariosController;
+        //$ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('radio'));
+        $ejecutivo = User::find($request->input('radio'));
         $estados = Estado::all();
         $categorias = Categoria::all();
 
-        return view('socios.create',[
+        return view('socios.create',
+            [
                 'estados' => $estados,
                 'categorias' => $categorias,
+                'ejecutivo' => $ejecutivo,
             ]);
     }
 
     public function create(CreateSocioRequest $request)
     {
+        $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
-        $idUser = Auth::user()->id;
-
+        $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));
+        $idUser = $ejecutivo[0]->id;
+        
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
@@ -87,15 +109,17 @@ class SociosController extends Controller
         }
         
     
-        return redirect('/socios/home')->withSuccess('Socio creado exitosamente!'); 
+        return redirect('/socios/asignarEjecutivo')->withSuccess('Socio creado exitosamente!'); 
     }
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)
     {
-
-        $imagen = $request->file('imagen');
-
-        $socio = Socio::create([
+        $ruta ='';
+        if ($request->file('imagen')) {
+           $imagen = $request->file('imagen');
+           $ruta = $imagen->store('socios','public');
+        }
+           $socio = Socio::create([
 
                     'persona_id'=> $persona->id,
                     'estado_civil'=> $request->input('estado_civil'),
@@ -104,8 +128,8 @@ class SociosController extends Controller
                     'user_id'=> $idUser,
                     'estado_id'=> 1,
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria, //1 es para Activo por defecto. 
-                    'urlImagen' => $imagen->store('socios','public'),
-            ]);
+                    'urlImagen' => $ruta,
+            ]);   
     }
 
     public function CrearPersonaAndSocio(CreateSocioRequest $request,$categoria,$idUser)
@@ -125,8 +149,12 @@ class SociosController extends Controller
             $NuevaPersona->save();
             
             $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
-            $imagen = $request->file('imagen');
 
+            $ruta ='';
+        if ($request->file('imagen')) {
+           $imagen = $request->file('imagen');
+           $ruta = $imagen->store('socios','public');
+        }
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
@@ -136,7 +164,7 @@ class SociosController extends Controller
                     'user_id'=> $idUser,
                     'estado_id'=> 1, //1 es para Activo por defecto
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria,
-                    'urlImagen' => $imagen->store('socios','public'),
+                    'urlImagen' => $ruta,
 
             ]);   
     }
@@ -332,7 +360,6 @@ class SociosController extends Controller
         }
         
     }
-
 
     public function showImagen(Socio $socio)
     {

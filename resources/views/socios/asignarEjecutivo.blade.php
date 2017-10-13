@@ -22,8 +22,12 @@
 @endif
 
 <div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
+  <div class="card-header">
+    
+    <label class="text-primary"> Filtro de Busqueda </label>
+    <div class="nav-item float-right">
+       <a class="btn btn-info btn-xs" href="/socios/index" ">Regresar</a>
+    </div>
   </div>
 
   <div class="card-block">
@@ -32,11 +36,11 @@
   
   <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
     <option selected value="0">Nombre de Usuario</option>
-    <option value="1">Nombre Completo</option>
+    <option value="1">Nombre o Apellido</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus onkeyup="filtrar()">
+        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: Usuario" type="text" name="valor" value="{{ old('valor') }}" required autofocus onkeyup="filtrar()">
   </label>
 
   </form>  
@@ -51,12 +55,12 @@
     </span>
     @endif  
 <!--_______________________________ Tabla _____________________________-->
-<form method="POST" action="#" >
+<form method="POST" action="/socios/home" >
   {{ csrf_field() }}
 <div class="card text-center mt-4">
   <div class="card-header">
-    <div class="card-tittle">Ejecutivo a asignar</div>
-    <div class="float-right">
+     <label class="text-primary"> Ejecutivos Registrados </label>
+    <div class="nav-item float-right">
        <button type="submit" class="btn btn-success btn-xs" style="color: white;">Siguiente</button>
     </div>
   </div>
@@ -68,11 +72,11 @@
 
  <div class="table-responsive  table-condensed">
         
-    <table WIDTH="100%" class="table table-responsive" >
+    <table id="table" WIDTH="100%" class="table table-responsive" >
         <thead>
             <tr>
-            <th class="text-center w-50">Nombre de usuario</th>
-            <th class="text-center">Nombre Completo</th>
+            <th class="text-center">Nombre de usuario</th>
+            <th class="text-center w-50">Nombre Completo</th>
             <th class="text-center">Cédula</th>
             <th class="text-center">Seleccion</th>
             </tr>
@@ -88,7 +92,7 @@
             <td class="info" > {{$usuario->cedula}} </td>
    
             <td class="info"> 
-              <input type="checkbox" name="{{$usuario->id}}" value="{{$usuario->id}}">
+              <input type="radio" name="radio" value="{{$usuario->id}}">
             </td>
         </tr>
 

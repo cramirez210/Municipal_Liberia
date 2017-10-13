@@ -37,6 +37,15 @@ class UsuariosController extends Controller
         ]);
     }
 
+    public function obtenerUsuariosEjecutivos()
+    {
+       return $usuarios = DB::table('users')
+        ->join('personas', 'users.persona_id', '=', 'personas.id')
+        ->join('roles','users.rol_id', '=', 'roles.id')
+        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+        ->where('users.rol_id',3)
+        ->get();
+    }
     public function listarTodosLosUsuarios()
     {
         $usuarios = DB::table('users')
@@ -205,7 +214,7 @@ class UsuariosController extends Controller
             ]);
     }
 
-     private function obtenerUsuarioPorCriterio($criterio, $valor)
+     public function obtenerUsuarioPorCriterio($criterio, $valor)
     {
         if ($criterio == 1) {
 

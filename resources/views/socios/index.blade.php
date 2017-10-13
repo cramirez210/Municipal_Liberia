@@ -75,7 +75,7 @@
 <div class="card-header">
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
-         <a class="nav-link text-primary" href="/socios/home">Nuevo Socios</a>
+         <a class="nav-link text-primary" href="/socios/asignarEjecutivo">Nuevo Socios</a>
       </li>
 
       <li class="nav-item dropdown mt-2">
