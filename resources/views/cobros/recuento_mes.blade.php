@@ -16,11 +16,11 @@
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-   <b>Recuento de cobros realizados del {{$fecha_inicio}} al {{$fecha_fin}}</b> 
+   <b>Recuento de cobros realizados del {{$desde}} al {{$hasta}}</b> 
   </div>
 
   <div class="card-block"> 
-  <p>Del {{$fecha_inicio}} al {{$fecha_fin}} se realizaron {{$cobros_fecha}} cobros, de los cuales {{$cobros_pendientes}} están pendientes de pago por parte de los ejecutivos, mientras que los restantes {{$cobros_pagos}} ya fueron cancelados por los respectivos encargados.</p>
+  <p>Del {{$desde}} al {{$hasta}} se realizaron {{$cobros_fecha}} cobros, de los cuales {{$cobros_pendientes}} están pendientes de pago por parte de los ejecutivos, mientras que los restantes {{$cobros_pagos}} ya fueron cancelados por los respectivos encargados.</p>
 </div>
 
   <div class="card-block"> 
@@ -49,12 +49,12 @@
         </tr>
         <tr>
             <td class="info"> 
-              <a href="/cobros/recuento/{{$fecha_inicio}}/{{$fecha_fin}}">Ver cobros efectuados</a> </td>
+              <a href="/cobros/recuento/{{$desde}}/{{$hasta}}">Ver cobros efectuados</a> </td>
             <td class="info">
-               <a href="/cobros/recuento/{{$fecha_inicio}}/{{$fecha_fin}}/4">Ver cobros cancelados</a> </td>
+               <a href="/cobros/recuento/{{$desde}}/{{$hasta}}/4">Ver cobros cancelados</a> </td>
                <td></td>
             <td class="info"> 
-              <a href="/cobros/recuento/{{$fecha_inicio}}/{{$fecha_fin}}/3">Ver cobros vigentes</a></td>
+              <a href="/cobros/recuento/{{$desde}}/{{$hasta}}/3">Ver cobros vigentes</a></td>
               <td></td>
         </tr>
 

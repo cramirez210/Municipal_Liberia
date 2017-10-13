@@ -13,6 +13,25 @@
 
   @endif  
 
+    @if(count($errors))
+<div> 
+<br>
+<span class="text-danger mt-4">
+        @if($errors->has('desde'))
+          <span class="form-control-feedback">
+            <strong>{{ $errors->first('desde') }}</strong>
+          </span>
+        @endif
+        <br>
+        @if($errors->has('hasta'))
+          <span class="form-control-feedback">
+            <strong>{{ $errors->first('hasta') }}</strong>
+          </span>
+        @endif
+    </span>
+</div>
+@endif
+
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 
 <div class="card text-center mt-4">
@@ -29,7 +48,7 @@
 
                             <div class="col-md-auto ml-3">
                               <div class="form-group">
-                                <input placeholder="Ejemplo: 1997-09-06" type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" required/>
+                                <input placeholder="Ejemplo: 1997-09-06" type="text" class="form-control" id="desde" name="desde" required/>
                               </div>
                               
                             </div>
@@ -37,7 +56,7 @@
 
                             <div class="col-md-auto ml-3">
                               <div class="form-group">
-                                <input placeholder="Ejemplo: 2010-09-06" type="text" class="form-control" id="fecha_fin" name="fecha_fin" required />
+                                <input placeholder="Ejemplo: 2010-09-06" type="text" class="form-control" id="hasta" name="hasta" required />
                               </div>
                               
                             </div>
@@ -48,8 +67,8 @@
         </span>
 
         <script>
-                    $('#fecha_inicio').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    $('#fecha_fin').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
+                    $('#desde').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
+                    $('#hasta').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
                     </script>
   </form>  
 

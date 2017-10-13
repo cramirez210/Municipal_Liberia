@@ -2,6 +2,16 @@
 
 @section('content')
 
+ @if(session('success')) 
+    <br>
+    <span class="text-success mt-4">
+        
+        <label class="alert alert-success">{{ session('success') }}</label>
+
+    </span>
+
+    @endif 
+    
 @if(count($errors))
 <div>
 <br>
@@ -49,17 +59,7 @@
 </div>
 </div>
 @endif
-
-
-    @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-    @endif  
+ 
 <!--_______________________________ Tabla _____________________________-->
 <form class="container-fluid mt-4 w-100" method="POST" action="/cobros/confirmar" enctype="multipart/form-data">
                         
@@ -69,6 +69,7 @@
 <div class="card-header">
     <div class="card-tittle text-primary"><b>Anular cobros</b></div>
     @if(count($cobros))
+    <input type="hidden" name="user_id" value="{{$cobros[0]->user_id}}">
     <div class="float-right mr-5">
       <button type="submit" class="btn btn-warning btn-xs" style="color: white;">
                       Continuar

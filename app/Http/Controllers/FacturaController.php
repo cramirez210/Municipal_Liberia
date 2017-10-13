@@ -319,48 +319,48 @@ class FacturaController extends Controller
 
          $this->validate(request(),
             [
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date',
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
             ]);
 
         $model_factura = new Factura;
-        $fecha_inicio = request('fecha_inicio');
-        $fecha_fin = request('fecha_fin');
+        $desde = request('desde');
+        $hasta = request('hasta');
 
-        $facturas_fecha = count($model_factura->ObtenerPorFecha($fecha_inicio, $fecha_fin));
+        $facturas_fecha = count($model_factura->ObtenerPorFecha($desde, $hasta));
 
         if($facturas_fecha > 0){
-        $facturas_pendientes = count($model_factura->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 3));
-        $facturas_pagas = count($model_factura->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 4));
+        $facturas_pendientes = count($model_factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3));
+        $facturas_pagas = count($model_factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4));
 
         $porcentaje_pagas = number_format(($facturas_pagas / $facturas_fecha) * 100, 2, '.', '');
         $porcentaje_pendientes = number_format(($facturas_pendientes / $facturas_fecha) * 100, 2, '.', '');
 
-            return view('facturas.recuento_mes', compact('fecha_inicio', 'fecha_fin', 'facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'porcentaje_pagas', 'porcentaje_pendientes'));
+            return view('facturas.recuento_mes', compact('desde', 'hasta', 'facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'porcentaje_pagas', 'porcentaje_pendientes'));
         }else{
             return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
         }
         
     }
 
-    public function ListarPorFecha($fecha_inicio, $fecha_fin){
+    public function ListarPorFecha($desde, $hasta){
 
         $model_factura = new Factura;
         $socios_controller = new SociosController;
 
-        $facturas = $model_factura->ObtenerPorFecha($fecha_inicio, $fecha_fin);
+        $facturas = $model_factura->ObtenerPorFecha($desde, $hasta);
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
         return view('facturas.list', compact('facturas'));
     }
 
-    public function ListarPorFechaEstado($fecha_inicio, $fecha_fin, $estado_id){
+    public function ListarPorFechaEstado($desde, $hasta, $estado_id){
 
         $model_factura =  new Factura;
         $socios_controller = new SociosController;
 
-        $facturas = $model_factura->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', $estado_id);
+        $facturas = $model_factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', $estado_id);
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
         

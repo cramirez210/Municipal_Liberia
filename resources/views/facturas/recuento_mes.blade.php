@@ -15,12 +15,12 @@
 
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    <b>Recuento de facturación del {{$fecha_inicio}} al {{$fecha_fin}}</b> 
+    <b>Recuento de facturación del {{$desde}} al {{$hasta}}</b> 
     <a href="{{URL::previous()}}" class="float-right mr-5">Regresar</a>
   </div>
 
   <div class="card-block"> 
-  <p>del {{$fecha_inicio}} al {{$fecha_fin}} se emitieron {{$facturas_fecha}} facturas, de las cuales {{$facturas_pendientes}} están pendientes de pago, mientras que las restantes {{$facturas_pagas}} ya fueron canceladas por los respectivos socios.</p>
+  <p>del {{$desde}} al {{$hasta}} se emitieron {{$facturas_fecha}} facturas, de las cuales {{$facturas_pendientes}} están pendientes de pago, mientras que las restantes {{$facturas_pagas}} ya fueron canceladas por los respectivos socios.</p>
 </div>
 
   <div class="card-block"> 
@@ -49,12 +49,12 @@
         </tr>
         <tr>
             <td class="info"> 
-              <a href="/facturas/recuento/{{$fecha_inicio}}/{{$fecha_fin}}">Ver facturas emitidas</a> </td>
+              <a href="/facturas/recuento/{{$desde}}/{{$hasta}}">Ver facturas emitidas</a> </td>
             <td class="info">
-               <a href="/facturas/recuento/{{$fecha_inicio}}/{{$fecha_fin}}/4">Ver facturas cobradas</a> </td>
+               <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/4">Ver facturas cobradas</a> </td>
                <td></td>
             <td class="info"> 
-              <a href="/facturas/recuento/{{$fecha_inicio}}/{{$fecha_fin}}/3">Ver facturas pendientes</a></td>
+              <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/3">Ver facturas pendientes</a></td>
               <td></td>
         </tr>
 

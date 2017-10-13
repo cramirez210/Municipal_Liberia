@@ -35,7 +35,10 @@ class CobroController extends Controller
 
         $cobros = $model_cobro->ObtenerPorCriterio('cobros.user_id', $user_id);
 
+        if(count($cobros))
         $user = $cobros[0];
+        else
+        $user = User::find($user_id);
 
         $cobros = $model_cobro->paginar($cobros);
         
@@ -59,7 +62,10 @@ class CobroController extends Controller
 
      $cobros = $model_cobro->ObtenerPorUsuarioEstado($user_id, $estado_id);
 
-     $user = $cobros[0];
+     if(count($cobros))
+        $user = $cobros[0];
+        else
+        $user = User::find($user_id);
 
      $cobros = $model_cobro->paginar($cobros);
         
@@ -105,7 +111,10 @@ class CobroController extends Controller
 
        $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
+       if($user)
        return $this->ListarPorUsuario($user->id);
+        else
+        return back()->withSuccess('El dato ingresado no coincide con ningún usuario');
 
     }
 
@@ -114,22 +123,29 @@ class CobroController extends Controller
     }
 
     public function recuento(){
-        $fecha_inicio = request('fecha_inicio');
-        $fecha_fin = request('fecha_fin');
+
+        $this->validate(request(),
+            [
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            ]);
+        
+        $desde = request('desde');
+        $hasta = request('hasta');
         $model_cobro = new Cobro;
 
-        $cobros_fecha = count($model_cobro->ObtenerPorFecha($fecha_inicio, $fecha_fin));
+        $cobros_fecha = count($model_cobro->ObtenerPorFecha($desde, $hasta));
 
         if($cobros_fecha > 0){
-         $cobros_pendientes = count($model_cobro->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 3));
-         $cobros_pagos = count($model_cobro->ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, 'facturas.estado_id', 4));
+         $cobros_pendientes = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3));
+         $cobros_pagos = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4));
 
          $porcentaje_pagos = number_format(($cobros_pagos / $cobros_fecha) * 100, 2, '.', '');
          $porcentaje_pendientes = number_format(($cobros_pendientes / $cobros_fecha) * 100, 2, '.', '');
 
-        return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'fecha_inicio', 'fecha_fin'));
+        return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'desde', 'hasta'));
         }else
-        return redirect('/cobros/recuento')->withSuccess('No se encontraron cobros en la fecha solicitada');
+        return back()->withSuccess('No se encontraron cobros en la fecha solicitada');
         
     }
 
@@ -152,7 +168,10 @@ class CobroController extends Controller
 
        $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
+       if($user)
        return $this->AnularPorUsuarioEstado($user->id, 3);
+        else
+            return back()->withSuccess('El dato ingresado no coincide con ningún usuario');
 
     }
 
@@ -180,8 +199,9 @@ class CobroController extends Controller
     public function confirmar(){
         $model_cobro = new Cobro;
 
-        $cobros = Input::except('_token');
+        $cobros = Input::except('_token', 'user_id');
 
+        if($cobros){
         $user = $model_cobro->select()
         ->where('facturas.id', head($cobros))
         ->first();
@@ -194,6 +214,11 @@ class CobroController extends Controller
         $fecha = Carbon::now()->format('Y-m-d');
 
         return view('cobros.confirmar', compact('cobros', 'user', 'monto', 'fecha'));
+        } else{
+            $user_id = request('user_id');
+
+            return redirect('/cobros/anular/'.$user_id.'/3')->withSuccess('Por favor seleccione los cobros que desea anular');
+        }
     }
 
     public function anular(){
