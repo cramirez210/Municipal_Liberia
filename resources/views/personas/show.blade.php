@@ -34,6 +34,10 @@
             <a class="dropdown-item text-danger" href="/usuario/estado/{{ $usuario->id }}">Inactivar</a>
             @endif
 
+
+         <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-success" href="/usuarios/socios/{{ $usuario->id }}">Ver socios relacionados</a>
+
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-info" href="/usuarios/home">Regresar</a>
         </div>

@@ -26,8 +26,8 @@
 
 </head>
 <body>
-    <div id="app" class="container">
-        <nav id="header" class="navbar navbar-light static-top navbar-toggleable-md bg-faded  "> 
+    <div id="app" class="">
+        <nav id="header" class="navbar navbar-light static-top navbar-toggleable-md bg-faded container-fluid "> 
           <!-- fixed-top -->
        
             <div class="container">
@@ -85,10 +85,25 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
-
+        
+<!--         
+          <div class="footer-bottom navbar navbar-light static-top navbar-toggleable-md bg-faded container-fluid ">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="text-xs-center">Universidad de Costa Rica. Informática Empresarial. Municipal Liberia</p>
+        </div>
+      </div>
     </div>
+  </div>
+ -->
+        <div class="container">
+            @yield('content')  
+
+        </div>
+
+                 
+        </div>
 
      <!-- Scripts -->
 
@@ -99,6 +114,9 @@
 
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
+
+
+
 
 </body>
 </html>
