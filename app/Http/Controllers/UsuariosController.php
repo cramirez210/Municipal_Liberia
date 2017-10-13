@@ -262,7 +262,6 @@ class UsuariosController extends Controller
             ]);
     }
 
-
      public function usuariosPorEstado($id)
    {
        $usuarios = DB::table('users')

@@ -52,9 +52,15 @@ class LoginController extends Controller
      {
         $this->validateLogin($request);
         $usuario = $this->encontrarUsuarioporNombre($request);
+        if ($usuario==null) 
+        {
+             return back()->withSuccess('El usuario o la contraseña ingresada es incorrecta');
+        }
+        else
+        {
+
         $estado = $usuario->estado;
         
-
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -75,13 +81,16 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);
+        return back()->withSuccess('El usuario o la contraseña ingresada es incorrecta');
+        }
+       
     }
 
      private function encontrarUsuarioporNombre(Request $request)
     {
-        return User::where('nombre_usuario',$request->nombre_usuario)->first();
+        $usuario = User::where('nombre_usuario',$request->nombre_usuario)->first();
+            return $usuario;
+        
     }
-
 
 }
