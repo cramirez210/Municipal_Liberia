@@ -91,12 +91,11 @@ class SociosController extends Controller
 
     public function create(CreateSocioRequest $request)
     {
-        //dd($request->all());
         $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));
         $idUser = $ejecutivo[0]->id;
-        //dd($idUser);
+        
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
@@ -115,10 +114,12 @@ class SociosController extends Controller
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)
     {
-
-        $imagen = $request->file('imagen');
-
-        $socio = Socio::create([
+        $ruta ='';
+        if ($request->file('imagen')) {
+           $imagen = $request->file('imagen');
+           $ruta = $imagen->store('socios','public');
+        }
+           $socio = Socio::create([
 
                     'persona_id'=> $persona->id,
                     'estado_civil'=> $request->input('estado_civil'),
@@ -127,8 +128,8 @@ class SociosController extends Controller
                     'user_id'=> $idUser,
                     'estado_id'=> 1,
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria, //1 es para Activo por defecto. 
-                    'urlImagen' => $imagen->store('socios','public'),
-            ]);
+                    'urlImagen' => $ruta,
+            ]);   
     }
 
     public function CrearPersonaAndSocio(CreateSocioRequest $request,$categoria,$idUser)
@@ -148,8 +149,12 @@ class SociosController extends Controller
             $NuevaPersona->save();
             
             $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
-            $imagen = $request->file('imagen');
 
+            $ruta ='';
+        if ($request->file('imagen')) {
+           $imagen = $request->file('imagen');
+           $ruta = $imagen->store('socios','public');
+        }
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
@@ -159,7 +164,7 @@ class SociosController extends Controller
                     'user_id'=> $idUser,
                     'estado_id'=> 1, //1 es para Activo por defecto
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria,
-                    'urlImagen' => $imagen->store('socios','public'),
+                    'urlImagen' => $ruta,
 
             ]);   
     }

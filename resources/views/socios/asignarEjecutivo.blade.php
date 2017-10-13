@@ -53,7 +53,6 @@
     <span class="text-success mt-4">  
         <label class="alert alert-success">{{ session('success') }}</label>
     </span>
-    <br>
     @endif  
 <!--_______________________________ Tabla _____________________________-->
 <form method="POST" action="/socios/home" >
