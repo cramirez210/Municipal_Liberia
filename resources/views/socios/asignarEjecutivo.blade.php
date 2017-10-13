@@ -48,7 +48,7 @@
     </span>
     @endif  
 <!--_______________________________ Tabla _____________________________-->
-<form method="POST" action="/socios/home" >
+<form method="GET" action="/socios/home" >
   {{ csrf_field() }}
 <div class="card text-center mt-4">
   <div class="card-header">
