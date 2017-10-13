@@ -44,7 +44,7 @@
   <form class="form col-md-6" method="POST" action="/facturas/recuento" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
-     <label class="col-md-auto form-control-label"><h4>Inicio</h4></label>
+     <label class="col-md-auto form-control-label"><h4>Desde</h4></label>
 
                             <div class="col-md-auto ml-3">
                               <div class="form-group">
@@ -52,7 +52,7 @@
                               </div>
                               
                             </div>
-    <label class="col-md-auto form-control-label mt-3"><h4>Fin</h4></label>
+    <label class="col-md-auto form-control-label mt-3"><h4>Hasta</h4></label>
 
                             <div class="col-md-auto ml-3">
                               <div class="form-group">

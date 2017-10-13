@@ -6,11 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\CreateFacturaRequest;
 use App\Http\Controllers\SociosController;
-use App\Http\Controllers\CobroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Factura;
 use App\Socio;
+use App\Cobro;
 use Carbon\Carbon;
 
 class Factura extends Model
@@ -48,6 +48,8 @@ class Factura extends Model
         $factura->estado_id = $estado_id;
 
         $factura->save();
+
+        return $factura;
     }
 
     public function PagarPendientes($facturas, $forma_pago){
@@ -56,15 +58,17 @@ class Factura extends Model
             $facturaBD = Factura::find($factura->id);
 
             $fecha = Carbon::now();
-            $cobro_controller = new CobroController;
+            $model_cobro = new Cobro;
 
             $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $factura->precio_categoria, $forma_pago, null, $factura->created_at, $fecha, 4);
 
-            $cobro_controller->GenerarCobroUsuario($factura->id, 3);
+            $model_cobro->GenerarCobroUsuario($factura->id, 3);
         }
     }
 
     public function PagarAdelantado($socio_id, $meses_cancelar, $forma_pago){
+
+        $model_cobro = new Cobro;
 
         $categoria = DB::table('socios')
                      ->join('categorias', 'socios.categoria_id', 'categorias.id')
@@ -84,7 +88,10 @@ class Factura extends Model
          $fecha = new Carbon($ultima_factura->created_at);
          $fecha->addMonth();
 
-         $this->store($factura, $socio_id, 1, $categoria->precio_categoria, $forma_pago, null, $fecha, Carbon::now(), 4);
+         $factura = $this->store($factura, $socio_id, 1, $categoria->precio_categoria, $forma_pago, null, $fecha, Carbon::now(), 4);
+
+
+         $model_cobro->GenerarCobroUsuario($factura->id, 3);
         }
     }
 

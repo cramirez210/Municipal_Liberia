@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFacturaRequest;
 use App\Http\Controllers\SociosController;
-use App\Http\Controllers\CobroController;
 use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Factura;
 use App\Socio;
+use App\Cobro;
 use Carbon\Carbon;
 
 class FacturaController extends Controller
@@ -106,7 +106,7 @@ class FacturaController extends Controller
         ->where('socios.id', $socio_id)
         ->first();
 
-        $var = array('meses_cancelados' => request('meses_cancelados'),
+        $var = array('meses_cancelados' => $meses_cancelados,
             'monto' => $meses_cancelados * $socio->precio_categoria,
             'fecha_pago' => $fecha,
             'forma_pago' => request('forma_pago'),
@@ -181,7 +181,7 @@ class FacturaController extends Controller
     public function update($id)
     {
         $model_factura = new Factura;
-        $cobro_controller = new CobroController;
+        $model_cobro = new Cobro;
 
     	$factura = Factura::find($id);
         $socio = Socio::find($factura->socio_id);
@@ -192,7 +192,7 @@ class FacturaController extends Controller
 
         $model_factura->store($factura, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, $factura->created_at, Carbon::now(), 4);
 
-        $cobro_controller->GenerarCobroUsuario($factura->id, 3);
+        $model_cobro->GenerarCobroUsuario($factura->id, 3);
 
 		 return redirect('/facturas/index')->withSuccess('Operación exitosa');
     }
@@ -383,7 +383,7 @@ class FacturaController extends Controller
     public function imprimir($id){
 
         $model_factura = new Factura;
-        $cobro_controller = new CobroController;
+        $model_cobro = new Cobro;
 
         $factura = Factura::find($id);
         $socio = Socio::find($factura->socio_id);
@@ -394,7 +394,7 @@ class FacturaController extends Controller
 
         $model_factura->store($factura, $socio->id, 1, $categoria->precio_categoria, $factura->forma_pago, null, $factura->created_at, $fecha_pago, 4);
 
-        $cobro_controller->GenerarCobroUsuario($factura->id, 3);
+        $model_cobro->GenerarCobroUsuario($factura->id, 3);
 
          return redirect('/facturas/imprimir')->withSuccess('Operación exitosa');
     }
