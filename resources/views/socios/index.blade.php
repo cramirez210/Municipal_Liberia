@@ -75,13 +75,16 @@
 <div class="card-header">
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
+         <label class="nav-link text-primary">Lista de Socios</label>
+      </li>
+      <li class="nav-item">
          <a class="nav-link text-primary" href="/socios/asignarEjecutivo">Nuevo Socios</a>
       </li>
 
       <li class="nav-item dropdown mt-2">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="/socios/listarPorEstado/1">Todos los Socios</a>
+        <a class="dropdown-item" href="/socios/listarTodos">Todos los Socios</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/socios/listarPorEstado/1">Socios Activos</a>
         <a class="dropdown-item" href="/socios/listarPorEstado/2">Socios Inactivos</a> 

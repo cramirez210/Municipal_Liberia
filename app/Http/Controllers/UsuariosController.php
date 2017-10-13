@@ -148,19 +148,15 @@ class UsuariosController extends Controller
      */
     public function show(User $user)
     {
-
         $socios = $user->socios;
         $sociosActivos = Socio::where("estado_id","=",1)->paginate(10);
         $sociosInactivos = Socio::where("estado_id","=",2)->paginate(10);
 
-        
         return view('usuarios.listarSociosDeUsuario', [
 
               'sociosActivos' => $sociosActivos,
-              'sociosInactivos' => $sociosInactivos,
-        
+              'sociosInactivos' => $sociosInactivos, 
           ]);
-
     }
 
     /**
@@ -261,7 +257,6 @@ class UsuariosController extends Controller
                 'usuarios' => $usuariosPaginados,
             ]);
     }
-
 
      public function usuariosPorEstado($id)
    {

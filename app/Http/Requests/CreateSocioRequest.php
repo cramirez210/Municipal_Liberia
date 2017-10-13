@@ -37,6 +37,7 @@ class CreateSocioRequest extends FormRequest
             'empresa' => ['required','max:25'],
             'estado_civil' => ['required'],
             'categoria_id' => ['required'],
+            'imagen' => ['image'],
 
         ];
     }

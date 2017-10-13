@@ -51,13 +51,13 @@
 <div class="card text-center mt-4">
   <div class="card-header">
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link text-primary" href="/usuarios/home">Usuarios
-        </a>
-      </li>
+
+
       <li class="nav-item">
         <a class="nav-link text-primary" href="/usuarios/showCreate">Nuevo usuario</a>
       </li>
+
+
       <li class="nav-item dropdown mt-2">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
@@ -67,8 +67,9 @@
              <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/usuarios/listarTodos">Todos los usuarios</a>
         </div>
-      
-    </li>
+      </li>
+
+
 
     </ul>
   </div>
@@ -102,11 +103,8 @@
             <td class="info" > {{$usuario->cedula}} </td>
    
             <td class="info"> 
-                <a href="socios/{{ $usuario->id }}" class="btn btn-success btn-xs col-md-auto">
-                <span class="glyphicon glyphicon-remove-circle"></span>Socios relacionados</a>
-
-                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs col-md-12 mt-1">
-                <span class="glyphicon glyphicon-remove-circle"></span>Mostrar usuario</a>
+                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-success btn-xs col-md-12 mt-1">
+                <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
             </td>
         </tr>
 
@@ -152,3 +150,4 @@
 Listar Usuarios
 
 @endsection
+

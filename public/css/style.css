@@ -1,9 +1,18 @@
-body
-     {
-        
-     }
 
-     #header
-     {
-        box-shadow: 8px 5px 3px  #888888;
-     }
+    #header
+    {
+        box-shadow: 0 5px 5px -5px #333;
+    }
+	.footer-bottom{
+		
+		/*box-shadow: 0 -5px 5px -5px #333;*/
+ 		padding: 9px;
+ 		position: absolute;
+  		bottom: 0;
+  		width: 100%;
+  		clear: both;
+ 	 	margin-top: 0px;
+  padding-top: 0px;
+  overflow: visible;
+  	 height: 65px;
+	}

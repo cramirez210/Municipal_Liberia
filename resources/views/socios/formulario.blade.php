@@ -259,9 +259,9 @@
                                 
                      <input type="file" class="form-control-file" name="imagen"> 
 
-                        @if ($errors->has('file'))
+                        @if ($errors->has('imagen'))
                             <span class="form-control-feedback">
-                                <strong>{{ $errors->first('file') }}</strong>
+                                <strong>{{ $errors->first('imagen') }}</strong>
                             </span>
                         @endif
                 </div>
@@ -280,7 +280,7 @@
                                 Registrar
                             </button>
 
-                            <a href="{{ URL::previous() }}" class="btn btn-info btn-xs ml-2">
+                            <a href="/socios/asignarEjecutivo" class="btn btn-info btn-xs ml-2">
                             <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
                 
                         </div>

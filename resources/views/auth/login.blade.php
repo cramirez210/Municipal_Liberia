@@ -14,7 +14,7 @@
                     <br>
                     <span class="text-success mt-4">
         
-                 <label class="alert alert-success">{{ session('success') }}</label>
+                 <label class="alert alert-danger">{{ session('success') }}</label>
 
                  </span>
 
