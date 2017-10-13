@@ -98,7 +98,7 @@ class SociosController extends Controller
 
     public function create(CreateSocioRequest $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));
@@ -109,15 +109,15 @@ class SociosController extends Controller
         if ($persona) {
             
             $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
-
+            return redirect('/socios/asignarEjecutivo')->withSuccess('Socio creado exitosamente!');
         } else {
 
             $this->CrearPersonaAndSocio($request,$categoria,$idUser);
-
+            return redirect('/socios/asignarEjecutivo')->withSuccess('Socio creado exitosamente!');
         }
         
     
-        return redirect('/socios/asignarEjecutivo')->withSuccess('Socio creado exitosamente!'); 
+        return redirect('/socios/home')->withSuccess('Socio creado exitosamente!');     
     }
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)

@@ -75,6 +75,9 @@
 <div class="card-header">
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
+         <label class="nav-link text-primary">Lista de Socios</label>
+      </li>
+      <li class="nav-item">
          <a class="nav-link text-primary" href="/socios/asignarEjecutivo">Nuevo Socios</a>
       </li>
 

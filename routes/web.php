@@ -125,7 +125,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/usuarios/listarTodos','UsuariosController@listarTodosLosUsuarios');
 
 	// Rutas del objeto socio.
-	Route::post('/socios/home', 'SociosController@home');
+	Route::get('/socios/home', 'SociosController@home');
 	Route::get('/socios/index', 'SociosController@index');
 	Route::get('/socios/show/{socio}','SociosController@show');
 	Route::get('/socios/listarPorEstado/{id}', 'SociosController@listarPorEstado');
