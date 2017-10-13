@@ -15,7 +15,7 @@ class AgragarUrlImagenATablaSocios extends Migration
     {
         Schema::table('socios', function (Blueprint $table) {
             //
-            $table->string('urlImagen')->default('default.jpg')->nullable();
+            $table->string('urlImagen')->nullable();
         });
     }
 
