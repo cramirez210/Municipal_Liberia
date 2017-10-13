@@ -13,8 +13,6 @@
 |
 */
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -22,13 +20,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () { return view('welcome'); });
 Route::get('/auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
 
+Route::get('/usuarios/showCreate','UsuariosController@showCreate');
+Route::post('/usuarios/create','UsuariosController@create');
 
 Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 	Route::get('/personas/editar/{user}','PersonasController@show_update');
 	Route::post('/personas/editar/{user}','PersonasController@update');
-	Route::get('/usuarios/showCreate','UsuariosController@showCreate');
-	Route::post('/usuarios/create','UsuariosController@create');
+	
 	Route::get('/usuario/estado/{user}','UsuariosController@cambiarEstado');
 	Route::get('/conf/index', 'ConfiguracionController@index');
 	Route::get('/roles/index', 'RolesController@index');

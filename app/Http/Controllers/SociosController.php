@@ -126,6 +126,8 @@ class SociosController extends Controller
         if ($request->file('imagen')) {
            $imagen = $request->file('imagen');
            $ruta = $imagen->store('socios','public');
+        }else{
+            
         }
            $socio = Socio::create([
 
