@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Estado;
 use App\Factura;
+use App\Http\Controllers\UsuariosController;
 use App\Http\Requests\CreateSocioRequest;
 use App\Persona;
 use App\Socio;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,22 +60,43 @@ class SociosController extends Controller
         );
     }
 
-    public function home()
+    public function asignarEjecutivo()
     {
+         $objeto = new UsuariosController;
+        $usuarios = $objeto->obtenerUsuariosEjecutivos();
+
+        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
+
+            return view('/socios/asignarEjecutivo', [
+                'usuarios' => $usuariosPaginados,
+            ]);
+    }
+
+
+    public function home(Request $request)
+    {
+        $objeto = new UsuariosController;
+        //$ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('radio'));
+        $ejecutivo = User::find($request->input('radio'));
         $estados = Estado::all();
         $categorias = Categoria::all();
 
-        return view('socios.create',[
+        return view('socios.create',
+            [
                 'estados' => $estados,
                 'categorias' => $categorias,
+                'ejecutivo' => $ejecutivo,
             ]);
     }
 
     public function create(CreateSocioRequest $request)
     {
+        //dd($request->all());
+        $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
-        $idUser = Auth::user()->id;
-
+        $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));
+        $idUser = $ejecutivo[0]->id;
+        //dd($idUser);
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
@@ -87,7 +110,7 @@ class SociosController extends Controller
         }
         
     
-        return redirect('/socios/home')->withSuccess('Socio creado exitosamente!'); 
+        return redirect('/socios/asignarEjecutivo')->withSuccess('Socio creado exitosamente!'); 
     }
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)
@@ -332,7 +355,6 @@ class SociosController extends Controller
         }
         
     }
-
 
     public function showImagen(Socio $socio)
     {

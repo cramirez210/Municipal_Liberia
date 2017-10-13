@@ -207,7 +207,7 @@
                     <select class="form-control" id="estadoCivilOption" name="estado_civil">
 
                         <option selected>Solteros</option>
-                        <option selected>Casados</option>
+                        <option >Casados</option>
                     </select>
 
                         @if ($errors->has('estado_civil'))
@@ -242,6 +242,15 @@
                 </div>
             </div>            
 
+<!--________________________________ Ejecutivo __________________________-->
+
+            <div class=" col-md-auto  form-group">
+                <label for="ejecutivo" class="col-md-8 form-control-label">Ejecutivo Encargado</label>
+
+             <div class="col-md-auto ml-5">
+                <input id="ejecutivo" type="text" class="form-control" name="ejecutivo" value="{{ $ejecutivo->nombre_usuario }}" readonly>
+             </div>
+            </div>
 <!--________________________________________ Foto  _________________________-->
             <div class=" col-md-auto  form-group{{ $errors->has('imagen') ? ' has-danger' : '' }}">
                 <label for="imagen" class="col-md-8 form-control-label">Fotografía</label>
@@ -267,7 +276,7 @@
 
                         <div class="row-fluid">
 
-                            <button type="submit" class="btn btn-warning btn-xs" style="color: white;">
+                            <button type="submit" class="btn btn-success btn-xs" style="color: white;">
                                 Registrar
                             </button>
 
