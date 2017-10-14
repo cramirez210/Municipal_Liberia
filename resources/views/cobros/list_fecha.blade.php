@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
 @if(session('success')) 
     <br>
     <span class="text-success mt-4">
@@ -19,7 +19,7 @@
 
   <div class="card-block">
 
-      @include('cobros.filtrar')
+  @include('cobros.filtrar')
 </div>
 </div>
 @endif
@@ -28,30 +28,11 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
-    <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link text-primary" href="/cobros/list">Listado de Cobros</a>
-      </li>
-  
-         <li class="nav-item dropdown " style="margin-left: 60%;">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="/cobros/list">Todas los cobros</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/cobros/list/3">Cobros pendientes</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/cobros/list/4">Cobros cancelados</a>
-        </div>
-    </li>
-    <li class="nav-item">
-      <div class="col-md-2 mr-2">
-        <a href="/cobros/index" class="btn btn-warning btn-md">
+      <div class="col-md-2 float-right mr-5">
+        <a href="/cobros/mostrar/recuento/{{$desde}}/{{$hasta}}" class="btn btn-warning btn-md">
            Regresar
         </a>
    </div>
-    </li>
-    </ul>
-    
   </div> 
 <div class="col-md-10 offset-md-1 mt-4 mr-4">
 

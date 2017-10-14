@@ -37,7 +37,7 @@
   </ul>
   <a class="list-group-item" href="/cobros/buscar/anular">Anular cobros de un usuario</a>
   <a href="/cobros/buscar" class="list-group-item">Buscar cobros de un ejecutivo específico</a>
-  <a href="/cobros/recuento" class="list-group-item">Recuento mensual de cobros</a>
+  <a href="/cobros/recuento" class="list-group-item">Reporte de cobros</a>
 </div>
 
 </div>

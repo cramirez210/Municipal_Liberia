@@ -16,7 +16,15 @@
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-   <b>Recuento de cobros realizados del {{$desde}} al {{$hasta}}</b> 
+    <div class="card-tittle">
+      <b>Recuento de cobros realizados del {{$desde}} al {{$hasta}}</b>
+    </div>
+    
+   <div class="col-md-2 ml-3 float-right">
+        <a href="/cobros/recuento" class="btn btn-warning btn-md">
+           Regresar
+        </a>
+   </div>
   </div>
 
   <div class="card-block"> 

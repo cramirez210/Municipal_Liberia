@@ -11,25 +11,6 @@
     </span>
 
     @endif 
-    
-@if(count($errors))
-<div>
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('valor'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('valor') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('Criterio'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('Criterio') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif
 
 @if(count($cobros))
    <div class="card text-center mt-4">
@@ -39,23 +20,7 @@
 
   <div class="card-block">
 
-  <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;"> 
-
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
-    <option selected value="1">Cedula</option>
-    <option value="2">Numero de Socio</option>
-  </select>
-
-  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
-
-        <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">Buscar !</button>
-        </span>
-
-  </label>
-  </form>  
-
+  @include('cobros.filtrar')
 </div>
 </div>
 @endif
@@ -84,7 +49,7 @@
 
  <div class="table-responsive">
         
-    <table class="table table-hover ">
+    <table id="table" class="table table-hover ">
         <thead>
             <tr>
             <th class="text-center">N° de factura</th>
@@ -100,7 +65,7 @@
          @forelse($cobros as $cobro)
                        
         <tr>
-            <td class="info"> {{ $cobro->factura_id }} </td>
+            <td class="info"> <a href="/facturas/show/id/{{$cobro->factura_id}}">{{ $cobro->factura_id }}</a></td>
             <td class="info"> {{ $cobro->primer_nombre }} {{ $cobro->primer_apellido }} {{ $cobro->segundo_apellido }} </td>
             <td class="info"> {{ $cobro->fecha_factura }} </td>
             <td class="info"> {{ $cobro->created_at }} </td>

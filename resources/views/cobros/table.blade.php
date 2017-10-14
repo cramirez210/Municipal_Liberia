@@ -1,7 +1,7 @@
 
  <div class="table-responsive">
         
-    <table class="table table-hover ">
+    <table id="table" class="table table-hover ">
         <thead>
             <tr>
             <th class="text-center">N° de factura</th>

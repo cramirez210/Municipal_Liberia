@@ -39,7 +39,7 @@
     </li>
   </ul>
   <a href="/facturas/buscar" class="list-group-item">Buscar facturas de un socio específico</a>
-  <a href="/facturas/recuento" class="list-group-item">Buscar recuento mensual de facturación</a>
+  <a href="/facturas/recuento" class="list-group-item">Reporte de facturación</a>
 </div>
 
 </div>

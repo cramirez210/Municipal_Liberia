@@ -2,24 +2,6 @@
 
 @section('content')
 
-@if(count($errors))
-<div>
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('valor'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('valor') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('Criterio'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('Criterio') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif
     @if(session('success')) 
     <br>
     <span class="text-success mt-4">
@@ -37,19 +19,14 @@
   </div>
 
   <div class="card-block">
-
-     <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
-    {{ csrf_field() }}
-
-  <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+  <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
     <option value="5">Fecha</option>
   </select>
 
-  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
+  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: 1.8%;">
+        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
   </label>
-  </form>  
 
 </div>
 </div>
@@ -75,8 +52,12 @@
             <a class="dropdown-item" href="/facturas/{{$socio->socio_id}}/4">Facturas canceladas</a>
         </div>
     </li>
-    <li class="nav-item">
-      <a href="/facturas/index" class="nav-link text-primary">Menú</a>
+   <li class="nav-item">
+      <div class="col-md-2 mr-5">
+        <a href="/facturas/buscar" class="btn btn-warning btn-md">
+           Regresar
+        </a>
+   </div>
     </li>
     </ul>
     

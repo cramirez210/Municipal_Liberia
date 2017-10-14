@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Cobro;
+use App\User;
 use Carbon\Carbon;
 
 class CobroController extends Controller
@@ -65,7 +66,10 @@ class CobroController extends Controller
      if(count($cobros))
         $user = $cobros[0];
         else
-        $user = User::find($user_id);
+        $user = DB::table('users')
+                ->select('users.id as user_id', 'users.nombre_usuario')
+                ->where('users.id', $user_id)
+                ->first();
 
      $cobros = $model_cobro->paginar($cobros);
         
@@ -112,7 +116,7 @@ class CobroController extends Controller
        $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        if($user)
-       return $this->ListarPorUsuario($user->id);
+       return redirect('/cobros/user/'.$user->id);
         else
         return back()->withSuccess('El dato ingresado no coincide con ningún usuario');
 
@@ -132,6 +136,13 @@ class CobroController extends Controller
         
         $desde = request('desde');
         $hasta = request('hasta');
+        
+        return redirect('/cobros/mostrar/recuento/'.$desde.'/'.$hasta);
+    }
+
+
+    public function MostrarRecuento($desde, $hasta){
+
         $model_cobro = new Cobro;
 
         $cobros_fecha = count($model_cobro->ObtenerPorFecha($desde, $hasta));
@@ -146,7 +157,6 @@ class CobroController extends Controller
         return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'desde', 'hasta'));
         }else
         return back()->withSuccess('No se encontraron cobros en la fecha solicitada');
-        
     }
 
     public function BuscarParaAnular(){
@@ -169,31 +179,31 @@ class CobroController extends Controller
        $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        if($user)
-       return $this->AnularPorUsuarioEstado($user->id, 3);
+       return redirect('/cobros/anular/'.$user->id.'/3');
         else
             return back()->withSuccess('El dato ingresado no coincide con ningún usuario');
 
     }
 
-    public function ListarPorFecha($mes, $anio){
+    public function ListarPorFecha($desde, $hasta){
         $model_cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorFecha($mes, $anio);
+        $cobros = $model_cobro->ObtenerPorFecha($desde, $hasta);
 
         $cobros = $model_cobro->paginar($cobros);
         
-        return view('cobros.list', compact('cobros'));
+        return view('cobros.list_fecha', compact('cobros', 'desde', 'hasta'));
     }
 
-    public function ListarPorFechaEstado($mes, $anio, $estado_id){
+    public function ListarPorFechaEstado($desde, $hasta, $estado_id){
 
         $model_cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorFechaCriterio($mes, $anio, 'facturas.estado_id', $estado_id);
+        $cobros = $model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', $estado_id);
 
         $cobros = $model_cobro->paginar($cobros);
         
-        return view('cobros.list', compact('cobros'));
+        return view('cobros.list_fecha', compact('cobros', 'desde', 'hasta'));
     }
 
     public function confirmar(){

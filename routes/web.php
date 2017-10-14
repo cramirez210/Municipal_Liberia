@@ -39,13 +39,14 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	// Cobros
 	Route::get('/cobros/recuento', 'CobroController@BuscarRecuento');
 	Route::post('/cobros/recuento','CobroController@recuento');
-	Route::get('/cobros/recuento/{mes}/{anio}', 'CobroController@ListarPorFecha');
-	Route::get('/cobros/recuento/{mes}/{anio}/{estado}', 'CobroController@ListarPorFechaEstado');
+	Route::get('/cobros/mostrar/recuento/{desde}/{hasta}', 'CobroController@MostrarRecuento');
+	Route::get('/cobros/recuento/{desde}/{hasta}', 'CobroController@ListarPorFecha');
+	Route::get('/cobros/recuento/{desde}/{hasta}/{estado}', 'CobroController@ListarPorFechaEstado');
 	Route::get('/facturas/recuento', 'FacturaController@BuscarRecuento');
 	Route::post('/facturas/recuento','FacturaController@recuento');
-	Route::get('/facturas/recuento/show/m', 'FacturaController@MostrarRecuento');
-	Route::get('/facturas/recuento/{mes}/{anio}', 'FacturaController@ListarPorFecha');
-	Route::get('/facturas/recuento/{mes}/{anio}/{estado}', 'FacturaController@ListarPorFechaEstado');
+	Route::get('/facturas/mostrar/recuento/{desde}/{hasta}', 'FacturaController@MostrarRecuento');
+	Route::get('/facturas/recuento/{desde}/{hasta}', 'FacturaController@ListarPorFecha');
+	Route::get('/facturas/recuento/{desde}/{hasta}/{estado}', 'FacturaController@ListarPorFechaEstado');
 
 	//Facturas
 

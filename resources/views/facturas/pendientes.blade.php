@@ -2,24 +2,14 @@
 
 @section('content')
 
-@if(count($errors))
-<div>
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('valor'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('valor') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('Criterio'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('Criterio') }}</strong>
-          </span>
-        @endif
+@if(session('success')) 
+    <br>
+    <span class="text-success mt-4">
+        
+        <label class="alert alert-success">{{ session('success') }}</label>
+
     </span>
-</div>
-@endif
+@endif  
 
 @if(count($facturas))
   <div class="card text-center mt-4">
@@ -29,34 +19,19 @@
 
   <div class="card-block">
 
-     <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
-    {{ csrf_field() }}
-
-  <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+  <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
     <option value="1">Nombre</option>
     <option value="2">Fecha</option>
   </select>
 
-  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
+  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: 1.8%;">
+        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
   </label>
-  </form>  
-
 </div>
 </div>
 @endif
 
-
-    @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-    @endif  
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">

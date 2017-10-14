@@ -35,6 +35,7 @@ class FacturaController extends Controller
             ],
             [
             'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            'valor.numeric'=>'El campo de búsqueda solo admite números.',
             ]);
 
         $model_factura = new Factura;
@@ -174,8 +175,6 @@ class FacturaController extends Controller
         } else{
         return redirect('/facturas/index')->withSuccess('No hay socios registrados en el sistema');
         }
-
-        
             }
 
     public function update($id)
@@ -296,6 +295,7 @@ class FacturaController extends Controller
             ],
             [
             'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            'valor.numeric'=>'El campo de búsqueda solo admite números.',
             ]);
 
        $criterio = $request->input('Criterio');
@@ -323,9 +323,16 @@ class FacturaController extends Controller
             'hasta' => 'required|date',
             ]);
 
-        $model_factura = new Factura;
         $desde = request('desde');
         $hasta = request('hasta');
+
+         
+        return redirect('/facturas/mostrar/recuento/'.$desde.'/'.$hasta);
+    }
+
+    public function MostrarRecuento($desde, $hasta){
+
+        $model_factura = new Factura;
 
         $facturas_fecha = count($model_factura->ObtenerPorFecha($desde, $hasta));
 
@@ -340,7 +347,6 @@ class FacturaController extends Controller
         }else{
             return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
         }
-        
     }
 
     public function ListarPorFecha($desde, $hasta){
@@ -352,7 +358,7 @@ class FacturaController extends Controller
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
-        return view('facturas.list', compact('facturas'));
+        return view('facturas.list_fecha', compact('facturas', 'desde', 'hasta'));
     }
 
     public function ListarPorFechaEstado($desde, $hasta, $estado_id){
@@ -364,7 +370,7 @@ class FacturaController extends Controller
 
         $facturas = $socios_controller->paginate($facturas->toArray(),5);
         
-        return view('facturas.list', compact('facturas'));
+        return view('facturas.list_fecha', compact('facturas', 'desde', 'hasta'));
     }
 
     public function facturas_pendientes(){

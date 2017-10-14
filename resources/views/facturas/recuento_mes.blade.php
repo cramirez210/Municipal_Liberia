@@ -15,8 +15,12 @@
 
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    <b>Recuento de facturación del {{$desde}} al {{$hasta}}</b> 
-    <a href="{{URL::previous()}}" class="float-right mr-5">Regresar</a>
+    <b>Recuento de facturación del {{$desde}} al {{$hasta}}</b>
+      <div class="col-md-2 ml-3 float-right">
+        <a href="/facturas/recuento" class="btn btn-warning btn-md">
+           Regresar
+        </a>
+   </div>
   </div>
 
   <div class="card-block"> 
@@ -57,7 +61,6 @@
               <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/3">Ver facturas pendientes</a></td>
               <td></td>
         </tr>
-
     </tbody>
     </table>  
 
