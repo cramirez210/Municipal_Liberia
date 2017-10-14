@@ -128,7 +128,6 @@ class UsuariosController extends Controller
          return Role::where('rol',$request['rol'])->first();
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
