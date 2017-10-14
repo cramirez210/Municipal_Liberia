@@ -35,6 +35,12 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/role/show/{role}', 'RolesController@show');
 	Route::post('/role/update/{role}', 'RolesController@update');
 
+	//Descuentos
+	Route::get('/descuentos/create', 'DescuentoController@create');
+	Route::post('/descuentos/store', 'DescuentoController@store');
+	Route::get('/descuentos/show/{id}', 'DescuentoController@show');
+	Route::post('/descuentos/update/{id}', 'DescuentoController@update');
+
 	// Cobros
 	Route::get('/cobros/recuento', 'CobroController@BuscarRecuento');
 	Route::post('/cobros/recuento','CobroController@recuento');

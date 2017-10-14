@@ -32,7 +32,7 @@
     <div class="card">
       <div class="card-block">
         <h3 class="card-title">Estados...</h3>
-        <p class="card-text">Los estados son una parte importante para en todo el funcionamiento del sistema y NO DEBEN ser manipulados sin la devida autorizacion.</p>
+        <p class="card-text">Los estados son una parte importante para todo el funcionamiento del sistema y NO DEBEN ser manipulados sin la devida autorizacion.</p>
         <a href="/estados/home" class="btn btn-primary">Administrar Estados</a>
       </div>
     </div>
@@ -40,9 +40,9 @@
   <div class="col-sm-6 mt-4">
     <div class="card">
       <div class="card-block">
-        <h3 class="card-title">En Construccion</h3>
-        <p class="card-text">Area en matenimiento</p>
-        <a href="/" class="btn btn-primary">Ir a Inicio</a>
+        <h3 class="card-title">Descuentos</h3>
+        <p class="card-text">Los descuentos son una parte importante para la facturación, ya que en estos se establecen los montos a rebajar en el pago de facturas según la cantidad de meses que cancele un socio.</p>
+        <a href="/descuentos/create" class="btn btn-primary">Administrar descuentos</a>
       </div>
     </div>
   </div>

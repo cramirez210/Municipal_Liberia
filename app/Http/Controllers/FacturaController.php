@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Factura;
 use App\Socio;
 use App\Cobro;
+use App\Descuento;
 use Carbon\Carbon;
 
 class FacturaController extends Controller
@@ -48,7 +49,6 @@ class FacturaController extends Controller
 
             $facturas_pendientes = count($model_factura->ObtenerPorSocioEstado($socio->socio_id, 3));
 
-            if($facturas_pendientes > 0){
                 $socio = $model_factura->select_socio()
                         ->where('socios.id', $socio->socio_id)
                         ->first();
@@ -59,10 +59,7 @@ class FacturaController extends Controller
                             ->sum('monto');
 
 
-        return view('facturas.create', compact('socio', 'facturas_pendientes', 'monto'));
-    }else{
-        return redirect('/facturas/pagar/buscar')->withSuccess('El socio no tiene facturas pendientes.');
-    }      
+        return view('facturas.create', compact('socio', 'facturas_pendientes', 'monto'));     
         }else{
         return redirect('/facturas/pagar/buscar')->withSuccess('El dato ingresado no corrresponde a ninguno de nuestros socios.');
         }
@@ -85,10 +82,10 @@ class FacturaController extends Controller
 
            $meses_pendientes = count($facturas);
 
-           $meses_cancelados = $meses_cancelados - $meses_pendientes;
+           $meses_cancelar = $meses_cancelados - $meses_pendientes;
 
            if($meses_cancelados > 0)
-            $model_factura->PagarAdelantado($socio_id, $meses_cancelados, $forma_pago);
+            $model_factura->PagarAdelantado($socio_id, $meses_cancelar, $meses_cancelados, $forma_pago);
 
         return redirect('/facturas/index')->withSuccess('Operación exitosa');
     }
@@ -96,6 +93,7 @@ class FacturaController extends Controller
     public function ConfirmarPago($socio_id){
 
         $model_factura = new Factura;
+        $descuento = new Descuento;
 
         $meses_cancelados = request('meses_cancelados');
         $user_id = Auth::user()->id;
@@ -107,8 +105,14 @@ class FacturaController extends Controller
         ->where('socios.id', $socio_id)
         ->first();
 
+        $monto_descuento = $descuento->ObtenerMontoDescuento($socio->categoria_id, $meses_cancelados);
+        $monto = $meses_cancelados*$socio->precio_categoria;
+
+        if ($meses_cancelados == 6 || $meses_cancelados == 12) 
+            $monto = $monto - ($monto_descuento*$meses_cancelados);
+
         $var = array('meses_cancelados' => $meses_cancelados,
-            'monto' => $meses_cancelados * $socio->precio_categoria,
+            'monto' => $monto,
             'fecha_pago' => $fecha,
             'forma_pago' => request('forma_pago'),
             'nombre_usuario' => $user->nombre_usuario

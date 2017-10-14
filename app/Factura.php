@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Factura;
 use App\Socio;
 use App\Cobro;
+use App\Descuento;
 use Carbon\Carbon;
 
 class Factura extends Model
@@ -66,15 +67,18 @@ class Factura extends Model
         }
     }
 
-    public function PagarAdelantado($socio_id, $meses_cancelar, $forma_pago){
+    public function PagarAdelantado($socio_id, $meses_cancelar, $meses_cancelados, $forma_pago){
 
         $model_cobro = new Cobro;
+        $descuento = new Descuento;
 
         $categoria = DB::table('socios')
                      ->join('categorias', 'socios.categoria_id', 'categorias.id')
-                     ->select('categorias.precio_categoria')
+                     ->select('categorias.id', 'categorias.precio_categoria')
                      ->where('socios.id', $socio_id)
                      ->first();
+
+        $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelados);
 
         for($i = 0; $i < $meses_cancelar; $i++){
 
@@ -87,8 +91,9 @@ class Factura extends Model
          
          $fecha = new Carbon($ultima_factura->created_at);
          $fecha->addMonth();
+         $monto = $categoria->precio_categoria - $monto_descuento;
 
-         $factura = $this->store($factura, $socio_id, 1, $categoria->precio_categoria, $forma_pago, null, $fecha, Carbon::now(), 4);
+         $factura = $this->store($factura, $socio_id, 1, $monto, $forma_pago, null, $fecha, Carbon::now(), 4);
 
 
          $model_cobro->GenerarCobroUsuario($factura->id, 3);
@@ -103,7 +108,7 @@ class Factura extends Model
             ->join('facturas', 'facturas.socio_id', 'socios.id')
             ->join('users', 'facturas.user_id', 'users.id')
             ->join('estados', 'facturas.estado_id', 'estados.id')
-            ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.*', 'categorias.categoria', 'categorias.precio_categoria', 'users.nombre_usuario', 'estados.estado')
+            ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.*', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria', 'users.nombre_usuario', 'estados.estado')
             ->orderBy('facturas.id');
     }
 
@@ -111,7 +116,7 @@ class Factura extends Model
         return DB::table('socios')
            ->join('personas', 'socios.persona_id', 'personas.id')
            ->join('categorias', 'socios.categoria_id', 'categorias.id')
-         ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'categorias.precio_categoria')
+         ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria')
          ->orderBy('socios.id');
     }
 
