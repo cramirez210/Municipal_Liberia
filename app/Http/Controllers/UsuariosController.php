@@ -32,6 +32,9 @@ class UsuariosController extends Controller
 
     public function index()
     {
+        // throw new Exception("Error Processing Request");
+        
+
         return view('usuarios.listar',[
             'usuarios' => null
         ]);
