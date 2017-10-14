@@ -60,7 +60,7 @@
             <label for="imagen" class="col-md-8 rm-control-label">Fotografía de socio</label>
 
                 <div class=" col-md-auto ml-5">
-                      <a href="/socios/showImagen/{{ $socio->id }}"> <img class="img-thumbnail" src="{{ Storage::disk('public')->url($socio->urlImagen) }}"> </a>
+                      <a href="/socios/showImagen/{{ $socio->id }}"> <img width="100px" class="img-thumbnail" src="/storage/{{ $socio->urlImagen }}"> </a>
                 </div>
             </div>
       
