@@ -132,55 +132,6 @@ class FacturaController extends Controller
         return view('facturas.edit', compact('factura'));
     }
 
-    public function GenerarFacturas(){
-        
-        $model_factura = new Factura;
-
-        $socios_controller = new SociosController;
-        $socios_activos = $socios_controller->sociosPorEstado(1);
-
-        if(count($socios_activos) > 0){
-
-            foreach ($socios_activos as $socio) {
-
-            $facturas_pendientes = $model_factura->ObtenerPorSocioEstado($socio->id, 3);
-
-            if(count($facturas_pendientes) == 3){
-
-                $model_factura->InactivarSocio($socio->id);
-            }
-            else{
-
-         $factura = new Factura; 
-         $ultima_factura = DB::table('facturas')
-                   ->where('facturas.socio_id', $socio->id)
-                   ->latest()
-                   ->first();    
-
-         $categoria = $model_factura->ObtenerCategoriaDeSocio($socio);
-
-         if($ultima_factura == null){      
-
-         $model_factura->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, Carbon::now(), null, 3);
-         }
-         else{
-         
-         $fecha_ultima_factura = new Carbon($ultima_factura->created_at);
-         $fecha_actual = Carbon::now();
-
-         if($fecha_ultima_factura->month < $fecha_actual->month){
-
-         $model_factura->store($factura, $socio->id, 1, $categoria->precio_categoria, '', null, Carbon::now(), null, 3);
-         }
-         }
-            }
-        }
-        return redirect('/facturas/index')->withSuccess('Operación exitosa');
-        } else{
-        return redirect('/facturas/index')->withSuccess('No hay socios registrados en el sistema');
-        }
-            }
-
     public function update($id)
     {
         $model_factura = new Factura;

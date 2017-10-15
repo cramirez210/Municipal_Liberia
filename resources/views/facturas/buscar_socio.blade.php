@@ -42,7 +42,7 @@
 
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/facturas/create" style="margin-left: 29%;"> 
+  <form class="form-inline" method="GET" action="/facturas/create" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
@@ -55,7 +55,6 @@
   </label>
   
         <span class="col-md-9 ml-1">
-
         <button class="btn btn-info d-inline-block ml-4 mt-3" type="submit">Buscar</button>
         <a href="/facturas/index" class="btn btn-warning d-inline-block mt-3 mr-5">Cancelar</a>
         

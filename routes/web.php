@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/socios/update/{socio}','SociosController@update');
 	// Rutas del objeto factura
 	Route::get('/facturas/index', 'FacturaController@index');
-	Route::post('/facturas/create', 'FacturaController@create');
+	Route::get('/facturas/create', 'FacturaController@create');
 	Route::post('/facturas/confirmar/{id}', 'FacturaController@ConfirmarPago');
 	Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
 	Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio');
