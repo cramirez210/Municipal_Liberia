@@ -32,6 +32,9 @@ class UsuariosController extends Controller
 
     public function index()
     {
+        // throw new Exception("Error Processing Request");
+        
+
         return view('usuarios.listar',[
             'usuarios' => null
         ]);
@@ -127,7 +130,6 @@ class UsuariosController extends Controller
     {
          return Role::where('rol',$request['rol'])->first();
     }
-
 
     /**
      * Store a newly created resource in storage.

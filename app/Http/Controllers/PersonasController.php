@@ -77,7 +77,7 @@ class PersonasController extends Controller
 
      private function FindRoleByName($data)
     {
-        return Role::where('rol',$data)->first();
+        return Role::where('rol',$data)->firstOrFail();
     }
     
 }
