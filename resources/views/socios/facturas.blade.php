@@ -54,7 +54,7 @@
     </li>
    <li class="nav-item">
       <div class="col-md-2 mr-5">
-        <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
+        <a href="/facturas/buscar" class="btn btn-warning btn-md">
            Regresar
         </a>
    </div>

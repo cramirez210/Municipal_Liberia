@@ -16,7 +16,7 @@
               <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header text-center text-primary">
                   <b>Pago de factura</b> 
-                  <a href="{{URL::previous()}}" class="float-right mr-5">Regresar</a>
+                  <a href="/facturas/pagar/buscar" class="btn btn-warning btn-md float-right mr-5">Regresar</a>
                 </div>
 
               <div class="card-block">
@@ -29,7 +29,7 @@
                         {{ csrf_field() }}
 
             <div class="float-left" style="background-color: ;
-              width: 50%; margin-left: 10%; height: 330px">
+              width: 50%; margin-left: 10%; height: 320px">
 
 <!--_________________________________Socio_______________________________________-->
                <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
@@ -52,13 +52,17 @@
               <div class="col-md-7 mt-3">
                 <b>Mensualidades pendientes:</b> 
                 {{$facturas_pendientes}}
-                <a class="col-md-4" href="/facturas/{{$socio->socio_id}}/3">ver lista de pendientes</a>
+                @if($facturas_pendientes)
+                <a class="col-md-4" href="/facturas/pendientes/{{$socio->socio_id}}/3">ver lista de pendientes</a>
+                @endif
               </div>
                
+               @if($facturas_pendientes)
                <div class="col-md-6 mt-3">
                  <b>Monto total a pagar:</b>
                  {{$monto}} 
                </div>
+               @endif
                
                
               <div class="card-block">

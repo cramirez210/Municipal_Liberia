@@ -63,13 +63,14 @@
               </div>
 
               <div class="col-md-15 mt-3">
-                <b>Fecha de factura:</b> 
-                {{$factura->created_at}}
+                <b>Periodo:</b> 
+                {{date('m-Y', strtotime($factura->created_at))}}
               </div>
 
+              @if($factura->estado_id == 4)
               <div class="col-md-15 mt-3">
                 <b>Fecha de pago:</b> 
-                {{$factura->fecha_pago}}
+                {{date('d-m-Y', strtotime($factura->fecha_pago))}}
               </div>
 
               <div class="col-md-15 mt-3">
@@ -81,6 +82,12 @@
                 <b>Cobrador:</b> 
                 {{$factura->nombre_usuario}}
               </div>
+              @else
+              <div class="col-md-15 mt-3">
+                <b>Estado:</b> 
+                {{$factura->estado}}
+              </div>
+              @endif
 </div>
 
 

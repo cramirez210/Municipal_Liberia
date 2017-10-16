@@ -52,13 +52,13 @@
                   <h4 class="card-title col-md-8 mt-2">Información de cobro</h4>
 
               <div class="col-md-15 mt-3">
-                <b>Fecha de factura:</b> 
-                {{$cobro->fecha_factura}}
+                <b>Periodo:</b> 
+                {{date('m-Y', strtotime($cobro->fecha_factura))}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Fecha de cobro:</b> 
-                {{$cobro->created_at}}
+                {{date('d-m-Y', strtotime($cobro->created_at))}}
               </div>
 
               <div class="col-md-15 mt-3">

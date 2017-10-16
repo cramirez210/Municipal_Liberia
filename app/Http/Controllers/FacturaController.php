@@ -61,7 +61,7 @@ class FacturaController extends Controller
 
         return view('facturas.create', compact('socio', 'facturas_pendientes', 'monto'));     
         }else{
-        return redirect('/facturas/pagar/buscar')->withSuccess('El dato ingresado no corrresponde a ninguno de nuestros socios.');
+        return redirect('/facturas/pagar/buscar')->withSuccess('El dato ingresado no corresponde a ninguno de nuestros socios.');
         }
     }
 
@@ -78,7 +78,7 @@ class FacturaController extends Controller
            ->limit($meses_cancelados)
            ->get();
 
-           $model_factura->PagarPendientes($facturas, $forma_pago);
+           $model_factura->PagarPendientes($facturas, $forma_pago, $meses_cancelados);
 
            $meses_pendientes = count($facturas);
 
@@ -232,6 +232,20 @@ class FacturaController extends Controller
             return view('socios.facturas', compact('facturas', 'socio'));
     }
 
+    }
+
+    public function ListarPendientesSocio($socio_id, $estado_id){
+
+     $model_factura = new Factura;
+     $socios_controller = new SociosController;
+
+     $facturas = $model_factura->ObtenerPorSocioEstado($socio_id,$estado_id);
+
+     $facturas = $socios_controller->paginate($facturas->toArray(),5);
+    
+     $socio = $facturas[0];
+
+            return view('socios.facturas_pendientes', compact('facturas', 'socio'));
     }
 
     public function BuscarPorSocio(){

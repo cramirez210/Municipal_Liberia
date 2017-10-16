@@ -15,8 +15,16 @@
 
               <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header text-center text-primary">
-                  <b>Pago de factura</b>
-                  <a href="/facturas/index" class="float-right mr-5">Cancelar</a>
+                  <b>Confirmar pago</b>
+                  <ul class="nav nav-pills card-header-pills float-right">
+                  <li class="nav-item">
+                  <div class="col-md-2 mr-3">
+                  <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
+                      Regresar
+                  </a>
+             </div>
+              </li>
+              </ul>
                 </div>
 
              <div class="card-block">

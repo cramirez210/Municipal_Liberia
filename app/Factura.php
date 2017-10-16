@@ -53,15 +53,20 @@ class Factura extends Model
         return $factura;
     }
 
-    public function PagarPendientes($facturas, $forma_pago){
+    public function PagarPendientes($facturas, $forma_pago, $meses_cancelados){
+
+        $descuento = new Descuento;
+
+        $monto_descuento =  $descuento->ObtenerMontoDescuento($facturas[0]->categoria_id, $meses_cancelados);
 
         foreach ($facturas as $factura) {
             $facturaBD = Factura::find($factura->id);
 
             $fecha = Carbon::now();
             $model_cobro = new Cobro;
+            $monto = $factura->precio_categoria - $monto_descuento;
 
-            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $factura->precio_categoria, $forma_pago, null, $factura->created_at, $fecha, 4);
+            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $monto, $forma_pago, null, $factura->created_at, $fecha, 4);
 
             $model_cobro->GenerarCobroUsuario($factura->id, 3);
         }

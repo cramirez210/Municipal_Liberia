@@ -54,8 +54,8 @@
             <tr>
             <th class="text-center">N° de factura</th>
             <th class="text-center">Usuario</th>
-            <th class="text-center">Fecha factura</th>
-            <th class="text-center">Fecha cobro</th>
+            <th class="text-center">Fecha de factura</th>
+            <th class="text-center">Fecha de cobro</th>
             <th class="text-center">Monto</th>
             <th class="text-center">Seleccionar</th>
             </tr>
@@ -67,8 +67,8 @@
         <tr>
             <td class="info"> <a href="/facturas/show/id/{{$cobro->factura_id}}">{{ $cobro->factura_id }}</a></td>
             <td class="info"> {{ $cobro->primer_nombre }} {{ $cobro->primer_apellido }} {{ $cobro->segundo_apellido }} </td>
-            <td class="info"> {{ $cobro->fecha_factura }} </td>
-            <td class="info"> {{ $cobro->created_at }} </td>
+            <td class="info"> {{ date('d-m-Y', strtotime($cobro->fecha_factura)) }} </td>
+            <td class="info"> {{ date('d-m-Y', strtotime($cobro->created_at)) }} </td>
             <td class="info"> {{ $cobro->monto }} </td>
             <td class="warning"> 
               <input type="checkbox" value="{{$cobro->factura_id}}" name="{{$cobro->factura_id}}">

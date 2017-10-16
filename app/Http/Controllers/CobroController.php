@@ -148,8 +148,8 @@ class CobroController extends Controller
         $cobros_fecha = count($model_cobro->ObtenerPorFecha($desde, $hasta));
 
         if($cobros_fecha > 0){
-         $cobros_pendientes = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3));
-         $cobros_pagos = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4));
+         $cobros_pendientes = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 3));
+         $cobros_pagos = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 4));
 
          $porcentaje_pagos = number_format(($cobros_pagos / $cobros_fecha) * 100, 2, '.', '');
          $porcentaje_pendientes = number_format(($cobros_pendientes / $cobros_fecha) * 100, 2, '.', '');
@@ -199,7 +199,7 @@ class CobroController extends Controller
 
         $model_cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', $estado_id);
+        $cobros = $model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', $estado_id);
 
         $cobros = $model_cobro->paginar($cobros);
         

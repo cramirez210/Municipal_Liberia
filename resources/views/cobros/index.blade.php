@@ -23,6 +23,7 @@
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
+  <a class="list-group-item" href="/cobros/buscar/anular">Anular cobros de un usuario</a>
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
@@ -35,7 +36,6 @@
         </div>
     </li>
   </ul>
-  <a class="list-group-item" href="/cobros/buscar/anular">Anular cobros de un usuario</a>
   <a href="/cobros/buscar" class="list-group-item">Buscar cobros de un ejecutivo específico</a>
   <a href="/cobros/recuento" class="list-group-item">Reporte de cobros</a>
 </div>
