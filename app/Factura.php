@@ -57,7 +57,11 @@ class Factura extends Model
 
         $descuento = new Descuento;
 
-        $monto_descuento =  $descuento->ObtenerMontoDescuento($facturas[0]->categoria_id, $meses_cancelados);
+if ($meses_cancelados == 6 || $meses_cancelados == 12)
+   $monto_descuento =  $descuento->ObtenerMontoDescuento($facturas[0]->categoria_id, $meses_cancelados);
+ else
+$monto_descuento = 0;
+        
 
         foreach ($facturas as $factura) {
             $facturaBD = Factura::find($factura->id);
@@ -83,7 +87,10 @@ class Factura extends Model
                      ->where('socios.id', $socio_id)
                      ->first();
 
-        $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelados);
+       if ($meses_cancelados == 6 || $meses_cancelados == 12)
+   $monto_descuento =  $descuento->ObtenerMontoDescuento($facturas[0]->categoria_id, $meses_cancelados);
+ else
+$monto_descuento = 0;
 
         for($i = 0; $i < $meses_cancelar; $i++){
 
@@ -94,8 +101,14 @@ class Factura extends Model
 
          $factura = new Factura;       
          
+         if ($ultima_factura == null) {
+             $fecha = Carbon::now();
+         }else{
          $fecha = new Carbon($ultima_factura->created_at);
          $fecha->addMonth();
+         }
+         
+
          $monto = $categoria->precio_categoria - $monto_descuento;
 
          $factura = $this->store($factura, $socio_id, 1, $monto, $forma_pago, null, $fecha, Carbon::now(), 4);

@@ -86,8 +86,8 @@
             </div>
         </nav>
         
-<!--         
-          <div class="footer-bottom navbar navbar-light static-top navbar-toggleable-md bg-faded container-fluid ">
+         
+    <!--       <div class="footer-bottom navbar navbar-light static-top navbar-toggleable-md bg-faded container-fluid ">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
@@ -95,8 +95,8 @@
         </div>
       </div>
     </div>
-  </div>
- -->
+  </div> -->
+ 
         <div class="container">
             @yield('content')  
 

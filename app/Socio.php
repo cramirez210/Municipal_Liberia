@@ -29,14 +29,15 @@ class Socio extends Model
     	return $this->belongsTo('App\Categoria');
     }
     // Obtener el usuario del socio
-    public function usuario()
-    {
-    	return $this->hasOne('App\User');
-    }
 
     public function usuarios()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    public function usuario()
+    {
+        return $this->hasOne('App\User');
     }
     // Obtener el estado del socio
     public function estado()

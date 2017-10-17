@@ -135,6 +135,16 @@
             </div>
 
 
+<!--_______________________________ Cedula  ______________________________-->
+
+
+            <div class=" col-md-auto  form-group">
+                <label for="ejecutivo" class="col-md-4 form-control-label">Ejecutivo a cargo</label>
+
+                <div class="col-md-auto ml-5">
+                    <input id="ejecutivo" type="text" class="form-control" name="ejecutivo" value="{{ $persona->ejecutivo }}" readonly>
+                </div>
+            </div>
 
 
 

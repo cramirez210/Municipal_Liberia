@@ -41,15 +41,17 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role','rol_id');
     }
 
-    public function socio()
-    {
-        return $this->belongsTo('App\Socio');
-    }
     //Listar Socios de un Usuario
     public function socios()
     {
         return $this->hasMany('App\Socio');
     }
+
+    public function socio()
+    {
+        return $this->belongsTo('App\User');
+    }
+    
     public function estado()
     {
         return $this->belongsTo('App\Estado');

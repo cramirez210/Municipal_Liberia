@@ -198,6 +198,9 @@ class SociosController extends Controller
         $persona = $socio->persona;
         $categoria = $socio->categoria;
         $estado = $socio->estado;
+        // $ejecutivo = $socio->usuarios;
+
+        // dd($ejecutivo);
 
 
         return view('socios.show',
