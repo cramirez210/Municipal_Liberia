@@ -134,10 +134,9 @@
                 </div>
             </div>
 
-
 <!--_______________________________ Cedula  ______________________________-->
 
-
+<!-- 
             <div class=" col-md-auto  form-group">
                 <label for="ejecutivo" class="col-md-4 form-control-label">Ejecutivo a cargo</label>
 
@@ -146,9 +145,7 @@
                 </div>
             </div>
 
-
-
-
+ -->
 
     </div>
   

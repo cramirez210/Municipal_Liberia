@@ -78,14 +78,14 @@ class FacturaController extends Controller
            ->limit($meses_cancelados)
            ->get();
 
-           $model_factura->PagarPendientes($facturas, $forma_pago, $meses_cancelados);
+           $model_factura->PagarPendientes($facturas, $socio_id, $forma_pago, $meses_cancelados);
 
            $meses_pendientes = count($facturas);
 
            $meses_cancelar = $meses_cancelados - $meses_pendientes;
 
            if($meses_cancelados > 0)
-            $model_factura->PagarAdelantado($socio_id, $meses_cancelar, $meses_cancelados, $forma_pago);
+            $model_factura->PagarAdelantado($facturas, $socio_id, $meses_cancelar, $meses_cancelados, $forma_pago);
 
         return redirect('/facturas/index')->withSuccess('Operación exitosa');
     }

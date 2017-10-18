@@ -53,12 +53,18 @@ class Factura extends Model
         return $factura;
     }
 
-    public function PagarPendientes($facturas, $forma_pago, $meses_cancelados){
+    public function PagarPendientes($facturas, $socio_id, $forma_pago, $meses_cancelados){
 
         $descuento = new Descuento;
 
+        $categoria = DB::table('socios')
+                     ->join('categorias', 'socios.categoria_id', 'categorias.id')
+                     ->select('categorias.id', 'categorias.precio_categoria')
+                     ->where('socios.id', $socio_id)
+                     ->first();
+
 if ($meses_cancelados == 6 || $meses_cancelados == 12)
-   $monto_descuento =  $descuento->ObtenerMontoDescuento($facturas[0]->categoria_id, $meses_cancelados);
+   $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelados);
  else
 $monto_descuento = 0;
         
@@ -76,7 +82,7 @@ $monto_descuento = 0;
         }
     }
 
-    public function PagarAdelantado($socio_id, $meses_cancelar, $meses_cancelados, $forma_pago){
+    public function PagarAdelantado($facturas, $socio_id, $meses_cancelar, $meses_cancelados, $forma_pago){
 
         $model_cobro = new Cobro;
         $descuento = new Descuento;
@@ -88,7 +94,7 @@ $monto_descuento = 0;
                      ->first();
 
        if ($meses_cancelados == 6 || $meses_cancelados == 12)
-   $monto_descuento =  $descuento->ObtenerMontoDescuento($facturas[0]->categoria_id, $meses_cancelados);
+   $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelados);
  else
 $monto_descuento = 0;
 
@@ -120,14 +126,16 @@ $monto_descuento = 0;
 
     public function select(){
 
-        return DB::table('socios')
+        return DB::table('facturas')
+            ->join('socios', 'facturas.socio_id', 'socios.id')
             ->join('personas', 'socios.persona_id', 'personas.id')
             ->join('categorias', 'socios.categoria_id', 'categorias.id')
-            ->join('facturas', 'facturas.socio_id', 'socios.id')
             ->join('users', 'facturas.user_id', 'users.id')
             ->join('estados', 'facturas.estado_id', 'estados.id')
             ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.*', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria', 'users.nombre_usuario', 'estados.estado')
             ->orderBy('facturas.id');
+
+
     }
 
     public function select_socio(){
