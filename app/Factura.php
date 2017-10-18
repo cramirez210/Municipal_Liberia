@@ -57,16 +57,7 @@ class Factura extends Model
 
         $descuento = new Descuento;
 
-        $categoria = DB::table('socios')
-                     ->join('categorias', 'socios.categoria_id', 'categorias.id')
-                     ->select('categorias.id', 'categorias.precio_categoria')
-                     ->where('socios.id', $socio_id)
-                     ->first();
-
-if ($meses_cancelados == 6 || $meses_cancelados == 12)
-   $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelados);
- else
-$monto_descuento = 0;
+        $categoria = $this->ObtenerCategoriaDeSocio($socio_id);
         
 
         foreach ($facturas as $factura) {
@@ -74,36 +65,28 @@ $monto_descuento = 0;
 
             $fecha = Carbon::now();
             $model_cobro = new Cobro;
-            $monto = $factura->precio_categoria - $monto_descuento;
 
-            $this->store($facturaBD, $factura->socio_id, $factura->meses_cancelados, $monto, $forma_pago, null, $factura->created_at, $fecha, 4);
+            $this->store(
+                $facturaBD, $factura->socio_id, $factura->meses_cancelados, 
+                $categoria->precio_categoria, $forma_pago, null, $factura->created_at, $fecha, 4
+            );
 
             $model_cobro->GenerarCobroUsuario($factura->id, 3);
         }
     }
 
-    public function PagarAdelantado($facturas, $socio_id, $meses_cancelar, $meses_cancelados, $forma_pago){
+    public function PagarAdelantado($socio_id, $meses_cancelar, $forma_pago){
 
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
         $descuento = new Descuento;
 
-        $categoria = DB::table('socios')
-                     ->join('categorias', 'socios.categoria_id', 'categorias.id')
-                     ->select('categorias.id', 'categorias.precio_categoria')
-                     ->where('socios.id', $socio_id)
-                     ->first();
-
-       if ($meses_cancelados == 6 || $meses_cancelados == 12)
-   $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelados);
- else
-$monto_descuento = 0;
+        $categoria = $this->ObtenerCategoriaDeSocio($socio_id);
+        $monto_descuento =  $descuento->ObtenerMontoDescuento($categoria->id, $meses_cancelar);
 
         for($i = 0; $i < $meses_cancelar; $i++){
 
         $ultima_factura = DB::table('facturas')
-                   ->where('facturas.socio_id', $socio_id)
-                   ->latest()
-                   ->first();
+                   ->where('facturas.socio_id', $socio_id)->latest()->first();
 
          $factura = new Factura;       
          
@@ -113,14 +96,12 @@ $monto_descuento = 0;
          $fecha = new Carbon($ultima_factura->created_at);
          $fecha->addMonth();
          }
-         
 
          $monto = $categoria->precio_categoria - $monto_descuento;
 
          $factura = $this->store($factura, $socio_id, 1, $monto, $forma_pago, null, $fecha, Carbon::now(), 4);
 
-
-         $model_cobro->GenerarCobroUsuario($factura->id, 3);
+         $cobro->GenerarCobroUsuario($factura->id, 3);
         }
     }
 
@@ -149,25 +130,24 @@ $monto_descuento = 0;
     public function ObtenerPorCriterio($columna, $valor)
     {
             $facturas = $this->select()
-            ->where($columna, $valor)
-            ->get();
+            ->where($columna, $valor);
 
         return $facturas;
     }
 
     public function ObtenerPorId($id){
 
-        $factura = $this->ObtenerPorCriterio('facturas.id', $id);
+        $factura = $this->ObtenerPorCriterio('facturas.id', $id)
+                   ->first();
 
-        return $factura[0];
+        return $factura;
     }
 
     public function ObtenerPorSocioEstado($socio_id, $estado_id){
 
            $facturas = $this->select()
             ->where('facturas.socio_id', $socio_id)
-            ->whereIn('facturas.estado_id', [$estado_id])
-            ->get();
+            ->whereIn('facturas.estado_id', [$estado_id]);
 
         return $facturas;
     }
@@ -175,8 +155,7 @@ $monto_descuento = 0;
     public function ObtenerPorFecha($fecha_inicio, $fecha_fin){
      
      $facturas = $this->select()
-            ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin))
-            ->get();
+            ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin));
 
         return $facturas;   
     }
@@ -187,8 +166,7 @@ $monto_descuento = 0;
     
          $facturas = $select
             ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin))
-            ->where($columna, $valor)
-            ->get();
+            ->where($columna, $valor);
 
         return $facturas;   
     }
@@ -216,10 +194,11 @@ $monto_descuento = 0;
                 $socio->save();
     }
 
-    public function ObtenerCategoriaDeSocio($socio){
+    public function ObtenerCategoriaDeSocio($id){
         return DB::table('categorias')
-         ->select('precio_categoria')
-         ->where('categorias.id', $socio->categoria_id)
+         ->join('socios', 'socios.categoria_id', 'categorias.id')
+         ->select('categorias.id', 'precio_categoria')
+         ->where('socios.id', $id)
          ->first();
     }
 }

@@ -55,6 +55,7 @@
                 @if($facturas_pendientes)
                 <a class="col-md-4" href="/facturas/pendientes/{{$socio->socio_id}}/3">ver lista de pendientes</a>
                 @endif
+                <input type="hidden" name="pendientes" value="{{$facturas_pendientes}}">
               </div>
                
                @if($facturas_pendientes)

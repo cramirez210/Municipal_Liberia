@@ -21,7 +21,7 @@ class Descuento extends Model
 
         $monto_descuento = 0;
 
-        if($meses_cancelar == 6)
+        if($meses_cancelar >= 6 && $meses_cancelar < 12)
             $monto_descuento = $descuento->semestral;
         elseif ($meses_cancelar == 12)
             $monto_descuento = $descuento->anual;

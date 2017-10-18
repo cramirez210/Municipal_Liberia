@@ -23,9 +23,7 @@ class CobroController extends Controller
         $model_cobro = new Cobro;
 
         $cobros = $model_cobro->select()
-                  ->get();
-
-        $cobros = $model_cobro->paginar($cobros);
+                  ->paginate(1);
 
         return view('cobros.list', compact('cobros'));
     }
