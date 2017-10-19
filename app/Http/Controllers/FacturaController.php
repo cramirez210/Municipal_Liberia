@@ -201,12 +201,12 @@ class FacturaController extends Controller
 
     public function ListarPorSocioEstado($socio_id, $estado_id){
 
-     $model_factura = new Factura;
+     $factura = new Factura;
 
-     $facturas = $model_factura->ObtenerPorSocioEstado($socio_id,$estado_id)
+     $facturas = $factura->ObtenerPorSocioEstado($socio_id,$estado_id)
                  ->paginate(5);
         
-     $socio = $model_factura->select_socio()
+     $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
             ->first();
 
@@ -215,16 +215,39 @@ class FacturaController extends Controller
 
     public function ListarPendientesSocio($socio_id, $estado_id){
 
-     $model_factura = new Factura;
+     $factura = new Factura;
 
-     $facturas = $model_factura->ObtenerPorSocioEstado($socio_id, $estado_id)
+     $facturas = $factura->ObtenerPorSocioEstado($socio_id, $estado_id)
                  ->paginate(5);
     
-     $socio = $model_factura->select_socio()
+     $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
             ->first();
 
             return view('socios.facturas_pendientes', compact('facturas', 'socio'));
+    }
+
+    public function ListarSociosMorosos(){
+
+        $factura = new Factura;
+
+        $morosos = $factura->ObtenerSociosMorosos();
+
+        return view ('facturas.morosos', compact('morosos', 'factura'));
+    }
+
+    public function MostrarMorosidadSocio($socio_id){
+
+        $factura = new Factura;
+
+        $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
+
+        $pendientes_socio = DB::table('facturas')
+                            ->where('facturas.socio_id', $socio_id)
+                            ->where('facturas.estado_id', 3)->get();
+
+        return view('socio_moroso', compact('factura', 'pendientes_socio'))
+
     }
 
     public function BuscarPorSocio(){
@@ -293,6 +316,35 @@ class FacturaController extends Controller
         }else{
             return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
         }
+    }
+
+    public function ConsultarMorosidad(){
+        return view('facturas.buscar_morosidad');
+    }
+
+    public function BuscarMoroso(){
+
+        $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|numeric|max:999999999',
+            ],
+            [
+            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            'valor.numeric'=>'El campo de búsqueda solo admite números.',
+            ]);
+
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $socio = $factura->ObtenerSocioPorCriterio($criterio, $valor);
+
+       if($socio!=null)
+       
+       return redirect('/facturas/socio/moroso/'.$socio->socio_id);
+       else
+        return redirect('/facturas/buscar_morosidad')->withSuccess('No se ha encontrado al socio');
     }
 
     public function ListarPorFecha($desde, $hasta){

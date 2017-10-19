@@ -186,6 +186,17 @@ class Factura extends Model
         return $socio;
     }
 
+    public function ObtenerSociosMorosos(){
+
+          return DB::table('facturas')
+                    ->join('socios', 'facturas.socio_id', 'socios.id')
+                    ->join('personas', 'socios.persona_id', 'personas.id')
+                    ->select('socios.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono')
+                    ->distinct()
+                    ->where('facturas.estado_id', 3)
+                    ->get();
+    }
+
     public function InactivarSocio($id){
 
         $socio = Socio::find($id);

@@ -57,7 +57,8 @@ class Facturas extends Command
 
             foreach ($socios_activos as $socio) {
 
-            $facturas_pendientes = $model_factura->ObtenerPorSocioEstado($socio->id, 3);
+            $facturas_pendientes = $model_factura->ObtenerPorSocioEstado($socio->id, 3)
+                                    ->get();
 
             if(count($facturas_pendientes) == 3){
 
@@ -71,7 +72,7 @@ class Facturas extends Command
                    ->latest()
                    ->first();    
 
-         $categoria = $model_factura->ObtenerCategoriaDeSocio($socio);
+         $categoria = $model_factura->ObtenerCategoriaDeSocio($socio->id);
 
          if($ultima_factura == null){      
 
