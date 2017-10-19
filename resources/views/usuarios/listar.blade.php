@@ -60,12 +60,28 @@
 
       <li class="nav-item dropdown mt-2">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="/usuarios/listarPorEstado/1">Usuarios Activos</a>
-         <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/usuarios/listarPorEstado/2">Usuarios Inactivos</a>
-             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/usuarios/listarTodos">Todos los usuarios</a>
+          <a class="dropdown-item" href="/usuarios/listarTodos">Todos los usuarios</a>
+            <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/usuarios/listarPorEstado/1">Usuarios Activos</a>
+            <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/usuarios/listarPorEstado/2">Usuarios Inactivos</a>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-submenu" style="">  
+                <a id="subRoles" tabindex="-1" href="#" style="">Roles</a>
+                <ul class="dropdown-menu">
+                 
+                  <li><a id="subRoles" tabindex="-1" href="/usuarios/listarPorRole/1">Administrador</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a  id="subRoles" href="/usuarios/listarPorRole/2">Estándar</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a id="subRoles" href="/usuarios/listarPorRole/3">Ejecutivo</a></li>
+             
+                </ul>
+            </div>
+            
+
         </div>
       </li>
 
@@ -88,6 +104,7 @@
             <th class="text-center">Nombre</th>
             <th class="text-center w-50">Apellidos</th>
             <th class="text-center">Cédula</th>
+            <th class="text-center">Rol</th>
             <th class="text-center">Opciones</th>
             </tr>
         </thead>
@@ -101,6 +118,7 @@
             <td class="info" > {{$usuario->primer_nombre}} {{$usuario->segundo_nombre}} </td>
             <td class="info" > {{$usuario->primer_apellido}} {{$usuario->segundo_apellido}} </td>
             <td class="info" > {{$usuario->cedula}} </td>
+            <td class="info" >  {{$usuario->rol}} </td>
    
             <td class="info"> 
                 <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-success btn-xs col-md-12 mt-1">
