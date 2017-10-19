@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Socio extends Model
 {
@@ -43,5 +44,17 @@ class Socio extends Model
     public function estado()
     {
     	return $this->belongsTo('App\Estado');
+    }
+
+    public function select()
+    {
+        return DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
+            ->join('users', 'socios.user_id', '=', 'users.id')
+            ->join('estados', 'socios.estado_id', '=', 'estados.id')
+            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
+            ->orderBy('socios.id');
+
     }
 }

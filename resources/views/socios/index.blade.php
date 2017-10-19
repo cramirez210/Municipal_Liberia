@@ -161,7 +161,7 @@
     </div>
 
     <div class="card-footer text-muted">
-        Se encontraron {{ count($socios) }} resultados. 
+        Se encontraron {{ $resultados }} resultados. 
 
     </div>
 </div>
