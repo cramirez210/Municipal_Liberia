@@ -39,8 +39,7 @@ class Cobro extends Model
     public function ObtenerPorCriterio($columna, $valor)
     {
             $cobros = $this->select()
-            ->where($columna, $valor)
-            ->get();
+            ->where($columna, $valor);
 
         return $cobros;
     }
@@ -48,8 +47,7 @@ class Cobro extends Model
     public function ObtenerPorUsuarioEstado($user_id, $estado_id){
     	$cobros = $this->select()
             ->where('cobros.user_id', $user_id)
-            ->whereIn('cobros.estado_id', [$estado_id])
-            ->get();
+            ->whereIn('cobros.estado_id', [$estado_id]);
 
         return $cobros;
     }
@@ -73,8 +71,7 @@ class Cobro extends Model
 
     public function ObtenerPorFecha($fecha_inicio, $fecha_fin){
      $cobros = $this->select()
-            ->whereBetween('cobros.created_at', array($fecha_inicio, $fecha_fin))
-            ->get();
+            ->whereBetween('cobros.created_at', array($fecha_inicio, $fecha_fin));
 
         return $cobros;   
     }
@@ -82,17 +79,8 @@ class Cobro extends Model
     public function ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, $columna, $valor){
      $cobros = $this->select()
             ->whereBetween('cobros.created_at', array($fecha_inicio, $fecha_fin))
-            ->where($columna, $valor)
-            ->get();
+            ->where($columna, $valor);
 
         return $cobros;   
-    }
-
-    public function paginar($cobros){
-    	$socios_controller = new SociosController;
-
-    	$cobros = $socios_controller->paginate($cobros->toArray(),5);
-
-    	return $cobros;
     }
 }

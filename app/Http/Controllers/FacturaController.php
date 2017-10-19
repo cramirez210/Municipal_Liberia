@@ -167,11 +167,11 @@ class FacturaController extends Controller
 
     public function list(){
 
-        $model_factura = new Factura;
+        $factura = new Factura;
 
-        $facturas = $model_factura->select()
+        $facturas = $factura->select()
             ->paginate(5);
-        
+
         return view('facturas.list', compact('facturas'));
     }
 

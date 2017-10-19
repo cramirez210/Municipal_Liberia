@@ -20,56 +20,44 @@ class CobroController extends Controller
 
     public function list()
     {
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros = $model_cobro->select()
-                  ->paginate(1);
+        $cobros = $cobro->select()
+                  ->paginate(5);
 
         return view('cobros.list', compact('cobros'));
     }
 
     public function ListarPorUsuario($user_id)
     {
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorCriterio('cobros.user_id', $user_id);
+        $cobros = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id)
+                    ->paginate(5);
 
-        if(count($cobros))
-        $user = $cobros[0];
-        else
         $user = User::find($user_id);
-
-        $cobros = $model_cobro->paginar($cobros);
         
         return view('usuarios.cobros', compact('cobros', 'user'));
     }
 
         public function ListarPorEstado($estado_id)
     {
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id);
-
-        $cobros = $model_cobro->paginar($cobros);
+        $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id)
+                    ->paginate(5);
         
         return view('cobros.list', compact('cobros'));
     }
 
     public function ListarPorUsuarioEstado($user_id, $estado_id)
     {
-     $model_cobro = new Cobro;
+     $cobro = new Cobro;
 
-     $cobros = $model_cobro->ObtenerPorUsuarioEstado($user_id, $estado_id);
+     $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
+                ->paginate(5);
 
-     if(count($cobros))
-        $user = $cobros[0];
-        else
-        $user = DB::table('users')
-                ->select('users.id as user_id', 'users.nombre_usuario')
-                ->where('users.id', $user_id)
-                ->first();
-
-     $cobros = $model_cobro->paginar($cobros);
+     $user = User::find($user_id);
         
      return view('usuarios.cobros', compact('cobros', 'user'));
 
@@ -77,18 +65,20 @@ class CobroController extends Controller
 
      public function AnularPorEstado($estado_id)
     {
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id);
+        $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id)
+                    ->get();
         
         return view('cobros.anular', compact('cobros'));
     }
 
     public function AnularPorUsuarioEstado($user_id, $estado_id)
     {
-     $model_cobro = new Cobro;
+     $cobro = new Cobro;
 
-     $cobros = $model_cobro->ObtenerPorUsuarioEstado($user_id, $estado_id);
+     $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
+                ->get();
         
      return view('cobros.anular', compact('cobros'));
 
@@ -109,9 +99,9 @@ class CobroController extends Controller
        $criterio = $request->input('Criterio');
        $valor = $request->input('valor');
 
-       $model_cobro = new Cobro;
+       $cobro = new Cobro;
 
-       $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        if($user)
        return redirect('/cobros/user/'.$user->id);
@@ -141,13 +131,16 @@ class CobroController extends Controller
 
     public function MostrarRecuento($desde, $hasta){
 
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros_fecha = count($model_cobro->ObtenerPorFecha($desde, $hasta));
+        $cobros_fecha = count($cobro->ObtenerPorFecha($desde, $hasta)
+                                ->get());
 
         if($cobros_fecha > 0){
-         $cobros_pendientes = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 3));
-         $cobros_pagos = count($model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 4));
+         $cobros_pendientes = count($cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 3)
+                            ->get());
+         $cobros_pagos = count($cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 4)
+                            ->get());
 
          $porcentaje_pagos = number_format(($cobros_pagos / $cobros_fecha) * 100, 2, '.', '');
          $porcentaje_pendientes = number_format(($cobros_pendientes / $cobros_fecha) * 100, 2, '.', '');
@@ -172,9 +165,9 @@ class CobroController extends Controller
        $criterio = $request->input('Criterio');
        $valor = $request->input('valor');
 
-       $model_cobro = new Cobro;
+       $cobro = new Cobro;
 
-       $user = $model_cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        if($user)
        return redirect('/cobros/anular/'.$user->id.'/3');
@@ -184,33 +177,31 @@ class CobroController extends Controller
     }
 
     public function ListarPorFecha($desde, $hasta){
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorFecha($desde, $hasta);
-
-        $cobros = $model_cobro->paginar($cobros);
+        $cobros = $cobro->ObtenerPorFecha($desde, $hasta)
+                    ->paginate(5);
         
         return view('cobros.list_fecha', compact('cobros', 'desde', 'hasta'));
     }
 
     public function ListarPorFechaEstado($desde, $hasta, $estado_id){
 
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobros = $model_cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', $estado_id);
-
-        $cobros = $model_cobro->paginar($cobros);
+        $cobros = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', $estado_id)
+                    ->paginate(5);
         
         return view('cobros.list_fecha', compact('cobros', 'desde', 'hasta'));
     }
 
     public function confirmar(){
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
         $cobros = Input::except('_token', 'user_id');
 
         if($cobros){
-        $user = $model_cobro->select()
+        $user = $cobro->select()
         ->where('facturas.id', head($cobros))
         ->first();
 
@@ -243,12 +234,12 @@ class CobroController extends Controller
 
 
     public function show($id){
-        $model_cobro = new Cobro;
+        $cobro = new Cobro;
 
-        $cobro = $model_cobro->select()
+        $cobroBD = $cobro->select()
                 ->where('cobros.id', $id)
                 ->first();
 
-        return view('cobros.detail', compact('cobro'));
+        return view('cobros.detail', compact('cobroBD'));
     }
 }
