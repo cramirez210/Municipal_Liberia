@@ -5,11 +5,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-5">
 
-             @if(session('success'))
-              <div class="card-block">
-                <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-              </div>
-              @endif 
+@include('mensajes.alertas')
 
            </div>
 

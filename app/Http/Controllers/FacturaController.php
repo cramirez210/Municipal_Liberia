@@ -63,7 +63,7 @@ class FacturaController extends Controller
 
         return view('facturas.create', compact('socio', 'facturas_pendientes', 'monto'));     
         }else{
-        return redirect('/facturas/pagar/buscar')->withSuccess('El dato ingresado no corresponde a ninguno de nuestros socios.');
+        return redirect('/facturas/pagar/buscar')->with('warning', 'El dato ingresado no corresponde a ninguno de nuestros socios.');
         }
     }
 
@@ -90,7 +90,7 @@ class FacturaController extends Controller
            if($meses_cancelar > 0)
             $factura->PagarAdelantado($socio_id, $meses_cancelar, $forma_pago);
 
-        return redirect('/facturas/index')->withSuccess('Operación exitosa');
+        return redirect('/facturas/index')->with('info', 'Operación exitosa');
     }
 
     public function ConfirmarPago($socio_id){
@@ -99,6 +99,7 @@ class FacturaController extends Controller
         $descuento = new Descuento;
 
         $meses_cancelados = request('meses_cancelados');
+        $pendientes = request('pendientes');
         $user_id = Auth::user()->id;
 
         $user = User::find($user_id);
@@ -107,16 +108,22 @@ class FacturaController extends Controller
         ->where('socios.id', $socio_id)
         ->first();
 
-        $ultima_factura = DB::table('facturas')->where('facturas.socio_id', $socio_id)
-                            ->latest()->first();
+        $query = DB::table('facturas')->where('facturas.socio_id', $socio_id);
 
+        if($pendientes)
+        $ultima_factura = $query->first();
+        else
+        $ultima_factura = $query->latest()->first();
+
+        if($ultima_factura)
         $pago_hasta = new Carbon($ultima_factura->created_at);
+        else{
+            $pago_hasta = Carbon::createFromDate(null, null, 1);
+        }
 
         for ($i=1; $i < $meses_cancelados; $i++) { 
         $pago_hasta->addMonth();
         }
-
-        $pendientes = request('pendientes');
 
            if(!$pendientes)
             $monto_descuento = $descuento->ObtenerMontoDescuento($socio->categoria_id, $meses_cancelados); 
@@ -184,7 +191,7 @@ class FacturaController extends Controller
 
         $cobro->GenerarCobroUsuario($facturaBD->id, 3);
 
-		 return redirect('/facturas/index')->withSuccess('Operación exitosa');
+		 return redirect('/facturas/index')->with('info', 'Operación exitosa');
     }
 
     public function show($id)
@@ -258,32 +265,6 @@ class FacturaController extends Controller
             return view('socios.facturas_pendientes', compact('facturas', 'socio'));
     }
 
-    public function ListarSociosMorosos(){
-
-        $factura = new Factura;
-
-        $morosos = $factura->ObtenerSociosMorosos();
-
-        return view ('facturas.morosos', compact('morosos', 'factura'));
-    }
-
-    public function MostrarMorosidadSocio($socio_id){
-
-        $factura = new Factura;
-
-        $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
-
-        $query = DB::table('facturas')
-                            ->where('facturas.socio_id', $socio_id)
-                            ->where('facturas.estado_id', 3);
-        
-        $pendientes = $query->get();
-        $monto = $query->sum('monto');
-
-        return view('facturas.socio_moroso', compact('socio', 'pendientes', 'monto'));
-
-    }
-
     public function BuscarPorSocio(){
         return view('facturas.buscar');
     }
@@ -310,7 +291,7 @@ class FacturaController extends Controller
        
        return redirect('/facturas/socio/'.$socio->socio_id);
        else
-        return redirect('/facturas/buscar')->withSuccess('No se ha encontrado al socio');
+        return redirect('/facturas/buscar')->with('warning', 'No se ha encontrado al socio');
 
     }
 
@@ -348,7 +329,7 @@ class FacturaController extends Controller
 
             return view('facturas.recuento_mes', compact('desde', 'hasta', 'facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'porcentaje_pagas', 'porcentaje_pendientes'));
         }else{
-            return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
+            return redirect('/facturas/recuento')->with('warning', 'No se encontraron facturas en la fecha solicitada');
         }
     }
 
@@ -375,10 +356,34 @@ class FacturaController extends Controller
        $socio = $factura->ObtenerSocioPorCriterio($criterio, $valor);
 
        if($socio!=null)
-       
        return redirect('/facturas/socios/morosos/'.$socio->socio_id);
        else
-        return redirect('/facturas/buscar_moroso')->withSuccess('No se ha encontrado al socio');
+        return redirect('/facturas/socios/morosos/consultar')->with('warning', 'No se ha encontrado al socio');
+    }
+
+    public function MostrarMorosidadSocio($socio_id){
+
+        $factura = new Factura;
+
+        $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
+
+        $query = DB::table('facturas')
+                            ->where('facturas.socio_id', $socio_id)
+                            ->where('facturas.estado_id', 3);
+        
+        $pendientes = $query->get();
+        $monto = $query->sum('monto');
+
+        return view('facturas.socio_moroso', compact('socio', 'pendientes', 'monto'));
+    }
+
+     public function ListarSociosMorosos(){
+
+        $factura = new Factura;
+
+        $morosos = $factura->ObtenerSociosMorosos();
+
+        return view ('facturas.morosos', compact('morosos', 'factura'));
     }
 
     public function ListarPorFecha($desde, $hasta){
@@ -427,7 +432,7 @@ class FacturaController extends Controller
 
         $cobro->GenerarCobroUsuario($factura->id, 3);
 
-         return redirect('/facturas/imprimir')->withSuccess('Operación exitosa');
+         return redirect('/facturas/imprimir')->with('info', 'Operación exitosa');
     }
 
     public function destroy($id)

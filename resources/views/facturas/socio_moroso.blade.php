@@ -5,11 +5,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-5">
 
-             @if(session('success'))
-              <div class="card-block">
-                <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-              </div>
-              @endif 
+@include('mensajes.alertas')
 
            </div>
 
@@ -58,28 +54,29 @@
                   {{date('m-Y', strtotime($pendiente->created_at))}}
                  </div>
                 @empty
-                <div class="alert alert-warning">
-       
-                  <span class="card-text text-warning "> 
-                  El socio no tiene facturas pendientes </span>
+                <div class="alert alert-warning col-md-8 mt-2">
+                  <span class="text-warning "> 
+                  <b>El socio no tiene facturas pendientes</b> </span>
                 </div>
-                <br>
                 @endforelse
               </div>
 
+              @if(count($pendientes))
               <div class="col-md-15 mt-3">
                 <b>Monto por periodo:</b> 
                 {{$socio->precio_categoria}}
               </div>
 
+             
               <div class="col-md-15 mt-3">
                 <b>Monto total pendiente:</b> 
                 {{$monto}}
               </div>
+              @endif
 </div>
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="{{URL::previous()}}" class="btn btn-outline-success btn-lg">
+                                <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
                                    Regresar
                                 </a>
                             </div>

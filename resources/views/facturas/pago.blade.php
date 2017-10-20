@@ -5,15 +5,11 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-5">
 
-             @if(session('success'))
-              <div class="card-block">
-                <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-              </div>
-              @endif 
+@include('mensajes.alertas')
 
            </div>
 
-              <div class="card" style="width: 100%; height: auto;">
+              <div class="card mx-auto" style="width: 75%; height: auto;">
                 <div class="card-header text-center text-primary">
                   <b>Confirmar pago</b>
                   <ul class="nav nav-pills card-header-pills float-right">
