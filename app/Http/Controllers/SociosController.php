@@ -24,7 +24,6 @@ class SociosController extends Controller
      */
     public function index()
     {
-
         return view('/socios/index',[
             'socios' => null,
 
@@ -33,44 +32,18 @@ class SociosController extends Controller
 
     public function listarTodosLosSocios()
     {
-        $socios = DB::table('socios')
-            ->join('personas', 'socios.persona_id', '=', 'personas.id')
-            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
-            ->join('users', 'socios.user_id', '=', 'users.id')
-            ->join('estados', 'socios.estado_id', '=', 'estados.id')
-            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-            ->get();
-
-            $sociosPaginados = $this->paginate($socios->toArray(),10);
-
-            return view('/socios/index', [
-                'socios' => $sociosPaginados,
-            ]);
-    }
-
-    public function paginate($items, $perPages)
-    {
-       $pageStart = \Request::get('page',1);
-       $offSet    = ($pageStart * $perPages)-$perPages;
-       $itemsForCurrentPage = array_slice( $items, $offSet, $perPages, TRUE);
-
-       return new \Illuminate\Pagination\LengthAwarePaginator(
-
-        $itemsForCurrentPage, count($items), $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-        ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
+        $DB = new Socio;
+        $socios = $DB->select()->paginate(10);
+        $registros = count($socios);
+            return view('/socios/index', compact('socios','registros'));
     }
 
     public function asignarEjecutivo()
     {
-         $objeto = new UsuariosController;
+        $objeto = new UsuariosController;
         $usuarios = $objeto->obtenerUsuariosEjecutivos();
 
-        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
-
-            return view('/socios/asignarEjecutivo', [
-                'usuarios' => $usuariosPaginados,
-            ]);
+            return view('/socios/asignarEjecutivo',compact('usuarios'));
     }
 
 
@@ -84,34 +57,24 @@ class SociosController extends Controller
             'radio.required'=>'Seleccione un Ejecutivo!',
             ]);
         $objeto = new UsuariosController;
-        //$ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('radio'));
         $ejecutivo = User::find($request->input('radio'));
         $estados = Estado::all();
         $categorias = Categoria::all();
 
-        return view('socios.create',
-            [
-                'estados' => $estados,
-                'categorias' => $categorias,
-                'ejecutivo' => $ejecutivo,
-            ]);
+        return view('socios.create', compact('estados','categorias','ejecutivo'));
     }
 
     public function create(CreateSocioRequest $request)
     {
-        
         $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));
         $idUser = $ejecutivo[0]->id;
-        
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
-            
             $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);   
         } else {
-
             $this->CrearPersonaAndSocio($request,$categoria,$idUser);
         }
         
@@ -127,7 +90,7 @@ class SociosController extends Controller
            $ruta = $imagen->store('socios','public');
         }else
         {
-            $ruta = 'socios/default.jpg';
+           $ruta = 'socios/default.jpg';
         }
            $socio = Socio::create([
 
@@ -145,22 +108,20 @@ class SociosController extends Controller
     public function CrearPersonaAndSocio(CreateSocioRequest $request,$categoria,$idUser)
     {
      $NuevaPersona = new Persona;
-
-
-            $NuevaPersona->primer_nombre = $request->input('primer_nombre');
-            $NuevaPersona->segundo_nombre = $request->input('segundo_nombre');
-            $NuevaPersona->primer_apellido= $request->input('primer_apellido');
-            $NuevaPersona->segundo_apellido = $request->input('segundo_apellido');
-            $NuevaPersona->cedula = $request->input('cedula');
-            $NuevaPersona->fecha_nacimiento = $request->input('fecha_nacimiento');
-            $NuevaPersona->email = $request->input('email');
-            $NuevaPersona->telefono = $request->input('telefono');
-            $NuevaPersona->direccion = $request->input('direccion');
-            $NuevaPersona->save();
+        $NuevaPersona->primer_nombre = $request->input('primer_nombre');
+        $NuevaPersona->segundo_nombre = $request->input('segundo_nombre');
+        $NuevaPersona->primer_apellido= $request->input('primer_apellido');
+        $NuevaPersona->segundo_apellido = $request->input('segundo_apellido');
+        $NuevaPersona->cedula = $request->input('cedula');
+        $NuevaPersona->fecha_nacimiento = $request->input('fecha_nacimiento');
+        $NuevaPersona->email = $request->input('email');
+        $NuevaPersona->telefono = $request->input('telefono');
+        $NuevaPersona->direccion = $request->input('direccion');
+        $NuevaPersona->save();
             
-            $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
+        $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
 
-            $ruta ='';
+        $ruta ='';
         if ($request->file('imagen')) {
            $imagen = $request->file('imagen');
            $ruta = $imagen->store('socios','public');
@@ -178,7 +139,6 @@ class SociosController extends Controller
                     'estado_id'=> 1, //1 es para Activo por defecto
                     'saldo'=> ($categoria->precio_categoria*3)-$categoria->precio_categoria,
                     'urlImagen' => $ruta,
-
             ]); 
     }
 
@@ -198,45 +158,16 @@ class SociosController extends Controller
         $persona = $socio->persona;
         $categoria = $socio->categoria;
         $estado = $socio->estado;
-        // $ejecutivo = $socio->usuarios;
 
-        // dd($ejecutivo);
-
-
-        return view('socios.show',
-        [
-            'socio' => $socio,
-            'persona' => $persona,
-            'categoria' => $categoria,
-            'estado' => $estado,
-        ]);
+        return view('socios.show',compact('socio','persona','categoria','estado'));
     }
-
-   public function sociosPorEstado($id)
-   {
-       $socios = DB::table('socios')
-            ->join('personas', 'socios.persona_id', '=', 'personas.id')
-            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
-            ->join('users', 'socios.user_id', '=', 'users.id')
-            ->join('estados', 'socios.estado_id', '=', 'estados.id')
-            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-
-            ->where('socios.estado_id','=',$id)
-            ->get();
-
-            return $socios;
-           
-   }
 
    public function listarPorEstado($id)
    {
-       $socios = $this->sociosPorEstado($id);
+    $DB = new Socio;
+    $socios = $DB->select()->where('socios.estado_id',$id)->paginate(10);
 
-        $sociosPaginados = $this->paginate($socios->toArray(),10);
-
-            return view('/socios/index', [
-                'socios' => $sociosPaginados,
-            ]);
+        return view('/socios/index',compact('socios'));
    }
     public function edit(Socio $socio)
     {
@@ -251,14 +182,11 @@ class SociosController extends Controller
             'categoria' => $categoria,
             'categorias' => $categorias,
         ]);
-
-
     }
 
     public function update(CreateSocioRequest $request, Socio $socio)
     {
         $persona = $socio->persona;
-        
         // Actualizar objeto persona ----------------------------------------------------------
         $persona->primer_nombre = $request->input('primer_nombre');
         $persona->segundo_nombre = $request->input('segundo_nombre');
@@ -271,8 +199,6 @@ class SociosController extends Controller
         $persona->direccion = $request->input('direccion');
 
         // Actualizar objeto socio --------------------------------------------------------------
-       
-
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id')); //Encontrar el objeto categoria.
         
         if($request->file('imagen') !== null)
@@ -287,7 +213,6 @@ class SociosController extends Controller
         $socio->save();
 
          return redirect('/socios/index')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
-
     }
 
     public function buscarSocio(Request $request)
@@ -300,41 +225,14 @@ class SociosController extends Controller
             [
             'valor.max'=>'Solo se admiten hasta 9 digitos.',
             ]);
-    
-        $socio = $this->obtenerSocioPorCriterio($request->input('criterio'),$request->input('valor'));
-        $socioPaginado = $this->paginate($socio->toArray(),10);
-
-            return view('/socios/index', [
-                'socios' => $socioPaginado,
-            ]);
-    }
-
-    public function obtenerSocioPorCriterio($Criterio, $valor)
-    {
-        if ($Criterio == 1) {
-
-            $socios = DB::table('socios')
-            ->join('personas', 'socios.persona_id', '=', 'personas.id')
-            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
-            ->join('users', 'socios.user_id', '=', 'users.id')
-            ->join('estados', 'socios.estado_id', '=', 'estados.id')
-            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-
-            ->where('personas.cedula','=',$valor)
-            ->get();
-
+        $DB = new Socio;
+        if ($request->input('criterio') == 1) {
+           $socios = $DB->select()->where('personas.cedula',$request->input('valor'))->paginate(10);
         } else {
-            $socios = DB::table('socios')
-            ->join('personas', 'socios.persona_id', '=', 'personas.id')
-            ->join('categorias', 'socios.categoria_id', '=', 'categorias.id')
-            ->join('users', 'socios.user_id', '=', 'users.id')
-            ->join('estados', 'socios.estado_id', '=', 'estados.id')
-            ->select('socios.*', 'personas.cedula','personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.categoria', 'users.nombre_usuario', 'estados.estado')
-
-            ->where('socios.id','=',$valor)
-            ->get();
+           $socios = $DB->oselec()->where('socios.id',$request->input('valor'))->paginate(10);
         }
-            return $socios;
+        
+        return view('/socios/index',compact('socios'));
     }
 
     public function cambiarEstado($id)
@@ -343,35 +241,23 @@ class SociosController extends Controller
         $objeto = new Factura;
         $facturas = $objeto->ObtenerPorSocioEstado($id, 3);
 
-        if ($socio->estado_id == 2) {
-           
-            
-            
+        if ($socio->estado_id == 2) {     
             if (count($facturas)>=1) {
 
                 return redirect('/socios/show/'.$id)->withSuccess(' ERROR -- Socio con facturas perdientes!');
-            } else {
-                
+            } else {   
                 $socio->estado_id = 1;
                 $socio->save();
             }
-            
-
           return redirect('/socios/show/'.$id)->withSuccess('Socio Activado Exitosamente!');
 
         } else {
-
           if (count($facturas)>1) {
-
-
                 return redirect('/socios/show/'.$id)->withSuccess('ERROR -- Socio con facturas perdientes!');
-            } else {
-                
+            } else {   
                 $socio->estado_id = 2;
                 $socio->save();
             }  
-            
-
           return redirect('/socios/show/'.$id)->withSuccess('Socio Inactivado Exitosamente!');
         }
         
@@ -382,6 +268,20 @@ class SociosController extends Controller
         return view('socios.showImagen', [
                 'socio' => $socio,
             ]);
+    }
+
+    public function paginate($items, $perPages)
+    {
+        //$sociosPaginados = $this->paginate($socios->toArray(),10);
+       $pageStart = \Request::get('page',1);
+       $offSet    = ($pageStart * $perPages)-$perPages;
+       $itemsForCurrentPage = array_slice( $items, $offSet, $perPages, TRUE);
+
+       return new \Illuminate\Pagination\LengthAwarePaginator(
+
+        $itemsForCurrentPage, count($items), $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+        ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
     }
 
 }

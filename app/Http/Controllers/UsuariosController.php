@@ -47,14 +47,14 @@ class UsuariosController extends Controller
         ->join('roles','users.rol_id', '=', 'roles.id')
         ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
         ->where('users.rol_id',3)
-        ->get();
+        ->paginate(10);
     }
     public function listarTodosLosUsuarios()
     {
         $usuarios = DB::table('users')
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->join('roles','users.rol_id', '=', 'roles.id')
-        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario','roles')
         ->get();
 
         $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
@@ -153,6 +153,7 @@ class UsuariosController extends Controller
         $socios = $user->socios;
         $sociosActivos = Socio::where("estado_id","=",1)->paginate(10);
         $sociosInactivos = Socio::where("estado_id","=",2)->paginate(10);
+
 
         return view('usuarios.listarSociosDeUsuario', [
 
@@ -253,24 +254,47 @@ class UsuariosController extends Controller
     {
         $usuarios = $this->usuariosPorEstado($id);
 
-        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
-
             return view('usuarios.listar', [
-                'usuarios' => $usuariosPaginados,
+                'usuarios' => $usuarios,
             ]);
     }
 
-     public function usuariosPorEstado($id)
+       public function usuariosPorEstado($id)
    {
        $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
-            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'users.nombre_usuario')
-
+            ->join('roles','users.rol_id', '=', 'roles.id')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'users.nombre_usuario','roles.rol')
             ->where('users.estado_id','=',$id)
-            ->get();
+            ->paginate(10);
 
             return $usuarios;
    }
+
+     public function listarPorRole($id)
+    {
+        $usuarios = $this->usuariosPorRole($id);
+
+  
+
+            return view('usuarios.listar', [
+                'usuarios' => $usuarios,
+            ]);
+    }
+
+     public function usuariosPorRole($id)
+   {
+       $usuarios = DB::table('users')
+            ->join('personas', 'users.persona_id', '=', 'personas.id')
+            ->join('roles','users.rol_id', '=', 'roles.id')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'users.nombre_usuario','roles.rol')
+
+            ->where('users.rol_id','=',$id)
+            ->paginate(10);
+
+            return $usuarios;
+   }
+
 
    public function cambiarEstado(User $user)
    {
@@ -281,7 +305,6 @@ class UsuariosController extends Controller
                 
             $user->estado_id = 2;
             $user->save();
-        
 
           return redirect('/personas/mostrar/'.$user->id)->withSuccess('Usuario Inactivado Exitosamente!');
         } 

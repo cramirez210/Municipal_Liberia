@@ -40,7 +40,7 @@ class MyResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-         
+   
         ->subject('Recuperar contraseña, Municipal Liberia.')        
         ->greeting('Hola')
         ->line('Estás recibiendo este correo porque realizó una solicitud de recuperacion de contraseña para su cuenta.')
