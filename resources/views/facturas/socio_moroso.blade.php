@@ -32,73 +32,54 @@
 
                <div class="col-md-15 mt-3">
                 <b>Número de socio:</b> 
-                {{$factura->socio_id}}
+                {{$socio->socio_id}}
               </div>
               
               <div class="col-md-15 mt-3">
                 <b>Nombre completo:</b> 
-                {{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}
+                {{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Categoría:</b> 
-                {{$factura->categoria}}
+                {{$socio->categoria}}
               </div>
-
 </div>
 
 
 <div class="col-md-6 float-right">
 
-                  <h4 class="card-title col-md-8 mt-2">Información de factura</h4>
+                  <h4 class="card-title col-md-8 mt-2">Información de pendientes</h4>
 
               <div class="col-md-15 mt-3">
-                <b>Número de factura:</b> 
-                {{$factura->id}}
-              </div>
-              
-              <div class="col-md-15 mt-3">
-                <b>Monto:</b> 
-                {{$factura->monto}}
-              </div>
-
-              <div class="col-md-15 mt-3">
-                <b>Periodo:</b> 
-                {{date('m-Y', strtotime($factura->created_at))}}
-              </div>
-
-              @if($factura->estado_id == 4)
-              <div class="col-md-15 mt-3">
-                <b>Fecha de pago:</b> 
-                {{date('d-m-Y', strtotime($factura->fecha_pago))}}
+                <b>Periodos pendientes:</b> 
+                @forelse($pendientes as $pendiente)
+                 <div class="col-md-8">
+                  {{date('m-Y', strtotime($pendiente->created_at))}}
+                 </div>
+                @empty
+                <div class="alert alert-warning">
+       
+                  <span class="card-text text-warning "> 
+                  El socio no tiene facturas pendientes </span>
+                </div>
+                <br>
+                @endforelse
               </div>
 
               <div class="col-md-15 mt-3">
-                <b>Forma de pago:</b> 
-                {{$factura->forma_pago}}
+                <b>Monto por periodo:</b> 
+                {{$socio->precio_categoria}}
               </div>
-              
+
               <div class="col-md-15 mt-3">
-                <b>Cobrador:</b> 
-                {{$factura->nombre_usuario}}
+                <b>Monto total pendiente:</b> 
+                {{$monto}}
               </div>
-              @else
-              <div class="col-md-15 mt-3">
-                <b>Estado:</b> 
-                {{$factura->estado}}
-              </div>
-              @endif
 </div>
-
-
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                              @if($factura->estado_id == 3)
-                                <a href="/facturas/pagar/{{$factura->id}}" class="btn btn-primary btn-md">
-                                   Pagar
-                                </a>
-                              @endif
-                                <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
+                                <a href="{{URL::previous()}}" class="btn btn-outline-success btn-lg">
                                    Regresar
                                 </a>
                             </div>

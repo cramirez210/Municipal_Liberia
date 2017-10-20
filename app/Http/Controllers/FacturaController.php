@@ -67,7 +67,7 @@ class FacturaController extends Controller
         }
     }
 
-    public function pagar(Request $request, $socio_id){
+    public function liquidar(Request $request, $socio_id){
 
         $factura = new Factura;
 
@@ -107,6 +107,15 @@ class FacturaController extends Controller
         ->where('socios.id', $socio_id)
         ->first();
 
+        $ultima_factura = DB::table('facturas')->where('facturas.socio_id', $socio_id)
+                            ->latest()->first();
+
+        $pago_hasta = new Carbon($ultima_factura->created_at);
+
+        for ($i=1; $i < $meses_cancelados; $i++) { 
+        $pago_hasta->addMonth();
+        }
+
         $pendientes = request('pendientes');
 
            if(!$pendientes)
@@ -116,23 +125,45 @@ class FacturaController extends Controller
            $monto_total = $meses_cancelados*$socio->precio_categoria;
            $monto_pagar = $monto_total - ($monto_descuento*$meses_cancelados);
 
+           $pendientes = $pendientes - $meses_cancelados;
+           $periodos_pendientes = array();
+           $ultimo_pago = new Carbon($pago_hasta);
+           
+           if($pendientes){
+            for ($i=0; $i < $pendientes; $i++) { 
+                
+                $periodo = new Carbon($ultimo_pago->addMonth());
+
+                $periodos_pendientes = array_add($periodos_pendientes, 
+                    $i, $periodo);
+            }
+           }
+
         $var = array('meses_cancelados' => $meses_cancelados,
             'monto' => $monto_pagar,
-            'fecha_pago' => Carbon::now()->format('Y-m-d'),
+            'fecha_pago' => Carbon::now()->format('d-m-Y'),
             'forma_pago' => request('forma_pago'),
-            'nombre_usuario' => $user->nombre_usuario
+            'nombre_usuario' => $user->nombre_usuario,
+            'pago_hasta' => $pago_hasta
             );
 
-        return view('facturas.pago', compact('socio', 'var'));
+        return view('facturas.pago', compact('socio', 'var', 'periodos_pendientes'));
+    }
+
+    public function pagar($id)
+    {
+        $factura = new Factura;
+
+        $factura = $factura->select()
+             ->where('facturas.id', $id)
+            ->first();
+
+        return view('facturas.pagar', compact('factura'));
     }
 
    public function edit($id)
     {
         $factura = new Factura;
-
-        $factura = $factura->select()
-             ->where('facturas.id', $fid)
-            ->first();
 
         return view('facturas.edit', compact('factura'));
     }
@@ -147,7 +178,7 @@ class FacturaController extends Controller
         $user_id = Auth::user()->id;
         $forma_pago = request('forma_pago');
 
-        $categoria = $factura->ObtenerCategoriaDeSocio($socio);
+        $categoria = $factura->ObtenerCategoriaDeSocio($socio->id);
 
         $factura->store($facturaBD, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, $facturaBD->created_at, Carbon::now(), 4);
 
@@ -201,12 +232,12 @@ class FacturaController extends Controller
 
     public function ListarPorSocioEstado($socio_id, $estado_id){
 
-     $model_factura = new Factura;
+     $factura = new Factura;
 
-     $facturas = $model_factura->ObtenerPorSocioEstado($socio_id,$estado_id)
+     $facturas = $factura->ObtenerPorSocioEstado($socio_id,$estado_id)
                  ->paginate(5);
         
-     $socio = $model_factura->select_socio()
+     $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
             ->first();
 
@@ -215,16 +246,42 @@ class FacturaController extends Controller
 
     public function ListarPendientesSocio($socio_id, $estado_id){
 
-     $model_factura = new Factura;
+     $factura = new Factura;
 
-     $facturas = $model_factura->ObtenerPorSocioEstado($socio_id, $estado_id)
+     $facturas = $factura->ObtenerPorSocioEstado($socio_id, $estado_id)
                  ->paginate(5);
     
-     $socio = $model_factura->select_socio()
+     $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
             ->first();
 
             return view('socios.facturas_pendientes', compact('facturas', 'socio'));
+    }
+
+    public function ListarSociosMorosos(){
+
+        $factura = new Factura;
+
+        $morosos = $factura->ObtenerSociosMorosos();
+
+        return view ('facturas.morosos', compact('morosos', 'factura'));
+    }
+
+    public function MostrarMorosidadSocio($socio_id){
+
+        $factura = new Factura;
+
+        $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
+
+        $query = DB::table('facturas')
+                            ->where('facturas.socio_id', $socio_id)
+                            ->where('facturas.estado_id', 3);
+        
+        $pendientes = $query->get();
+        $monto = $query->sum('monto');
+
+        return view('facturas.socio_moroso', compact('socio', 'pendientes', 'monto'));
+
     }
 
     public function BuscarPorSocio(){
@@ -293,6 +350,35 @@ class FacturaController extends Controller
         }else{
             return redirect('/facturas/recuento')->withSuccess('No se encontraron facturas en la fecha solicitada');
         }
+    }
+
+    public function ConsultarMorosidad(){
+        return view('facturas.buscar_moroso');
+    }
+
+    public function BuscarMoroso(Request $request){
+
+        $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|numeric|max:999999999',
+            ],
+            [
+            'valor.max'=>'Solo se admiten hasta 9 digitos.',
+            'valor.numeric'=>'El campo de búsqueda solo admite números.',
+            ]);
+        $factura = new Factura;
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $socio = $factura->ObtenerSocioPorCriterio($criterio, $valor);
+
+       if($socio!=null)
+       
+       return redirect('/facturas/socios/morosos/'.$socio->socio_id);
+       else
+        return redirect('/facturas/buscar_moroso')->withSuccess('No se ha encontrado al socio');
     }
 
     public function ListarPorFecha($desde, $hasta){

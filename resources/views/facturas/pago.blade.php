@@ -29,7 +29,7 @@
 
              <div class="card-block">
     <div class="container-fluid mt-4 w-100">
-      <form class="form-horizontal" action="/facturas/pagar/{{$socio->socio_id}}" method="POST">
+      <form class="form-horizontal" action="/facturas/liquidar/{{$socio->socio_id}}" method="POST">
                         {{ csrf_field() }}
         <div class="float-left col-md-5">
 
@@ -51,6 +51,17 @@
                 {{$socio->categoria}}
               </div>
 
+              <div class="col-md-15 mt-3">
+                <b>Forma de pago:</b> 
+                {{$var['forma_pago']}}
+                <input type="hidden" name="forma_pago" value="{{$var['forma_pago']}}">
+              </div>
+              
+              <div class="col-md-15 mt-3">
+                <b>Cobrador:</b> 
+                {{$var['nombre_usuario']}}
+              </div>
+
 </div>
 
 
@@ -70,26 +81,34 @@
               </div>
 
               <div class="col-md-15 mt-3">
-                <b>Fecha de pago:</b> 
-                {{$var['fecha_pago']}}
-              </div>
-
-              <div class="col-md-15 mt-3">
-                <b>Forma de pago:</b> 
-                {{$var['forma_pago']}}
-                <input type="hidden" name="forma_pago" value="{{$var['forma_pago']}}">
+                <b>Pago hasta:</b> 
+                {{date('m-Y', strtotime($var['pago_hasta']))}}
               </div>
               
               <div class="col-md-15 mt-3">
-                <b>Cobrador:</b> 
-                {{$var['nombre_usuario']}}
+                <b>Pendientes:</b> 
+              @forelse($periodos_pendientes as $periodo)
+                <div class="col-md-8">
+                  {{date('m-Y', strtotime($periodo))}}
+                </div> 
+              @empty
+              </div>
+             
+              <div class="col-md-8">
+                  El socio queda sin facturas pendientes
+                </div>
+              @endforelse
+
+              <div class="col-md-15 mt-3">
+                <b>Fecha de pago:</b> 
+                {{$var['fecha_pago']}}
               </div>
 </div>
 
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <button type="submit" class="btn btn-outline-success btn-lg">
+                                <button type="submit" class="btn btn-success btn-md">
                                     Confirmar
                                 </button>
                             </div>

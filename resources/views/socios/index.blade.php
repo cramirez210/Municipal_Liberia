@@ -161,7 +161,7 @@
     </div>
 
     <div class="card-footer text-muted">
-        Se encontraron {{ $resultados }} resultados. 
+        Se encontraron {{ $registros }} resultados. 
 
     </div>
 </div>

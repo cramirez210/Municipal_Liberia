@@ -86,8 +86,9 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/index', 'FacturaController@index');
 	Route::get('/facturas/create', 'FacturaController@create');
 	Route::post('/facturas/confirmar/{id}', 'FacturaController@ConfirmarPago');
-	Route::post('/facturas/pagar/{id}', 'FacturaController@pagar');
+	Route::post('/facturas/liquidar/{id}', 'FacturaController@liquidar');
 	Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio');
+	Route::get('/facturas/pagar/{id}', 'FacturaController@pagar');
 
 	Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
 
@@ -98,6 +99,10 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
 	Route::post('/facturas/buscar','FacturaController@BuscarSocio');
 	Route::get('/facturas/list', 'FacturaController@list');
+	Route::get('/facturas/morosos', 'FacturaController@ListarSociosMorosos');
+	Route::get('/facturas/socios/morosos/consultar', 'FacturaController@ConsultarMorosidad');
+	Route::post('/facturas/socios/morosos/consultar', 'FacturaController@BuscarMoroso');
+	Route::get('/facturas/socios/morosos/{id}', 'FacturaController@MostrarMorosidadSocio');
 
 	Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 	Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes');

@@ -106,7 +106,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 float-right">
-                                <button type="submit" class="btn btn-outline-success btn-lg">
+                                <button type="submit" class="btn btn-success btn-md">
                                     Continuar
                                 </button>
                             </div>

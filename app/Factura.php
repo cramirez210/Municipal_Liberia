@@ -161,10 +161,8 @@ class Factura extends Model
     }
 
     public function ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, $columna, $valor){
-   
-    $select = $this->select();
-    
-         $facturas = $select
+        
+         $facturas = $this->select()
             ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin))
             ->where($columna, $valor);
 
@@ -184,6 +182,17 @@ class Factura extends Model
         }
 
         return $socio;
+    }
+
+    public function ObtenerSociosMorosos(){
+
+          return DB::table('facturas')
+                    ->join('socios', 'facturas.socio_id', 'socios.id')
+                    ->join('personas', 'socios.persona_id', 'personas.id')
+                    ->select('socios.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono')
+                    ->distinct()
+                    ->where('facturas.estado_id', 3)
+                    ->get();
     }
 
     public function InactivarSocio($id){

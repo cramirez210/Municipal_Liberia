@@ -38,6 +38,16 @@
   </ul>
   <a href="/facturas/buscar" class="list-group-item">Buscar facturas de un socio específico</a>
   <a href="/facturas/recuento" class="list-group-item">Reporte de facturación</a>
+  <ul class="list-group-item">
+    <li class="list-unstyled dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morosidad</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/facturas/morosos">Todos los socios</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/facturas/socios/morosos/consultar">Un socio</a>
+        </div>
+    </li>
+  </ul>
 </div>
 
 </div>
