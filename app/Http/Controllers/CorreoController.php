@@ -1,17 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail;
+
+use App\Mail\Notification;
 use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Mail;
 
 class CorreoController extends Controller
 {
     //
-
-    public function enviar()
+    public function notificar()
     {
-    	$receivers = User::pluck('email');
-		Mail::to($receivers)->send(new Notification($call));
+        // $order = Order::findOrFail($orderId);
+
+        // Ship order...
+
+        Mail::to(
+        	'c.and.95@outlook.es')->send(new Notification());
+
+        return view('welcome');	
     }
+
+
 }
