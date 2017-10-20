@@ -22,6 +22,8 @@ Route::get('/auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\Au
 
 Route::get('/usuarios/showCreate','UsuariosController@showCreate');
 Route::post('/usuarios/create','UsuariosController@create');
+Route::get('/correo/enviar','CorreoController@notificar');
+
 
 Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 

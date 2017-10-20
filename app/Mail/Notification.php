@@ -17,13 +17,13 @@ class Notification extends Mailable
      * @return void
      */
 
-    public $notification; 
+    // public $notification; 
 
-    public function __construct(Notification $notification)
-    {
-        //
-         $this->notification = $notification;
-    }
+    // public function __construct(Notification $notification)
+    // {
+    //     //
+    //      $this->notification = $notification;
+    // }
 
     /**
      * Build the message.
@@ -32,6 +32,6 @@ class Notification extends Mailable
      */
     public function build()
     {
-        return $this->view('correos.notification');
+          return $this->markdown('correos.notificacion');
     }
 }

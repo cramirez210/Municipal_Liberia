@@ -126,6 +126,7 @@ return [
         ],
     ],
 
+    'from' => ['address' => 'proyectomunicipalliberia@gmail.com', 'name' => 'Municipal Liberia'],
 
 
 

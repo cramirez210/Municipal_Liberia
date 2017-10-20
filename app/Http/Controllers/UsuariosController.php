@@ -54,7 +54,7 @@ class UsuariosController extends Controller
         $usuarios = DB::table('users')
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->join('roles','users.rol_id', '=', 'roles.id')
-        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario','roles')
+        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario','roles.rol')
         ->get();
 
         $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
