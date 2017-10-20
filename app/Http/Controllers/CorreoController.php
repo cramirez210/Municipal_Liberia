@@ -10,14 +10,11 @@ use Illuminate\Support\Facades\Mail;
 class CorreoController extends Controller
 {
     //
-    public function notificar()
+    public function notificar($request, $categoria, $idUser, $persona)
     {
-        // $order = Order::findOrFail($orderId);
-
-        // Ship order...
-
+    	
         Mail::to(
-        	'c.and.95@outlook.es')->send(new Notification());
+        	'c.and.95@outlook.es')->send(new Notification($request,$categoria,$idUser, $persona));
 
         return view('welcome');	
     }

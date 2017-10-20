@@ -73,7 +73,8 @@ class SociosController extends Controller
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
         if ($persona) {
-            $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);   
+            $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
+
         } else {
             $this->CrearPersonaAndSocio($request,$categoria,$idUser);
         }
