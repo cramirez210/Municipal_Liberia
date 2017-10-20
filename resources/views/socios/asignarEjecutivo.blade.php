@@ -41,12 +41,8 @@
   </span>
 </div>
 @endif
-    @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">  
-        <label class="alert alert-success">{{ session('success') }}</label>
-    </span>
-    @endif  
+
+@include('mensajes.alertas')
 <!--_______________________________ Tabla _____________________________-->
 <form method="GET" action="/socios/home" >
   {{ csrf_field() }}

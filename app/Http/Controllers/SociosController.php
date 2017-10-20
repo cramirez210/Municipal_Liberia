@@ -79,7 +79,7 @@ class SociosController extends Controller
             $this->CrearPersonaAndSocio($request,$categoria,$idUser);
         }
         
-    return redirect('/socios/asignarEjecutivo')->withSuccess('Socio creado exitosamente!');
+    return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!');
             
     }
 
@@ -213,7 +213,7 @@ class SociosController extends Controller
         $persona->save();
         $socio->save();
 
-         return redirect('/socios/index')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
+         return redirect('/socios/index')->with('info','Los datos del usuario han sido actualizados exitosamente!');
     }
 
     public function buscarSocio(Request $request)
@@ -245,21 +245,21 @@ class SociosController extends Controller
         if ($socio->estado_id == 2) {     
             if (count($facturas)>=1) {
 
-                return redirect('/socios/show/'.$id)->withSuccess(' ERROR -- Socio con facturas perdientes!');
+                return redirect('/socios/show/'.$id)->with('error',' ERROR -- Socio con facturas perdientes!');
             } else {   
                 $socio->estado_id = 1;
                 $socio->save();
             }
-          return redirect('/socios/show/'.$id)->withSuccess('Socio Activado Exitosamente!');
+          return redirect('/socios/show/'.$id)->with('info','Socio Activado Exitosamente!');
 
         } else {
           if (count($facturas)>1) {
-                return redirect('/socios/show/'.$id)->withSuccess('ERROR -- Socio con facturas perdientes!');
+                return redirect('/socios/show/'.$id)->with('error','ERROR -- Socio con facturas perdientes!');
             } else {   
                 $socio->estado_id = 2;
                 $socio->save();
             }  
-          return redirect('/socios/show/'.$id)->withSuccess('Socio Inactivado Exitosamente!');
+          return redirect('/socios/show/'.$id)->with('warning','Socio Inactivado Exitosamente!');
         }
         
     }

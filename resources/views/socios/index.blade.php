@@ -60,15 +60,7 @@
 
 </div>
 
-    @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-    @endif  
+@include('mensajes.alertas') 
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
