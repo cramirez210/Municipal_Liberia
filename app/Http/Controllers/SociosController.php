@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\CorreoController;
 
 class SociosController extends Controller
 {
@@ -72,10 +73,14 @@ class SociosController extends Controller
         $idUser = $ejecutivo[0]->id;
         $persona = Persona::where('cedula',$request->input('cedula'))->first();
         
+        $correo = new CorreoController;
         if ($persona) {
-            $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);   
+            $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
+            $correo->notificar($request,$categoria,$idUser, $persona);
+
         } else {
             $this->CrearPersonaAndSocio($request,$categoria,$idUser);
+            $correo->notificar($request,$categoria,$idUser, $persona);
         }
         
     return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!');
