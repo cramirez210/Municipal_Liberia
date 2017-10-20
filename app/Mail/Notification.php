@@ -32,10 +32,11 @@ class Notification extends Mailable
      */
     public function build($request,$categoria,$idUser, $persona)
     {
+        dd($request);
           return $this->markdown('correos.notificacion',[
                 'request' => $request,
                 'categoria' => $categoria,
-                'persona' => $persona,
+                'persona' => $persona,  
           ]);
     }
 }
