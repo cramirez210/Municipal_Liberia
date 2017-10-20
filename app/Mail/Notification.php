@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Http\Request;
 
 class Notification extends Mailable
 {
@@ -17,26 +18,24 @@ class Notification extends Mailable
      * @return void
      */
 
-    // public $notification; 
-
-    // public function __construct(Notification $notification)
-    // {
-    //     //
-    //      $this->notification = $notification;
-    // }
+    public $request;
+    public $idUser;
+    public function __construct($request,$idUser)
+    {
+     
+       
+         $this->request = $request;
+         $this->idUser = $idUser;
+    }
 
     /**
      * Build the message.
      *
      * @return $this
-     */
-    public function build($request,$categoria,$idUser, $persona)
+     */ 
+    public function build()
     {
-        dd($request);
-          return $this->markdown('correos.notificacion',[
-                'request' => $request,
-                'categoria' => $categoria,
-                'persona' => $persona,  
-          ]);
+
+          return $this->markdown('correos.notificacion');
     }
 }

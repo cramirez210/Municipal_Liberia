@@ -1,7 +1,7 @@
 
 
 @component('mail::message')
-    Buenas, {{}} se ha añadido un nuevo socio a su cartera. 
+    Buenas, {{$request->primer_nombre}} se ha añadido un nuevo socio a su cartera. 
 
 <body>
     <img src="http://www.rockaxis.com.co/sites/default/files/node/novedades/imagen/123362.jpg">

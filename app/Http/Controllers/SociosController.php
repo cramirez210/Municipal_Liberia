@@ -76,11 +76,11 @@ class SociosController extends Controller
         $correo = new CorreoController;
         if ($persona) {
             $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
-            $correo->notificar($request,$categoria,$idUser, $persona);
+            $correo->notificar($request,$idUser);
 
         } else {
             $this->CrearPersonaAndSocio($request,$categoria,$idUser);
-            $correo->notificar($request,$categoria,$idUser, $persona);
+            $correo->notificar($request,$idUser);
         }
         
     return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!');
