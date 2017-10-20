@@ -161,10 +161,8 @@ class Factura extends Model
     }
 
     public function ObtenerPorFechaCriterio($fecha_inicio, $fecha_fin, $columna, $valor){
-   
-    $select = $this->select();
-    
-         $facturas = $select
+        
+         $facturas = $this->select()
             ->whereBetween('facturas.created_at', array($fecha_inicio, $fecha_fin))
             ->where($columna, $valor);
 

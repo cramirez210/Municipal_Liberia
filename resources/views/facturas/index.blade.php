@@ -44,7 +44,7 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/morosos">Todos los socios</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/3">Un socio</a>
+            <a class="dropdown-item" href="/facturas/socios/morosos/consultar">Un socio</a>
         </div>
     </li>
   </ul>

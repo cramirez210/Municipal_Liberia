@@ -93,7 +93,12 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="{{URL::previous()}}" class="btn btn-outline-success btn-lg">
+                              @if($factura->estado_id == 3)
+                                <a href="/facturas/pagar/{{$factura->id}}" class="btn btn-primary btn-md">
+                                   Pagar
+                                </a>
+                              @endif
+                                <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
                                    Regresar
                                 </a>
                             </div>
