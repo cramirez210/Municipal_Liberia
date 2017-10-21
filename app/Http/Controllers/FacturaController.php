@@ -374,7 +374,7 @@ class FacturaController extends Controller
         $pendientes = $query->get();
         $monto = $query->sum('monto');
 
-        return view('facturas.socio_moroso', compact('socio', 'pendientes', 'monto'));
+        return view('facturas.morosidad_socio', compact('socio', 'pendientes', 'monto'));
     }
 
      public function ListarSociosMorosos(){

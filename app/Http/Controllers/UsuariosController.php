@@ -7,6 +7,7 @@ use App\Persona;
 use App\Role;
 use App\Socio;
 use App\User;
+use App\Cobro;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
@@ -266,5 +267,15 @@ class UsuariosController extends Controller
           return redirect('/personas/mostrar/'.$user->id)->with('info','Usuario Activado Exitosamente!');
         }
    }
+
+   public function ReporteDeCobros($id){
+
+        $cobro = new Cobro;
+
+        $reporte = $cobro->ObtenerReporte($id);
+
+        return view('usuarios.reporte_cobros', 
+               compact('reporte'));
+    }
 
 }

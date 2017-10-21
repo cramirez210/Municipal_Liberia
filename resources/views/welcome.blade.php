@@ -27,8 +27,8 @@
   </a>
   <a href="/usuarios/home" class="list-group-item">Administración de los usuarios</a>
   <a href="/socios/index" class="list-group-item">Administración de los socios</a>
-  <a href="/facturas/index" class="list-group-item">Administracion de la facturación</a>
-  <a href="/cobros/index" class="list-group-item">Administracion de cobros</a>
+  <a href="/facturas/index" class="list-group-item">Gestión de facturas</a>
+  <a href="/cobros/index" class="list-group-item">Liquidación de cobros</a>
   <a href="/conf/index" class="list-group-item">Administración de la configuración</a>
 </div>
 

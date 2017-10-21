@@ -63,24 +63,24 @@ class CobroController extends Controller
 
     }
 
-     public function AnularPorEstado($estado_id)
+     public function LiquidarPorEstado($estado_id)
     {
         $cobro = new Cobro;
 
         $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id)
                     ->get();
         
-        return view('cobros.anular', compact('cobros'));
+        return view('cobros.liquidar', compact('cobros'));
     }
 
-    public function AnularPorUsuarioEstado($user_id, $estado_id)
+    public function LiquidarPorUsuarioEstado($user_id, $estado_id)
     {
      $cobro = new Cobro;
 
      $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
                 ->get();
         
-     return view('cobros.anular', compact('cobros'));
+     return view('cobros.liquidar', compact('cobros'));
 
     }
 
@@ -104,10 +104,20 @@ class CobroController extends Controller
        $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        if($user)
-       return redirect('/cobros/user/'.$user->id);
+       return redirect('/cobros/reporte/user/'.$user->id);
         else
-        return back()->withSuccess('El dato ingresado no coincide con ningún usuario');
+        return back()->with('warning', 'El dato ingresado no coincide con ningún usuario');
 
+    }
+
+    public function ReporteCobrosDeEjecutivo($id){
+
+        $cobro = new Cobro;
+
+        $reporte = $cobro->ObtenerReporte($id);
+
+        return view('cobros.cobros_ejecutivo', 
+               compact('reporte'));
     }
 
      public function BuscarRecuento(){
@@ -147,14 +157,14 @@ class CobroController extends Controller
 
         return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'desde', 'hasta'));
         }else
-        return back()->withSuccess('No se encontraron cobros en la fecha solicitada');
+        return back()->with('warning', 'No se encontraron cobros en la fecha solicitada');
     }
 
-    public function BuscarParaAnular(){
-        return view('cobros.buscar_anular');
+    public function BuscarParaLiquidar(){
+        return view('cobros.buscar_liquidar');
     }
 
-    public function BuscarAnular(Request $request)
+    public function BuscarLiquidar(Request $request)
     {
        $this->validate($request,
             [
@@ -170,10 +180,62 @@ class CobroController extends Controller
        $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
        if($user)
-       return redirect('/cobros/anular/'.$user->id.'/3');
+       return redirect('/cobros/liquidar/'.$user->id.'/3');
         else
-            return back()->withSuccess('El dato ingresado no coincide con ningún usuario');
+            return back()->with('warning', 'El dato ingresado no coincide con ningún usuario');
 
+    }
+
+    public function ConsultarMorosidad(){
+        return view('cobros.buscar_moroso');
+    }
+
+    public function BuscarMoroso(Request $request){
+
+        $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            ]);
+
+       $cobro = new Cobro;
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       if($user!=null)
+       return redirect('/cobros/usuarios/morosos/'.$user->id);
+       else
+        return redirect('/cobros/usuarios/morosos/consultar')->with('warning', 'No se ha encontrado al usuario');
+    }
+
+    public function MostrarMorosidadUsuario($user_id){
+
+        $cobro = new Cobro;
+
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+
+        $query = DB::table('cobros')
+                            ->join('facturas', 'cobros.factura_id', 'facturas.id')
+                            ->select('facturas.monto')
+                            ->where('cobros.user_id', $user_id)
+                            ->where('cobros.estado_id', 3);
+        
+        $pendientes = $query->count();
+        $monto = $query->sum('monto');
+
+        return view('cobros.morosidad_user', compact('user', 'pendientes', 'monto'));
+    }
+
+    public function ListarUsuariosMorosos(){
+
+        $cobro = new Cobro;
+
+        $morosos = $cobro->ObtenerUsuariosMorosos();
+
+        return view ('cobros.morosos', compact('morosos', 'cobro'));
     }
 
     public function ListarPorFecha($desde, $hasta){
@@ -216,11 +278,11 @@ class CobroController extends Controller
         } else{
             $user_id = request('user_id');
 
-            return redirect('/cobros/anular/'.$user_id.'/3')->withSuccess('Por favor seleccione los cobros que desea anular');
+            return redirect('/cobros/liquidar/'.$user_id.'/3')->with('warning', 'Por favor seleccione los cobros que desea liquidar');
         }
     }
 
-    public function anular(){
+    public function liquidar(){
         $cobros = Input::except('_token');
 
         foreach ($cobros as $cobro) {
@@ -229,7 +291,7 @@ class CobroController extends Controller
             ->update(array('estado_id' => 4));
         }
 
-        return view('cobros.index')->withSuccess('Éxito');
+        return view('cobros.index')->with('info', 'Operación realizada con éxito');
     }
 
 
