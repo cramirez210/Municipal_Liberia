@@ -28,7 +28,7 @@ class CategoriaController extends Controller
 					'estado_id' => 1,
 			]);
 
-		return redirect('/categoria/home')->withSuccess('Categoria creada exitosamente!');
+		return redirect('/categoria/home')->with('info','Categoria creada exitosamente!');
 	}
 
 	public function show(Categoria $categoria)
@@ -48,7 +48,7 @@ class CategoriaController extends Controller
 		$categoria->precio_categoria = $request->input('precio_categoria');
 		$categoria->save();
 		
-		return redirect('/categoria/home')->withSuccess('Datos actualizados exitosamente!');
+		return redirect('/categoria/home')->with('warning','Datos actualizados exitosamente!');
 	}
    
 }
