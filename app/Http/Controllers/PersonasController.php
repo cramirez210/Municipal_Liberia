@@ -50,6 +50,7 @@ class PersonasController extends Controller
     public function update(CrearPersonaRequest $request,User $user)
     {
     
+
         $persona = $user->persona;
 
 
@@ -63,6 +64,7 @@ class PersonasController extends Controller
         $persona->telefono = $request->input('telefono');
         $persona->direccion = $request->input('direccion');
         $user->nombre_usuario = $request->input('nombre_usuario');
+        $user->email = $request->input('email');
 
         
         $role = $this->FindRoleByName($request->input('rol'));

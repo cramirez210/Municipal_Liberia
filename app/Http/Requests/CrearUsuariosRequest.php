@@ -33,7 +33,7 @@ class CrearUsuariosRequest extends FormRequest
             'segundo_apellido' => ['required','max:25'],
             'fecha_nacimiento' => ['required','date_format:Y-m-d'],
             'cedula' => ['required','max:30'],
-            'email' => ['required','max:150','unique:personas'],
+            'email' => ['required','max:150'],
             'telefono' => ['required','numeric','min:8'],
             'direccion' => ['required','max:260']
             //

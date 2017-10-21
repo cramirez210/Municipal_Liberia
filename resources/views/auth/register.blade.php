@@ -4,10 +4,12 @@
 <!--El container no se necesita por que ya se implementó-->
 
     <div class="container ml-5 mt-3">
-@include('mensajes.alertas') 
+
 
 
 <div class="card" style="width: 90%; height: 85%;">
+
+    @include('mensajes.alertas') 
     <div class="card-header">
         <ul class="nav nav-pills nav-fill card-header-pills">
             <li class="nav-item">
