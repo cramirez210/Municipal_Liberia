@@ -56,12 +56,10 @@ class UsuariosController extends Controller
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->join('roles','users.rol_id', '=', 'roles.id')
         ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario','roles.rol')
-        ->get();
-
-        $usuariosPaginados = $this->paginate($usuarios->toArray(),10);
+        ->paginate(10);
 
         return view('usuarios.listar', [
-        'usuarios' => $usuariosPaginados,
+        'usuarios' => $usuarios,
         ]);
     }
 
@@ -156,10 +154,8 @@ class UsuariosController extends Controller
       
         $usuario = $this->obtenerUsuarioPorCriterio($request->input('criterio'),$request->input('valor'));
 
-        $usuarioPaginado = $this->paginate($usuario->toArray(),10);
-
             return view('usuarios.listar', [
-                'usuarios' => $usuarioPaginado,
+                'usuarios' => $usuario,
             ]);
     }
 
@@ -167,39 +163,38 @@ class UsuariosController extends Controller
     {
         if ($criterio == 1) {
 
-
             $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario','roles.rol')
 
             ->where('personas.cedula','=',$valor)
-            ->get();
+            ->paginate(10);
 
         } else {
              $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+            ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario','roles.rol')
 
             ->where('users.nombre_usuario','=',$valor)
-            ->get();
+            ->paginate(10);
         }
             return $usuarios;
     }
 
-    public function paginate($items, $perPages)
-    {
-       $pageStart = \Request::get('page',1);
-       $offSet    = ($pageStart * $perPages)-$perPages;
-       $itemsForCurrentPage = array_slice( $items, $offSet, $perPages, TRUE);
+    // public function paginate($items, $perPages)
+    // {
+    //    $pageStart = \Request::get('page',1);
+    //    $offSet    = ($pageStart * $perPages)-$perPages;
+    //    $itemsForCurrentPage = array_slice( $items, $offSet, $perPages, TRUE);
 
-       return new \Illuminate\Pagination\LengthAwarePaginator(
+    //    return new \Illuminate\Pagination\LengthAwarePaginator(
 
-        $itemsForCurrentPage, count($items), $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-        ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-    }
+    //     $itemsForCurrentPage, count($items), $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+    //     ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    //     );
+    // }
     public function listarPorEstado($id)
     {
         $usuarios = $this->usuariosPorEstado($id);
@@ -208,7 +203,6 @@ class UsuariosController extends Controller
                 'usuarios' => $usuarios,
             ]);
     }
-
        public function usuariosPorEstado($id)
    {
        $usuarios = DB::table('users')
@@ -224,9 +218,6 @@ class UsuariosController extends Controller
      public function listarPorRole($id)
     {
         $usuarios = $this->usuariosPorRole($id);
-
-  
-
             return view('usuarios.listar', [
                 'usuarios' => $usuarios,
             ]);
@@ -244,23 +235,19 @@ class UsuariosController extends Controller
 
             return $usuarios;
    }
-
-
    public function cambiarEstado(User $user)
    {
         $estado = $user->estado;
         
         if ($estado->id == 1) 
-        {
-                
+        { 
             $user->estado_id = 2;
             $user->save();
 
-          return redirect('/personas/mostrar/'.$user->id)->with('info','Usuario Inactivado Exitosamente!');
+          return redirect('/personas/mostrar/'.$user->id)->with('warning','Usuario Inactivado Exitosamente!');
         } 
         else 
         {
-
             $user->estado_id = 1;
             $user->save();
         
