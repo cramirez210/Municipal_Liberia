@@ -2,9 +2,9 @@
 
 @section('content')
 
-@include('mensajes.alertas')
+@include('mensajes.alertas') 
 
-	<!-- Si la sesión tiene algo guardado, muestrelo -->
+  <!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
     Filtro de Busqueda
@@ -12,7 +12,7 @@
 
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/cobros/buscar/user" style="margin-left: 29%;"> 
+  <form class="form-inline" method="POST" action="/cobros/usuarios/morosos/consultar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
@@ -36,8 +36,9 @@
 
 
 
+
 @endsection
 
 @section('titulo')
-    Cobros - Usuario
+    Consultar morosidad
 @endsection

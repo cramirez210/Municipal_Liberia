@@ -36,6 +36,12 @@ class Cobro extends Model
             ->select('users.id as user_id', 'users.nombre_usuario', 'personas.cedula', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'facturas.forma_pago', 'facturas.created_at as fecha_factura', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado');	
     }
 
+    public function select_user(){
+        return DB::table('users')
+           ->join('personas', 'users.persona_id', 'personas.id')
+         ->select('users.id as user_id', 'personas.*');
+    }
+
     public function ObtenerPorCriterio($columna, $valor)
     {
             $cobros = $this->select()
@@ -82,5 +88,43 @@ class Cobro extends Model
             ->where($columna, $valor);
 
         return $cobros;   
+    }
+
+    public function ObtenerReporte($id){
+
+        $user = DB::table('users')
+                ->join('personas', 'users.persona_id', 'personas.id')
+                ->select('personas.*', 'users.id as user_id', 'users.nombre_usuario')
+                ->where('users.id', $id)
+                ->first();
+
+        $cobro = new Cobro;
+       
+        $total_cobros = $cobro->select()
+                    ->where('cobros.user_id', $id)->count();
+
+        $total_recaudado = $cobro->select()
+                    ->where('cobros.user_id', $id)
+                    ->where('cobros.estado_id', 4)->sum('monto');
+
+        $monto_pendiente =  $cobro->select()
+                    ->where('cobros.user_id', $id)
+                   ->where('cobros.estado_id', 3)->sum('monto');
+
+        $reporte = array('user' => $user , 'total_cobros' => $total_cobros ,
+        'total_recaudado' => $total_recaudado , 'monto_pendiente' => $monto_pendiente , );
+
+        return $reporte;
+    }
+
+    public function ObtenerUsuariosMorosos(){
+
+          return DB::table('cobros')
+                    ->join('users', 'cobros.user_id', 'users.id')
+                    ->join('personas', 'users.persona_id', 'personas.id')
+                    ->select('users.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono')
+                    ->distinct()
+                    ->where('cobros.estado_id', 3)
+                    ->get();
     }
 }

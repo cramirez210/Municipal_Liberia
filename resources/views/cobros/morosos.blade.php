@@ -11,7 +11,7 @@
   </div>
 
   <div class="card-block">
-    @include('facturas.filtrar')
+    @include('cobros.filtrar')
 </div>
 </div>
 @endif
@@ -25,7 +25,7 @@
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
     <li class="nav-item">
       <div class="col-md-2 float-right mr-5 mb-2">
-        <a href="/facturas/index" class="btn btn-warning btn-md">
+        <a href="/cobros/index" class="btn btn-warning btn-md">
            Regresar
         </a>
    </div>
@@ -44,7 +44,7 @@
         <thead>
             <tr>
             <th class="text-center">Nombre completo</th>
-            <th class="text-center">Facturas pendientes</th>
+            <th class="text-center">Cobros a liquidar</th>
             <th class="text-center">Email</th>
             <th class="text-center">Teléfono</th>
             </tr>
@@ -55,7 +55,7 @@
                        
         <tr>
             <td class="info"> {{ $moroso->primer_nombre }} {{ $moroso->primer_apellido }} {{ $moroso->segundo_apellido }} </td>
-            <td class="info"> <a href="/facturas/pendientes/{{$moroso->id}}/3">{{ $factura->ObtenerPorSocioEstado($moroso->id, 3)->count() }}</a>  </td>
+            <td class="info"> <a href="/cobros/list/{{$moroso->id}}/3">{{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}</a>  </td>
             <td class="info"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
         </tr>

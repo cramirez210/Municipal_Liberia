@@ -5,11 +5,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-5">
 
-             @if(session('success'))
-              <div class="card-block">
-                <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-              </div>
-              @endif 
+         @include('mensajes.alertas')
 
            </div>
 
@@ -32,17 +28,17 @@
 
                <div class="col-md-15 mt-3">
                 <b>Nombre de usuario:</b> 
-                {{$cobro->nombre_usuario}}
+                {{$cobroBD->nombre_usuario}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Cédula:</b> 
-                {{$cobro->cedula}}
+                {{$cobroBD->cedula}}
               </div>
               
               <div class="col-md-15 mt-3">
                 <b>Nombre completo:</b> 
-                {{$cobro->primer_nombre}} {{$cobro->primer_apellido}} {{$cobro->segundo_apellido}}
+                {{$cobroBD->primer_nombre}} {{$cobroBD->primer_apellido}} {{$cobroBD->segundo_apellido}}
               </div>
 </div>
 
@@ -53,22 +49,22 @@
 
               <div class="col-md-15 mt-3">
                 <b>Periodo:</b> 
-                {{date('m-Y', strtotime($cobro->fecha_factura))}}
+                {{date('m-Y', strtotime($cobroBD->fecha_factura))}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Fecha de cobro:</b> 
-                {{date('d-m-Y', strtotime($cobro->created_at))}}
+                {{date('d-m-Y', strtotime($cobroBD->created_at))}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Monto:</b> 
-                {{$cobro->monto}}
+                {{$cobroBD->monto}}
               </div>
 
               <div class="col-md-15 mt-3">
                 <b>Estado:</b> 
-                {{$cobro->estado}}
+                {{$cobroBD->estado}}
               </div>
 </div>
 

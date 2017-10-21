@@ -2,16 +2,7 @@
 
 @section('content')
 
-
-	@if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-  @endif  
+@include('mensajes.alertas')
 
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">

@@ -29,8 +29,9 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 	Route::get('/personas/editar/{user}','PersonasController@show_update');
 	Route::post('/personas/editar/{user}','PersonasController@update');
-	
+	Route::get('/usuarios/cobros/{id}','UsuariosController@ReporteDeCobros');
 	Route::get('/usuario/estado/{user}','UsuariosController@cambiarEstado');
+
 	Route::get('/conf/index', 'ConfiguracionController@index');
 	Route::get('/roles/index', 'RolesController@index');
 	Route::post('/roles/create', 'RolesController@create');
@@ -115,14 +116,19 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
 	Route::get('/cobros/list/{user}/{id}','CobroController@ListarPorUsuarioEstado');
 	Route::get('/cobros/list', 'CobroController@list');
-	Route::get('/cobros/anular/{id}', 'CobroController@AnularPorEstado');
-	Route::get('/cobros/anular/{user}/{id}', 'CobroController@AnularPorUsuarioEstado');
+	Route::get('/cobros/liquidar/{id}', 'CobroController@liquidarPorEstado');
+	Route::get('/cobros/liquidar/{user}/{id}', 'CobroController@liquidarPorUsuarioEstado');
 	Route::post('/cobros/confirmar', 'CobroController@confirmar');
-	Route::post('/cobros/anular', 'CobroController@anular');
+	Route::post('/cobros/liquidar', 'CobroController@liquidar');
 	Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
 	Route::post('/cobros/buscar/user','CobroController@BuscarUsuario');
-	Route::get('/cobros/buscar/anular','CobroController@BuscarParaAnular');
-	Route::post('/cobros/buscar/anular','CobroController@BuscarAnular');
+	Route::get('/cobros/reporte/user/{id}','CobroController@ReporteCobrosDeEjecutivo');
+	Route::get('/cobros/buscar/liquidar','CobroController@BuscarParaliquidar');
+	Route::post('/cobros/buscar/liquidar','CobroController@Buscarliquidar');
+	Route::get('/cobros/morosos', 'CobroController@ListarUsuariosMorosos');
+	Route::get('/cobros/usuarios/morosos/consultar', 'CobroController@ConsultarMorosidad');
+	Route::post('/cobros/usuarios/morosos/consultar', 'CobroController@BuscarMoroso');
+	Route::get('/cobros/usuarios/morosos/{id}', 'CobroController@MostrarMorosidadUsuario');
 
 });
 

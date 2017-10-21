@@ -2,15 +2,7 @@
 
 @section('content')
 
-   @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-    @endif  
+@include('mensajes.alertas') 
 
 @if(count($cobros))
 <div class="card text-center mt-4">
@@ -32,19 +24,9 @@
     <b> Cobros del usuario: {{$user->nombre_usuario}}</b>
   </div>
     <ul class="nav nav-pills card-header-pills float-right mr-4">
-         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="/cobros/user/{{$user->user_id}}">Todas los cobros</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/cobros/list/{{$user->user_id}}/3">Cobros pendientes</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/cobros/list/{{$user->user_id}}/4">Cobros cancelados</a>
-        </div>
-    </li>
     <li class="nav-item">
       <div class="col-md-2 mr-5">
-        <a href="/cobros/buscar" class="btn btn-warning btn-md">
+        <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
            Regresar
         </a>
    </div>

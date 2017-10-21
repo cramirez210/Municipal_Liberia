@@ -2,16 +2,7 @@
 
 @section('content')
 
-
-	@if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-  @endif  
+@include('mensajes.alertas') 
 
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 <div class="card text-center mt-4">
@@ -21,7 +12,7 @@
 
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/cobros/buscar/anular" style="margin-left: 29%;"> 
+  <form class="form-inline" method="POST" action="/cobros/buscar/liquidar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
   <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
