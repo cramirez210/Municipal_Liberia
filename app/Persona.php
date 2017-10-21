@@ -14,7 +14,6 @@ class Persona extends Model
     {
         return $this->hasOne('App\User');
     }
-    
    public function socio()
    {
    	 	return $this->hasOne('App\Socio');

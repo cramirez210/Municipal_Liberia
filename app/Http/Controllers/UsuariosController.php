@@ -117,7 +117,7 @@ class UsuariosController extends Controller
                 User::create($fill);
             }
 
-       return redirect(url('usuarios/showCreate'))->withSuccess('Usuario creado exitosamente!');
+       return redirect(url('usuarios/showCreate'))->with('info','Usuario creado exitosamente!');
     }
 
 
@@ -131,23 +131,6 @@ class UsuariosController extends Controller
          return Role::where('rol',$request['rol'])->first();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         $socios = $user->socios;
@@ -160,40 +143,6 @@ class UsuariosController extends Controller
               'sociosActivos' => $sociosActivos,
               'sociosInactivos' => $sociosInactivos, 
           ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function buscarUsuario(Request $request)
@@ -306,7 +255,7 @@ class UsuariosController extends Controller
             $user->estado_id = 2;
             $user->save();
 
-          return redirect('/personas/mostrar/'.$user->id)->withSuccess('Usuario Inactivado Exitosamente!');
+          return redirect('/personas/mostrar/'.$user->id)->with('info','Usuario Inactivado Exitosamente!');
         } 
         else 
         {
@@ -314,7 +263,7 @@ class UsuariosController extends Controller
             $user->estado_id = 1;
             $user->save();
         
-          return redirect('/personas/mostrar/'.$user->id)->withSuccess('Usuario Activado Exitosamente!');
+          return redirect('/personas/mostrar/'.$user->id)->with('info','Usuario Activado Exitosamente!');
         }
    }
 

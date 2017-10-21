@@ -19,13 +19,14 @@ class Notification extends Mailable
      */
 
     public $request;
-    public $idUser;
-    public function __construct($request,$idUser)
-    {
-     
-       
+    public $imagen;
+    public $persona;
+
+    public function __construct($request,$imagen,$persona)
+    {   
          $this->request = $request;
-         $this->idUser = $idUser;
+         $this->imagen = $imagen;
+         $this->persona = $persona;
     }
 
     /**

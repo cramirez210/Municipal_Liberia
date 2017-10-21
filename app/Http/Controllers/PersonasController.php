@@ -71,7 +71,7 @@ class PersonasController extends Controller
         $persona->save();
         $user->save();
 
-        return redirect('/usuarios/home')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
+        return redirect('/usuarios/home')->with('info','Los datos del usuario han sido actualizados exitosamente!');
 
     }
 
