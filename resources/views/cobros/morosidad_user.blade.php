@@ -21,11 +21,11 @@
 <!--_________________________________Socio_______________________________________-->
         <div class="float-left col-md-5">
 
-          <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
+          <h4 class="card-title col-md-8 mt-2">Información de usuario</h4>
 
                <div class="col-md-15 mt-3">
-                <b>Número de socio:</b> 
-                {{$user->user_id}}
+                <b>Nombre de usuario:</b> 
+                {{$user->nombre_usuario}}
               </div>
               
               <div class="col-md-15 mt-3">

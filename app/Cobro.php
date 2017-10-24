@@ -39,7 +39,7 @@ class Cobro extends Model
     public function select_user(){
         return DB::table('users')
            ->join('personas', 'users.persona_id', 'personas.id')
-         ->select('users.id as user_id', 'personas.*');
+         ->select('users.nombre_usuario', 'users.id as user_id', 'personas.*');
     }
 
     public function ObtenerPorCriterio($columna, $valor)

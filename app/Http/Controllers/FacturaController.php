@@ -318,11 +318,11 @@ class FacturaController extends Controller
 
         $factura = new Factura;
 
-        $facturas_fecha = count($factura->ObtenerPorFecha($desde, $hasta));
+        $facturas_fecha = $factura->ObtenerPorFecha($desde, $hasta)->count();
 
         if($facturas_fecha > 0){
-        $facturas_pendientes = count($factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3));
-        $facturas_pagas = count($factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4));
+        $facturas_pendientes = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3)->count();
+        $facturas_pagas = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4)->count();
 
         $porcentaje_pagas = number_format(($facturas_pagas / $facturas_fecha) * 100, 2, '.', '');
         $porcentaje_pendientes = number_format(($facturas_pendientes / $facturas_fecha) * 100, 2, '.', '');

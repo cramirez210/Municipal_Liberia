@@ -1,6 +1,6 @@
 
   <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
-    <option selected value="0">N° de factura</option>
+    <option selected value="1">N° de factura</option>
     <option value="2">Fecha factura</option>
     <option value="3">Fecha cobro</option>
   </select>

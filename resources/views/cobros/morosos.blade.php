@@ -20,7 +20,7 @@
 <div class="card text-center mt-4">
 <div class="card-header">
   <div class="card-tittle text-primary">
-    <b>Lista de socios morosos</b>
+    <b>Lista de cobradores morosos</b>
   </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
     <li class="nav-item">
