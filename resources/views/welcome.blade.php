@@ -30,7 +30,6 @@
   <a href="/facturas/index" class="list-group-item">Gestión de facturas</a>
   <a href="/cobros/index" class="list-group-item">Liquidación de cobros</a>
   <a href="/conf/index" class="list-group-item">Administración de la configuración</a>
-  <a href="/correo/enviar">Pruebas de correo</a>
 </div>
 
 </div>

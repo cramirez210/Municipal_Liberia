@@ -25,7 +25,7 @@ class EstadoController extends Controller
 					'estado'=> $request->input('estado'),
 			]);
 
-		return redirect('/estados/home')->withSuccess('Estado creada exitosamente!');
+		return redirect('/estados/home')->with('info','Estado creada exitosamente!');
 	}
 
 	public function show(Estado $estado)
@@ -44,6 +44,6 @@ class EstadoController extends Controller
 		$estado->estado = $request->input('estado');
 		$estado->save();
 		
-		return redirect('/estados/home')->withSuccess('Datos actualizados exitosamente!');
+		return redirect('/estados/home')->with('warning','Datos actualizados exitosamente!');
 	}
 }

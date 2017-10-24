@@ -50,6 +50,7 @@ class PersonasController extends Controller
     public function update(CrearPersonaRequest $request,User $user)
     {
     
+
         $persona = $user->persona;
 
 
@@ -63,6 +64,7 @@ class PersonasController extends Controller
         $persona->telefono = $request->input('telefono');
         $persona->direccion = $request->input('direccion');
         $user->nombre_usuario = $request->input('nombre_usuario');
+        $user->email = $request->input('email');
 
         
         $role = $this->FindRoleByName($request->input('rol'));
@@ -71,7 +73,7 @@ class PersonasController extends Controller
         $persona->save();
         $user->save();
 
-        return redirect('/usuarios/home')->withSuccess('Los datos del usuario han sido actualizados exitosamente!');
+        return redirect('/usuarios/home')->with('info','Los datos del usuario han sido actualizados exitosamente!');
 
     }
 

@@ -5,7 +5,7 @@
 
 
 
-<div class="card text-center mt-4">
+<div class="card text-center mt-4">`
   <div class="card-header">
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
@@ -93,15 +93,7 @@
 
     </div>
 
-    @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
-
-    </span>
-
-  @endif  
+    @include('mensajes.alertas') 
 <!--_______________________________ Tabla _____________________________-->
 <div class="card text-center mt-4"> 
 <div class="col-md-8 offset-md-2 mt-4">

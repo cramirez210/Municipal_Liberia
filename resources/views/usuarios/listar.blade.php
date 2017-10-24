@@ -4,13 +4,7 @@
 @section('content')
 
 
-  @if(session('success')) 
-
-  <div class="mt-4 card-block">
-    <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-  </div>
-
-  @endif  
+@include('mensajes.alertas') 
 
 <div class="card text-center mt-4">
   <div class="card-header text-primary">

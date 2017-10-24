@@ -3,23 +3,13 @@
 @section('content')
 <!--El container no se necesita por que ya se implementó-->
 
-    <div class="container ml-5">
-
-    <div class="col-md-9 offset-md-2 mt-4">
-
- @if(session('success'))
-
-  <div class="card-block">
-    <label class=" card-title alert alert-success" style="width: 100%;">{{ session('success') }}</label>
-  </div>
-
-  @endif 
-
-    </div>
+    <div class="container ml-5 mt-3">
 
 
 
 <div class="card" style="width: 90%; height: 85%;">
+
+    @include('mensajes.alertas') 
     <div class="card-header">
         <ul class="nav nav-pills nav-fill card-header-pills">
             <li class="nav-item">

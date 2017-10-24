@@ -36,26 +36,10 @@ class RolesController extends Controller
                     'descripcion'=> $request->input('descripcion'),
             ]);
 
-        return redirect('/roles/index')->withSuccess('Role creado exitosamente!');
+        return redirect('/roles/index')->with('info','Role creado exitosamente!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Role $role)
     {
 
@@ -65,12 +49,6 @@ class RolesController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(CreateRolesRequest $request, $id)
     {
 
@@ -80,29 +58,7 @@ class RolesController extends Controller
         $role->descripcion = $request->input('descripcion');
         $role->save();
         
-        return redirect('/roles/index')->withSuccess('Datos actualizados exitosamente!');
+        return redirect('/roles/index')->with('warning','Datos actualizados exitosamente!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
