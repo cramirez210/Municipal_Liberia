@@ -75,16 +75,29 @@ class SociosController extends Controller
         
         $correo = new CorreoController;
         if ($persona) {
-            $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
-            $correo->notificar($request,$idUser);
-
+            if ($this->ValidarDatosPersonaExistente($persona,$request)) {
+                $this->CrearSolamenteSocio($request,$categoria,$idUser, $persona);
+                $correo->notificar($request,$idUser);
+                return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!'); 
+            } else {
+                return redirect('/socios/asignarEjecutivo')->with('warning','Se produjo una inconsistencia entre el nuemro de cedula y su Persona Asociada!');  
+            }
         } else {
-            $this->CrearPersonaAndSocio($request,$categoria,$idUser);
-            $correo->notificar($request,$idUser);
+                 $this->CrearPersonaAndSocio($request,$categoria,$idUser);
+                 $correo->notificar($request,$idUser);
+                     
+            return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!'); 
         }
-        
-    return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!');
             
+    }
+
+    public function ValidarDatosPersonaExistente($persona,CreateSocioRequest $request)
+    {
+        if ($persona->primer_nombre == $request->input('primer_nombre') && $persona->primer_apellido == $request->input('primer_apellido') && $persona->segundo_apellido == $request->input('segundo_apellido')) {
+            return TRUE;
+        } else {
+           return FALSE;
+        }
     }
 
     public function CrearSolamenteSocio(CreateSocioRequest $request ,$categoria,$idUser, $persona)
