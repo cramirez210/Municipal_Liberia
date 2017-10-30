@@ -52,7 +52,7 @@
             <label for="imagen" class="col-md-10 rm-control-label">Actualizar fotografía de socio</label>
 
                 <div class=" col-md-auto ml-5">
-                      <a href="/socios/showImagen/{{ $socio->id }}"> <img class="img-thumbnail" src="{{ Storage::disk('public')->url($socio->urlImagen) }}"> </a>
+                      <a href="/socios/showImagen/{{ $socio->id }}"> <img class="img-thumbnail" src="{{ asset('storage/socios/'.$socio->urlImagen) }}"> </a>
                       <input type="file" class="form-control-file mt-3" name="imagen"> 
                 </div>
             </div>

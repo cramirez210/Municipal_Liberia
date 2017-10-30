@@ -33,7 +33,7 @@
     <!--_________________________________Persona_______________________________________-->
 
      <div class="text-primary ">Socio: {{ $socio->persona->primer_nombre }} {{ $socio->persona->segundo_nombre }} {{ $socio->persona->primer_apellido }} {{ $socio->persona->segundo_apellido }}</div>
-    <center><img class="img-thumbnail mt-2" src="{{ Storage::disk('public')->url($socio->urlImagen) }}"></center>
+    <center><img class="img-thumbnail mt-2" src="{{ asset('storage/socios/'.$socio->urlImagen) }}"></center>
                 
 
 <!--_____________________________ Botones _________________________________-->

@@ -59,10 +59,10 @@
           <div  class=" col-md-auto form-group">
             <label for="imagen" class="col-md-8 rm-control-label">Fotografía de socio</label>
 
-                <div class=" col-md-auto ml-5">
-                      <a href="/socios/showImagen/{{ $socio->id }}"> <img width="100px" class="img-thumbnail" src="/storage/{{ $socio->urlImagen }}"> </a>
-                </div>
+            <div class=" col-md-auto ml-5">
+                <a href="/socios/showImagen/{{ $socio->id }}"> <img width="100px" class="img-thumbnail" src="{{ asset('storage/socios/'.$socio->urlImagen) }}"> </a>
             </div>
+          </div>
       
           <!--_______________________________ Numero de socio ______________________________-->
 

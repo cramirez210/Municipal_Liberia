@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Estado;
 use App\Factura;
+use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Requests\CreateSocioRequest;
 use App\Persona;
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\CorreoController;
+use Intervention\Image\Facades\Image;
 
 class SociosController extends Controller
 {
@@ -88,7 +89,6 @@ class SociosController extends Controller
                      
             return redirect('/socios/asignarEjecutivo')->with('info','Socio creado exitosamente!'); 
         }
-            
     }
 
     public function ValidarDatosPersonaExistente($persona,CreateSocioRequest $request)
@@ -105,7 +105,11 @@ class SociosController extends Controller
         $ruta ='';
         if ($request->file('imagen')) {
            $imagen = $request->file('imagen');
-           $ruta = $imagen->store('socios','public');
+           $filename = time().'.'.$imagen->getClientOriginalExtension();
+           $location = public_path('storage/socios/'.$filename);
+           $image = Image::make($imagen)->resize(600,500);
+           $image->save($location);
+           $ruta = $filename;
         }else
         {
            $ruta = 'socios/default.jpg';
@@ -125,7 +129,22 @@ class SociosController extends Controller
 
     public function CrearPersonaAndSocio(CreateSocioRequest $request,$categoria,$idUser)
     {
-     $NuevaPersona = new Persona;
+        $ruta ='';
+        if ($request->file('imagen')) {
+            
+           $imagen = $request->file('imagen');
+           $filename = time().'.'.$imagen->getClientOriginalExtension();
+           $location = public_path('storage/socios/'.$filename);
+           $image = Image::make($imagen)->resize(600,500);
+           $image->save($location);
+           $ruta = $filename;
+
+        }else
+        {
+            $ruta = 'socios/default.jpg';
+        }
+
+        $NuevaPersona = new Persona;
         $NuevaPersona->primer_nombre = $request->input('primer_nombre');
         $NuevaPersona->segundo_nombre = $request->input('segundo_nombre');
         $NuevaPersona->primer_apellido= $request->input('primer_apellido');
@@ -139,14 +158,6 @@ class SociosController extends Controller
             
         $idNuevaPersona = $this->FindCedulapersona($NuevaPersona->cedula);
 
-        $ruta ='';
-        if ($request->file('imagen')) {
-           $imagen = $request->file('imagen');
-           $ruta = $imagen->store('socios','public');
-        }else
-        {
-            $ruta = 'socios/default.jpg';
-        }
             $socio = Socio::create([
 
                     'persona_id'=> $idNuevaPersona,
@@ -219,9 +230,21 @@ class SociosController extends Controller
         // Actualizar objeto socio --------------------------------------------------------------
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id')); //Encontrar el objeto categoria.
         
-        if($request->file('imagen') !== null)
-        {
-            $socio->urlImagen = $request->file('imagen')->store('socios', 'public');
+        if($request->file('imagen'))
+        { 
+            // nueva foto
+           $imagen = $request->file('imagen');
+           $filename = time().'.'.$imagen->getClientOriginalExtension();
+           $location = public_path('storage/socios/'.$filename);
+           $image = Image::make($imagen)->resize(600,500);
+           $image->save($location);
+           $oldFilename = $socio->urlImagen;
+           //update BD
+           $ruta = $filename;
+           //eliminar foto vieja
+           Storage::delete($oldFilename);
+
+            $socio->urlImagen = $ruta;
         }
         $socio->empresa = $request->input('empresa');
         $socio->estado_civil = $request->input('estado_civil');
