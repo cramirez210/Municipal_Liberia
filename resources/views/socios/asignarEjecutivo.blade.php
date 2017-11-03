@@ -7,13 +7,13 @@
     
     <label class="text-primary"> Filtro de Busqueda </label>
     <div class="nav-item float-right">
-       <a class="btn btn-info btn-xs" href="/socios/index" ">Regresar</a>
+       <a class="btn btn-warning btn-xs" href="/socios/index" ">Regresar</a>
     </div>
   </div>
 
   <div class="card-block">
 
-  <form class="form-inline" style="margin-left: 29%;">
+  <form>
   
   <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
     <option selected value="0">Nombre de Usuario</option>
@@ -23,8 +23,8 @@
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
         <input id="valor" type="text" class="form-control" placeholder="Ejemplo: Usuario" type="text" name="valor" value="{{ old('valor') }}" required autofocus onkeyup="filtrar()">
   </label>
+  </form> 
 
-  </form>  
 </div>
 
 </div>

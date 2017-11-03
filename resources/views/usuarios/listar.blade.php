@@ -15,22 +15,18 @@
 
 
 
-<form class="form-inline" method="GET" action="/usuarios/find" style="margin-left: 29%;">
-  
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
+<form  method="GET" action="/usuarios/find">
+  
+  <select class="custom-select mb-1" name="criterio">
     <option selected value="1">Cedula</option>
     <option value="2">Nombre de usuario</option>
   </select>
-
-  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
-
-        <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">Buscar !</button>
-        </span>
-
+  <label class=" ">
+        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus>  
+       
   </label>
+      <button class="btn btn-success mb-1" type="submit">Buscar !</button>
 
   </form>  
 
@@ -115,7 +111,7 @@
             <td class="info" >  {{$usuario->rol}} </td>
    
             <td class="info"> 
-                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-success btn-xs col-md-12 mt-1">
+                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs col-md-12 mt-1">
                 <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
             </td>
         </tr>

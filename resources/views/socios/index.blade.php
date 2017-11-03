@@ -29,10 +29,10 @@
   <div class="card-block">
 
 
-  <form class="form-inline" method="GET" action="/socios/find" style="margin-left: 29%;">
+  <form method="GET" action="/socios/find">
   
 
-  <select id="select" class="custom-select mb-2 mr-sm-2 mb-sm-0" name="criterio">
+  <select id="select" class="custom-select mb-1" name="criterio">
     @if(count($socios))
     <option value="1">Cedula</option>
     <option selected value="2">Numero de Socio</option>
@@ -44,15 +44,11 @@
     
   </select>
 
-  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+  <label>
         <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus onkeyup="filtrar()">
 
-        <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">Buscar !</button>
-        </span>
-
   </label>
-
+     <button class="btn btn-success mb-1" type="submit">Buscar !</button>
   </form>  
 
 

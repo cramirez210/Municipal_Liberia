@@ -27,13 +27,13 @@
 
 
          <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-success" href="/usuarios/socios/{{ $usuario->id }}">Ver socios relacionados</a>
+            <a class="dropdown-item text-info" href="/usuarios/socios/{{ $usuario->id }}">Ver socios relacionados</a>
 
         <div class="dropdown-divider"></div>
             <a class="dropdown-item text-success" href="/usuarios/cobros/{{ $usuario->id }}">Ver cobros efectuados</a>
 
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-info" href="/usuarios/home">Regresar</a>
+            <a class="dropdown-item text-primary" href="/usuarios/home">Regresar</a>
         </div>
     </li>
 
@@ -49,9 +49,9 @@
     <!--_______________________________ Primer Nombre ______________________________-->
 
                            <div  class=" col-md-auto form-group">
-                            <label for="primer_nombre" class="col-md-8 form-control-label">Primer nombre</label>
+                            <label for="primer_nombre" class=" form-control-label">Primer nombre</label>
 
-                            <div class=" col-md-auto ml-5">
+                            <div class=" col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="primer_nombre" type="text" class="form-control" name="primer_nombre" value="{{ $persona->primer_nombre }}" readonly>
                             </div>
                         </div>
@@ -60,9 +60,9 @@
  
  @if($persona->segundo_nombre !== null)
             <div  class="col-md-auto  form-group">
-            <label for="segundo_nombre" class="col-md-8 form-control-label">Segundo nombre</label>
+            <label for="segundo_nombre" class=" form-control-label">Segundo nombre</label>
 
-                <div class="col-md-auto ml-5 ">
+                <div class="col-md-auto ml-lg-5 ml-xl-5">
                     <input id="segundo_nombre"  type="text" class="form-control" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" readonly>
 
                 </div>
@@ -75,9 +75,9 @@
 
                      <div class="col-md-auto  form-group">
 
-                            <label for="primer_apellido" class="col-md-8 form-control-label">Primer apellido</label>
+                            <label for="primer_apellido" class="form-control-label">Primer apellido</label>
 
-                            <div class="col-md-auto ml-5 ">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="primer_apellido" type="text" class="form-control" name="primer_apellido" value="{{ $persona->primer_apellido }}" readonly>
                             </div>
                         </div>
@@ -87,9 +87,9 @@
 
 
                      <div class="col-md-auto form-group">
-                            <label for="segundo_apellido" class="col-md-8 form-control-label">Segundo apellido</label>
+                            <label for="segundo_apellido" class=" form-control-label">Segundo apellido</label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="segundo_apellido" type="text" class="form-control" name="segundo_apellido" value="{{ $persona->segundo_apellido }}" readonly>
                             </div>
                         </div>
@@ -99,9 +99,9 @@
 
 
                      <div class=" col-md-auto  form-group">
-                            <label for="cedula" class="col-md-4 form-control-label">Cédula</label>
+                            <label for="cedula" class=" form-control-label">Cédula</label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="cedula" type="text" class="form-control" name="cedula" value="{{ $persona->cedula }}" readonly>
                             </div>
                         </div>
@@ -111,9 +111,9 @@
 
 
                      <div  class=" col-md-auto   form-group">
-                            <label for="fecha_nacimiento" class="col-md-8 form-control-label">Fecha de nacimiento</label>
+                            <label for="fecha_nacimiento" class="form-control-label">Fecha de nacimiento</label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
 
                                 <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" width="276" value="{{ $persona->fecha_nacimiento }}" readonly/>
  
@@ -129,9 +129,9 @@
 
 
                         <div class="col-md-auto  form-group">
-                            <label for="email" class="col-md-8 from-control-label">Correo electrónico</label>
+                            <label for="email" class="from-control-label">Correo electrónico</label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ $persona->email }}" readonly>
 
                             </div>
@@ -141,9 +141,9 @@
 <!--_______________________________ Número de telefono ____________________________-->
 
                      <div  class=" col-md-auto  form-group">
-                            <label for="telefono" class="col-md-8 form-control-label">Número de telefono </label>
+                            <label for="telefono" class="form-control-label">Número de telefono </label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="telefono"type="text" class="form-control" name="telefono" value="{{ $persona->telefono }}" readonly>
 
                             </div>
@@ -152,9 +152,9 @@
  <!--_______________________________ Dirección____________________________-->
 
             <div class="col-md-auto  form-group">
-                            <label for="direccion" class="col-md-4 form-control-label">Dirección</label>
+                            <label for="direccion" class="form-control-label">Dirección</label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input style="height: 60px;" id="direccion" type="textarea" class="form-control" name="direccion" value="{{ $persona->direccion }}" readonly></input>
 
                             </div>
@@ -163,9 +163,9 @@
 <!--________________________________ Nombre de usuario __________________________-->
 
                         <div class=" mt-3 col-md-auto  form-group">
-                            <label for="nombre_usuario" class="col-md-8 form-control-label">Nombre de usuario</label>
+                            <label for="nombre_usuario" class="form-control-label">Nombre de usuario</label>
 
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                                 <input id="nombre_usuario" type="text" class="form-control"  name="nombre_usuario" value="{{ $usuario->nombre_usuario }}" readonly>
 
                               
@@ -174,9 +174,9 @@
 
 <!--________________________________________ Roles  _________________________-->
                      <div class=" col-md-auto  form-group">
-                            <label for="rol" class="col-md-8 form-control-label">Rol</label>
+                            <label for="rol" class="form-control-label">Rol</label>
                             
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto ml-lg-5 ml-xl-5">
                             <input id="rol" type="text" class="form-control"  name="rol" value="{{ $role->rol }}" readonly>
                             
                             </div>
@@ -189,7 +189,7 @@
 <!--_____________________________ Botones _________________________________-->
                         <center class="form-group mt-3">
                             <div class="row-fluid">
-                                <a href="/usuarios/home" class="btn btn-info btn-lg">
+                                <a href="/usuarios/home" class="btn btn-primary btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
                             </div>
