@@ -111,8 +111,27 @@
             <td class="info" >  {{$usuario->rol}} </td>
    
             <td class="info"> 
-                <a href="/personas/mostrar/{{ $usuario->id }}" class="btn btn-info btn-xs col-md-12 mt-1">
-                <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{$usuario->id}}">Detalle</button>
+
+                    <div id="{{$usuario->id}}" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Detalle de usuario</h4>
+                            @include('usuarios.links')
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body text-left">
+                            @include('personas.show')
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
             </td>
         </tr>
 

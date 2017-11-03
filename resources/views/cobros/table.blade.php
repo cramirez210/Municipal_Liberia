@@ -10,7 +10,7 @@
             <th class="text-center">Fecha cobro</th>
             <th class="text-center">Monto</th>
             <th class="text-center">Estado</th>
-            <!-- <th class="text-center">Opcion</th> -->
+            <th class="text-center">Opcion</th>
             </tr>
         </thead>
     <tbody>
@@ -24,12 +24,28 @@
             <td class="info"> {{ date('d-m-Y', strtotime($cobro->created_at)) }} </td>
             <td class="info"> {{ $cobro->monto }} </td>
             <td class="info"> {{ $cobro->estado }} </td>
-            <!--  
             <td class="warning"> 
-              <a href="/cobros/show/{{$cobro->id}}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{$cobro->id}}">Detalle</button>
+
+                    <div id="{{$cobro->id}}" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Detalle de cobro</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body text-left">
+                            @include('cobros.detail')
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
             </td>
-            -->
         </tr>
 
         @empty

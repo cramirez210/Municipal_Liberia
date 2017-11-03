@@ -27,8 +27,26 @@
             <td class="info"> {{ date('m-Y', strtotime($factura->created_at)) }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning">
-              <a href="/facturas/show/id/{{$factura->id}}" class="btn btn-success btn-sm">
-                 Detalle</a>
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{$factura->id}}">Detalle</button>
+
+                    <div id="{{$factura->id}}" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Detalle de factura</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body text-left">
+                            @include('facturas.detail')
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
             </td>
         </tr>
 

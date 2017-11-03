@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="/personas/mostrar/{{$reporte['user']->user_id}}" class="btn btn-warning btn-md">
+                                <a href="/usuarios/home" class="btn btn-warning btn-md">
                                    Regresar
                                 </a>
                             </div>

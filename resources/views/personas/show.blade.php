@@ -1,47 +1,7 @@
-@extends('layouts.app')
-
-@section('content')
-<!--El container no se necesita por que ya se implementó-->
 
 <div class="container ml-4" style="width: 90%; height: 85%;">
-        @include('mensajes.alertas') 
-<div class="card mt-5" >
-  <div class="card-header">
-    <ul class="nav nav-pills nav-fill card-header-pills">
-        <li class="nav-item">
-            <h5 class="text-primary">  Usuario {{ $usuario->nombre_usuario }}</h5>
-        </li>
-        <li class="nav-item dropdown mt-2" id="opciones">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
-        
-        <div class="dropdown-menu">
-            <a class="dropdown-item text-warning" href="/personas/editar/{{ $usuario->id }}">Actualizar</a>
 
-            @if($usuario->estado_id == 2)
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-success" href="/usuario/estado/{{ $usuario->id }}">Activar</a>
-            @else
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" href="/usuario/estado/{{ $usuario->id }}">Inactivar</a>
-            @endif
-
-
-         <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-info" href="/usuarios/socios/{{ $usuario->id }}">Ver socios relacionados</a>
-
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-success" href="/usuarios/cobros/{{ $usuario->id }}">Ver cobros efectuados</a>
-
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-primary" href="/usuarios/home">Regresar</a>
-        </div>
-    </li>
-
-    </ul>
-  </div>
-  
-<div class="card-block">
-    <div class="container-fluid mt-4 w-100">
+    <div class="container-fluid">
         <div> <!-- No tocar-->
              
 <!--_________________________________Persona_______________________________________-->
@@ -52,18 +12,18 @@
                             <label for="primer_nombre" class=" form-control-label">Primer nombre</label>
 
                             <div class=" col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="primer_nombre" type="text" class="form-control" name="primer_nombre" value="{{ $persona->primer_nombre }}" readonly>
+                                <input id="primer_nombre" type="text" class="form-control" name="primer_nombre" value="{{ $usuario->primer_nombre }}" readonly>
                             </div>
                         </div>
 
 <!--_______________________________ Segundo Nombre ______________________________-->
  
- @if($persona->segundo_nombre !== null)
+ @if($usuario->segundo_nombre !== null)
             <div  class="col-md-auto  form-group">
             <label for="segundo_nombre" class=" form-control-label">Segundo nombre</label>
 
                 <div class="col-md-auto ml-lg-5 ml-xl-5">
-                    <input id="segundo_nombre"  type="text" class="form-control" name="segundo_nombre" value="{{ $persona->segundo_nombre }}" readonly>
+                    <input id="segundo_nombre"  type="text" class="form-control" name="segundo_nombre" value="{{ $usuario->segundo_nombre }}" readonly>
 
                 </div>
             </div>
@@ -78,7 +38,7 @@
                             <label for="primer_apellido" class="form-control-label">Primer apellido</label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="primer_apellido" type="text" class="form-control" name="primer_apellido" value="{{ $persona->primer_apellido }}" readonly>
+                                <input id="primer_apellido" type="text" class="form-control" name="primer_apellido" value="{{ $usuario->primer_apellido }}" readonly>
                             </div>
                         </div>
 
@@ -90,7 +50,7 @@
                             <label for="segundo_apellido" class=" form-control-label">Segundo apellido</label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="segundo_apellido" type="text" class="form-control" name="segundo_apellido" value="{{ $persona->segundo_apellido }}" readonly>
+                                <input id="segundo_apellido" type="text" class="form-control" name="segundo_apellido" value="{{ $usuario->segundo_apellido }}" readonly>
                             </div>
                         </div>
 
@@ -102,7 +62,7 @@
                             <label for="cedula" class=" form-control-label">Cédula</label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ $persona->cedula }}" readonly>
+                                <input id="cedula" type="text" class="form-control" name="cedula" value="{{ $usuario->cedula }}" readonly>
                             </div>
                         </div>
 
@@ -115,7 +75,7 @@
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
 
-                                <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" width="276" value="{{ $persona->fecha_nacimiento }}" readonly/>
+                                <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" width="276" value="{{ $usuario->fecha_nacimiento }}" readonly/>
  
                       
                             </div>
@@ -132,7 +92,7 @@
                             <label for="email" class="from-control-label">Correo electrónico</label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $persona->email }}" readonly>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $usuario->email }}" readonly>
 
                             </div>
                         </div>
@@ -144,7 +104,7 @@
                             <label for="telefono" class="form-control-label">Número de telefono </label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="telefono"type="text" class="form-control" name="telefono" value="{{ $persona->telefono }}" readonly>
+                                <input id="telefono"type="text" class="form-control" name="telefono" value="{{ $usuario->telefono }}" readonly>
 
                             </div>
                         </div>         
@@ -155,7 +115,7 @@
                             <label for="direccion" class="form-control-label">Dirección</label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input style="height: 60px;" id="direccion" type="textarea" class="form-control" name="direccion" value="{{ $persona->direccion }}" readonly></input>
+                                <input style="height: 60px;" id="direccion" type="textarea" class="form-control" name="direccion" value="{{ $usuario->direccion }}" readonly></input>
 
                             </div>
                         </div>
@@ -177,36 +137,14 @@
                             <label for="rol" class="form-control-label">Rol</label>
                             
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                            <input id="rol" type="text" class="form-control"  name="rol" value="{{ $role->rol }}" readonly>
+                            <input id="rol" type="text" class="form-control"  name="rol" value="{{ $usuario->rol }}" readonly>
                             
                             </div>
                         </div>
-
-
 </div>
-
-
-<!--_____________________________ Botones _________________________________-->
-                        <center class="form-group mt-3">
-                            <div class="row-fluid">
-                                <a href="/usuarios/home" class="btn btn-primary btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
-
-                            </div>
-                        </Center>      
+ 
         </div>
 
+        </div>
         </div>    
-    </div>
 
-</div>
-
-
-
-
-
-
-
-
-
-@endsection
