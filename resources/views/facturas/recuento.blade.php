@@ -2,26 +2,9 @@
 
 @section('content')
 
-@include('mensajes.alertas') 
+@include('mensajes.alertas')
 
-  @if(count($errors))
-<div> 
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('desde'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('desde') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('hasta'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('hasta') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif
+@include('mensajes.errors') 
 
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 
@@ -43,11 +26,6 @@
         <a href="/facturas/index" class="btn btn-warning d-inline-block mt-3 mr-5">Cancelar</a>
         
         </span>
-
-        <script>
-                    $('#desde').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    $('#hasta').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    </script>
   </form>  
 </div>
 </div>

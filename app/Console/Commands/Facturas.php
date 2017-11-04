@@ -82,8 +82,7 @@ class Facturas extends Command
         $factura->monto = $categoria->precio_categoria;
         $factura->forma_pago = '';
         $factura->transaccion_bancaria = null;
-        $factura->created_at = Carbon::now();
-        $factura->updated_at = Carbon::now();
+        $factura->periodo = Carbon::now();
         $factura->fecha_pago = null;
         $factura->estado_id = 3;
 
@@ -102,8 +101,7 @@ class Facturas extends Command
         $factura->monto = $categoria->precio_categoria;
         $factura->forma_pago = '';
         $factura->transaccion_bancaria = null;
-        $factura->created_at = Carbon::now();
-        $factura->updated_at = Carbon::now();
+        $factura->periodo = Carbon::now();
         $factura->fecha_pago = null;
         $factura->estado_id = 3;
 

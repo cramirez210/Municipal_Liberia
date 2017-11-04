@@ -126,7 +126,7 @@
                 Registrar
             </button>
 
-              <a href="/facturas/pagar/buscar" class="btn btn-danger btn-xs mt-4 ml-3">
+              <a href="/facturas/index" class="btn btn-danger btn-xs mt-4 ml-3">
               <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
             </div>
 

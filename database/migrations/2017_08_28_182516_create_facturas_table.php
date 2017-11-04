@@ -22,9 +22,9 @@ class CreateFacturasTable extends Migration
             $table->string('forma_pago');
             $table->string('transaccion_bancaria')->nullable();
             $table->integer('estado_id')->unsigned();
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->date('periodo');
             $table->date('fecha_pago')->nullable();
+            $table->timestamps();
         });
     }
 

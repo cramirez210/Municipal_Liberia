@@ -70,6 +70,11 @@
                  {{$factura->created_at}}
                </div>
 
+               <div class="col-md-10 mt-3">
+                 <b>Periodo:</b> 
+                 {{$factura->periodo}}
+               </div>
+
                 <div class="form-group mt-3">
                             <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
                              <div class="col-md-6 ml-5">

@@ -63,7 +63,7 @@ class FacturaController extends Controller
 
         return view('facturas.create', compact('socio', 'facturas_pendientes', 'monto'));     
         }else{
-        return redirect('/facturas/pagar/buscar')->with('warning', 'El dato ingresado no corresponde a ninguno de nuestros socios.');
+        return redirect('/facturas/index')->with('warning', 'El dato ingresado no corresponde a ninguno de nuestros socios.');
         }
     }
 
@@ -116,7 +116,7 @@ class FacturaController extends Controller
         $ultima_factura = $query->latest()->first();
 
         if($ultima_factura)
-        $pago_hasta = new Carbon($ultima_factura->created_at);
+        $pago_hasta = new Carbon($ultima_factura->periodo);
         else{
             $pago_hasta = Carbon::createFromDate(null, null, 1);
         }
@@ -187,7 +187,7 @@ class FacturaController extends Controller
 
         $categoria = $factura->ObtenerCategoriaDeSocio($socio->id);
 
-        $factura->store($facturaBD, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, $facturaBD->created_at, Carbon::now(), 4);
+        $factura->store($facturaBD, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, $facturaBD->periodo, Carbon::now(), 4);
 
         $cobro->GenerarCobroUsuario($facturaBD->id, 3);
 
@@ -291,7 +291,7 @@ class FacturaController extends Controller
        
        return redirect('/facturas/socio/'.$socio->socio_id);
        else
-        return redirect('/facturas/buscar')->with('warning', 'No se ha encontrado al socio');
+        return redirect('/facturas/index')->with('warning', 'No se ha encontrado al socio');
 
     }
 
@@ -358,7 +358,7 @@ class FacturaController extends Controller
        if($socio!=null)
        return redirect('/facturas/socios/morosos/'.$socio->socio_id);
        else
-        return redirect('/facturas/socios/morosos/consultar')->with('warning', 'No se ha encontrado al socio');
+        return redirect('/facturas/index')->with('warning', 'No se ha encontrado al socio');
     }
 
     public function MostrarMorosidadSocio($socio_id){
@@ -428,7 +428,7 @@ class FacturaController extends Controller
 
         $categoria = $factura->ObtenerCategoriaDeSocio($socio);
 
-        $factura->store($factura, $socio->id, 1, $categoria->precio_categoria, $factura->forma_pago, null, $factura->created_at, $fecha_pago, 4);
+        $factura->store($factura, $socio->id, 1, $categoria->precio_categoria, $factura->forma_pago, null, $factura->periodo, $fecha_pago, 4);
 
         $cobro->GenerarCobroUsuario($factura->id, 3);
 

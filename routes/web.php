@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/create', 'FacturaController@create');
 	Route::post('/facturas/confirmar/{id}', 'FacturaController@ConfirmarPago');
 	Route::post('/facturas/liquidar/{id}', 'FacturaController@liquidar');
-	Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio');
+	//Route::get('/facturas/pagar/buscar', 'FacturaController@buscar_socio');
 	Route::get('/facturas/pagar/{id}', 'FacturaController@pagar');
 
 	Route::get('/facturas/generar', 'FacturaController@GenerarFacturas');
@@ -97,15 +97,15 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/socio/{id}','FacturaController@ListarPorSocio');
 	Route::get('/facturas/{socio}/{id}','FacturaController@ListarPorSocioEstado');
 	Route::get('/facturas/pendientes/{socio}/{id}','FacturaController@ListarPendientesSocio');
-	Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
+	//Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
 	Route::post('/facturas/buscar','FacturaController@BuscarSocio');
 	Route::get('/facturas/list', 'FacturaController@list');
 	Route::get('/facturas/morosos', 'FacturaController@ListarSociosMorosos');
-	Route::get('/facturas/socios/morosos/consultar', 'FacturaController@ConsultarMorosidad');
+	//Route::get('/facturas/socios/morosos/consultar', 'FacturaController@ConsultarMorosidad');
 	Route::post('/facturas/socios/morosos/consultar', 'FacturaController@BuscarMoroso');
 	Route::get('/facturas/socios/morosos/{id}', 'FacturaController@MostrarMorosidadSocio');
 
-	Route::get('/facturas/show/id/{id}', 'FacturaController@show');
+	//Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 	Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes');
 	Route::get('/imprimir/{id}','FacturaController@imprimir');
 
@@ -120,13 +120,13 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/cobros/liquidar/{user}/{id}', 'CobroController@liquidarPorUsuarioEstado');
 	Route::post('/cobros/confirmar', 'CobroController@confirmar');
 	Route::post('/cobros/liquidar', 'CobroController@liquidar');
-	Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
+	//Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
 	Route::post('/cobros/buscar/user','CobroController@BuscarUsuario');
 	Route::get('/cobros/reporte/user/{id}','CobroController@ReporteCobrosDeEjecutivo');
-	Route::get('/cobros/buscar/liquidar','CobroController@BuscarParaliquidar');
+	//Route::get('/cobros/buscar/liquidar','CobroController@BuscarParaliquidar');
 	Route::post('/cobros/buscar/liquidar','CobroController@Buscarliquidar');
 	Route::get('/cobros/morosos', 'CobroController@ListarUsuariosMorosos');
-	Route::get('/cobros/usuarios/morosos/consultar', 'CobroController@ConsultarMorosidad');
+	//Route::get('/cobros/usuarios/morosos/consultar', 'CobroController@ConsultarMorosidad');
 	Route::post('/cobros/usuarios/morosos/consultar', 'CobroController@BuscarMoroso');
 	Route::get('/cobros/usuarios/morosos/{id}', 'CobroController@MostrarMorosidadUsuario');
 

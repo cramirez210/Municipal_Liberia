@@ -26,7 +26,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="/cobros/buscar" class="btn btn-warning btn-md">
+                                <a href="/cobros/index" class="btn btn-warning btn-md">
                                    Regresar
                                 </a>
                             </div>

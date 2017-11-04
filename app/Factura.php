@@ -42,8 +42,7 @@ class Factura extends Model
         $factura->monto = $precio_categoria;
         $factura->forma_pago = $forma_pago;
         $factura->transaccion_bancaria = $transaccion_bancaria;
-        $factura->created_at = $fecha_factura;
-        $factura->updated_at = Carbon::now();
+        $factura->periodo = $fecha_factura;
         if($factura->fecha_pago == null)
         $factura->fecha_pago = $fecha_pago;
         $factura->estado_id = $estado_id;
@@ -68,7 +67,7 @@ class Factura extends Model
 
             $this->store(
                 $facturaBD, $factura->socio_id, $factura->meses_cancelados, 
-                $categoria->precio_categoria, $forma_pago, null, $factura->created_at, $fecha, 4
+                $categoria->precio_categoria, $forma_pago, null, $factura->periodo, $fecha, 4
             );
 
             $model_cobro->GenerarCobroUsuario($factura->id, 3);
@@ -93,7 +92,7 @@ class Factura extends Model
          if ($ultima_factura == null) {
              $fecha = Carbon::now();
          }else{
-         $fecha = new Carbon($ultima_factura->created_at);
+         $fecha = new Carbon($ultima_factura->periodo);
          $fecha->addMonth();
          }
 

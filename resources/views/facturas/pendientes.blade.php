@@ -56,7 +56,7 @@
         <tr>
             <td class="info"> {{ $factura->id }} </td>
             <td class="info"> {{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
-            <td class="info"> {{date('m-Y', strtotime($factura->created_at)) }} </td>
+            <td class="info"> {{date('m-Y', strtotime($factura->periodo)) }} </td>
             <td class="warning"> 
               <div style="display: none;">
                    @include('facturas.factura')

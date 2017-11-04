@@ -4,6 +4,7 @@
 
 @include('mensajes.alertas')
 
+@include('mensajes.errors')
 	<!-- Si la sesión tiene algo guardado, muestrelo -->
 
 <div class="jumbotron mt-4">
@@ -14,7 +15,8 @@
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
-  <a href="/facturas/pagar/buscar" class="list-group-item">Pago de facturas</a>
+  <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_socio">Pago de facturas</a>
+  @include('facturas.buscar_socio')
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
@@ -27,7 +29,8 @@
         </div>
     </li>
   </ul>
-  <a href="/facturas/buscar" class="list-group-item">Buscar facturas de un socio específico</a>
+  <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar">Buscar facturas de un socio específico</a>
+  @include('facturas.buscar')
   <a href="/facturas/recuento" class="list-group-item">Reporte de facturación</a>
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
@@ -35,10 +38,11 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/morosos">Todos los socios</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/socios/morosos/consultar">Un socio</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#moroso">Un socio</a>
         </div>
     </li>
   </ul>
+  @include('facturas.buscar_moroso')
 </div>
 
 </div>

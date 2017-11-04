@@ -42,7 +42,7 @@
 
               <div class="col-md-15 mt-3">
                 <b>Periodo:</b> 
-                {{date('m-Y', strtotime($factura->created_at))}}
+                {{date('m-Y', strtotime($factura->periodo))}}
               </div>
 
               @if($factura->estado_id == 4)

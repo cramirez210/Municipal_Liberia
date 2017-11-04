@@ -24,7 +24,7 @@
             <td class="info"> {{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{ $factura->categoria }} </td>
             <td class="info"> {{ $factura->monto }} </td>
-            <td class="info"> {{ date('m-Y', strtotime($factura->created_at)) }} </td>
+            <td class="info"> {{ date('m-Y', strtotime($factura->periodo)) }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning">
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{$factura->id}}">Detalle</button>

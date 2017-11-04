@@ -14,7 +14,7 @@
                   <ul class="nav nav-pills card-header-pills ml-5">
 
                     <li class="nav-item">
-                       <h5 class="text-primary">Detalle de factura</h5>
+                       <h5 class="text-primary">Detalle de morosidad</h5>
                     </li>
 
                 </div>
@@ -51,7 +51,7 @@
                 <b>Periodos pendientes:</b> 
                 @forelse($pendientes as $pendiente)
                  <div class="col-md-8">
-                  {{date('m-Y', strtotime($pendiente->created_at))}}
+                  {{date('m-Y', strtotime($pendiente->periodo))}}
                  </div>
                 @empty
                 <div class="alert alert-warning col-md-8 mt-2">

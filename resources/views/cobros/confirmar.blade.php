@@ -12,7 +12,7 @@
               <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header text-center text-primary">
                   <b>Registro de cobro</b>
-                  <a href="/facturas/index" class="float-right mr-5">Cancelar</a>
+                  <a href="/cobros/index" class="float-right mr-5">Cancelar</a>
                 </div>
 
              <div class="card-block">

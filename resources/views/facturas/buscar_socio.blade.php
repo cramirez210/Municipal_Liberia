@@ -1,37 +1,12 @@
-@extends('layouts.app')
+<div id="buscar_socio" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-lg">
 
-@section('content')
-
-@include('mensajes.alertas')
-
-  @if(count($errors))
-<div>
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('valor'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('valor') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('Criterio'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('Criterio') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif 
-
-	<!-- Si la sesión tiene algo guardado, muestrelo -->
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    <div class="card-tittle">
-      <b>Buscar socio</b>
-    </div> 
-  </div>
-
-  <div class="card-block">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Buscar socio</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body text-left">
 
   <form method="GET" action="/facturas/create" > 
     {{ csrf_field() }}
@@ -47,17 +22,12 @@
   
      
         <button class="btn btn-success mb-1" type="submit">Buscar</button>
-        <a href="/facturas/index" class="btn btn-danger mb-1">Cancelar</a>
-        
-       
   </form>  
 </div>
-</div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
 
-
-
-@endsection
-
-@section('titulo')
-    Facturación
-@endsection
+                      </div>
+                    </div>

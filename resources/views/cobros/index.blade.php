@@ -14,7 +14,8 @@
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
-  <a class="list-group-item" href="/cobros/buscar/liquidar">Liquidación de cobros de un usuario</a>
+  <a class="list-group-item" href="#" data-toggle="modal" data-target="#buscar_liquidar">Liquidación de cobros de un usuario</a>
+  @include('cobros.buscar_liquidar')
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
@@ -27,7 +28,8 @@
         </div>
     </li>
   </ul>
-  <a href="/cobros/buscar" class="list-group-item">Buscar cobros de un ejecutivo específico</a>
+  <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar">Buscar cobros de un ejecutivo específico</a>
+  @include('cobros.buscar')
   <a href="/cobros/recuento" class="list-group-item">Reporte de cobros</a>
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
@@ -35,10 +37,11 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/cobros/morosos">Todos los ejecutivos</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/cobros/usuarios/morosos/consultar">Un ejecutivo</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_moroso">Un ejecutivo</a>
         </div>
     </li>
   </ul>
+  @include('cobros.buscar_moroso')
 </div>
 
 </div>
