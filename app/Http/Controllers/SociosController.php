@@ -198,6 +198,16 @@ class SociosController extends Controller
 
         return view('/socios/index',compact('socios'));
    }
+
+
+   public function sociosPorEstado($id)
+   {
+    $DB = new Socio;
+    $socios = $DB->select()->where('socios.estado_id',$id)->get();
+
+        return $socios;
+   }
+
     public function edit(Socio $socio)
     {
         $persona = $socio->persona;

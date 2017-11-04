@@ -30,30 +30,30 @@
     </div> 
   </div>
 
+
   <div class="card-block">
 
-  <form class="form-inline" method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
+  <form method="POST" action="/facturas/buscar" style="margin-left: 29%;"> 
     {{ csrf_field() }}
 
-  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="Criterio">
+  <select class="custom-select" name="Criterio">
     <option selected value="1">Numero de Socio</option>
     <option value="2">Cédula</option>
   </select>
 
-  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+  <label>
         <input type="text" class="form-control" placeholder="Ejemplo: 506840523" name="valor" value="{{ old('valor') }}" required autofocus>
   </label>
-
-        <span class="col-md-9 ml-1">
-
-        <button class="btn btn-info d-inline-block ml-4 mt-3" type="submit">Buscar</button>
-        <a href="/facturas/index" class="btn btn-warning d-inline-block mt-3 mr-5">Cancelar</a>
-        
-        </span>
-
+        <button class="btn btn-success mb-1" type="submit">Buscar</button>
+        <a href="/facturas/index" class="btn btn-danger mb-1">Cancelar</a>
   
   </form>
+  
+
+
 </div>
+
+
 </div>
 
 
