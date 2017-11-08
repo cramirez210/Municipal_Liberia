@@ -20,7 +20,8 @@
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
-<div class="card-header">
+<div class="card-header text-primary">
+  <b>Cobros del {{date('m-Y', strtotime($desde))}} al {{date('m-Y', strtotime($hasta))}}</b>
       <div class="col-md-2 float-right mr-5">
         <a href="/cobros/mostrar/recuento/{{$desde}}/{{$hasta}}" class="btn btn-warning btn-md">
            Regresar

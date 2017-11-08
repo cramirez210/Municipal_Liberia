@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/mostrar/recuento/{desde}/{hasta}', 'FacturaController@MostrarRecuento');
 	Route::get('/facturas/recuento/{desde}/{hasta}', 'FacturaController@ListarPorFecha');
 	Route::get('/facturas/recuento/{desde}/{hasta}/{estado}', 'FacturaController@ListarPorFechaEstado');
+	Route::get('/facturas/reporte/morosos', 'FacturaController@ReporteSociosMorosos');
 
 	//Facturas
 

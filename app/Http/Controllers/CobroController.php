@@ -147,15 +147,20 @@ class CobroController extends Controller
                                 ->get());
 
         if($cobros_fecha > 0){
-         $cobros_pendientes = count($cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 3)
-                            ->get());
-         $cobros_pagos = count($cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 4)
-                            ->get());
+        
+        $pendientes = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 3);
+        $pagos = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', 4);
+
+        $cobros_pendientes = $pendientes->count();
+        $cobros_pagos = $pagos->count();
+
+        $monto_recaudado = $pagos->sum('monto');
+        $monto_sin_liquidar = $pendientes->sum('monto');
 
          $porcentaje_pagos = number_format(($cobros_pagos / $cobros_fecha) * 100, 2, '.', '');
          $porcentaje_pendientes = number_format(($cobros_pendientes / $cobros_fecha) * 100, 2, '.', '');
 
-        return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'desde', 'hasta'));
+        return view('cobros.recuento_mes', compact('cobros_fecha', 'cobros_pendientes', 'porcentaje_pendientes', 'porcentaje_pagos', 'cobros_pagos', 'desde', 'hasta', 'monto_recaudado', 'monto_sin_liquidar'));
         }else
         return back()->with('warning', 'No se encontraron cobros en la fecha solicitada');
     }

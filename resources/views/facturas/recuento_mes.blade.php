@@ -6,7 +6,7 @@
 
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    <b>Recuento de facturación del {{$desde}} al {{$hasta}}</b>
+    <b>Recuento de facturación del {{date('m-Y', strtotime($desde))}} al {{date('m-Y', strtotime($hasta))}}</b>
       <div class="col-md-2 ml-3 float-right">
         <a href="/facturas/recuento" class="btn btn-warning btn-md">
            Regresar
@@ -15,7 +15,7 @@
   </div>
 
   <div class="card-block"> 
-  <p>del {{$desde}} al {{$hasta}} se emitieron {{$facturas_fecha}} facturas, de las cuales {{$facturas_pendientes}} están pendientes de pago, mientras que las restantes {{$facturas_pagas}} ya fueron canceladas por los respectivos socios.</p>
+  <p>Del {{date('m-Y', strtotime($desde))}} al {{date('m-Y', strtotime($hasta))}} se emitieron {{$facturas_fecha}} facturas, de las cuales {{$facturas_pendientes}} están pendientes de pago, mientras que las restantes {{$facturas_pagas}} ya fueron canceladas por los respectivos socios.</p>
 </div>
 
   <div class="card-block"> 
@@ -26,31 +26,38 @@
     <table class="table table-hover">
         <thead>
             <tr>
-            <th class="text-center">Facturas emitidas</th>
-            <th class="text-center">Facturas cobradas</th>
+            <th class="text-center">Facturas</th>
+            <th class="text-center">Cantidad</th>
+            <th class="text-center">Monto</th>
             <th class="text-center">Porcentaje (%)</th>
-            <th class="text-center">Facturas pendientes de cobro</th>
-            <th class="text-center">Porcentaje (%)</th>
+            <th class="text-center">Opción</th>
             </tr>
         </thead>
     <tbody>
-                       
+        
         <tr>
-            <td class="info"> {{$facturas_fecha}} </td>
-            <td class="info"> {{$facturas_pagas}}</td>
-            <td class="info"> {{$porcentaje_pagas}}%</td>
-            <td class="info"> {{$facturas_pendientes}}</td>
-            <td class="info"> {{$porcentaje_pendientes}}%</td>
+            <td ><b>Emitidas</b> </td>
+            <td > {{$facturas_fecha}}</td>
+            <td > {{$monto_recaudado + $monto_sin_liquidar}}</td>
+            <td > 100.00%</td>
+            <td>
+              <a href="/facturas/recuento/{{$desde}}/{{$hasta}}">Ver lista</a> </td>
+        </tr>               
+        <tr>
+            <td ><b>Cobradas</b> </td>
+            <td > {{$facturas_pagas}}</td>
+            <td > {{$monto_recaudado}}</td>
+            <td > {{$porcentaje_pagas}}%</td>
+            <td >
+               <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/4">Ver lista</a> </td>
         </tr>
         <tr>
-            <td class="info"> 
-              <a href="/facturas/recuento/{{$desde}}/{{$hasta}}">Ver facturas emitidas</a> </td>
-            <td class="info">
-               <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/4">Ver facturas cobradas</a> </td>
-               <td></td>
-            <td class="info"> 
-              <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/3">Ver facturas pendientes</a></td>
-              <td></td>
+            <td > <b>Pendientes</b> </td>
+            <td > {{$facturas_pendientes}}</td>
+            <td > {{$monto_sin_liquidar}}</td>
+            <td > {{$porcentaje_pendientes}}%</td>
+            <td > 
+              <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/3">Ver lista</a></td>
         </tr>
     </tbody>
     </table>  

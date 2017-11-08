@@ -16,6 +16,7 @@ use App\Cobro;
 use App\User;
 use App\Descuento;
 use Carbon\Carbon;
+use PDF;
 
 class FacturaController extends Controller
 {
@@ -321,13 +322,20 @@ class FacturaController extends Controller
         $facturas_fecha = $factura->ObtenerPorFecha($desde, $hasta)->count();
 
         if($facturas_fecha > 0){
-        $facturas_pendientes = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3)->count();
-        $facturas_pagas = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4)->count();
+
+        $pendientes = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 3);
+        $pagas = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', 4);
+
+        $facturas_pendientes = $pendientes->count();
+        $facturas_pagas = $pagas->count();
+
+        $monto_recaudado = $pagas->sum('monto');
+        $monto_sin_liquidar = $pendientes->sum('monto');
 
         $porcentaje_pagas = number_format(($facturas_pagas / $facturas_fecha) * 100, 2, '.', '');
         $porcentaje_pendientes = number_format(($facturas_pendientes / $facturas_fecha) * 100, 2, '.', '');
 
-            return view('facturas.recuento_mes', compact('desde', 'hasta', 'facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'porcentaje_pagas', 'porcentaje_pendientes'));
+            return view('facturas.recuento_mes', compact('desde', 'hasta', 'facturas_fecha', 'facturas_pendientes', 'facturas_pagas', 'porcentaje_pagas', 'porcentaje_pendientes', 'monto_recaudado', 'monto_sin_liquidar'));
         }else{
             return redirect('/facturas/recuento')->with('warning', 'No se encontraron facturas en la fecha solicitada');
         }
@@ -384,6 +392,20 @@ class FacturaController extends Controller
         $morosos = $factura->ObtenerSociosMorosos();
 
         return view ('facturas.morosos', compact('morosos', 'factura'));
+    }
+
+    public function ReporteSociosMorosos(){
+        $factura = new Factura;
+        $reporte = new PdfController;
+        $fecha = date('d-m-Y');
+
+        $morosos = $factura->ObtenerSociosMorosos();
+
+        $pdf = PDF::loadView('reportes.socios_morosos', compact('morosos', 'factura', 'fecha'));
+
+        return $pdf->download('Socios morosos '.$fecha.'.pdf');
+
+        //return $pdf->stream('reporte.pdf'); ver el reporte en el navegador   
     }
 
     public function ListarPorFecha($desde, $hasta){
