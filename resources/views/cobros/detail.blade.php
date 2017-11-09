@@ -1,8 +1,4 @@
 
-              <div class="card" style="width: 100%; height: auto;">
-
-             <div class="card-block">
-    <div class="container-fluid mt-4 w-100">
 <!--_________________________________Socio_______________________________________-->
         <div class="float-left col-md-6">
 
@@ -49,6 +45,3 @@
                 {{$cobro->estado}}
               </div>
 </div>
-           </div>
-        </div>
-      </div>

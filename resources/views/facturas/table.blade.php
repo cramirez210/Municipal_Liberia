@@ -27,26 +27,7 @@
             <td class="info"> {{ date('m-Y', strtotime($factura->periodo)) }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning">
-              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{$factura->id}}">Detalle</button>
-
-                    <div id="{{$factura->id}}" class="modal fade" role="dialog">
-                      <div class="modal-dialog modal-lg">
-
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title">Detalle de factura</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body text-left">
-                            @include('facturas.detail')
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
+              <button type="button" class="btn btn-info btn-sm detail-factura" data-toggle="modal" data-target="#modal">Detalle</button> 
             </td>
         </tr>
 
@@ -60,6 +41,8 @@
         @endforelse
 
     </tbody>
-    </table>  
+    </table>
+
+    @include('modal')  
 
     </div>

@@ -1,4 +1,4 @@
- function imprSelec($factura){
+function imprSelec($factura){
 
         var ficha=document.getElementById($factura);
         var ventimp=window.open(' ','popimpr');

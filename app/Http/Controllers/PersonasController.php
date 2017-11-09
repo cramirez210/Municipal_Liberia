@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\CrearPersonaRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Persona;
 use App\User;
@@ -20,18 +21,17 @@ class PersonasController extends Controller
           ]);
     }
 
-    public function show(User $user)
+    public function show($id)
     {
-         $role = $user->role;
 
+        $usuario = DB::table('users')
+            ->join('personas', 'users.persona_id', 'personas.id')
+            ->join('roles', 'users.rol_id', 'roles.id')
+            ->select('personas.*', 'personas.id as persona_id', 'users.nombre_usuario', 'users.id', 'users.estado_id', 'roles.rol')
+            ->where('users.id', $id)
+            ->first();
 
-
-    	return view('personas.show',[
-    		'usuario' => $user,
-            'persona' => $user->persona,
-            'role' => $user->role,
-
-    		]);
+            return view('personas.show', compact('usuario'));
     }
 
     public function show_update(User $user)

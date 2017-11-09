@@ -1,19 +1,19 @@
 
-                            <ul class="nav nav-pills nav-fill card-header-pills">
-        <li class="nav-item dropdown mt-2" id="opciones">
+        <ul class="navbar-nav">
+        <li class="nav-item dropdown mt-2">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
         
         <div class="dropdown-menu">
             <a class="dropdown-item text-warning" href="/personas/editar/{{ $usuario->id }}">Actualizar</a>
-
+            
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-success" href="/usuario/estado/{{ $usuario->id }}">
             @if($usuario->estado_id == 2)
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-success" href="/usuario/estado/{{ $usuario->id }}">Activar</a>
+            Activar
             @else
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" href="/usuario/estado/{{ $usuario->id }}">Inactivar</a>
+            Inactivar
             @endif
-
+        </a>
 
          <div class="dropdown-divider"></div>
             <a class="dropdown-item text-info" href="/usuarios/socios/{{ $usuario->id }}">Ver socios relacionados</a>
