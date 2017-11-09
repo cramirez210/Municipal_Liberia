@@ -84,13 +84,13 @@
               <div class="col-md-15 mt-3">
                 <b>Pendientes:</b> 
               @forelse($periodos_pendientes as $periodo)
-                <div class="col-md-8">
+                <div class="col-md-15 mt-3">
                   {{date('m-Y', strtotime($periodo))}}
                 </div> 
               @empty
               </div>
              
-              <div class="col-md-8">
+              <div class="col-md-15 mt-3">
                   El socio queda sin facturas pendientes
                 </div>
               @endforelse

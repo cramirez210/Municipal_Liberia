@@ -37,13 +37,13 @@
 <div class="card text-center mt-4">
 <div class="card-header">
   <div class="card-tittle text-primary"><b>Facturas del socio: N° {{$socio->socio_id}}</b></div>
-    <ul class="nav nav-pills card-header-pills">
+    <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/socio/{{$socio->socio_id}}">Listado de Facturas</a>
       </li>
   
-         <li class="nav-item dropdown " style="margin-left: 60%;">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+         <li class="nav-item dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px;">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/socio/{{$socio->socio_id}}">Todas las facturas</a>
             <div class="dropdown-divider"></div>
@@ -53,8 +53,8 @@
         </div>
     </li>
    <li class="nav-item">
-      <div class="col-md-2 mr-5">
-        <a href="/facturas/index" class="btn btn-warning btn-md">
+      <div class="col-md-2 mt-2">
+        <a href="/facturas/index" class="btn btn-primary btn-md">
            Regresar
         </a>
    </div>
@@ -62,14 +62,25 @@
     </ul>
     
   </div> 
-<div class="col-md-auto offset-md-1 mt-4">
 
+
+  <div class="card-body tab-content">
+    <div class="tab-pane active" id="tabc" role="tabpanel">
+    
+    <div class="container-fluid col-md-9">
 <div class="row">
+
+ <div class="table-responsive ml-4">
+        
 
   @include('facturas.table')
     </div>
 
  </div>
+</div>
+</div>
+</div>
+
 
 <div class="mt-2 mx-auto">
         @if(count($facturas))

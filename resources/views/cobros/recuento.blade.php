@@ -30,20 +30,26 @@
     Filtro de Busqueda
   </div>
 
-  <div class="card-block">
 
-  <form class="form col-md-6" method="POST" action="/cobros/recuento" style="margin-left: 29%;"> 
+  
+ <div class="card-body">
+
+    <center>
+
+  <form class="form col-md-6" method="POST" action="/cobros/recuento"> 
     {{ csrf_field() }}
 
     @include('layouts.filtrar_fechas')
     
-        <span class="col-md-3 ml-5 mt-5">
-        <button class="btn btn-info d-inline-block ml-4 mt-3" type="submit">Buscar</button>
-        <a href="/cobros/index" class="btn btn-warning d-inline-block mt-3 mr-5">Cancelar</a>
-        </span>
-  </form>  
+        <button class="btn btn-success" type="submit">Buscar</button>
+        <a href="/cobros/index" class="btn btn-danger ">Cancelar</a>
 
+  </form>  
+</center>
 </div>
+
+
+
 </div>
 
 

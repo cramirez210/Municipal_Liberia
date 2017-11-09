@@ -12,7 +12,7 @@
               <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header text-center text-primary">
                   <b>Registro de cobro</b>
-                  <a href="/cobros/index" class="float-right mr-5">Cancelar</a>
+                  
                 </div>
 
              <div class="card-block">
@@ -65,13 +65,21 @@
 </div>
 
 
-                        <div class="form-group">
-                            <div class="col-md-6 mt-4 ml-3 float-right">
-                                <button type="submit" class="btn btn-outline-success btn-lg">
-                                    Confirmar
-                                </button>
-                            </div>
-                        </div>
+                   <center class="form-group ">
+            <div class="row-fluid">
+
+             <button type="submit" class="btn btn-success btn-xs mt-4" style="color: white;">
+                Confirmar
+            </button>
+
+
+              <a href="/cobros/index" class="btn btn-danger  btn-xs mt-4">
+              <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+
+             
+                
+            </div>
+        </center>
                       </form>
            </div>
         </div>

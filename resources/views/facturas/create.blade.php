@@ -52,7 +52,6 @@
                     </div>
                   </div>
 
-
                    <div  class=" col-md-auto">
                     <label for="mensualidades" class="form-control-label">  <b>Mensualidades pendientes:</b>  </label>
                     <div class="col-md-auto  ml-lg-5 ml-xl-5">

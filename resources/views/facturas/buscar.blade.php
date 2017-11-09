@@ -10,7 +10,7 @@
 
   <form method="POST" action="/facturas/buscar"> 
     {{ csrf_field() }}
-
+    <center>
   <select class="custom-select" name="Criterio">
     <option selected value="1">Numero de Socio</option>
     <option value="2">Cédula</option>
@@ -20,6 +20,8 @@
         <input type="text" class="form-control" placeholder="Ejemplo: 506840523" name="valor" value="{{ old('valor') }}" required autofocus>
   </label>
         <button class="btn btn-success mb-1" type="submit">Buscar</button>
+
+        </center>
   </form>
 </div>
                           <div class="modal-footer">

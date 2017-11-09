@@ -24,7 +24,7 @@
         <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
       </li>
   
-         <li class="nav-item dropdown " style="margin-left: 60%;">
+         <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/list">Todas las facturas</a>
@@ -35,23 +35,36 @@
         </div>
     </li>
     <li class="nav-item">
-      <div class="col-md-2 mr-5">
-        <a href="/facturas/index" class="btn btn-warning btn-md">
+      <center class="col-md-2 mr-5">
+        <a href="/facturas/index" class="btn btn-primary btn-md">
            Regresar
         </a>
-   </div>
+   </center>
     </li>
     </ul>
     
   </div> 
-<div class="col-md-auto offset-md-1 mt-4">
 
+
+
+
+<div class="card-body tab-content">
+    <div class="tab-pane active" id="tabc" role="tabpanel">
+    
+    <div class="container-fluid col-md-9">
 <div class="row">
+
+ <div class="table-responsive ml-4">
 
   @include('facturas.table')
     </div>
 
  </div>
+</div>
+</div>
+</div>
+
+
 
 <div class="mt-2 mx-auto">
         @if(count($facturas))

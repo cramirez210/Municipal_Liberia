@@ -64,7 +64,7 @@
 
     <div class="float-right">
         <div class="col-md-6">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
                Registrar nuevo rol
             </button>
         </div>
@@ -118,7 +118,7 @@
             <td class="info"> {{ $role->rol }} </td>
             <td class="info"> {{ $role->descripcion }} </td>
             <td class="warning"> 
-                 <a href="/role/show/{{ $role->id }}" class="btn btn-success btn-xs">
+                 <a href="/role/show/{{ $role->id }}" class="btn btn-warning btn-xs">
                      <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>
         </tr>
