@@ -28,11 +28,15 @@
     </ul>
     
   </div> 
-<div class="col-md-auto offset-md-1 mt-4">
 
+
+  <div class="card-body tab-content">
+    <div class="tab-pane active" id="tabc" role="tabpanel">
+    
+    <div class="container-fluid col-md-9">
 <div class="row">
 
-     <div class="table-responsive mr-5">
+ <div class="table-responsive  table-condensed">
         
     <table id="table" class="table table-hover ">
         <thead>
@@ -72,6 +76,8 @@
     </div>
 
  </div>
+</div>
+</div>
 
 <div class="mt-2 mx-auto">
         @if(count($facturas))

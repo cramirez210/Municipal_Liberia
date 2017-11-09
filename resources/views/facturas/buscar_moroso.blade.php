@@ -11,6 +11,8 @@
   <form method="POST" action="/facturas/socios/morosos/consultar"> 
     {{ csrf_field() }}
 
+    
+
   <select class="custom-select" name="Criterio">
     <option selected value="1">Numero de Socio</option>
     <option value="2">Cédula</option>
