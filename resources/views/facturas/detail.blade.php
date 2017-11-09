@@ -1,8 +1,4 @@
 
-              <div class="card" style="width: 100%; height: auto;">
-
-             <div class="card-block">
-    <div class="container-fluid">
 <!--_________________________________Socio_______________________________________-->
         <div class="float-left col-md-6">
 
@@ -22,9 +18,7 @@
                 <b>Categoría:</b> 
                 {{$factura->categoria}}
               </div>
-
 </div>
-
 
 <div class="col-md-6 float-right">
 
@@ -78,6 +72,3 @@
                               @endif
                             </div>
                         </div>
-           </div>
-        </div>
-      </div>

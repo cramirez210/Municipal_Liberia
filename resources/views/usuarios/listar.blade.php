@@ -14,8 +14,6 @@
   <div class="card-block">
 
 
-
-
 <form  method="GET" action="/usuarios/find">
   
   <select class="custom-select mb-1" name="criterio">
@@ -85,17 +83,17 @@
     <div class="container-fluid col-md-9">
 <div class="row">
 
- <div class="table-responsive  table-condensed">
+ <div class="table-responsive ml-4">
         
-    <table WIDTH="100%" class="table table-responsive" >
+    <table WIDTH="100%" class="table table-hover" >
         <thead>
             <tr>
-            <th class="text-center w-50">Nombre de usuario</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center w-50">Apellidos</th>
-            <th class="text-center">Cédula</th>
-            <th class="text-center">Rol</th>
-            <th class="text-center">Opciones</th>
+            <th class="text-center w-10">ID</th>
+            <th class="text-center w-20">Usuario</th>
+            <th class="text-center w-30">Nombre completo</th>
+            <th class="text-center w-20">Cédula</th>
+            <th class="text-center w-10">Rol</th>
+            <th class="text-center w-10">Opciones</th>
             </tr>
         </thead>
     <tbody>
@@ -104,39 +102,15 @@
          @forelse($usuarios as $usuario)
                        
         <tr>
+            <td class="info" > {{$usuario->id}} </td>
             <td class="info" > {{$usuario->nombre_usuario}} </td>
-            <td class="info" > {{$usuario->primer_nombre}} {{$usuario->segundo_nombre}} </td>
-            <td class="info" > {{$usuario->primer_apellido}} {{$usuario->segundo_apellido}} </td>
+            <td class="info" > {{$usuario->primer_nombre}} {{$usuario->primer_apellido}} {{$usuario->segundo_apellido}} </td>
             <td class="info" > {{$usuario->cedula}} </td>
             <td class="info" >  {{$usuario->rol}} </td>
-   
             <td class="info"> 
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{$usuario->id}}">Detalle</button>
-
-                    <div id="{{$usuario->id}}" class="modal fade" role="dialog">
-                      <div class="modal-dialog modal-lg">
-
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title">Detalle de usuario</h4>
-                            @include('usuarios.links')
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body text-left">
-                            @include('personas.show')
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
+                 <button type="button" class="btn btn-info btn-sm detail-user" data-toggle="modal" data-target="#modal">Detalle</button>
             </td>
         </tr>
-
-        
-
         @empty
         <div class="card-text text-warning">No existen usuarios registrados.</div>
         <br>
@@ -157,7 +131,7 @@
     </div>   
 
     @endif
-
+@include('modal')
         </div>
     </div>
 

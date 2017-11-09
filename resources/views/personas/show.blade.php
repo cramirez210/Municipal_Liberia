@@ -1,12 +1,11 @@
 
-<div class="container ml-4" style="width: 90%; height: 85%;">
-
-    <div class="container-fluid">
-        <div> <!-- No tocar-->
-             
-<!--_________________________________Persona_______________________________________-->
+@include('usuarios.links')
+<hr>
+      <!--_________________________________Persona_______________________________________-->
         <div class="d-inline-block col-md-5">
     <!--_______________________________ Primer Nombre ______________________________-->
+
+<input id="id" type="hidden" class="form-control" name="id" value="{{ $usuario->id }}">
 
                            <div  class=" col-md-auto form-group">
                             <label for="primer_nombre" class=" form-control-label">Primer nombre</label>
@@ -104,7 +103,7 @@
                             <label for="telefono" class="form-control-label">Número de telefono </label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="telefono"type="text" class="form-control" name="telefono" value="{{ $usuario->telefono }}" readonly>
+                                <input id="telefono" type="text" class="form-control" name="telefono" value="{{ $usuario->telefono }}" readonly>
 
                             </div>
                         </div>         
@@ -141,10 +140,5 @@
                             
                             </div>
                         </div>
-</div>
- 
-        </div>
-
-        </div>
-        </div>    
+</div>     
 

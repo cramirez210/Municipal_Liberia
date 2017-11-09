@@ -244,14 +244,14 @@ class UsuariosController extends Controller
             $user->estado_id = 2;
             $user->save();
 
-          return redirect('/personas/mostrar/'.$user->id)->with('warning','Usuario Inactivado Exitosamente!');
+          return redirect('/usuarios/home/')->with('warning','Usuario '.$user->nombre_usuario.' inactivado exitosamente!');
         } 
         else 
         {
             $user->estado_id = 1;
             $user->save();
         
-          return redirect('/personas/mostrar/'.$user->id)->with('info','Usuario Activado Exitosamente!');
+          return redirect('/usuarios/home/')->with('info','Usuario '.$user->nombre_usuario.' activado exitosamente!');
         }
    }
 

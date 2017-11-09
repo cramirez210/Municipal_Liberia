@@ -300,13 +300,13 @@ class CobroController extends Controller
     }
 
 
-    public function show($id){
+    public function show($factura_id){
         $cobro = new Cobro;
 
-        $cobroBD = $cobro->select()
-                ->where('cobros.id', $id)
+        $cobro = $cobro->select()
+                ->where('cobros.factura_id', $factura_id)
                 ->first();
 
-        return view('cobros.detail', compact('cobroBD'));
+        return view('cobros.detail', compact('cobro'));
     }
 }
