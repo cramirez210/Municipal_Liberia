@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	//Route::get('/facturas/socios/morosos/consultar', 'FacturaController@ConsultarMorosidad');
 	Route::post('/facturas/socios/morosos/consultar', 'FacturaController@BuscarMoroso');
 	Route::get('/facturas/socios/morosos/{id}', 'FacturaController@MostrarMorosidadSocio');
+	Route::get('/facturas/filtrar/{criterio}/{valor}', 'FacturaController@filtrar');
 
 	Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 	Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes');

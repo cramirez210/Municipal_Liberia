@@ -204,6 +204,28 @@ class FacturaController extends Controller
         return view('facturas.detail', compact('factura'));
     }
 
+    public function filtrar($criterio, $valor){
+
+        $factura = new Factura;
+        $query = $factura->select();
+
+        if ($criterio == 0)
+        $facturas = $query->where('facturas.id', $valor)->paginate(5); 
+       elseif ($criterio == 1) {
+        $facturas = $query->where('facturas.socio_id', $valor)->paginate(5);
+    } elseif ($criterio == 2) {
+        $facturas = $query
+                ->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%')
+                ->paginate(5);
+    } elseif ($criterio == 3) {
+        $facturas = $query->where('categorias.categoria', 'like', '%'.$valor.'%')->paginate(5);
+    } elseif ($criterio == 4) {
+        $facturas = $query->where('facturas.periodo', 'like', '%'.$valor.'%')->paginate(5);
+    }
+
+        return view('facturas.table', compact('facturas'));
+    }
+
     public function list(){
 
         $factura = new Factura;

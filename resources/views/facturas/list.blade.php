@@ -44,27 +44,23 @@
     </ul>
     
   </div> 
-<div class="col-md-auto offset-md-1 mt-4">
+<div id="tabla_facturas" class="col-md-auto offset-md-1 mt-4">
 
-<div class="row">
+<div  class="row">
 
   @include('facturas.table')
-    </div>
 
- </div>
-
-<div class="mt-2 mx-auto">
+  <div class="mt-2 mx-auto">
         @if(count($facturas))
 
        {{ $facturas->links('pagination::bootstrap-4') }}
 
         @endif 
     </div>
-
-    <div class="card-footer text-muted">
-        Se encontraron {{ count($facturas) }} resultados.
-
     </div>
+
+ </div>
+
 </div>
 
 @endsection

@@ -32,5 +32,17 @@
          $("#modal_content").html(result);
        });
   });
+
+  $('#filtrar').on('click', function(){
+
+    var criterio = $('#select').val();
+    var valor = $('#valor').val();
+
+    $.get('/facturas/filtrar/' +criterio + '/' + valor, function(result){
+
+      $("#tabla_facturas").empty();
+      $("#tabla_facturas").html(result);
+       });
+  });
     
 });

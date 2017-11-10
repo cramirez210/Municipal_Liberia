@@ -44,5 +44,6 @@
     </table>
 
     @include('modal')  
-
+    
+    <script src="/js/jquery.js"></script>
     </div>

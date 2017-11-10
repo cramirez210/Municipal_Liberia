@@ -8,7 +8,7 @@ function imprSelec($factura){
         ventimp.close();
     }
 
-  function filtrar() {
+/*  function filtrar() {
   var select, valor_select, input, filter, table, tr, td, i;
   select = document.getElementById("select");
   valor_select = select.options[select.selectedIndex].value;
@@ -27,4 +27,4 @@ function imprSelec($factura){
       }
     }
   }
-}
+}*/
