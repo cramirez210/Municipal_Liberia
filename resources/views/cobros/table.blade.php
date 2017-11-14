@@ -34,7 +34,7 @@
         @empty
         <div class="alert alert-warning">
        
-        <span class="card-text text-warning "> No hay cobros registrados </span>
+        <span class="card-text text-warning "> No se encontraron cobros </span>
 
         </div>
         <br>

@@ -9,7 +9,7 @@
 
   <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: -1.8%;">
         <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
-        <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
+        <button id="filtrar_facturas" type="button" class="btn btn-success ml-2" >Buscar</button>
   </label>
 
   

@@ -220,6 +220,10 @@ class FacturaController extends Controller
     } elseif ($criterio == 3) {
         $facturas = $query->where('categorias.categoria', 'like', '%'.$valor.'%')->paginate(5);
     } elseif ($criterio == 4) {
+
+        if(strlen($valor) == 7)
+        $valor = substr($valor, 3, 4)."-".substr($valor, 0, 2);
+
         $facturas = $query->where('facturas.periodo', 'like', '%'.$valor.'%')->paginate(5);
     }
 

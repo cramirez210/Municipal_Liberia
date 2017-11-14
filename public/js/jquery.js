@@ -33,7 +33,7 @@
        });
   });
 
-  $('#filtrar').on('click', function(){
+  $('#filtrar_facturas').on('click', function(){
 
     var criterio = $('#select').val();
     var valor = $('#valor').val();
@@ -42,6 +42,18 @@
 
       $("#tabla_facturas").empty();
       $("#tabla_facturas").html(result);
+       });
+  });
+
+  $('#filtrar_cobros').on('click', function(){
+
+    var criterio = $('#select').val();
+    var valor = $('#valor').val();
+
+    $.get('/cobros/filtrar/' +criterio + '/' + valor, function(result){
+
+      $("#tabla_cobros").empty();
+      $("#tabla_cobros").html(result);
        });
   });
     

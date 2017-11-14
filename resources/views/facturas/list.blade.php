@@ -4,7 +4,6 @@
 
 @include('mensajes.alertas')
     
-@if(count($facturas))
   <div class="card text-center mt-4">
   <div class="card-header text-primary">
     Filtro de Busqueda
@@ -14,7 +13,6 @@
     @include('facturas.filtrar')
 </div>
 </div>
-@endif
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
@@ -44,44 +42,34 @@
     </ul>
     
   </div> 
-<<<<<<< HEAD
+
 <div id="tabla_facturas" class="col-md-auto offset-md-1 mt-4">
 
 <div  class="row">
-=======
-
-
-
 
 <div class="card-body tab-content">
     <div class="tab-pane active" id="tabc" role="tabpanel">
     
-    <div class="container-fluid col-md-9">
+    <div class="container-fluid col-md-12">
 <div class="row">
->>>>>>> 1a317c7e6f16887a5ca1c451cba43521aa298a45
 
  <div class="table-responsive ml-4">
 
   @include('facturas.table')
-<<<<<<< HEAD
-=======
+
     </div>
 
  </div>
 </div>
 </div>
-</div>
-
-
->>>>>>> 1a317c7e6f16887a5ca1c451cba43521aa298a45
-
-  <div class="mt-2 mx-auto">
+  <div class="mt-2 mx-auto float-right">
         @if(count($facturas))
 
        {{ $facturas->links('pagination::bootstrap-4') }}
 
         @endif 
     </div>
+</div>
     </div>
 
  </div>

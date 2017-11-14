@@ -4,7 +4,6 @@
 
 @include('mensajes.alertas') 
 
-@if(count($cobros))
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
     Filtro de Busqueda
@@ -15,7 +14,6 @@
       @include('cobros.filtrar')
 </div>
 </div>
-@endif
 
 <!--_______________________________ Tabla _____________________________-->
 
@@ -46,7 +44,7 @@
     </ul>
     
   </div> 
-<div class="col-md-10 offset-md-1 mt-4 mr-4">
+<div id="tabla_cobros" class="col-md-10 offset-md-1 mt-4 mr-4">
 
 <div class="row">
 
@@ -61,11 +59,6 @@
        {{ $cobros->links('pagination::bootstrap-4') }}
 
         @endif 
-    </div>
-
-    <div class="card-footer text-muted">
-        Se encontraron {{ count($cobros) }} resultados.
-
     </div>
 </div>
 

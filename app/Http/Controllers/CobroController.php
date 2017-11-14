@@ -63,6 +63,62 @@ class CobroController extends Controller
 
     }
 
+    public function parse_periodo($valor){
+
+        if(strlen($valor) == 7){
+            $valor = substr($valor, 3, 4)."-".substr($valor, 0, 2);
+        }
+
+        return $valor;
+    }
+
+    public function parse_fecha_cobro($valor){
+
+        if(strlen($valor) < 3){
+            if(strlen($valor) == 1)
+            $valor = "0".substr($valor, 0, 2);
+        }
+        elseif(strlen($valor) == 5){
+            $valor = substr($valor, 3, 2)."-".substr($valor, 0, 2);
+        }
+        elseif(strlen($valor) == 7){
+            $valor = substr($valor, 3, 4)."-".substr($valor, 0, 2);
+        }
+        elseif (strlen($valor) == 10) {
+            $valor = substr($valor, 6, 4)."-".substr($valor, 3, 2)."-".substr($valor, 0, 2);
+        }
+
+        return $valor;
+    }
+
+    public function filtrar($criterio, $valor){
+
+        $cobro = new Cobro;
+        $query = $cobro->select();
+
+        if ($criterio == 0){
+            $cobros = $query->where('facturas.id', $valor)->paginate(5);
+        } elseif ($criterio == 1) {
+        
+        $fecha = $this->parse_periodo($valor);
+
+        $cobros = $query->where('facturas.periodo', 'like', '%'.$fecha.'%')->paginate(5);
+    }  elseif ($criterio == 2) {
+
+        $fecha = $this->parse_fecha_cobro($valor);
+        
+        $cobros = $query->where('cobros.created_at', 'like', '%'.$fecha.'%')->paginate(5);
+    }  elseif ($criterio == 3) {
+        $cobros = $query->where('users.nombre_usuario', 'like', '%'.$valor.'%')->paginate(5);
+    } elseif ($criterio == 4) {
+        $cobros = $query
+                ->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%')
+                ->paginate(5);
+    }
+
+        return view('cobros.table', compact('cobros'));
+    }
+
      public function LiquidarPorEstado($estado_id)
     {
         $cobro = new Cobro;
