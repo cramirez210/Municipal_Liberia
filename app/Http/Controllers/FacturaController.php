@@ -204,30 +204,41 @@ class FacturaController extends Controller
         return view('facturas.detail', compact('factura'));
     }
 
-    public function filtrar($criterio, $valor){
+    public function filtrar_estado($query, $estado){
+
+        if ($estado != 0) 
+            $facturas = $query->whereIn('facturas.estado_id', [$estado])->paginate(5);
+        else $facturas = $query->paginate(5);
+
+        return $facturas;
+    }
+
+    public function filtrar($criterio, $valor, $estado){
 
         $factura = new Factura;
         $query = $factura->select();
 
         if ($criterio == 0)
-        $facturas = $query->where('facturas.id', $valor)->paginate(5); 
-       elseif ($criterio == 1) {
-        $facturas = $query->where('facturas.socio_id', $valor)->paginate(5);
-    } elseif ($criterio == 2) {
-        $facturas = $query
-                ->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%')
-                ->paginate(5);
-    } elseif ($criterio == 3) {
-        $facturas = $query->where('categorias.categoria', 'like', '%'.$valor.'%')->paginate(5);
-    } elseif ($criterio == 4) {
+            $query->where('facturas.id', $valor); 
 
-        if(strlen($valor) == 7)
-        $valor = substr($valor, 3, 4)."-".substr($valor, 0, 2);
+       elseif ($criterio == 1)
+            $query->where('facturas.socio_id', $valor);
 
-        $facturas = $query->where('facturas.periodo', 'like', '%'.$valor.'%')->paginate(5);
+       elseif ($criterio == 2)
+            $query->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%');
+
+       elseif ($criterio == 3)
+            $query->where('categorias.categoria', 'like', '%'.$valor.'%');
+
+       elseif ($criterio == 4) {
+            if(strlen($valor) == 7)
+            $valor = substr($valor, 3, 4)."-".substr($valor, 0, 2);
+            $query->where('facturas.periodo', 'like', '%'.$valor.'%');
     }
 
-        return view('facturas.table', compact('facturas'));
+    $facturas = $this->filtrar_estado($query, $estado);
+
+    return view('facturas.table', compact('facturas'));
     }
 
     public function list(){
@@ -261,7 +272,7 @@ class FacturaController extends Controller
         $facturas = $factura->ObtenerPorCriterio('facturas.estado_id', $estado_id)
                     ->paginate(5);
         
-        return view('facturas.list', compact('facturas'));
+        return view('facturas.list', compact('facturas', 'estado_id'));
     }
 
     public function ListarPorSocioEstado($socio_id, $estado_id){

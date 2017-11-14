@@ -201,6 +201,8 @@ class UsuariosController extends Controller
 
             return view('usuarios.listar', [
                 'usuarios' => $usuarios,
+                'estado_id' => $id,
+
             ]);
     }
        public function usuariosPorEstado($id)
@@ -220,6 +222,7 @@ class UsuariosController extends Controller
         $usuarios = $this->usuariosPorRole($id);
             return view('usuarios.listar', [
                 'usuarios' => $usuarios,
+                'rol_id' => $id,
             ]);
     }
 
@@ -254,6 +257,37 @@ class UsuariosController extends Controller
           return redirect('/usuarios/home/')->with('info','Usuario '.$user->nombre_usuario.' activado exitosamente!');
         }
    }
+
+   public function filtrar_rol_estado($query, $estado, $rol){
+
+    if($rol != 0)
+        $usuarios = $query->whereIn('users.rol_id', [$rol])->paginate(5);
+    elseif ($estado != 0) 
+        $usuarios = $query->whereIn('users.estado_id', [$estado])->paginate(5);
+    else $usuarios = $query->paginate(5);
+
+        return $usuarios;
+    }
+
+   public function filtrar($criterio, $valor, $estado_id, $rol_id){
+
+        $user = new User;
+        $query = DB::table('users')
+        ->join('personas', 'users.persona_id', '=', 'personas.id')
+        ->join('roles','users.rol_id', '=', 'roles.id')
+        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario', 'roles.rol');
+
+    if ($criterio == 0) 
+        $query->where('personas.cedula', 'like', '%'.$valor.'%');
+    elseif ($criterio == 1)
+        $query->where('users.nombre_usuario', 'like', '%'.$valor.'%');
+    elseif ($criterio == 2) 
+        $query->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%');
+
+    $usuarios = $this->filtrar_rol_estado($query, $estado_id, $rol_id);
+
+    return view('usuarios.table', compact('usuarios'));
+    }
 
    public function ReporteDeCobros($id){
 

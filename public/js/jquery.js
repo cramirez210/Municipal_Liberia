@@ -37,8 +37,9 @@
 
     var criterio = $('#select').val();
     var valor = $('#valor').val();
+    var estado = $('#estado').val();
 
-    $.get('/facturas/filtrar/' +criterio + '/' + valor, function(result){
+    $.get('/facturas/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
 
       $("#tabla_facturas").empty();
       $("#tabla_facturas").html(result);
@@ -49,11 +50,39 @@
 
     var criterio = $('#select').val();
     var valor = $('#valor').val();
+    var estado = $('#estado').val();
 
-    $.get('/cobros/filtrar/' +criterio + '/' + valor, function(result){
+    $.get('/cobros/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
 
       $("#tabla_cobros").empty();
       $("#tabla_cobros").html(result);
+       });
+  });
+
+  $('#filtrar_socios').on('click', function(){
+
+    var criterio = $('#select').val();
+    var valor = $('#valor').val();
+    var estado = $('#estado').val();
+
+    $.get('/socios/filtrar/' +criterio + '/' + valor + '/' + estado , function(result){
+
+      $("#tabla_socios").empty();
+      $("#tabla_socios").html(result);
+       });
+  });
+
+  $('#filtrar_usuarios').on('click', function(){
+
+    var criterio = $('#select').val();
+    var valor = $('#valor').val();
+    var estado = $('#estado').val();
+    var rol = $('#rol').val();
+
+    $.get('/usuarios/filtrar/' +criterio + '/' + valor + '/' + estado + '/' + rol, function(result){
+
+      $("#tabla_usuarios").empty();
+      $("#tabla_usuarios").html(result);
        });
   });
     

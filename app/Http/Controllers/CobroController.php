@@ -47,7 +47,7 @@ class CobroController extends Controller
         $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id)
                     ->paginate(5);
         
-        return view('cobros.list', compact('cobros'));
+        return view('cobros.list', compact('cobros', 'estado_id'));
     }
 
     public function ListarPorUsuarioEstado($user_id, $estado_id)
@@ -91,30 +91,38 @@ class CobroController extends Controller
         return $valor;
     }
 
-    public function filtrar($criterio, $valor){
+    public function filtrar_estado($query, $estado){
+
+        if ($estado != 0) 
+            $cobros = $query->whereIn('cobros.estado_id', [$estado])->paginate(5);
+        else $cobros = $query->paginate(5);
+
+        return $cobros;
+    }
+
+    public function filtrar($criterio, $valor, $estado){
 
         $cobro = new Cobro;
         $query = $cobro->select();
 
-        if ($criterio == 0){
-            $cobros = $query->where('facturas.id', $valor)->paginate(5);
-        } elseif ($criterio == 1) {
-        
-        $fecha = $this->parse_periodo($valor);
+        if ($criterio == 0)
+            $query->where('facturas.id', $valor);
 
-        $cobros = $query->where('facturas.periodo', 'like', '%'.$fecha.'%')->paginate(5);
-    }  elseif ($criterio == 2) {
-
-        $fecha = $this->parse_fecha_cobro($valor);
+        elseif ($criterio == 1) {
+            $fecha = $this->parse_periodo($valor);
+            $query->where('facturas.periodo', 'like', '%'.$fecha.'%');
+    }  
+        elseif ($criterio == 2) {
+            $fecha = $this->parse_fecha_cobro($valor);
+            $query->where('cobros.created_at', 'like', '%'.$fecha.'%');
+    } 
+        elseif ($criterio == 3) 
+            $query->where('users.nombre_usuario', 'like', '%'.$valor.'%');
         
-        $cobros = $query->where('cobros.created_at', 'like', '%'.$fecha.'%')->paginate(5);
-    }  elseif ($criterio == 3) {
-        $cobros = $query->where('users.nombre_usuario', 'like', '%'.$valor.'%')->paginate(5);
-    } elseif ($criterio == 4) {
-        $cobros = $query
-                ->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%')
-                ->paginate(5);
-    }
+        elseif ($criterio == 4)
+            $query->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%');
+
+        $cobros = $this->filtrar_estado($query, $estado);
 
         return view('cobros.table', compact('cobros'));
     }

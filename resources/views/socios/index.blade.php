@@ -29,27 +29,29 @@
   <div class="card-block">
 
 
-  <form method="GET" action="/socios/find">
+  <div class="card-body">
   
 
   <select id="select" class="custom-select mb-1" name="criterio">
-    @if(count($socios))
-    <option value="1">Cedula</option>
-    <option selected value="2">Numero de Socio</option>
-    <option value="3">Categoria</option>
-    @else
-    <option value="1">Cedula</option>
-    <option selected value="2">Numero de Socio</option>
-    @endif
+    <option selected value="0">Numero de Socio</option>
+    <option value="1">Categoria</option>
+    <option value="2">Cedula</option>
+    <option value="3">Nombre</option>
+    <option value="4">Ejecutivo</option>
     
   </select>
 
   <label>
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus onkeyup="filtrar()">
+        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        @if(isset($id))
+        <input id="estado" type="hidden" value="{{$id}}">
+        @else
+        <input id="estado" type="hidden" value="0">
+        @endif
 
   </label>
-     <button class="btn btn-success mb-1" type="submit">Buscar !</button>
-  </form>  
+     <button id="filtrar_socios" type="button" class="btn btn-success ml-2" >Buscar</button>
+  </div>  
 
 
 </div>
@@ -82,60 +84,11 @@
     </ul>
     
   </div> 
-<div class="col-md-8 offset-md-2 mt-4">
+<div id="tabla_socios" class="col-md-8 offset-md-2 mt-4">
 
 <div class="row">
 
- <div class="table-responsive">
-        
-    <table id="table" class="table table-hover ">
-        <thead>
-            <tr>
-            <th class="text-center">Carnet</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Apellidos</th>
-            <th class="text-center">Categoria</th>
-            <th class="text-center">Ejecutivo</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Opcion</th>
-            </tr>
-        </thead>
-    <tbody>
-
-      @if($socios!==null)
-
-         @forelse($socios as $socio)
-                       
-        <tr>
-            <td class="info text-center"> {{ $socio->id }} </td>
-            <td class="info text-center"> {{ $socio->primer_nombre }} </td>
-            <td class="info text-center"> {{ $socio->primer_apellido }} {{ $socio->segundo_apellido }} </td>
-            <td class="info text-center"> {{ $socio->categoria }} </td>
-            <td class="info text-center"> {{ $socio->nombre_usuario }} </td>
-            <td class="info text-center"> {{ $socio->estado }} </td>
-            <td class="warning text-center"> 
-              
-              <a href="/socios/show/{{ $socio->id }}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
-
-            </td>
-        </tr>
-
-        @empty
-        <div class="alert alert-warning">
-       
-        <span class="card-text text-warning "> No hay Datos Registradas </span>
-
-        </div>
-        <br>
-        @endforelse
-
-       
-
-    </tbody>
-    </table>  
-
-    </div>
+  @include('socios.table')
     </div>
 
  </div>
@@ -153,7 +106,6 @@
 
     </div>
 </div>
-@endif
 
 @endsection
 

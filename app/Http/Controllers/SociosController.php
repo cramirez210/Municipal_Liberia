@@ -28,6 +28,7 @@ class SociosController extends Controller
     {
         return view('/socios/index',[
             'socios' => null,
+            'registros' => 0,
 
         ]);
     }
@@ -194,9 +195,12 @@ class SociosController extends Controller
    public function listarPorEstado($id)
    {
     $DB = new Socio;
-    $socios = $DB->select()->where('socios.estado_id',$id)->paginate(10);
+    $query = $DB->select()->where('socios.estado_id',$id);
 
-        return view('/socios/index',compact('socios'));
+    $socios = $query->paginate(10);
+    $registros= $query->count();
+
+        return view('/socios/index',compact('socios', 'id', 'registros'));
    }
 
 
@@ -312,6 +316,36 @@ class SociosController extends Controller
           return redirect('/socios/show/'.$id)->with('warning','Socio Inactivado Exitosamente!');
         }
         
+    }
+
+    public function filtrar_estado($query, $estado){
+
+        if ($estado != 0) 
+            $socios = $query->where('socios.estado_id', $estado)->paginate(5);
+        else $socios = $query->paginate(5);
+
+        return $socios;
+    }
+
+    public function filtrar($criterio, $valor, $estado_id){
+
+        $socio = new Socio;
+        $query = $socio->select();
+
+        if ($criterio == 0)
+            $query->where('socios.id', $valor);
+        elseif ($criterio == 1)
+            $query->where('categorias.categoria', 'like', '%'.$valor.'%');
+        elseif ($criterio == 2)
+            $socios = $query->where('personas.cedula', 'like', '%'.$valor.'%');
+        elseif ($criterio == 3)
+            $query->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%');
+        elseif ($criterio == 4)
+            $query->where('users.nombre_usuario', 'like', '%'.$valor.'%');
+
+        $socios = $this->filtrar_estado($query, $estado_id);
+
+        return view('socios.table', compact('socios'));
     }
 
     public function showImagen(Socio $socio)

@@ -42,7 +42,7 @@
         <a class="nav-link text-primary" href="/facturas/socio/{{$socio->socio_id}}">Listado de Facturas</a>
       </li>
   
-         <li class="nav-item dropdown">
+         <li class="nav-item dropdown mt-2">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px;">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/socio/{{$socio->socio_id}}">Todas las facturas</a>
@@ -67,7 +67,7 @@
   <div class="card-body tab-content">
     <div class="tab-pane active" id="tabc" role="tabpanel">
     
-    <div class="container-fluid col-md-9">
+    <div class="container-fluid col-md-11">
 <div class="row">
 
  <div class="table-responsive ml-4">

@@ -84,6 +84,8 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/socios/create', 'SociosController@create');
 	Route::get('/socios/show/edit/{socio}','SociosController@edit');
 	Route::post('/socios/update/{socio}','SociosController@update');
+	Route::get('/socios/filtrar/{criterio}/{valor}/{estado}', 'SociosController@filtrar');
+
 	// Rutas del objeto factura
 	Route::get('/facturas/index', 'FacturaController@index');
 	Route::get('/facturas/create', 'FacturaController@create');
@@ -105,7 +107,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	//Route::get('/facturas/socios/morosos/consultar', 'FacturaController@ConsultarMorosidad');
 	Route::post('/facturas/socios/morosos/consultar', 'FacturaController@BuscarMoroso');
 	Route::get('/facturas/socios/morosos/{id}', 'FacturaController@MostrarMorosidadSocio');
-	Route::get('/facturas/filtrar/{criterio}/{valor}', 'FacturaController@filtrar');
+	Route::get('/facturas/filtrar/{criterio}/{valor}/{estado}', 'FacturaController@filtrar');
 
 	Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 	Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes');
@@ -131,7 +133,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	//Route::get('/cobros/usuarios/morosos/consultar', 'CobroController@ConsultarMorosidad');
 	Route::post('/cobros/usuarios/morosos/consultar', 'CobroController@BuscarMoroso');
 	Route::get('/cobros/usuarios/morosos/{id}', 'CobroController@MostrarMorosidadUsuario');
-	Route::get('/cobros/filtrar/{criterio}/{valor}', 'CobroController@filtrar');
+	Route::get('/cobros/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar');
 
 });
 
@@ -147,6 +149,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/usuarios/listarPorEstado/{id}','UsuariosController@listarPorEstado');
 	Route::get('/usuarios/listarPorRole/{id}','UsuariosController@listarPorRole');
 	Route::get('/usuarios/listarTodos','UsuariosController@listarTodosLosUsuarios');
+	Route::get('/usuarios/filtrar/{criterio}/{valor}/{estado}/{rol}', 'UsuariosController@filtrar');
 
 	// Rutas del objeto socio.
 	Route::get('/socios/home', 'SociosController@home');
