@@ -25,7 +25,7 @@
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
     <li class="nav-item">
       <div class="col-md-2 float-right mr-5 mb-2">
-        <a href="/cobros/index" class="btn btn-warning btn-md">
+        <a href="/cobros/index" class="btn btn-primary btn-md">
            Regresar
         </a>
    </div>
@@ -33,12 +33,14 @@
     </ul>
     
   </div> 
-<div class="col-md-auto offset-md-1 mt-4">
-
+  
+  <div class="card-body tab-content">
+    <div class="tab-pane active" id="tabc" role="tabpanel">
+    
+    <div class="container-fluid col-md-9">
 <div class="row">
 
-     
- <div class="table-responsive mr-5">
+ <div class="table-responsive ml-4">
         
     <table id="table" class="table table-hover ">
         <thead>
@@ -74,6 +76,8 @@
 
     </div>
     </div>
+  </div>
+</div>
 
  </div>
 </div>

@@ -20,13 +20,13 @@
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
-<div class="card-header">
+<div class="card-header nav-fill">
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/cobros/list">Listado de Cobros</a>
       </li>
   
-         <li class="nav-item dropdown " style="margin-left: 60%;">
+         <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/cobros/list">Todas los cobros</a>
@@ -37,8 +37,8 @@
         </div>
     </li>
     <li class="nav-item">
-      <div class="col-md-2 mr-2">
-        <a href="/cobros/index" class="btn btn-warning btn-md">
+      <div class="col-md-2">
+        <a href="/cobros/index" class="btn btn-primary">
            Regresar
         </a>
    </div>

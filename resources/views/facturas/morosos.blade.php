@@ -29,22 +29,35 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="/facturas/index" class="btn btn-warning btn-sm">
+        <a href="/facturas/index" class="btn btn-primary btn-sm">
            <b>Regresar</b> 
         </a>
     </li>
     </ul>
     
-  </div> 
-<div class="col-md-auto offset-md-1 mt-4">
+  </div>
 
+
+
+
+  
+  <div class="card-body tab-content">
+    <div class="tab-pane active" id="tabc" role="tabpanel">
+    
+    <div class="container-fluid col-md-9">
 <div class="row">
+
+ <div class="table-responsive ml-4">
 
      
  @include('facturas.morosos_table')
     </div>
 
  </div>
+</div>
+</div>
+</div>
+
 </div>
 
 @endsection
