@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/facturas/socios/morosos/consultar', 'FacturaController@BuscarMoroso');
 	Route::get('/facturas/socios/morosos/{id}', 'FacturaController@MostrarMorosidadSocio');
 	Route::get('/facturas/filtrar/{criterio}/{valor}/{estado}', 'FacturaController@filtrar');
+	Route::get('/facturas/socio/{id}/filtrar/{criterio}/{valor}/{estado}', 'FacturaController@filtrar_socio');
 
 	Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 	Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes');
@@ -134,6 +135,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/cobros/usuarios/morosos/consultar', 'CobroController@BuscarMoroso');
 	Route::get('/cobros/usuarios/morosos/{id}', 'CobroController@MostrarMorosidadUsuario');
 	Route::get('/cobros/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar');
+	Route::get('/cobros/user/{id}/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar_user');
 
 });
 

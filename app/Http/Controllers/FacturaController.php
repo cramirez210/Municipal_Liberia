@@ -241,6 +241,25 @@ class FacturaController extends Controller
     return view('facturas.table', compact('facturas'));
     }
 
+    public function filtrar_socio($socio_id, $criterio, $valor, $estado){
+
+        $factura = new Factura;
+        $query = $factura->ObtenerPorCriterio('facturas.socio_id', $socio_id);
+
+        if ($criterio == 0)
+            $query->where('facturas.id', $valor); 
+
+       elseif ($criterio == 4) {
+            if(strlen($valor) == 7)
+            $valor = substr($valor, 3, 4)."-".substr($valor, 0, 2);
+            $query->where('facturas.periodo', 'like', '%'.$valor.'%');
+    }
+
+    $facturas = $this->filtrar_estado($query, $estado);
+
+    return view('socios.facturas_table', compact('facturas'));
+    }
+
     public function list(){
 
         $factura = new Factura;
@@ -286,7 +305,7 @@ class FacturaController extends Controller
             ->where('socios.id', $socio_id)
             ->first();
 
-            return view('socios.facturas', compact('facturas', 'socio'));
+            return view('socios.facturas', compact('facturas', 'socio', 'estado_id'));
     }
 
     public function ListarPendientesSocio($socio_id, $estado_id){

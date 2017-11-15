@@ -2,17 +2,8 @@
 
 @section('content')
 
-    @if(session('success')) 
-    <br>
-    <span class="text-success mt-4">
-        
-        <label class="alert alert-success">{{ session('success') }}</label>
+@include('mensajes.alertas')
 
-    </span>
-
-    @endif  
-
-@if(count($facturas))
  <div class="card text-center mt-4">
   <div class="card-header text-primary">
     Filtro de Busqueda
@@ -21,22 +12,30 @@
   <div class="card-block">
   <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
-    <option value="5">Fecha</option>
+    <option value="4">Periodo</option>
   </select>
 
-  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: 1.8%;">
-        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
+  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: -1.8%;">
+        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        @if(isset($estado_id))
+        <input id="estado" type="hidden" value="{{$estado_id}}">
+        @else
+        <input id="estado" type="hidden" value="0">
+        @endif
+
+        <input id="tipo_lista" type="hidden" value="facturas_socio">
+        <input id="socio_id" type="hidden" value="{{$socio->socio_id}}">
+        <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
   </label>
 
 </div>
 </div>
-@endif
  
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
 <div class="card-header">
-  <div class="card-tittle text-primary"><b>Facturas del socio: N° {{$socio->socio_id}}</b></div>
+  <div class="card-tittle text-primary"><b>Socio: {{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}} N° {{$socio->socio_id}}</b></div>
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/socio/{{$socio->socio_id}}">Listado de Facturas</a>
@@ -67,13 +66,13 @@
   <div class="card-body tab-content">
     <div class="tab-pane active" id="tabc" role="tabpanel">
     
-    <div class="container-fluid col-md-11">
-<div class="row">
+    <div class="container-fluid col-md-8">
+<div id="tabla_facturas_socio" class="row">
 
  <div class="table-responsive ml-4">
         
 
-  @include('facturas.table')
+  @include('socios.facturas_table')
     </div>
 
  </div>

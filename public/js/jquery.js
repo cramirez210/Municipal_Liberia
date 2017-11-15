@@ -67,6 +67,22 @@
        });
     break;
 
+    case "facturas_socio":
+    var id = $('#socio_id').val();
+
+    $.get('/facturas/socio/'+ id + '/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
+      $("#tabla_facturas_socio").html(result);
+       });
+    break;
+
+    case "cobros_user":
+    var id = $('#user_id').val();
+
+    $.get('/cobros/user/'+ id + '/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
+      $("#tabla_cobros_user").html(result);
+       });
+    break;
+
    default:
       alert("Hubo un problema, disculpe.");
 }

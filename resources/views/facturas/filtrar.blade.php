@@ -15,7 +15,7 @@
         <input id="estado" type="hidden" value="0">
         @endif
 
-        <input id="tipo_lista" type="hidden" value="facturas">
+        <input id="tipo_lista" type="hidden" value="facturas_socio">
         <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
   </label>
 

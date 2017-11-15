@@ -35,7 +35,7 @@ class CobroController extends Controller
         $cobros = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id)
                     ->paginate(5);
 
-        $user = User::find($user_id);
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
         
         return view('usuarios.cobros', compact('cobros', 'user'));
     }
@@ -59,7 +59,7 @@ class CobroController extends Controller
 
      $user = User::find($user_id);
         
-     return view('usuarios.cobros', compact('cobros', 'user'));
+     return view('usuarios.cobros', compact('cobros', 'user', 'estado_id'));
 
     }
 
@@ -125,6 +125,28 @@ class CobroController extends Controller
         $cobros = $this->filtrar_estado($query, $estado);
 
         return view('cobros.table', compact('cobros'));
+    }
+
+    public function filtrar_user($user_id, $criterio, $valor, $estado){
+
+        $cobro = new Cobro;
+        $query = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id);
+
+        if ($criterio == 0)
+            $query->where('facturas.id', $valor);
+
+        elseif ($criterio == 1) {
+            $fecha = $this->parse_periodo($valor);
+            $query->where('facturas.periodo', 'like', '%'.$fecha.'%');
+    }  
+        elseif ($criterio == 2) {
+            $fecha = $this->parse_fecha_cobro($valor);
+            $query->where('cobros.created_at', 'like', '%'.$fecha.'%');
+    }
+
+        $cobros = $this->filtrar_estado($query, $estado);
+
+        return view('usuarios.cobros_table', compact('cobros'));
     }
 
      public function LiquidarPorEstado($estado_id)
