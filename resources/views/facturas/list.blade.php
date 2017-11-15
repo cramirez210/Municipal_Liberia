@@ -17,6 +17,13 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
+  <div class="card-tittle text-primary">
+    @if(isset($estado_id))
+        @if($estado_id == 3) <b>Facturas pendientes</b> @endif
+        @if($estado_id == 4) <b>Facturas pagas</b> @endif
+    @else <b>Todas las facturas</b>
+    @endif
+  </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>

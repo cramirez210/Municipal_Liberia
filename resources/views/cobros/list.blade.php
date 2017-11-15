@@ -19,6 +19,13 @@
 
 <div class="card text-center mt-4">
 <div class="card-header nav-fill">
+  <div class="card-tittle text-primary">
+    @if(isset($estado_id))
+        @if($estado_id == 3) <b>Cobros pendientes de liquidar</b> @endif
+        @if($estado_id == 4) <b>Cobros liquidados</b> @endif
+    @else <b>Todos los cobros</b>
+    @endif
+  </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link text-primary" href="/cobros/list">Listado de Cobros</a>

@@ -106,25 +106,27 @@ class FacturaController extends Controller
         $user = User::find($user_id);
 
         $socio = $factura->select_socio()
-        ->where('socios.id', $socio_id)
-        ->first();
+        ->where('socios.id', $socio_id)->first();
 
         $query = DB::table('facturas')->where('facturas.socio_id', $socio_id);
 
-        if($pendientes)
-        $ultima_factura = $query->first();
-        else
-        $ultima_factura = $query->latest()->first();
+        $ultima_factura = $query->orderBy('periodo', 'desc')->latest()->first();
 
-        if($ultima_factura)
-        $pago_hasta = new Carbon($ultima_factura->periodo);
+        if($ultima_factura){
+            $pago_hasta = new Carbon($ultima_factura->periodo);
+
+             for ($i=0; $i < $meses_cancelados; $i++) { 
+                $pago_hasta->addMonth();
+            }
+        }
         else{
             $pago_hasta = Carbon::createFromDate(null, null, 1);
+
+             for ($i=1; $i < $meses_cancelados; $i++) { 
+                $pago_hasta->addMonth();
+                }
         }
 
-        for ($i=1; $i < $meses_cancelados; $i++) { 
-        $pago_hasta->addMonth();
-        }
 
            if(!$pendientes)
             $monto_descuento = $descuento->ObtenerMontoDescuento($socio->categoria_id, $meses_cancelados); 
