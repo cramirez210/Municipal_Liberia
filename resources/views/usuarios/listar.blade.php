@@ -34,9 +34,10 @@
         @else
         <input id="rol" type="hidden" value="0">
         @endif 
+        <input id="tipo_lista" type="hidden" value="usuarios">
        
   </label>
-      <button id="filtrar_usuarios" type="button" class="btn btn-success ml-2" >Buscar</button>
+      <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
 
   </div>  
 

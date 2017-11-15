@@ -33,57 +33,43 @@
        });
   });
 
-  $('#filtrar_facturas').on('click', function(){
+  $('#filtrar').on('click', function(){
 
     var criterio = $('#select').val();
     var valor = $('#valor').val();
     var estado = $('#estado').val();
+    var tipo_lista = $('#tipo_lista').val();
 
-    $.get('/facturas/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
+    switch(tipo_lista) {
+   case "usuarios":
+      var rol = $('#rol').val();
 
-      $("#tabla_facturas").empty();
-      $("#tabla_facturas").html(result);
-       });
-  });
-
-  $('#filtrar_cobros').on('click', function(){
-
-    var criterio = $('#select').val();
-    var valor = $('#valor').val();
-    var estado = $('#estado').val();
-
-    $.get('/cobros/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
-
-      $("#tabla_cobros").empty();
-      $("#tabla_cobros").html(result);
-       });
-  });
-
-  $('#filtrar_socios').on('click', function(){
-
-    var criterio = $('#select').val();
-    var valor = $('#valor').val();
-    var estado = $('#estado').val();
-
-    $.get('/socios/filtrar/' +criterio + '/' + valor + '/' + estado , function(result){
-
-      $("#tabla_socios").empty();
-      $("#tabla_socios").html(result);
-       });
-  });
-
-  $('#filtrar_usuarios').on('click', function(){
-
-    var criterio = $('#select').val();
-    var valor = $('#valor').val();
-    var estado = $('#estado').val();
-    var rol = $('#rol').val();
-
-    $.get('/usuarios/filtrar/' +criterio + '/' + valor + '/' + estado + '/' + rol, function(result){
-
-      $("#tabla_usuarios").empty();
+      $.get('/usuarios/filtrar/' +criterio + '/' + valor + '/' + estado + '/' + rol, function(result){
       $("#tabla_usuarios").html(result);
        });
-  });
+      break;
+
+   case "socios":
+      $.get('/socios/filtrar/' +criterio + '/' + valor + '/' + estado , function(result){
+      $("#tabla_socios").html(result);
+       });
+      break;
+
+  case "facturas":
+    $.get('/facturas/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
+      $("#tabla_facturas").html(result);
+       });
+    break;
+
+  case "cobros":
+    $.get('/cobros/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
+      $("#tabla_cobros").html(result);
+       });
+    break;
+
+   default:
+      alert("Hubo un problema, disculpe.");
+}
     
+  });
 });

@@ -14,7 +14,9 @@
         @else
         <input id="estado" type="hidden" value="0">
         @endif
-        <button id="filtrar_facturas" type="button" class="btn btn-success ml-2" >Buscar</button>
+
+        <input id="tipo_lista" type="hidden" value="facturas">
+        <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
   </label>
 
   

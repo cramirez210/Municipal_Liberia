@@ -18,6 +18,16 @@
                 <b>Categoría:</b> 
                 {{$factura->categoria}}
               </div>
+
+              <div class="col-md-15 mt-3">
+                <b>Teléfono:</b> <br>
+                {{$factura->telefono}}
+              </div>
+
+              <div class="col-md-15 mt-3">
+                <b>Email:</b> 
+                {{$factura->email}}
+              </div>
 </div>
 
 <div class="col-md-6 float-right">

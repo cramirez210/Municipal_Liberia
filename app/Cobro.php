@@ -33,7 +33,7 @@ class Cobro extends Model
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('facturas', 'cobros.factura_id', '=', 'facturas.id')
             ->join('estados', 'cobros.estado_id', '=', 'estados.id')
-            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.cedula', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'facturas.id as factura_id', 'facturas.monto', 'facturas.forma_pago', 'facturas.periodo as fecha_factura', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado');	
+            ->select('users.id as user_id', 'users.nombre_usuario', 'personas.*', 'personas.id as persona_id', 'facturas.id as factura_id', 'facturas.monto', 'facturas.forma_pago', 'facturas.periodo as fecha_factura', 'cobros.id', 'cobros.created_at', 'estados.id as estado_id', 'estados.estado');	
     }
 
     public function select_user(){

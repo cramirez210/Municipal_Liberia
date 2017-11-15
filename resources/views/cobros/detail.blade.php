@@ -18,6 +18,16 @@
                 <b>Nombre completo:</b> <br>
                 {{$cobro->primer_nombre}} {{$cobro->primer_apellido}} {{$cobro->segundo_apellido}}
               </div>
+
+              <div class="col-md-15 mt-3">
+                <b>Teléfono:</b> 
+                {{$cobro->telefono}}
+              </div>
+
+              <div class="col-md-15 mt-3">
+                <b>Email:</b> 
+                {{$cobro->email}}
+              </div>
 </div>
 
 
