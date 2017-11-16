@@ -37,7 +37,7 @@
         @empty
         <div class="alert alert-warning">
        
-        <span class="card-text text-warning "> No hay Datos Registradas </span>
+        <span class="card-text text-warning "> No se encontraon socios</span>
 
         </div>
         <br>

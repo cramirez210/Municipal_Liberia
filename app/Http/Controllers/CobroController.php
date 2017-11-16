@@ -124,7 +124,7 @@ class CobroController extends Controller
 
         $cobros = $this->filtrar_estado($query, $estado);
 
-        return view('cobros.table', compact('cobros'));
+        return view('cobros.list', compact('cobros'));
     }
 
     public function filtrar_user($user_id, $criterio, $valor, $estado){
@@ -145,8 +145,9 @@ class CobroController extends Controller
     }
 
         $cobros = $this->filtrar_estado($query, $estado);
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
 
-        return view('usuarios.cobros_table', compact('cobros'));
+        return view('usuarios.cobros', compact('cobros', 'user'));
     }
 
      public function LiquidarPorEstado($estado_id)

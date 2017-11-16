@@ -275,7 +275,7 @@ class UsuariosController extends Controller
         $query = DB::table('users')
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->join('roles','users.rol_id', '=', 'roles.id')
-        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario', 'roles.rol');
+        ->select('users.id as user_id', 'personas.*','users.nombre_usuario', 'roles.rol');
 
     if ($criterio == 0) 
         $query->where('personas.cedula', 'like', '%'.$valor.'%');
@@ -286,7 +286,7 @@ class UsuariosController extends Controller
 
     $usuarios = $this->filtrar_rol_estado($query, $estado_id, $rol_id);
 
-    return view('usuarios.table', compact('usuarios'));
+    return view('usuarios.listar', compact('usuarios'));
     }
 
    public function ReporteDeCobros($id){

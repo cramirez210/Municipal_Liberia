@@ -8,7 +8,7 @@
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
     <div class="card-tittle">
-      <b>Recuento de cobros realizados del {{date('m-Y', strtotime($desde))}} al {{date('m-Y', strtotime($hasta))}}</b>
+      <b>Recuento de cobros realizados del {{date('d-m-Y', strtotime($desde))}} al {{date('d-m-Y', strtotime($hasta))}}</b>
     </div>
     
    <div class="col-md-2 ml-3 float-right">

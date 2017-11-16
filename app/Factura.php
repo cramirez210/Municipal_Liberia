@@ -57,13 +57,11 @@ class Factura extends Model
         $descuento = new Descuento;
 
         $categoria = $this->ObtenerCategoriaDeSocio($socio_id);
-        
+        $fecha = Carbon::now();
+        $model_cobro = new Cobro;
 
         foreach ($facturas as $factura) {
             $facturaBD = Factura::find($factura->id);
-
-            $fecha = Carbon::now();
-            $model_cobro = new Cobro;
 
             $this->store(
                 $facturaBD, $factura->socio_id, $factura->meses_cancelados, 
@@ -85,7 +83,8 @@ class Factura extends Model
         for($i = 0; $i < $meses_cancelar; $i++){
 
         $ultima_factura = DB::table('facturas')
-                   ->where('facturas.socio_id', $socio_id)->latest()->first();
+                   ->where('facturas.socio_id', $socio_id)
+                   ->orderBy('periodo', 'desc')->latest()->first();
 
          $factura = new Factura;       
          

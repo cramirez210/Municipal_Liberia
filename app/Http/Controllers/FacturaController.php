@@ -209,10 +209,8 @@ class FacturaController extends Controller
     public function filtrar_estado($query, $estado){
 
         if ($estado != 0) 
-            $facturas = $query->whereIn('facturas.estado_id', [$estado])->paginate(5);
-        else $facturas = $query->paginate(5);
-
-        return $facturas;
+            return $query->whereIn('facturas.estado_id', [$estado])->paginate(5);
+        else return $query->paginate(5);
     }
 
     public function filtrar($criterio, $valor, $estado){
@@ -240,7 +238,7 @@ class FacturaController extends Controller
 
     $facturas = $this->filtrar_estado($query, $estado);
 
-    return view('facturas.table', compact('facturas'));
+    return view('facturas.list', compact('facturas'));
     }
 
     public function filtrar_socio($socio_id, $criterio, $valor, $estado){
@@ -258,8 +256,9 @@ class FacturaController extends Controller
     }
 
     $facturas = $this->filtrar_estado($query, $estado);
+    $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
 
-    return view('socios.facturas_table', compact('facturas'));
+    return view('socios.facturas', compact('facturas', 'socio'));
     }
 
     public function list(){

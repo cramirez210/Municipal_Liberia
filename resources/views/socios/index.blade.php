@@ -2,24 +2,7 @@
 
 @section('content')
 
-@if(count($errors))
-<div>
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('valor'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('valor') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('criterio'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('criterio') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif
+@include('mensajes.alertas')
 
 <div class="card text-center mt-4">
   <div class="card-header text-primary">
@@ -60,7 +43,6 @@
 
 </div>
 
-@include('mensajes.alertas') 
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">

@@ -45,25 +45,25 @@
       var rol = $('#rol').val();
 
       $.get('/usuarios/filtrar/' +criterio + '/' + valor + '/' + estado + '/' + rol, function(result){
-      $("#tabla_usuarios").html(result);
+      $("body").html(result);
        });
       break;
 
    case "socios":
       $.get('/socios/filtrar/' +criterio + '/' + valor + '/' + estado , function(result){
-      $("#tabla_socios").html(result);
+      $("body").html(result);
        });
       break;
 
   case "facturas":
     $.get('/facturas/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
-      $("#tabla_facturas").html(result);
+      $("body").html(result);
        });
     break;
 
   case "cobros":
     $.get('/cobros/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
-      $("#tabla_cobros").html(result);
+      $("body").html(result);
        });
     break;
 
@@ -71,7 +71,7 @@
     var id = $('#socio_id').val();
 
     $.get('/facturas/socio/'+ id + '/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
-      $("#tabla_facturas_socio").html(result);
+      $("body").html(result);
        });
     break;
 
@@ -79,7 +79,7 @@
     var id = $('#user_id').val();
 
     $.get('/cobros/user/'+ id + '/filtrar/' +criterio + '/' + valor + '/' + estado, function(result){
-      $("#tabla_cobros_user").html(result);
+      $("body").html(result);
        });
     break;
 

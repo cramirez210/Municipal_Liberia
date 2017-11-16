@@ -321,10 +321,8 @@ class SociosController extends Controller
     public function filtrar_estado($query, $estado){
 
         if ($estado != 0) 
-            $socios = $query->where('socios.estado_id', $estado)->paginate(5);
-        else $socios = $query->paginate(5);
-
-        return $socios;
+            return $query->whereIn('socios.estado_id', [$estado]);
+        else return $query;
     }
 
     public function filtrar($criterio, $valor, $estado_id){
@@ -343,9 +341,10 @@ class SociosController extends Controller
         elseif ($criterio == 4)
             $query->where('users.nombre_usuario', 'like', '%'.$valor.'%');
 
-        $socios = $this->filtrar_estado($query, $estado_id);
+        $socios = $this->filtrar_estado($query, $estado_id)->paginate(5);
+        $registros = $this->filtrar_estado($query, $estado_id)->count();
 
-        return view('socios.table', compact('socios'));
+        return view('socios.index', compact('socios', 'registros'));
     }
 
     public function showImagen(Socio $socio)

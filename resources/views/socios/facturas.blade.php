@@ -88,11 +88,6 @@
 
         @endif 
     </div>
-
-    <div class="card-footer text-muted">
-        Se encontraron {{ count($facturas) }} resultados.
-
-    </div>
 </div>
 
 @endsection
