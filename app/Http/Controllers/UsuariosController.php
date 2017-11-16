@@ -46,7 +46,7 @@ class UsuariosController extends Controller
        return $usuarios = DB::table('users')
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->join('roles','users.rol_id', '=', 'roles.id')
-        ->select('users.*', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+        ->select('users.id', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
         ->where('users.rol_id',3)
         ->paginate(10);
     }
@@ -55,7 +55,7 @@ class UsuariosController extends Controller
         $usuarios = DB::table('users')
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->join('roles','users.rol_id', '=', 'roles.id')
-        ->select('users.*', 'personas.*','users.nombre_usuario','roles.rol')
+        ->select('users.id as user_id', 'personas.*','users.nombre_usuario','roles.rol')
         ->paginate(10);
 
         return view('usuarios.listar', [
@@ -166,7 +166,7 @@ class UsuariosController extends Controller
             $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.*','users.nombre_usuario','roles.rol')
+            ->select('personas.*', 'personas.id as persona_id', 'users.*', 'users.nombre_usuario','roles.rol')
 
             ->where('personas.cedula','=',$valor)
             ->paginate(10);
@@ -175,7 +175,7 @@ class UsuariosController extends Controller
              $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.*','users.nombre_usuario','roles.rol')
+            ->select('personas.*', 'personas.id as persona_id', 'users.*','users.nombre_usuario','roles.rol')
 
             ->where('users.nombre_usuario','=',$valor)
             ->paginate(10);
@@ -210,7 +210,7 @@ class UsuariosController extends Controller
        $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.*', 'users.nombre_usuario','roles.rol')
+            ->select('users.id as user_id', 'personas.*', 'users.nombre_usuario','roles.rol')
             ->where('users.estado_id','=',$id)
             ->paginate(10);
 
@@ -231,7 +231,7 @@ class UsuariosController extends Controller
        $usuarios = DB::table('users')
             ->join('personas', 'users.persona_id', '=', 'personas.id')
             ->join('roles','users.rol_id', '=', 'roles.id')
-            ->select('users.*', 'personas.*', 'users.nombre_usuario','roles.rol')
+            ->select('users.id as user_id', 'personas.*', 'users.nombre_usuario','roles.rol')
 
             ->where('users.rol_id','=',$id)
             ->paginate(10);

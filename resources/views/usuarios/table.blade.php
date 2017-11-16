@@ -18,7 +18,7 @@
          @forelse($usuarios as $usuario)
                        
         <tr>
-            <td class="info" > {{$usuario->id}} </td>
+            <td class="info" > {{$usuario->user_id}} </td>
             <td class="info" > {{$usuario->nombre_usuario}} </td>
             <td class="info" > {{$usuario->primer_nombre}} {{$usuario->primer_apellido}} {{$usuario->segundo_apellido}} </td>
             <td class="info" > {{$usuario->cedula}} </td>
