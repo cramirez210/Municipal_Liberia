@@ -258,15 +258,14 @@ class UsuariosController extends Controller
         }
    }
 
-   public function filtrar_rol_estado($query, $estado, $rol){
+  public function RequestFiltrar(){
 
-    if($rol != 0)
-        $usuarios = $query->whereIn('users.rol_id', [$rol])->paginate(5);
-    elseif ($estado != 0) 
-        $usuarios = $query->whereIn('users.estado_id', [$estado])->paginate(5);
-    else $usuarios = $query->paginate(5);
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+        $rol = request("rol");
 
-        return $usuarios;
+     return redirect("/usuarios/filtrar/".$criterio."/".$valor."/".$estado."/".$rol);   
     }
 
    public function filtrar($criterio, $valor, $estado_id, $rol_id){
@@ -286,7 +285,18 @@ class UsuariosController extends Controller
 
     $usuarios = $this->filtrar_rol_estado($query, $estado_id, $rol_id);
 
-    return view('usuarios.listar', compact('usuarios'));
+    return view('usuarios.listar', compact('usuarios', 'estado_id'));
+    }
+
+ public function filtrar_rol_estado($query, $estado, $rol){
+
+    if($rol != 0)
+        $usuarios = $query->whereIn('users.rol_id', [$rol])->paginate(5);
+    elseif ($estado != 0) 
+        $usuarios = $query->whereIn('users.estado_id', [$estado])->paginate(5);
+    else $usuarios = $query->paginate(5);
+
+        return $usuarios;
     }
 
    public function ReporteDeCobros($id){

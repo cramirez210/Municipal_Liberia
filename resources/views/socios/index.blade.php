@@ -14,8 +14,8 @@
 
   <div class="card-body">
   
-
-  <select id="select" class="custom-select mb-1" name="criterio">
+  <form method="GET" action="/socios/filtrar">
+  <select class="custom-select mb-1" name="Criterio">
     <option selected value="0">Numero de Socio</option>
     <option value="1">Categoria</option>
     <option value="2">Cedula</option>
@@ -25,17 +25,16 @@
   </select>
 
   <label>
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        <input type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
         @if(isset($id))
-        <input id="estado" type="hidden" value="{{$id}}">
+        <input name="estado" type="hidden" value="{{$id}}">
         @else
-        <input id="estado" type="hidden" value="0">
+        <input name="estado" type="hidden" value="0">
         @endif
 
-        <input id="tipo_lista" type="hidden" value="socios">
-
   </label>
-     <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
+     <button type="submit" class="btn btn-success ml-2" >Buscar</button>
+  </form>
   </div>  
 
 

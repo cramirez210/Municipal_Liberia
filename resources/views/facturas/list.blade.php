@@ -9,8 +9,13 @@
     Filtro de Busqueda
   </div>
 
-  <div class="card-block">
-    @include('facturas.filtrar')
+<div class="card-block">
+  <div class="card-body">
+    <form method="GET" action="/facturas/filtrar">
+
+        @include('facturas.filtrar')
+    </form>    
+  </div>
 </div>
 </div>
 <!--_______________________________ Tabla _____________________________-->

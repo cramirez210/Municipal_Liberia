@@ -318,11 +318,13 @@ class SociosController extends Controller
         
     }
 
-    public function filtrar_estado($query, $estado){
+  public function RequestFiltrar(){
 
-        if ($estado != 0) 
-            return $query->whereIn('socios.estado_id', [$estado]);
-        else return $query;
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+
+     return redirect("/socios/filtrar/".$criterio."/".$valor."/".$estado);   
     }
 
     public function filtrar($criterio, $valor, $estado_id){
@@ -344,7 +346,14 @@ class SociosController extends Controller
         $socios = $this->filtrar_estado($query, $estado_id)->paginate(5);
         $registros = $this->filtrar_estado($query, $estado_id)->count();
 
-        return view('socios.index', compact('socios', 'registros'));
+        return view('socios.index', compact('socios', 'registros', 'estado_id'));
+    }
+
+    public function filtrar_estado($query, $estado){
+
+        if ($estado != 0) 
+            return $query->whereIn('socios.estado_id', [$estado]);
+        else return $query;
     }
 
     public function showImagen(Socio $socio)

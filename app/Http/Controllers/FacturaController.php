@@ -206,14 +206,16 @@ class FacturaController extends Controller
         return view('facturas.detail', compact('factura'));
     }
 
-    public function filtrar_estado($query, $estado){
+    public function RequestFiltrar(){
 
-        if ($estado != 0) 
-            return $query->whereIn('facturas.estado_id', [$estado])->paginate(5);
-        else return $query->paginate(5);
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+
+     return redirect("/facturas/filtrar/".$criterio."/".$valor."/".$estado);   
     }
 
-    public function filtrar($criterio, $valor, $estado){
+    public function filtrar($criterio, $valor, $estado_id){
 
         $factura = new Factura;
         $query = $factura->select();
@@ -236,12 +238,22 @@ class FacturaController extends Controller
             $query->where('facturas.periodo', 'like', '%'.$valor.'%');
     }
 
-    $facturas = $this->filtrar_estado($query, $estado);
+    $facturas = $this->filtrar_estado($query, $estado_id);
 
-    return view('facturas.list', compact('facturas'));
+    return view('facturas.list', compact('facturas', 'valor', 'estado_id'));
     }
 
-    public function filtrar_socio($socio_id, $criterio, $valor, $estado){
+    public function RequestFiltrarSocio(){
+
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+        $socio_id = request("socio_id");
+
+     return redirect("/socio/facturas/filtrar/".$socio_id."/".$criterio."/".$valor."/".$estado);   
+    }
+
+    public function filtrar_socio($socio_id, $criterio, $valor, $estado_id){
 
         $factura = new Factura;
         $query = $factura->ObtenerPorCriterio('facturas.socio_id', $socio_id);
@@ -255,10 +267,17 @@ class FacturaController extends Controller
             $query->where('facturas.periodo', 'like', '%'.$valor.'%');
     }
 
-    $facturas = $this->filtrar_estado($query, $estado);
+    $facturas = $this->filtrar_estado($query, $estado_id);
     $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
 
-    return view('socios.facturas', compact('facturas', 'socio'));
+    return view('socios.facturas', compact('facturas', 'socio', 'estado_id'));
+    }
+
+    public function filtrar_estado($query, $estado){
+
+        if ($estado != 0) 
+            return $query->whereIn('facturas.estado_id', [$estado])->paginate(5);
+        else return $query->paginate(5);
     }
 
     public function list(){
@@ -402,44 +421,31 @@ class FacturaController extends Controller
         return view('facturas.buscar_moroso');
     }
 
-    public function BuscarMoroso(Request $request){
+    public function BuscarMoroso($criterio, $valor){
 
-        $this->validate($request,
-            [
-            'Criterio' => 'required',
-            'valor' => 'required|numeric|max:999999999',
-            ],
-            [
-            'valor.max'=>'Solo se admiten hasta 9 digitos.',
-            'valor.numeric'=>'El campo de búsqueda solo admite números.',
-            ]);
+        if(!is_numeric($valor)) return with("<div class='alert alert-warning text-center text-warning'>".
+            " <b> El campo de búsqueda solo acepta números </b> </div>");
+
         $factura = new Factura;
-
-       $criterio = $request->input('Criterio');
-       $valor = $request->input('valor');
 
        $socio = $factura->ObtenerSocioPorCriterio($criterio, $valor);
 
-       if($socio!=null)
-       return redirect('/facturas/socios/morosos/'.$socio->socio_id);
-       else
-        return redirect('/facturas/index')->with('warning', 'No se ha encontrado al socio');
-    }
+       if($socio!=null){
 
-    public function MostrarMorosidadSocio($socio_id){
-
-        $factura = new Factura;
-
-        $socio = $factura->select_socio()->where('socios.id', $socio_id)->first();
+        $socio = $factura->select_socio()->where('socios.id', $socio->socio_id)->first();
 
         $query = DB::table('facturas')
-                            ->where('facturas.socio_id', $socio_id)
+                            ->where('facturas.socio_id', $socio->socio_id)
                             ->where('facturas.estado_id', 3);
         
         $pendientes = $query->get();
         $monto = $query->sum('monto');
 
         return view('facturas.morosidad_socio', compact('socio', 'pendientes', 'monto'));
+       }
+       else
+        return with("<div class='alert alert-warning text-center text-warning'>".
+            " <b> El dato no coinside con ningún socio </b> </div>");
     }
 
      public function ListarSociosMorosos(){

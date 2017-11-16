@@ -121,7 +121,7 @@ class Factura extends Model
         return DB::table('socios')
            ->join('personas', 'socios.persona_id', 'personas.id')
            ->join('categorias', 'socios.categoria_id', 'categorias.id')
-         ->select('socios.id as socio_id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria')
+         ->select('socios.id as socio_id', 'personas.*', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria')
          ->orderBy('socios.id');
     }
 

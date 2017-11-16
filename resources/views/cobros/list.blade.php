@@ -8,11 +8,15 @@
   <div class="card-header text-primary">
     Filtro de Busqueda
   </div>
+<div class="card-block">
+  <div class="card-body">
+    <form method="GET" action="/cobros/filtrar">
 
-  <div class="card-block">
-
-      @include('cobros.filtrar')
+        @include('cobros.filtrar')
+    </form>    
+  </div>
 </div>
+
 </div>
 
 <!--_______________________________ Tabla _____________________________-->
@@ -23,6 +27,7 @@
     @if(isset($estado_id))
         @if($estado_id == 3) <b>Cobros pendientes de liquidar</b> @endif
         @if($estado_id == 4) <b>Cobros liquidados</b> @endif
+        @if($estado_id == 0) <b>Todos los cobros</b> @endif
     @else <b>Todos los cobros</b>
     @endif
   </div>
