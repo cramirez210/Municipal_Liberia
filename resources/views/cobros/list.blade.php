@@ -4,20 +4,8 @@
 
 @include('mensajes.alertas') 
 
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
-  </div>
-<div class="card-block">
-  <div class="card-body">
-    <form method="GET" action="/cobros/filtrar">
-
-        @include('cobros.filtrar')
-    </form>    
-  </div>
-</div>
-
-</div>
+<button class="btn btn-success btn-md mt-3" data-toggle="modal" data-target="#filtrar_cobros">Realizar una búsqueda</button>
+@include('cobros.filtrar')
 
 <!--_______________________________ Tabla _____________________________-->
 

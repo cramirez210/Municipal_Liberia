@@ -1,4 +1,4 @@
-<div id="filtrar_cobros" class="modal fade" role="dialog">
+<div id="filtrar_cobros_user" class="modal fade" role="dialog">
                       <div class="modal-dialog modal-lg">
 
                         <div class="modal-content">
@@ -8,32 +8,31 @@
                                   @if($estado_id == 3) <b>cobros pendientes de liquidar</b> @endif
                                   @if($estado_id == 4) <b>cobros liquidados</b> @endif
                                   @if($estado_id == 0) <b>todos los cobros</b> @endif
-                              @else <b>tod0s los cobros</b>
+                              @else <b>todos los cobros</b>
                               @endif
                             </h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                           <div class="modal-body text-left">
-                              <form method="GET" action="/cobros/filtrar">
-  <select class="custom-select mb-2 mb-sm-0" name="Criterio">
+    <form method="GET" action="/cobros/usuario/filtrar">
+      <select class="custom-select mb-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
     <option value="1">Periodo</option>
     <option value="2">Fecha cobro</option>
-    <option value="3">Usuario</option>
-    <option value="4">Nombre completo</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: -1.8%;">
-        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        <input type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
         @if(isset($estado_id))
         <input name="estado" type="hidden" value="{{$estado_id}}">
         @else
         <input name="estado" type="hidden" value="0">
         @endif
 
+        <input name="user_id" type="hidden" value="{{$user->id}}">
         <button type="submit" class="btn btn-success ml-2" >Buscar</button>
   </label>
-  </form>
+    </form>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                           </div>

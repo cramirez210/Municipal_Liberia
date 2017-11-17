@@ -4,43 +4,8 @@
 
 @include('mensajes.alertas')
 
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
-  </div>
-
-  <div class="card-block">
-
-
-  <div class="card-body">
-  
-  <form method="GET" action="/socios/filtrar">
-  <select class="custom-select mb-1" name="Criterio">
-    <option selected value="0">Numero de Socio</option>
-    <option value="1">Categoria</option>
-    <option value="2">Cedula</option>
-    <option value="3">Nombre</option>
-    <option value="4">Ejecutivo</option>
-    
-  </select>
-
-  <label>
-        <input type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
-        @if(isset($id))
-        <input name="estado" type="hidden" value="{{$id}}">
-        @else
-        <input name="estado" type="hidden" value="0">
-        @endif
-
-  </label>
-     <button type="submit" class="btn btn-success ml-2" >Buscar</button>
-  </form>
-  </div>  
-
-
-</div>
-
-</div>
+<button class="btn btn-success btn-md mt-3" data-toggle="modal" data-target="#filtrar_socios">Realizar una búsqueda</button>
+@include('socios.filtrar')
 
 <!--_______________________________ Tabla _____________________________-->
 

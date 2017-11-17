@@ -15,7 +15,6 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                           <div class="modal-body text-left">
-                            <div id="modal_content">
           <form method="GET" action="/facturas/filtrar">                    
              <select class="custom-select mb-2 mb-sm-0" name="Criterio">
                   <option selected value="0">N° de factura</option>
@@ -36,9 +35,6 @@
                       <button type="submit" class="btn btn-success ml-2" >Buscar</button>
                 </label>
             </form>
-  
-
-                            </div>
                         </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

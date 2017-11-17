@@ -3,48 +3,10 @@
 
 @section('content')
 
-
 @include('mensajes.alertas') 
 
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de búsqueda para usuarios.
-  </div>
-
-  <div class="card-block">
-
-
-<div class="card-body">
-  <form method="GET" action="/usuarios/filtrar">
-  <select class="custom-select mb-1" name="Criterio">
-    <option selected value="0">Cedula</option>
-    <option value="1">Usuario</option>
-    <option value="2">Nombre completo</option>
-  </select>
-  <label class=" ">
-        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus> 
-        @if(isset($estado_id))
-        <input name="estado" type="hidden" value="{{$estado_id}}">
-        @else
-        <input name="estado" type="hidden" value="0">
-        @endif 
-
-        @if(isset($rol_id))
-        <input name="rol" type="hidden" value="{{$rol_id}}">
-        @else
-        <input name="rol" type="hidden" value="0">
-        @endif 
-       
-  </label>
-      <button type="submit" class="btn btn-success ml-2" >Buscar</button>
-  </form>
-
-  </div>  
-
-
-</div>
-
-</div>
+<button class="btn btn-success btn-md mt-3" data-toggle="modal" data-target="#filtrar_users">Realizar una búsqueda</button>
+@include('usuarios.filtrar')
         
 <!--_______________________________ Tabla _____________________________-->
 
