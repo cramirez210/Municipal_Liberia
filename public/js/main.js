@@ -8,6 +8,17 @@ function imprSelec($factura){
         ventimp.close();
     }
 
+function seleccionar_todo(){
+   for (i=0;i<document.form_liquidar_cobro.elements.length;i++)
+      if(document.form_liquidar_cobro.elements[i].type == "checkbox")
+         document.form_liquidar_cobro.elements[i].checked=1
+} 
+
+function deseleccionar_todo(){
+   for (i=0;i<document.form_liquidar_cobro.elements.length;i++)
+      if(document.form_liquidar_cobro.elements[i].type == "checkbox")
+         document.form_liquidar_cobro.elements[i].checked=0
+} 
 /*  function filtrar() {
   var select, valor_select, input, filter, table, tr, td, i;
   select = document.getElementById("select");

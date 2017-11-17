@@ -10,23 +10,25 @@
   </div>
 
   <div class="card-block">
-  <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
-    <option selected value="0">N° de factura</option>
-    <option value="4">Periodo</option>
-  </select>
+    <form method="GET" action="/socio/facturas/filtrar">
+      <select class="custom-select mb-2 mb-sm-0" name="Criterio">
+        <option selected value="0">N° de factura</option>
+        <option value="4">Periodo</option>
+      </select>
 
-  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: -1.8%;">
-        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
-        @if(isset($estado_id))
-        <input id="estado" type="hidden" value="{{$estado_id}}">
-        @else
-        <input id="estado" type="hidden" value="0">
-        @endif
+      <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: -1.8%;">
+            <input type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+            @if(isset($estado_id))
+            <input name="estado" type="hidden" value="{{$estado_id}}">
+            @else
+            <input name="estado" type="hidden" value="0">
+            @endif
 
-        <input id="tipo_lista" type="hidden" value="facturas_socio">
-        <input id="socio_id" type="hidden" value="{{$socio->socio_id}}">
-        <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
-  </label>
+            <input name="socio_id" type="hidden" value="{{$socio->socio_id}}">
+            <button type="submit" class="btn btn-success ml-2" >Buscar</button>
+      </label>
+    </form>
+
 
 </div>
 </div>

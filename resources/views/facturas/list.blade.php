@@ -3,16 +3,9 @@
 @section('content')
 
 @include('mensajes.alertas')
-    
-  <div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
-  </div>
 
-  <div class="card-block">
-    @include('facturas.filtrar')
-</div>
-</div>
+<button class="btn btn-success btn-md mt-3" data-toggle="modal" data-target="#filtrar_factura">Realizar una búsqueda</button>
+@include('facturas.filtrar')
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
@@ -20,7 +13,8 @@
   <div class="card-tittle text-primary">
     @if(isset($estado_id))
         @if($estado_id == 3) <b>Facturas pendientes</b> @endif
-        @if($estado_id == 4) <b>Facturas pagas</b> @endif
+        @if($estado_id == 4) <b>Facturas pagadas</b> @endif
+        @if($estado_id == 0) <b>Todas las facturas</b> @endif
     @else <b>Todas las facturas</b>
     @endif
   </div>
@@ -36,7 +30,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/facturas/list/3">Facturas pendientes</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/facturas/list/4">Facturas canceladas</a>
+            <a class="dropdown-item" href="/facturas/list/4">Facturas pagadas</a>
         </div>
     </li>
     <li class="nav-item">

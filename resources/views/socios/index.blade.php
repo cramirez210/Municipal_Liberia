@@ -14,8 +14,8 @@
 
   <div class="card-body">
   
-
-  <select id="select" class="custom-select mb-1" name="criterio">
+  <form method="GET" action="/socios/filtrar">
+  <select class="custom-select mb-1" name="Criterio">
     <option selected value="0">Numero de Socio</option>
     <option value="1">Categoria</option>
     <option value="2">Cedula</option>
@@ -25,17 +25,16 @@
   </select>
 
   <label>
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
+        <input type="text" class="form-control" placeholder="Ejemplo: 243" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
         @if(isset($id))
-        <input id="estado" type="hidden" value="{{$id}}">
+        <input name="estado" type="hidden" value="{{$id}}">
         @else
-        <input id="estado" type="hidden" value="0">
+        <input name="estado" type="hidden" value="0">
         @endif
 
-        <input id="tipo_lista" type="hidden" value="socios">
-
   </label>
-     <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
+     <button type="submit" class="btn btn-success ml-2" >Buscar</button>
+  </form>
   </div>  
 
 
@@ -47,6 +46,16 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
+    <div class="card-tittle text-primary ml-5">
+    @if(isset($id)) <h5 class="ml-5">
+        @if($id == 1) <b>Lista de socios activos</b> @endif
+        @if($id == 2) <b>Lista de socios inactivos</b> @endif
+        @if($id == 0) <b>Todos los socios</b> @endif
+    </h5>
+    @else <h5 class="ml-4"> <b>Socios</b> </h5>
+  
+    @endif
+  </div>
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
          <label class="nav-link text-primary">Lista de Socios</label>

@@ -15,29 +15,29 @@
 
 
 <div class="card-body">
-  
-  <select id="select" class="custom-select mb-1" name="criterio">
+  <form method="GET" action="/usuarios/filtrar">
+  <select class="custom-select mb-1" name="Criterio">
     <option selected value="0">Cedula</option>
     <option value="1">Usuario</option>
     <option value="2">Nombre completo</option>
   </select>
   <label class=" ">
-        <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus> 
+        <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus> 
         @if(isset($estado_id))
-        <input id="estado" type="hidden" value="{{$estado_id}}">
+        <input name="estado" type="hidden" value="{{$estado_id}}">
         @else
-        <input id="estado" type="hidden" value="0">
+        <input name="estado" type="hidden" value="0">
         @endif 
 
         @if(isset($rol_id))
-        <input id="rol" type="hidden" value="{{$rol_id}}">
+        <input name="rol" type="hidden" value="{{$rol_id}}">
         @else
-        <input id="rol" type="hidden" value="0">
+        <input name="rol" type="hidden" value="0">
         @endif 
-        <input id="tipo_lista" type="hidden" value="usuarios">
        
   </label>
-      <button id="filtrar" type="button" class="btn btn-success ml-2" >Buscar</button>
+      <button type="submit" class="btn btn-success ml-2" >Buscar</button>
+  </form>
 
   </div>  
 
@@ -51,6 +51,25 @@
 
 <div class="card text-center mt-4">
   <div class="card-header">
+        <div class="card-tittle text-primary ml-5">
+    @if(isset($estado_id)) <h5 class="ml-5">
+        @if($estado_id == 1) <b>Lista de usuarios activos</b> @endif
+        @if($estado_id == 2) <b>Lista de usuarios inactivos</b> @endif
+        @if($estado_id == 0) <b>Todos los usuarios</b> @endif
+    </h5>
+    @else
+
+    @if(isset($rol_id)) <h5 class="ml-5">
+        @if($rol_id == 1) <b>Lista de usuarios administradores</b> @endif
+        @if($rol_id == 2) <b>Lista de usuarios estándar</b> @endif
+        @if($rol_id == 3) <b>Lista de usuarios ejecutivos</b> @endif
+        @if($rol_id == 0) <b>Todos los usuarios</b> @endif
+    </h5>
+    @else <h5 class="ml-4"> <b>Usuarios</b> </h5>
+
+    @endif
+    @endif
+  </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
 
 

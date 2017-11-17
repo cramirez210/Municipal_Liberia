@@ -57,7 +57,7 @@ class CobroController extends Controller
      $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
                 ->paginate(5);
 
-     $user = User::find($user_id);
+     $user = $cobro->select_user()->where('users.id', $user_id)->first();
         
      return view('usuarios.cobros', compact('cobros', 'user', 'estado_id'));
 
@@ -91,16 +91,17 @@ class CobroController extends Controller
         return $valor;
     }
 
-    public function filtrar_estado($query, $estado){
+    public function RequestFiltrar(){
 
-        if ($estado != 0) 
-            $cobros = $query->whereIn('cobros.estado_id', [$estado])->paginate(5);
-        else $cobros = $query->paginate(5);
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
 
-        return $cobros;
+     return redirect("/cobros/filtrar/".$criterio."/".$valor."/".$estado);   
     }
 
-    public function filtrar($criterio, $valor, $estado){
+
+    public function filtrar($criterio, $valor, $estado_id){
 
         $cobro = new Cobro;
         $query = $cobro->select();
@@ -122,12 +123,22 @@ class CobroController extends Controller
         elseif ($criterio == 4)
             $query->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%');
 
-        $cobros = $this->filtrar_estado($query, $estado);
+        $cobros = $this->filtrar_estado($query, $estado_id);
 
-        return view('cobros.list', compact('cobros'));
+        return view('cobros.list', compact('cobros', 'estado_id'));
     }
 
-    public function filtrar_user($user_id, $criterio, $valor, $estado){
+    public function RequestFiltrarUser(){
+
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+        $user_id = request("user_id");
+
+     return redirect("/cobros/usuario/filtrar/".$user_id."/".$criterio."/".$valor."/".$estado);   
+    }
+
+    public function filtrar_user($user_id, $criterio, $valor, $estado_id){
 
         $cobro = new Cobro;
         $query = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id);
@@ -144,10 +155,19 @@ class CobroController extends Controller
             $query->where('cobros.created_at', 'like', '%'.$fecha.'%');
     }
 
-        $cobros = $this->filtrar_estado($query, $estado);
+        $cobros = $this->filtrar_estado($query, $estado_id);
         $user = $cobro->select_user()->where('users.id', $user_id)->first();
 
-        return view('usuarios.cobros', compact('cobros', 'user'));
+        return view('usuarios.cobros', compact('cobros', 'user', 'estado_id'));
+    }
+
+   public function filtrar_estado($query, $estado){
+
+        if ($estado != 0) 
+            $cobros = $query->whereIn('cobros.estado_id', [$estado])->paginate(5);
+        else $cobros = $query->paginate(5);
+
+        return $cobros;
     }
 
      public function LiquidarPorEstado($estado_id)

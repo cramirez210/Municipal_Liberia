@@ -70,10 +70,8 @@
                 {{$factura->estado}}
               </div>
               @endif
-</div>
 
-
-                        <div class="form-group">
+              <div class="form-group float-left">
                             <div class="col-md-6 mt-4 ml-3 float-right">
                               @if($factura->estado_id == 3)
                                 <a href="/facturas/pagar/{{$factura->id}}" class="btn btn-primary btn-md">
@@ -82,3 +80,7 @@
                               @endif
                             </div>
                         </div>
+</div>
+
+
+                  
