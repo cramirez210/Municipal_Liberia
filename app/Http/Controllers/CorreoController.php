@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Notification;
+use App\Mail\notificacionFactura;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
@@ -36,4 +37,19 @@ class CorreoController extends Controller
         return $ruta;
     }
 
+    //------------------------------ Notificacion de facturas -----------------------------
+
+
+    public function notificarFactura($factura)
+    {
+
+        $socio = $factura->socio;
+        $persona = $socio->persona;
+        $periodo = date('m-Y', strtotime($factura->periodo));
+        $categoria = $socio->categoria;
+        if($persona->email!=null)
+        {
+        Mail::to($persona->email)->send(new notificacionFactura($factura,$socio,$persona,$periodo,$categoria));
+        }
+    }
 }

@@ -17,6 +17,7 @@ use App\User;
 use App\Descuento;
 use Carbon\Carbon;
 use PDF;
+use App\Http\Controllers\CorreoController;
 
 class FacturaController extends Controller
 {
@@ -521,4 +522,5 @@ class FacturaController extends Controller
 
 		return redirect('/');
     }
+
 }

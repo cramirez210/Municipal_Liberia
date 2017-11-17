@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\SociosController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\CorreoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -51,6 +52,9 @@ class Facturas extends Command
         $model_factura = new Factura;
 
         $socios_controller = new SociosController;
+
+        $correo = new CorreoController;
+
         $socios_activos = $socios_controller->sociosPorEstado(1);
 
         if(count($socios_activos)){
@@ -87,6 +91,7 @@ class Facturas extends Command
         $factura->estado_id = 3;
 
         $factura->save();
+        $correo->notificarFactura($factura);
          }
          else{
          
@@ -106,10 +111,14 @@ class Facturas extends Command
         $factura->estado_id = 3;
 
         $factura->save();
+        $correo->notificarFactura($factura);
+
          }
          }
             }
         }
         }
+
+      
     }
 }
