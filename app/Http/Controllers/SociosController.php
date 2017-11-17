@@ -38,7 +38,8 @@ class SociosController extends Controller
         $DB = new Socio;
         $socios = $DB->select()->paginate(10);
         $registros = count($socios);
-            return view('/socios/index', compact('socios','registros'));
+        $id = 0; //estado_id
+            return view('/socios/index', compact('socios','registros', 'id'));
     }
 
     public function asignarEjecutivo()
@@ -327,7 +328,7 @@ class SociosController extends Controller
      return redirect("/socios/filtrar/".$criterio."/".$valor."/".$estado);   
     }
 
-    public function filtrar($criterio, $valor, $estado_id){
+    public function filtrar($criterio, $valor, $id){
 
         $socio = new Socio;
         $query = $socio->select();
@@ -343,10 +344,10 @@ class SociosController extends Controller
         elseif ($criterio == 4)
             $query->where('users.nombre_usuario', 'like', '%'.$valor.'%');
 
-        $socios = $this->filtrar_estado($query, $estado_id)->paginate(5);
-        $registros = $this->filtrar_estado($query, $estado_id)->count();
+        $socios = $this->filtrar_estado($query, $id)->paginate(5);
+        $registros = $this->filtrar_estado($query, $id)->count();
 
-        return view('socios.index', compact('socios', 'registros', 'estado_id'));
+        return view('socios.index', compact('socios', 'registros', 'id'));
     }
 
     public function filtrar_estado($query, $estado){

@@ -60,6 +60,7 @@ class UsuariosController extends Controller
 
         return view('usuarios.listar', [
         'usuarios' => $usuarios,
+        'estado_id' => 0,
         ]);
     }
 
@@ -285,7 +286,12 @@ class UsuariosController extends Controller
 
     $usuarios = $this->filtrar_rol_estado($query, $estado_id, $rol_id);
 
-    return view('usuarios.listar', compact('usuarios', 'estado_id'));
+    if($estado_id != 0)
+        return view('usuarios.listar', compact('usuarios', 'estado_id'));
+    elseif ($rol_id != 0) 
+        return view('usuarios.listar', compact('usuarios', 'rol_id'));
+    else
+        return view('usuarios.listar', compact('usuarios'));
     }
 
  public function filtrar_rol_estado($query, $estado, $rol){

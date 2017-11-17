@@ -46,6 +46,16 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
+    <div class="card-tittle text-primary ml-5">
+    @if(isset($id)) <h5 class="ml-5">
+        @if($id == 1) <b>Lista de socios activos</b> @endif
+        @if($id == 2) <b>Lista de socios inactivos</b> @endif
+        @if($id == 0) <b>Todos los socios</b> @endif
+    </h5>
+    @else <h5 class="ml-4"> <b>Socios</b> </h5>
+  
+    @endif
+  </div>
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
          <label class="nav-link text-primary">Lista de Socios</label>

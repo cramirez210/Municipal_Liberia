@@ -51,6 +51,25 @@
 
 <div class="card text-center mt-4">
   <div class="card-header">
+        <div class="card-tittle text-primary ml-5">
+    @if(isset($estado_id)) <h5 class="ml-5">
+        @if($estado_id == 1) <b>Lista de usuarios activos</b> @endif
+        @if($estado_id == 2) <b>Lista de usuarios inactivos</b> @endif
+        @if($estado_id == 0) <b>Todos los usuarios</b> @endif
+    </h5>
+    @else
+
+    @if(isset($rol_id)) <h5 class="ml-5">
+        @if($rol_id == 1) <b>Lista de usuarios administradores</b> @endif
+        @if($rol_id == 2) <b>Lista de usuarios estándar</b> @endif
+        @if($rol_id == 3) <b>Lista de usuarios ejecutivos</b> @endif
+        @if($rol_id == 0) <b>Todos los usuarios</b> @endif
+    </h5>
+    @else <h5 class="ml-4"> <b>Usuarios</b> </h5>
+
+    @endif
+    @endif
+  </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
 
 
