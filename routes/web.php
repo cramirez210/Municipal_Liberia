@@ -25,6 +25,9 @@ Route::post('/usuarios/create','UsuariosController@create');
 Route::get('/correo/enviar','CorreoController@notificar');
 
 
+
+
+
 Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 	Route::get('/personas/editar/{user}','PersonasController@show_update');

@@ -29,7 +29,7 @@ class Factura extends Model
 
     public function socio()
     {
-    	return $this->belongsTo(App\Socio);
+    	return $this->belongsTo('App\Socio');
     }
 
     public function store($factura, $socio_id, $meses_cancelados, $precio_categoria, $forma_pago, $transaccion_bancaria, $fecha_factura, $fecha_pago, $estado_id){
