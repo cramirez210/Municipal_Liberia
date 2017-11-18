@@ -248,7 +248,7 @@
                                 Actualizar
                             </button>
 
-                            <a href="/usuarios/home" class="btn btn-danger btn-xs ml-2">
+                            <a href="{{URL::previous()}}" class="btn btn-danger btn-xs ml-2">
                             <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
                 
                         </div>

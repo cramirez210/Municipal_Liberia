@@ -1,7 +1,7 @@
-
-        <ul class="navbar-nav">
-        <li class="nav-item dropdown mt-2">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
+<div id="links" class="float-right ml-5">
+        <ul class="navbar-nav ml-5">
+        <li class="nav-item dropdown ml-5">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
         
         <div class="dropdown-menu">
             <a class="dropdown-item text-warning" href="/personas/editar/{{ $usuario->id }}">Actualizar</a>
@@ -23,4 +23,5 @@
         </div>
     </li>
 
-    </ul>
+    </ul>    
+</div>

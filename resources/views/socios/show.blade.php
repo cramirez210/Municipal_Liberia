@@ -1,54 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-
-<div class="container ml-5">
-
-    <div class="col-md-9 offset-md-2 mt-4">
-        @if(session('success')) 
-            <div class="card-block">
-                <label class=" card-title alert alert-warning" style="width: 100%;">{{ session('success') }}</label>
-            </div>
-        @endif 
-  </div>
-
-
-<div class="card" style="width: 90%; height: 85%;">
-
-  <div class="card-header">
-    
-    <ul class="nav nav-pills nav-fill card-header-pills">  
-      <li class="nav-item">
-        <label class="nav-link text-primary" href="#">Informacion del Socio.</label>
-      </li>
-
-     <li class="nav-item dropdown mt-2" id="opciones">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Acción</a>
-        
-        <div class="dropdown-menu">
-            <a class="dropdown-item text-warning" href="/socios/show/edit/{{ $socio->id }}">Actualizar</a>
-
-            @if($socio->estado_id == 2)
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-success" href="/socios/estado/{{ $socio->id }}">Activar</a>
-            @else
-        <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" href="/socios/estado/{{ $socio->id }}">Inactivar</a>
-            @endif
-
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-primary" href="/socios/index">Regresar</a>
-        </div>
-    </li>
-
-</div>
-
-  <div class="card-block">
-
-    <div class="container-fluid mt-4 w-100">
-
-       	<div> <!--No tocar-->
-                                     
+                             
     <!--_________________________________Persona_______________________________________-->
     
     <div class="d-inline-block col-md-5"> 
@@ -70,7 +20,7 @@
             <label for="numeroSocio" class="rm-control-label">Número de socio</label>
 
                 <div class=" col-md-auto ml-lg-5 ml-xl-5">
-                    <input id="numeroSocio" type="text" class="form-control" name="primer_nombre" value="{{ $persona->id }}"  readonly>
+                    <input id="numeroSocio" type="text" class="form-control" name="primer_nombre" value="{{ $socio->id }}"  readonly>
 
                 </div>
             </div>
@@ -228,44 +178,6 @@
                     
                 </div>
 
-            </div>  
-
-            <!--________________________________________ Estado  _________________________-->
-            <div class=" col-md-auto  form-group">
-                <label for="monto" class="form-control-label">Estado</label>
-   
-                    <div class="col-md-auto ml-lg-5 ml-xl-5">
-                    <input id="monto" type="text" class="form-control" name="monto" value="{{ $estado->estado }}" readonly>
-                    
-                </div>
-
-            </div>         
+            </div>       
 
 </div>
-
-
-
-<!--_____________________________ Botones _________________________________-->
-        <center class="form-group mt-3">
-            <div class="row-fluid">
-
-                <a href="/socios/index" class="btn btn-primary">
-                <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
-
-            </div>
-        </center>
-
-
-        </div>
-    </div>
-
-  </div>
-</div>
-
-@endsection
-
-@section('titulo')
-
-Mostrar socio 
-
-@endsection

@@ -27,10 +27,7 @@
             <td class="info text-center"> {{ $socio->nombre_usuario }} </td>
             <td class="info text-center"> {{ $socio->estado }} </td>
             <td class="warning text-center"> 
-              
-              <a href="/socios/show/{{ $socio->id }}" class="btn btn-success">
-                  <span class="glyphicon glyphicon-remove-circle"></span>Detalle</a>
-
+              <button type="button" class="btn btn-info btn-sm detail-socio" data-toggle="modal" data-target="#modal">Detalle</button>
             </td>
         </tr>
 
@@ -47,4 +44,5 @@
     </tbody>
     </table>  
 
+    @include('modal')
     </div>

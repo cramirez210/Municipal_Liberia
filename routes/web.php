@@ -24,8 +24,17 @@ Route::get('/usuarios/showCreate','UsuariosController@showCreate');
 Route::post('/usuarios/create','UsuariosController@create');
 Route::get('/correo/enviar','CorreoController@notificar');
 
+Route::get('/usuarios/get/links/{id}', function ($id) {
 
+    $usuario = App\User::find($id); 
+	return view('usuarios.links', compact('usuario')); 
+});
 
+Route::get('/socios/get/links/{id}', function ($id) {
+
+    $socio = App\Socio::find($id); 
+	return view('socios.links', compact('socio')); 
+});
 
 
 Route::group(['middleware' => ['auth','SoloAdministrador']], function() {

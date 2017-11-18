@@ -45,6 +45,25 @@ $('#cerrar_moroso').on('click', function(){
     $.get('/personas/mostrar/' + id, function(result){
 
          $("#modal_tittle").text("Detalle de usuario");
+         $.get('/usuarios/get/links/' + id, function(links){
+
+         $("#modal_tittle").append(links);
+       });
+         $("#modal_content").html(result);
+       });
+  });
+
+  $('.detail-socio').on('click', function(){
+
+    var id = $(this).parents("tr").find("td").eq(0).text();
+
+    $.get('/socios/show/' + id, function(result){
+
+         $("#modal_tittle").text("Detalle de socio");
+         $.get('/socios/get/links/' + id, function(links){
+
+         $("#modal_tittle").append(links);
+       });
          $("#modal_content").html(result);
        });
   });
