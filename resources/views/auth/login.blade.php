@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="row" >
 
-        <div class="col-md-8 offset-md-2 mt-5">
-            <div class="panel panel-default">
+        <div class="col-sm-12">
+            <div class="panel panel-default d-flex justify-content-center">
                 
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
@@ -19,7 +18,9 @@
                  </span>
 
                     @endif 
-                        <div class="form-group{{ $errors->has('nombre_usuario') ? ' has-danger' : '' }}">
+                            <h1 class="display-2">Uniciar Seción</h1>
+
+                        <div class="form-group{{ $errors->has('nombre_usuario') ? ' has-danger' : '' }} pt-2s">
                             <label for="nombre_usuario" class="col-md-4 form-control-label">Nombre de usuario</label>
 
                             <div class="col-md-6">
@@ -74,5 +75,5 @@
                     </form>
         </div>
     </div>
-
+</div>
 @endsection

@@ -13,7 +13,7 @@
 
 <div class="card text-center mt-4">
   <div class="card-header">
-        <div class="card-tittle text-primary ml-5">
+    <div class="card-tittle text-primary ml-5">
     @if(isset($estado_id)) <h5 class="ml-5">
         @if($estado_id == 1) <b>Lista de usuarios activos</b> @endif
         @if($estado_id == 2) <b>Lista de usuarios inactivos</b> @endif
@@ -33,8 +33,6 @@
     @endif
   </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
-
-
       <li class="nav-item">
         <a class="nav-link text-primary" href="/usuarios/showCreate">Nuevo usuario</a>
       </li>
@@ -62,31 +60,24 @@
              
                 </ul>
             </div>
-            
-
         </div>
       </li>
-
-
-
     </ul>
   </div>
   
-  <div class="card-body tab-content">
+    <div class="card-body tab-content">
     <div class="tab-pane active" id="tabc" role="tabpanel">
     
     <div id="tabla_usuarios" class="container-fluid col-md-9">
-<div class="row">
 
- @include('usuarios.table')
+      @include('usuarios.table')
     </div>
-
- </div>
     
     </div>
-  
   </div>
 </div>
+
+
 
 @endsection
 
@@ -95,4 +86,3 @@
 Listar Usuarios
 
 @endsection
-

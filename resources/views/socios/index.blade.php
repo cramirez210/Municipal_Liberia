@@ -44,10 +44,11 @@
   </div> 
 <div id="tabla_socios" class="col-md-8 offset-md-2 mt-4">
 
-<div class="row">
+  <div class="row py-3">
 
   @include('socios.table')
-    </div>
+
+  </div>
 
  </div>
 
@@ -57,7 +58,7 @@
        {{ $socios->links('pagination::bootstrap-4') }}
 
         @endif 
-    </div>
+</div>
 
     <div class="card-footer text-muted">
         Se encontraron {{ $registros }} resultados. 

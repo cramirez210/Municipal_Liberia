@@ -1,5 +1,4 @@
-
- <div class="table-responsive ml-4">
+<div class="table-responsive ml-4">
         
     <table WIDTH="100%" class="table table-hover" >
         <thead>
@@ -48,5 +47,5 @@
 
     @endif
 @include('modal')
-        </div>
+</div>
 

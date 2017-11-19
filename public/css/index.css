@@ -1,0 +1,140 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+h2{
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+h3{
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+
+h4{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+p{
+    font-weight: 300;
+}
+/*Menu*/
+#imagen-logo{
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+#header{
+    background-color: #ffe600;
+}
+
+.dropdown-menu-app{
+    background-color: #ffe600 !important;
+}
+
+.dropdown-item-app:focus, .dropdown-item-app:hover{
+    background-color: #d8c72b !important;
+}
+/*Seccion slider*/
+.fondo-slider{
+    background: url('../storage/img/municipal-liberia.jpg');
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.fondo-slider-opaco{
+    background-color: rgba(0, 0, 0, .4);
+    height: 100vh;
+}
+
+.btn{
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+/*Seccion mision*/
+.bg-fondo-mision{
+    background-color: #fefaec;
+}
+/*Seccion cards*/
+.iconos{
+    color: #f0ad4e !important;
+    font-size: 4rem;
+}
+
+.bg-gris{
+    background-color:  #9B7E59;
+}
+
+.card{
+    border: none;
+}
+
+.fondo-cards{
+    background-color: #fefaec
+}
+
+/*Footer*/
+
+ul{
+    list-style-type:none;
+    padding:0px;
+}
+
+ul li #as{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-info{
+    background-color: #373a48;
+}
+
+.title-card{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: wheat;
+}
+
+.links{
+    color: wheat;
+}
+
+.footer-copi{
+    background-color: #383737;
+}
+
+.footer-icon{
+    font-size: 4rem;
+    padding-left: 2rem;
+    color: white;
+}
+
+#as:focus, #as:hover {
+    color: #8c8f92;
+    text-decoration: none;
+}
+
+.ul-footer{
+    margin-left: 0;
+}
+
+.text-footer{
+    font-size: 0.75rem;
+    font-weight: 300;
+}

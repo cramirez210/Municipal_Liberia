@@ -1,5 +1,3 @@
-
-
  <div class="table-responsive">
         
     <table id="table" class="table table-hover ">
