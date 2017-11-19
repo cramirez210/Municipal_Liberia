@@ -73,8 +73,8 @@
          <div class="container-fluid fondo-slider-opaco">
             <div class="container d-flex flex-column justify-content-center h-100 text-white align-items-center">
 
-                <h1 class="pb-4">Bienvenidos al Programa de Control de Membrecias</h1>
-                <p class="pb-4">Proyecto con la finalidad de agilizar, monitoriar y controlar devidamente las membrecias asociadas al Asociacion Deportiva Municipal Liberia!</p>
+                <h1 class="pb-4">Bienvenidos al Programa de Control de Membresias</h1>
+                <p class="pb-4">Proyecto con la finalidad de agilizar, monitoriar y controlar devidamente las membresias asociadas a la Asociacion Deportiva Municipal Liberia !</p>
                 <div>
                     <a href="http://municipalliberia.com/" class="btn btn-danger px-4">Leer más...</a>
                 </div>
