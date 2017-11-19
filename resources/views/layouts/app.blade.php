@@ -85,18 +85,6 @@
                 </div>
             </div>
         </nav>
-        
-         
-    <!--       <div class="footer-bottom navbar navbar-light static-top navbar-toggleable-md bg-faded container-fluid ">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <p class="text-xs-center">Universidad de Costa Rica. Informática Empresarial. Municipal Liberia</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
  
         <div class="container">
             @yield('content')  
