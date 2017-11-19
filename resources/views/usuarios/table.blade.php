@@ -1,6 +1,6 @@
-<div class="table-responsive ml-4">
+<div class="table-responsive">
         
-    <table WIDTH="100%" class="table table-hover" >
+    <table id="table" class="table table-hover" >
         <thead>
             <tr>
             <th class="text-center w-10">ID</th>
@@ -27,25 +27,19 @@
             </td>
         </tr>
         @empty
-        <div class="card-text text-warning">No existen usuarios registrados.</div>
+        <div class="alert alert-warning">
+       
+        <span class="card-text text-warning "> No se encontraon socios</span>
+
+        </div>
         <br>
         @endforelse
-
+        @endif 
     
     </tbody>
 
     </table>
-
-     <div class="mt-2 mx-auto">
-        @if(count($usuarios))
-
-       {{ $usuarios->links('pagination::bootstrap-4') }}
-
-        @endif 
-
-    </div>   
-
-    @endif
+ 
 @include('modal')
 </div>
 

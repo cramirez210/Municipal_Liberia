@@ -21,6 +21,7 @@
   
     @endif
   </div>
+
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
          <label class="nav-link text-primary">Lista de Socios</label>
@@ -42,6 +43,7 @@
     </ul>
     
   </div> 
+  
 <div id="tabla_socios" class="col-md-8 offset-md-2 mt-4">
 
   <div class="row py-3">
