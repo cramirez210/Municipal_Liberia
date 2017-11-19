@@ -4,7 +4,7 @@
     {{ csrf_field() }}
 
     <!--_________________________________Persona_______________________________________-->
-    <div> <!--No tocar-->
+<div> <!--No tocar-->
     
     <div class="d-inline-block col-md-5"> 
   
@@ -138,7 +138,6 @@
                         @endif
                 </div>
             </div>
-
     </div>
   
 
