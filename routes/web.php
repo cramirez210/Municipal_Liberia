@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () { return view('welcome'); });
-Route::get('/auth/confirm/email/{email}/confirm_token/{confirm_token}', 'Auth\AuthController@confirmRegister');
+
 
 Route::get('/usuarios/showCreate','UsuariosController@showCreate');
 Route::post('/usuarios/create','UsuariosController@create');
