@@ -36,6 +36,7 @@
                 </li>
                 @else
                 <li class="nav-item">
+                  
                   <a class="nav-link" href="/usuarios/home"><i class="fa fa-user-o .iconos-nav" aria-hidden="true"></i> Usuarios</a>
                 </li>
                 <li class="nav-item">
@@ -113,7 +114,7 @@
                       <h1>Usuarios</h1>
                       <p class="card-text lead">Seccion donde se puede gestionar los usuarios del sistema.</p>
                     </div>
-                    <a class="card-footer btn bg-warning text-white" href="">Acceder</a>
+                    <a class="card-footer btn bg-warning text-white" href="/usuarios/home">Acceder</a>
                   </div>
             </div><!-- Modulo1 -->
 
@@ -127,7 +128,7 @@
                       <h1>Socios</h1>
                       <p class="card-text lead">Seccion donde se puede gestionar los Socios del Municipal Liberia.</p>
                     </div>
-                    <a class="card-footer btn bg-warning text-white" href="">Acceder</a>
+                    <a class="card-footer btn bg-warning text-white" href="/socios/index">Acceder</a>
                   </div>
             </div><!-- Modulo2 -->
 
@@ -141,7 +142,7 @@
                       <h1>Facturacion</h1>
                       <p class="card-text lead">Seccion donde se puede gestionar el cobro de las membrecias.</p>
                     </div>
-                    <a class="card-footer btn bg-warning text-white" href="">Acceder</a>
+                    <a class="card-footer btn bg-warning text-white" href="/facturas/index">Acceder</a>
                   </div>
             </div><!-- Modulo3 -->
 
@@ -155,7 +156,7 @@
                       <h1>Ajustes</h1>           
                       <p class="card-text lead">Seccion donde se puede gestionar los ajustes del sistema.</p>
                     </div>
-                    <a class="card-footer btn bg-warning text-white" href="">Acceder</a>
+                    <a class="card-footer btn bg-warning text-white" href="/conf/index">Acceder</a>
                   </div>
             </div><!-- Modulo4 -->
   
