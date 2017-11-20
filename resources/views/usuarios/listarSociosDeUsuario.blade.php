@@ -32,6 +32,7 @@
     <table class="table table-hover" >
         <thead>
             <tr>
+            <th class="text-center">N° de socio</th> 
             <th class="text-center">Cédula</th> 
             <th class="text-center">Nombre</th>
             <th class="text-center">Opciones</th>
@@ -43,11 +44,11 @@
          @forelse($sociosActivos as $socioActivo)
                        
         <tr>
+            <td class="info" >{{ $socioActivo->id }}</td>
             <td class="info" >{{ $socioActivo->persona->cedula }}</td>
             <td class="info" >{{ $socioActivo->persona->primer_nombre }} {{ $socioActivo->persona->primer_apellido }} {{ $socioActivo->persona->segundo_apellido }}</td>
             <td class="info"> 
-              <a href="/socios/show/{{ $socioActivo->id }}" class="btn btn-info btn-xs">
-              <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
+              <button type="button" class="btn btn-info btn-sm detail-socio" data-toggle="modal" data-target="#modal">Ver socio</button>
             </td>
         </tr>   
 
@@ -85,6 +86,7 @@
     <table class="table table-hover" >
         <thead>
             <tr>
+             <th class="text-center">N° de socio</th>
              <th class="text-center">Cédula</th> 
             <th class="text-center">Nombre</th>
             <th class="text-center">Opciones</th>
@@ -98,8 +100,7 @@
             <td class="info" >{{ $socioInactivo->persona->cedula }}</td>
             <td class="info" >{{ $socioInactivo->persona->primer_nombre }} {{ $socioInactivo->persona->primer_apellido }} {{ $socioInactivo->persona->segundo_apellido }}</td>
             <td class="info"> 
-              <a href="/socios/show/{{ $socioInactivo->id }}" class="btn btn-info btn-xs">
-              <span class="glyphicon glyphicon-remove-circle"></span>Ver socio</a>
+              <button type="button" class="btn btn-info btn-sm detail-socio" data-toggle="modal" data-target="#modal">Ver socio</button>
             </td>
         </tr>  
         
@@ -129,7 +130,7 @@
  </div>
     
     </div>
-   
+   @include('modal')
   </div>
 </div>
 
