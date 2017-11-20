@@ -48,6 +48,7 @@ class UsuariosController extends Controller
         ->join('roles','users.rol_id', '=', 'roles.id')
         ->select('users.id', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
         ->where('users.rol_id',3)
+        ->where('users.estado_id',1)
         ->paginate(10);
     }
     public function listarTodosLosUsuarios()
