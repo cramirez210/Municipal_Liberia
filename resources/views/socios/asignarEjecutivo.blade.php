@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card text-center mt-4">
+<div class="card text-center mt-4 py-5">
   <div class="card-header">
     
     <label class="text-primary"> Filtro de Busqueda </label>

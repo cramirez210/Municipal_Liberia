@@ -255,7 +255,7 @@
                 <label for="imagen" class="form-control-label">Fotografía</label>
 
                 <div class="col-md-auto  ml-lg-5 ml-xl-5">
-                                
+                     
                      <input type="file" class="form-control-file" name="imagen"> 
 
                         @if ($errors->has('imagen'))
@@ -275,12 +275,12 @@
 
                         <div class="row-fluid">
 
-                            <button type="submit" class="btn btn-success btn-xs" style="color: white;">
+                            <button type="submit" class="btn btn-success btn-xs mb-3 mb-sm-0" style="color: white;">
                                 Registrar
                             </button>
 
-                            <a href="/socios/asignarEjecutivo" class="btn btn-primary btn-xs ml-2">
-                            <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
+                            <a href="/socios/asignarEjecutivo" class="btn btn-danger btn-xs ml-md-2">
+                            <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
                 
                         </div>
                     </center>

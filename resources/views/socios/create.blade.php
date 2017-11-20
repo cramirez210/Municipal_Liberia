@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container ml-4">
+<div class="container ml-4 pb-5">
 
   <div class="card mt-4" style="width: 90%; height: 85%;">
 

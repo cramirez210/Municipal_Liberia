@@ -9,7 +9,7 @@
 
 <!--_______________________________ Tabla _____________________________-->
 
-<div class="card text-center mt-4">
+<div class="card text-center mt-4 py-5">
 <div class="card-header">
     <div class="card-tittle text-primary ml-5">
     @if(isset($id)) <h5 class="ml-5">

@@ -38,8 +38,9 @@ p{
     width: 3.5rem;
 }
 
-#header{
+#barra{
     background-color: #ffe600;
+    box-shadow: 0 5px 5px -5px #333;
 }
 
 .dropdown-menu-app{

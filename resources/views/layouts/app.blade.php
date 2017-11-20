@@ -21,12 +21,12 @@
     </head>
     <body>
         <!-- Encabesado -->
-        <div id="header" class="container-fluid navbar-light">
+        <div id="barra" class="container-fluid navbar-light">
             <nav class="navbar navbar-toggleable-md container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img id="imagen-logo" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia"><span class="hidden-sm-down">Gestor de Membrecias</span></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img id="imagen-logo" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia"><span class="hidden-sm-down">Gestor de Membresias</span></a>
             
             <div class="collapse navbar-collapse" id="menu">
               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
