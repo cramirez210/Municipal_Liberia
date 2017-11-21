@@ -12,7 +12,7 @@
       <p>Lo sentimos, no hemos podido encontrar lo que está buscando.</p>
       
     </blockquote>
-     <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+     <a href="{{ URL::previous() }}" class="btn btn-warning">Regresar</a>
   </div>
 </div>
 

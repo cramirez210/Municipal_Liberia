@@ -44,7 +44,7 @@
     <!--_______________________________ Botón _____________________________-->
     <div class="float-right">
         <div class="col-md-6">
-            <button type="submit" class="btn btn-warning">
+            <button type="submit" class="btn btn-success">
                Registrar Categoria
             </button>
         </div>

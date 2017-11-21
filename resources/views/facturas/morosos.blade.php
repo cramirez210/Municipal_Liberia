@@ -29,7 +29,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="/facturas/index" class="btn btn-primary btn-sm">
+        <a href="/facturas/index" class="btn btn-warning btn-sm">
            <b>Regresar</b> 
         </a>
     </li>

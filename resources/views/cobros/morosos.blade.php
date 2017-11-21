@@ -25,7 +25,7 @@
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
     <li class="nav-item">
       <div class="col-md-2 float-right mr-5 mb-2">
-        <a href="/cobros/index" class="btn btn-primary btn-md">
+        <a href="/cobros/index" class="btn btn-warning btn-md">
            Regresar
         </a>
    </div>

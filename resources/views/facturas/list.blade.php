@@ -35,7 +35,7 @@
     </li>
     <li class="nav-item">
       <center class="col-md-2 mr-5">
-        <a href="/facturas/index" class="btn btn-primary btn-md">
+        <a href="/facturas/index" class="btn btn-warning btn-md">
            Regresar
         </a>
    </center>
