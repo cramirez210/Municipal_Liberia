@@ -111,14 +111,21 @@ class FacturaController extends Controller
 
         $query = DB::table('facturas')->where('facturas.socio_id', $socio_id);
 
-        $ultima_factura = $query->orderBy('periodo', 'desc')->latest()->first();
+        $ultima_factura = $query->orderBy('periodo', 'asc')->first();
 
         if($ultima_factura){
             $pago_hasta = new Carbon($ultima_factura->periodo);
 
-             for ($i=0; $i < $meses_cancelados; $i++) { 
+            if($ultima_factura->estado_id == 3){
+                for ($i=1; $i < $meses_cancelados; $i++) { 
                 $pago_hasta->addMonth();
             }
+        } else {
+            for ($i=0; $i < $meses_cancelados; $i++) { 
+                $pago_hasta->addMonth();
+        }
+        }
+            
         }
         else{
             $pago_hasta = Carbon::createFromDate(null, null, 1);
