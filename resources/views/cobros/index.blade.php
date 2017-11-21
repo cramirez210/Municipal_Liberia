@@ -14,7 +14,7 @@
   <a href="#" class="list-group-item active">
     Acceder a:
   </a>
-  <a class="list-group-item" href="#" data-toggle="modal" data-target="#buscar_liquidar">Liquidación de cobros de un usuario</a>
+  <a class="list-group-item" href="#" data-toggle="modal" data-target="#buscar_liquidar">Liquidación de cobros de un ejecutivo</a>
   @include('cobros.buscar_liquidar')
   <ul class="list-group-item">
     <li class="list-unstyled dropdown">
