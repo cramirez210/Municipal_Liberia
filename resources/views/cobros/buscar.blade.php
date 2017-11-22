@@ -1,4 +1,4 @@
-<div id="buscar" class="modal fade" role="dialog">
+<div id="buscar_ejec" class="modal fade" role="dialog">
                       <div class="modal-dialog modal-lg">
 
                         <div class="modal-content">

@@ -87,7 +87,7 @@
                                   </div>
                               </li>
                             </ul>
-                            <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar">Buscar cobros de un ejecutivo específico</a>
+                            <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_ejec">Buscar cobros de un ejecutivo específico</a>
                             @include('cobros.buscar')
                             <a href="/cobros/recuento" class="list-group-item">Reporte de cobros</a>
                             <ul class="list-group-item">
@@ -96,11 +96,11 @@
                                   <div class="dropdown-menu">
                                       <a class="dropdown-item" href="/cobros/morosos">Todos los ejecutivos</a>
                                       <div class="dropdown-divider"></div>
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_moroso">Un ejecutivo</a>
+                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_ejemoroso">Un ejecutivo</a>
                                   </div>
                               </li>
                             </ul>
-                            @include('cobros.buscar_moroso')
+                          @include('cobros.buscar_moroso')
                           </div>
                         </div>
                       </div>

@@ -15,7 +15,7 @@ class CobroController extends Controller
 {
 
     public function index(){
-        return view('cobros.index');
+        return view('facturas.index');
     }
 
     public function list()
@@ -298,47 +298,30 @@ class CobroController extends Controller
 
     }
 
-    public function ConsultarMorosidad(){
-        return view('cobros.buscar_moroso');
-    }
-
-    public function BuscarMoroso(Request $request){
-
-        $this->validate($request,
-            [
-            'Criterio' => 'required',
-            'valor' => 'required|max:999999999',
-            ]);
+    public function BuscarMoroso($criterio, $valor){
 
        $cobro = new Cobro;
 
-       $criterio = $request->input('Criterio');
-       $valor = $request->input('valor');
-
        $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
 
-       if($user!=null)
-       return redirect('/cobros/usuarios/morosos/'.$user->id);
-       else
-        return redirect('/cobros/usuarios/morosos/consultar')->with('warning', 'No se ha encontrado al usuario');
-    }
+       if($user!=null){
 
-    public function MostrarMorosidadUsuario($user_id){
-
-        $cobro = new Cobro;
-
-        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+        $user = $cobro->select_user()->where('users.id', $user->id)->first();
 
         $query = DB::table('cobros')
                             ->join('facturas', 'cobros.factura_id', 'facturas.id')
                             ->select('facturas.monto')
-                            ->where('cobros.user_id', $user_id)
+                            ->where('cobros.user_id', $user->id)
                             ->where('cobros.estado_id', 3);
         
         $pendientes = $query->count();
         $monto = $query->sum('monto');
 
         return view('cobros.morosidad_user', compact('user', 'pendientes', 'monto'));
+       }
+       else
+        return with("<div class='alert alert-warning text-center text-warning'>".
+            " <b> El dato no coinside con ningún ejecutivo </b> </div>");
     }
 
     public function ListarUsuariosMorosos(){
@@ -403,7 +386,7 @@ class CobroController extends Controller
             ->update(array('estado_id' => 4));
         }
 
-        return view('cobros.index')->with('info', 'Operación realizada con éxito');
+        return view('facturas.index')->with('info', 'Operación realizada con éxito');
     }
 
 

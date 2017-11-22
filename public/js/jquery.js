@@ -6,13 +6,25 @@ $('#buscar_moroso').on('click', function(){
 
   $.get('/facturas/socios/morosos/consultar/' + criterio + "/" + valor, function(result){
 
-    $('#contenido').html(result);
+    $('#socio_moroso').html(result);
+       });
+    
+  });
+
+$('#buscar_ejec_moroso').on('click', function(){
+    var criterio = $('#select_ejec').val();
+    var valor = $('#valor_ejec').val();
+
+  $.get('/cobros/usuarios/morosos/consultar/' + criterio + "/" + valor, function(result){
+
+    $('#ejecutivo_moroso').html(result);
        });
     
   });
 
 $('.modal').on('hidden.bs.modal', function(){
-    $('#contenido').html("");
+    $('#socio_moroso').html("");
+    $('#ejecutivo_moroso').html("");
 });
 
   $('.detail-factura').on('click', function(){

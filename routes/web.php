@@ -147,8 +147,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/cobros/buscar/liquidar','CobroController@Buscarliquidar');
 	Route::get('/cobros/morosos', 'CobroController@ListarUsuariosMorosos');
 	//Route::get('/cobros/usuarios/morosos/consultar', 'CobroController@ConsultarMorosidad');
-	Route::post('/cobros/usuarios/morosos/consultar', 'CobroController@BuscarMoroso');
-	Route::get('/cobros/usuarios/morosos/{id}', 'CobroController@MostrarMorosidadUsuario');
+	Route::get('/cobros/usuarios/morosos/consultar/{criterio}/{valor}', 'CobroController@BuscarMoroso');
 	Route::get('/cobros/filtrar', 'CobroController@RequestFiltrar');
 	Route::get('/cobros/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar');
 	Route::get('/cobros/user/{id}/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar_user');
