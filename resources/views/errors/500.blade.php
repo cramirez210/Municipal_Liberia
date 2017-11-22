@@ -12,7 +12,7 @@
       <p>Lo sentimos, estamos temporalmente fuera de servicio.</p>
       
     </blockquote>
-     <a href="{{ URL::previous() }}" class="btn btn-primary">Regresar</a>
+     <a href="{{ URL::previous() }}" class="btn btn-warning">Regresar</a>
   </div>
 </div>
 

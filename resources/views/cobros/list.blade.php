@@ -36,7 +36,7 @@
     </li>
     <li class="nav-item">
       <div class="col-md-2">
-        <a href="/cobros/index" class="btn btn-primary">
+        <a href="/cobros/index" class="btn btn-warning">
            Regresar
         </a>
    </div>

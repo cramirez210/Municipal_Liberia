@@ -90,7 +90,7 @@
               <center class="form-group mt-3">
                 <div class="form-group">
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-outline-success btn-lg mt-5">
+                                <button type="submit" class="btn btn-success btn-lg mt-5">
                                     Registrar
                                 </button>
                             </div>

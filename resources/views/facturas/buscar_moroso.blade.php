@@ -26,7 +26,7 @@
   </div>
 </div>
                           <div class="modal-footer">
-                            <button id="cerrar_moroso" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="cerrar_moroso" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                           </div>
                         </div>
 

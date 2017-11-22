@@ -20,7 +20,7 @@
 
     <div class="float-right">
         <div class="col-md-6">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
                Registrar Estado
             </button>
         </div>
