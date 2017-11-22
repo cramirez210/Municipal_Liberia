@@ -11,10 +11,9 @@ $('#buscar_moroso').on('click', function(){
     
   });
 
-$('#cerrar_moroso').on('click', function(){
-    
+$('.modal').on('hidden.bs.modal', function(){
     $('#contenido').html("");
-  });
+});
 
   $('.detail-factura').on('click', function(){
 
