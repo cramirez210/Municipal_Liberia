@@ -34,12 +34,12 @@
   </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/usuarios/showCreate">Nuevo usuario</a>
+        <a class="nav-link text-primary fa fa-user-plus" href="/usuarios/showCreate">  Nuevo usuario</a>
       </li>
 
 
       <li class="nav-item dropdown mt-2">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+            <a class="dropdown-toggle fa fa-list" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Listar</a>
 
         <div class="dropdown-menu">
           <a class="dropdown-item" href="/usuarios/listarTodos">Todos los usuarios</a>
