@@ -1,5 +1,19 @@
  $(document).ready(function(){
 
+$('.imprimir').on('click', function(){
+    var id = $(this).parents("tr").find("td").eq(0).text();
+
+    $.get('/imprimir/factura/'+id, function(result){
+    
+       var ventimp=window.open(' ','popimpr');
+        ventimp.document.write(result);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close(); 
+       });
+    
+  });
+
 $('#buscar_moroso').on('click', function(){
     var criterio = $('#select').val();
     var valor = $('#valor').val();

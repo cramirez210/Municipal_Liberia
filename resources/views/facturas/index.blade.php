@@ -24,6 +24,7 @@
                         <div class="col-12">
                            <h3 class="py-3">Navegacion</h3>
                            <div>
+                            <a href="/facturas/imprimir" class="list-group-item">Imrpimir facturas</a>
                              <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_socio">Pago de facturas</a>
                               @include('facturas.buscar_socio')
                              <ul class="list-group-item">

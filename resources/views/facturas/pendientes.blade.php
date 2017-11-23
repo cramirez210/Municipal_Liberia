@@ -57,11 +57,8 @@
             <td class="info"> {{ $factura->id }} </td>
             <td class="info"> {{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{date('m-Y', strtotime($factura->periodo)) }} </td>
-            <td class="warning"> 
-              <div style="display: none;">
-                   @include('facturas.factura')
-              </div>
-              <a href="/imprimir/{{$factura->id}}" class="btn btn-success btn-sm" onclick="javascript:imprSelec('factura')">Imprimir</a>
+            <td class="warning">
+              <button type="button" class="btn btn-success btn-sm imprimir">Imprimir</button>
             </td>
         </tr>
 
