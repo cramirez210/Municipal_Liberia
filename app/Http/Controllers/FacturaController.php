@@ -518,22 +518,19 @@ class FacturaController extends Controller
         return view('facturas.factura', compact('factura'));
     }
 
-    public function imprimir($id){
+    public function imprimir(){
 
         $factura = new Factura;
-        $cobro = new Cobro;
 
-        $factura = Factura::find($id);
-        $user_id = Auth::user()->id;
-        $fecha_pago = Carbon::now();
+        $facturas = Input::except('_token');
+            
+        $facturas_imprimir = $factura->select()->whereIn('facturas.id', $facturas)->get();
 
-        $categoria = $factura->ObtenerCategoriaDeSocio($factura->socio_id);
+        $pdf = PDF::loadView('facturas.factura', compact('facturas_imprimir'));
 
-        $factura->store($factura, $factura->socio_id, 1, $categoria->precio_categoria, $factura->forma_pago, null, $factura->periodo, $fecha_pago, 4);
-
-        $cobro->GenerarCobroUsuario($factura->id, 3);
-
-         return redirect('/facturas/imprimir')->with('info', 'Operación exitosa');
+        $fecha = date('d-m-Y');
+        
+        return $pdf->download('Facturas a cobrar '.$fecha.'.pdf');
     }
 
     public function destroy($id)

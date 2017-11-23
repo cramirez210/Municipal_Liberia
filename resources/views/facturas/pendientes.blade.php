@@ -26,17 +26,34 @@
 @endif
 
 <!--_______________________________ Tabla _____________________________-->
+<form name="form_liquidar_cobro" class="form mr-5" method="POST" action="/facturas/imprimir" style="width: 100%;"> 
+    {{ csrf_field() }}
 
 <div class="card text-center mt-4">
-  <form class="form mr-5" method="POST" action="/facturas/imprimir" style="width: 100%;"> 
-    {{ csrf_field() }}
 <div class="card-header">
-  <div class="card-tittle text-primary">
-    <b>Imprimir facturas</b>
-  </div>
-    
+  <div class="card-tittle text-primary"><b>Imprimir facturas</b></div>
+    <a href="/facturas/index" class="btn btn-warning btn-xs float-right mr-5">Regresar</a>
+    @if(count($facturas))
+    <div class="float-right mr-2">
+      <button type="submit" class="btn btn-success btn-xs" style="color: white;">
+                      Continuar
+      </button>
+    </div>
+   @endif   
+   @if(count($facturas))
+   <ul class="float-right mr-3 mt-1">
+    <li class="list-unstyled dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opciones</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="javascript:seleccionar_todo()">Marcar todo</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript:deseleccionar_todo()">Desmarcar todo</a>
+        </div>
+    </li>
+  </ul>  
+  @endif
   </div> 
-<div class="col-md-auto offset-md-1 mt-4">
+<div class="col-md-10 offset-md-1 mt-4">
 <div class="row">
   <div class="table-responsive mr-5">
         
@@ -58,7 +75,7 @@
             <td class="info"> {{ $factura->primer_nombre }} {{ $factura->primer_apellido }} {{ $factura->segundo_apellido }} </td>
             <td class="info"> {{date('m-Y', strtotime($factura->periodo)) }} </td>
             <td class="warning">
-              <button type="button" class="btn btn-success btn-sm imprimir">Imprimir</button>
+              <input type="checkbox" value="{{$factura->id}}" name="{{$factura->id}}">
             </td>
         </tr>
 

@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/show/id/{id}', 'FacturaController@show');
 	Route::get('/facturas/imprimir', 'FacturaController@facturas_pendientes');
 	Route::get('/imprimir/factura/{id}', 'FacturaController@factura_imprimir');
-	Route::get('/imprimir/{id}','FacturaController@imprimir');
+	Route::post('/facturas/imprimir','FacturaController@imprimir');
 
 //Rutas del objeto cobro
 	Route::get('/cobros/index', 'CobroController@index');
