@@ -509,19 +509,27 @@ class FacturaController extends Controller
         return view('facturas.pendientes', compact('facturas'));
     }
 
+    public function factura_imprimir($id){
+
+        $factura = new Factura;
+
+        $factura = $factura->ObtenerPorId($id);
+
+        return view('facturas.factura', compact('factura'));
+    }
+
     public function imprimir($id){
 
         $factura = new Factura;
         $cobro = new Cobro;
 
         $factura = Factura::find($id);
-        $socio = Socio::find($factura->socio_id);
         $user_id = Auth::user()->id;
         $fecha_pago = Carbon::now();
 
-        $categoria = $factura->ObtenerCategoriaDeSocio($socio);
+        $categoria = $factura->ObtenerCategoriaDeSocio($factura->socio_id);
 
-        $factura->store($factura, $socio->id, 1, $categoria->precio_categoria, $factura->forma_pago, null, $factura->periodo, $fecha_pago, 4);
+        $factura->store($factura, $factura->socio_id, 1, $categoria->precio_categoria, $factura->forma_pago, null, $factura->periodo, $fecha_pago, 4);
 
         $cobro->GenerarCobroUsuario($factura->id, 3);
 

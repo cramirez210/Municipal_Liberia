@@ -2,7 +2,6 @@
 
 @section('content')
 
-    <div class="row">
         <div class="col-md-8 offset-md-2 mt-5">
 
 @include('mensajes.alertas')

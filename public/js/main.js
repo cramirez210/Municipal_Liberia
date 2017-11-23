@@ -1,11 +1,14 @@
-function imprSelec($factura){
+function imprSelec($id){
 
-        var ficha=document.getElementById($factura);
-        var ventimp=window.open(' ','popimpr');
+  $.get('/facturas/imprmir/'+id, function(result){
+alert(id);
+     var ficha= result;
+     var ventimp=window.open(' ','popimpr');
         ventimp.document.write(ficha.innerHTML);
         ventimp.document.close();
         ventimp.print();
-        ventimp.close();
+        ventimp.close();    
+       });
     }
 
 function seleccionar_todo(){

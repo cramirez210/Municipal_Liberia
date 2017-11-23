@@ -1,20 +1,45 @@
  $(document).ready(function(){
 
+$('.imprimir').on('click', function(){
+    var id = $(this).parents("tr").find("td").eq(0).text();
+
+    $.get('/imprimir/factura/'+id, function(result){
+    
+       var ventimp=window.open(' ','popimpr');
+        ventimp.document.write(result);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close(); 
+       });
+    
+  });
+
 $('#buscar_moroso').on('click', function(){
     var criterio = $('#select').val();
     var valor = $('#valor').val();
 
   $.get('/facturas/socios/morosos/consultar/' + criterio + "/" + valor, function(result){
 
-    $('#contenido').html(result);
+    $('#socio_moroso').html(result);
        });
     
   });
 
-$('#cerrar_moroso').on('click', function(){
+$('#buscar_ejec_moroso').on('click', function(){
+    var criterio = $('#select_ejec').val();
+    var valor = $('#valor_ejec').val();
+
+  $.get('/cobros/usuarios/morosos/consultar/' + criterio + "/" + valor, function(result){
+
+    $('#ejecutivo_moroso').html(result);
+       });
     
-    $('#contenido').html("");
   });
+
+$('.modal').on('hidden.bs.modal', function(){
+    $('#socio_moroso').html("");
+    $('#ejecutivo_moroso').html("");
+});
 
   $('.detail-factura').on('click', function(){
 
