@@ -526,11 +526,15 @@ class FacturaController extends Controller
             
         $facturas_imprimir = $factura->select()->whereIn('facturas.id', $facturas)->get();
 
-        $pdf = PDF::loadView('facturas.factura', compact('facturas_imprimir'));
+        if(count($facturas_imprimir)){
+           $pdf = PDF::loadView('facturas.factura', compact('facturas_imprimir'));
 
-        $fecha = date('d-m-Y');
+           $fecha = date('d-m-Y');
         
-        return $pdf->download('Facturas a cobrar '.$fecha.'.pdf');
+           return $pdf->download('Facturas a cobrar '.$fecha.'.pdf');
+        } else
+        return back()->with('warning', 'No se han seleccionado facturas para imprimir');
+        
     }
 
     public function destroy($id)

@@ -2,10 +2,8 @@
 
 @section('content')
 
-@include('mensajes.alertas')
-
 @if(count($facturas))
-  <div class="card text-center mt-4">
+  <div class="card text-center mt-2">
   <div class="card-header text-primary">
     Filtro de Busqueda
   </div>
@@ -25,6 +23,8 @@
 </div>
 @endif
 
+
+@include('mensajes.alertas')
 <!--_______________________________ Tabla _____________________________-->
 <form name="form_liquidar_cobro" class="form mr-5" method="POST" action="/facturas/imprimir" style="width: 100%;"> 
     {{ csrf_field() }}
