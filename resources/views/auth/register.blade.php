@@ -127,8 +127,10 @@
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
 
-                                <input placeholder="2017-09-06" type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"  />
-    <script>
+                                <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="2000-12-01" autofocus required>
+
+                               <!--  <input placeholder="AAAA-MM-DD" type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"  /> -->
+   <!--  <script>
         $('#fecha_nacimiento').datepicker({
             uiLibrary: 'bootstrap4',
             format: "yyyy-mm-dd",
@@ -136,7 +138,7 @@
             iconsLibrary: 'fontawesome',
            
         });
-    </script>
+    </script> -->
 
 
                                 @if ($errors->has('fecha_nacimiento'))
@@ -275,21 +277,19 @@
 
 <!--_____________________________ Botones _________________________________-->
                        
-                        <center class="form-group mt-3">
-            <div class="row-fluid">
+                       
+            <div class="row-fluid text-center mt-2">
 
-             <button type="submit" class="btn btn-success btn-xs" style="color: white;">
+             <button type="submit" class="btn btn-success fa fa-check" style="color: white;">
                 Registrar
             </button>
-
-
-              <a href="/usuarios/home" class="btn btn-danger  btn-xs ml-2">
+              <a href="/usuarios/home" class="btn btn-danger fa fa-times">
               <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
 
              
                 
             </div>
-        </center>
+       
     
             </div>
                     </form>

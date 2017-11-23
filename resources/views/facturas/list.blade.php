@@ -4,7 +4,7 @@
 
 @include('mensajes.alertas')
 
-<button class="btn btn-success btn-md mt-3" data-toggle="modal" data-target="#filtrar_factura">Realizar una búsqueda</button>
+<button class="btn btn-success btn-md mt-3 Realizar una búsqueda" data-toggle="modal" data-target="#filtrar_factura"> Realizar una búsqueda</button>
 @include('facturas.filtrar')
 <!--_______________________________ Tabla _____________________________-->
 
