@@ -35,12 +35,13 @@
         </div>
     </li>
     <li class="nav-item">
-      <div class="col-md-2">
-        <a href="/cobros/index" class="btn btn-warning">
+      <div class="col-md-12">
+        <a href="/facturas/index" class="btn btn-warning btn-xs mb-2">
            Regresar
         </a>
    </div>
     </li>
+       </center>
     </ul>
     
   </div> 

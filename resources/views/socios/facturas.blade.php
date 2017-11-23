@@ -35,7 +35,7 @@
         </div>
     </li>
    <li class="nav-item">
-      <div class="col-md-2 mt-2">
+      <div class="col-md-12 mt-2">
         <a href="/facturas/index" class="btn btn-warning btn-md">
            Regresar
         </a>

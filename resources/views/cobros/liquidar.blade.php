@@ -25,7 +25,7 @@
 <div class="card text-center mt-4">
 <div class="card-header">
     <div class="card-tittle text-primary"><b>Anular cobros</b></div>
-    <a href="/cobros/index" class="btn btn-warning btn-xs float-right mr-5">Regresar</a>
+    <a href="/facturas/index" class="btn btn-warning btn-xs float-right mr-5">Regresar</a>
     @if(count($cobros))
     <input type="hidden" name="user_id" value="{{$cobros[0]->user_id}}">
     <div class="float-right mr-2">
