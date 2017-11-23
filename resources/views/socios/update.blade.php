@@ -162,12 +162,8 @@
                 <label for="fecha_nacimiento" class="form-control-label">Fecha de nacimiento</label>
 
                 <div class="col-md-auto  ml-lg-5 ml-xl-5">
-
-                    <input placeholder="2017-09-06" type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ $persona->fecha_nacimiento }}" />
-                    <script>
-                    $('#fecha_nacimiento').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    </script>
-                 
+                    
+                         <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="{{ $persona->fecha_nacimiento }}" />
    
                         @if ($errors->has('fecha_nacimiento'))
                             <span class="form-control-feedback">

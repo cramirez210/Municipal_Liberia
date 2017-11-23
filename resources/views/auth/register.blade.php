@@ -129,17 +129,6 @@
 
                                 <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="2000-12-01" autofocus required>
 
-                               <!--  <input placeholder="AAAA-MM-DD" type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"  /> -->
-   <!--  <script>
-        $('#fecha_nacimiento').datepicker({
-            uiLibrary: 'bootstrap4',
-            format: "yyyy-mm-dd",
-            language: "es",
-            iconsLibrary: 'fontawesome',
-           
-        });
-    </script> -->
-
 
                                 @if ($errors->has('fecha_nacimiento'))
                                     <span class="form-control-feedback">

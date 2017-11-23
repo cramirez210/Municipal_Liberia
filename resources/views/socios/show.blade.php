@@ -97,7 +97,9 @@
 
                 <div class="col-md-auto ml-lg-5 ml-xl-5">
 
-                    <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"  value="{{ $persona->fecha_nacimiento }}" readonly />
+
+                         <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="{{ $persona->fecha_nacimiento }}" readonly />
+
 
                 </div>
             </div>
