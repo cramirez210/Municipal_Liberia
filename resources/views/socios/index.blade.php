@@ -24,14 +24,15 @@
 
     <ul class="nav nav-pills nav-fill card-header-pills">
       <li class="nav-item">
-         <label class="nav-link text-primary">Lista de Socios</label>
+         <label class="nav-link text-primary system-icons">Lista de Socios</label>
       </li>
       <li class="nav-item">
-         <a class="nav-link text-primary" href="/socios/asignarEjecutivo">Nuevo Socios</a>
+         <a class="nav-link text-primary  fa fa-user-circle-o  system-icons" href="/socios/asignarEjecutivo"> Nuevo Socios</a>
       </li>
 
+
       <li class="nav-item dropdown mt-2">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
+        <a class="dropdown-toggle fa fa-list system-icons" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Listar</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="/socios/listarTodos">Todos los Socios</a>
         <div class="dropdown-divider"></div>

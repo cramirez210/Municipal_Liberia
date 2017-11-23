@@ -72,7 +72,7 @@
       <!-- Slider -->
         <div class="fondo-slider">
          <div class="container-fluid fondo-slider-opaco">
-            <div class="container d-flex flex-column justify-content-center h-100 text-white align-items-center">
+            <div class="container d-flex flex-column justify-content-center h-100 text-white align-items-center animacion">
 
                 <h1 class="pb-4">Bienvenidos al Programa de Control de Membresias</h1>
                 <p class="pb-4">Proyecto con la finalidad de agilizar, monitoriar y controlar devidamente las membresias asociadas a la Asociacion Deportiva Municipal Liberia !</p>
@@ -82,11 +82,14 @@
             </div>
          </div>
         </div>
+
+
+       
     <!-- End Slider -->
     <!-- section1 -->
     <div class="container-fluid bg-fondo-mision">
       <div class="container py-5">
-        <div class="row align-items-center text-right py-5">
+        <div class="row align-items-center text-right py-5 " id="tip1">
           <div class="col-sm-12 col-md-6">
             <h2 class="display-3 pb-5">Misión</h2>
             <p class="lead text-justify">Somos una Institución deportiva dedicada a crear espacios dentro de una sana convivencia con el fin de deleitar a nuestros socios de un espectaculo deportivo de primer nivel al mejor estilo guanacasteco.</p>
@@ -98,6 +101,18 @@
       </div>
     </div>
     <!-- End section1 -->
+
+     <script type="text/javascript">
+          
+          $(document).ready(function(){
+   $("#tip1").mouseenter(function(e){
+     alert("si");
+   });
+    })
+
+</script>
+
+        </script>
     
     <!-- subMenu -->
       <div class="container-fluid bg-gris py-5">
@@ -243,5 +258,7 @@
         <script src="js/bootstrap.js"></script>
         <script src="/js/main.js"></script>
         <script src="/js/jquery.js"></script>
+
+
     </body>
 </html>

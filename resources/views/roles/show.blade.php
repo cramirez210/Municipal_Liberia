@@ -45,7 +45,7 @@
     <!--_______________________________ Botón _____________________________-->
     <div class="float-right">
         <div class="col-md-6 ml-3 mt-2">
-            <button type="submit" class="btn btn-warning">
+            <button type="submit" class="btn btn-warning fa fa-pencil system-icons">
                Actualizar rol
             </button>
         </div>

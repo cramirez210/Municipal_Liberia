@@ -53,7 +53,7 @@
             <td class="info"> {{$categoria->categoria}} </td>
             <td class="info"> ₡{{$categoria->precio_categoria}} </td>
             <td class="warning"> 
-                 <a href="/categoria/{{$categoria->id}}" class="btn btn-warning btn-xs">
+                 <a href="/categoria/{{$categoria->id}}" class="btn btn-warning btn-xs fa fa-pencil system-icons">
                      <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
             </td>
         </tr>

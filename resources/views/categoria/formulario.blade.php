@@ -38,7 +38,7 @@
 
     <div class="float-right">
         <div class="col-md-6">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success fa fa-check system-icons">
                Registrar Categoria
             </button>
         </div>

@@ -24,14 +24,14 @@
         <input type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" required autofocus>
   </label>
 
-        <button class="btn btn-success mb-1" type="submit">Buscar</button>
+        <button class="btn btn-success mb-1 fa fa-search system-icons" type="submit"> Buscar</button>
    </center>
   </form>  
  
 </div>
 
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger fa fa-times system-icons" data-dismiss="modal"> Cerrar</button>
                           </div>
                         </div>
 

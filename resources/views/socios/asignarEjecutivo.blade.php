@@ -7,7 +7,7 @@
     
     <label class="text-primary"> Filtro de Busqueda </label>
     <div class="nav-item float-right">
-       <a class="btn btn-warning btn-xs" href="/socios/index" ">Regresar</a>
+       <a class="btn btn-warning btn-xs fa fa-exclamation-triangle system-icons" href="/socios/index" ">Regresar</a>
     </div>
   </div>
 

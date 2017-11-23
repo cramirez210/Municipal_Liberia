@@ -68,13 +68,13 @@
                    <center class="form-group ">
             <div class="row-fluid">
 
-             <button type="submit" class="btn btn-success btn-xs mt-4" style="color: white;">
+             <button type="submit" class="btn btn-success btn-xs mt-4 fa fa-check system-icons" style="color: white;">
                 Confirmar
             </button>
 
 
-              <a href="/cobros/index" class="btn btn-danger  btn-xs mt-4">
-              <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+              <a href="/cobros/index" class="btn btn-danger  btn-xs mt-4 fa fa-times system-icons">
+              <span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
 
              
                 

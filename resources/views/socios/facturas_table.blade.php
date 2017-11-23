@@ -23,7 +23,7 @@
             <td class="info"> {{ date('m-Y', strtotime($factura->periodo)) }} </td>
             <td class="info"> {{ $factura->estado }} </td>
             <td class="warning">
-              <button type="button" class="btn btn-info btn-sm detail-factura" data-toggle="modal" data-target="#modal">Detalle</button> 
+              <button type="button" class="btn btn-info btn-sm detail-factura fa fa-info-circle system-icons" data-toggle="modal" data-target="#modal"> Detalle</button> 
             </td>
         </tr>
 

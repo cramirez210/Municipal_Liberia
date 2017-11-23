@@ -45,11 +45,11 @@
         @endif 
        
   </label>
-      <button type="submit" class="btn btn-success ml-2" >Buscar</button>
+      <button type="submit" class="btn btn-success ml-2 fa fa-search system-icons" > Buscar</button>
   </form>
    </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger fa fa-times system-icons" data-dismiss="modal"> Cerrar</button>
                           </div>
                         </div>
                       </div>

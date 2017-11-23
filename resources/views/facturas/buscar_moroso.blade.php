@@ -18,7 +18,7 @@
   <label>
         <input id="valor" type="text" class="form-control" placeholder="Ejemplo: 506840523" name="valor" value="{{ old('valor') }}" required autofocus>
   </label>
-        <button id="buscar_moroso" class="btn btn-success mb-1">Buscar</button>
+        <button id="buscar_moroso" class="btn btn-success mb-1 fa fa-search system-icons">Buscar</button>
   </div>
 
   <div id="socio_moroso" class="mt-5">
@@ -26,7 +26,7 @@
   </div>
 </div>
                           <div class="modal-footer">
-                            <button id="cerrar_moroso" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button id="cerrar_moroso" type="button" class="btn btn-danger fa fa-times system-icons" data-dismiss="modal"> Cerrar</button>
                           </div>
                         </div>
 

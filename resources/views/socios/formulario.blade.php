@@ -275,12 +275,12 @@
 
                         <div class="row-fluid">
 
-                            <button type="submit" class="btn btn-success btn-xs mb-3 mb-sm-0" style="color: white;">
+                            <button type="submit" class="btn btn-success btn-xs mb-3 mb-sm-0 fa fa-check system-icons" style="color: white;">
                                 Registrar
                             </button>
 
-                            <a href="/socios/asignarEjecutivo" class="btn btn-danger btn-xs ml-md-2">
-                            <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+                            <a href="/socios/asignarEjecutivo" class="btn btn-danger btn-xs ml-md-2 fa fa-times system-icons">
+                            <span class="glyphicon glyphicon-remove-circle "></span> Cancelar</a>
                 
                         </div>
                     </center>

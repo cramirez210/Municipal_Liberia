@@ -49,8 +49,8 @@
         <tr>
             <td class="info"> {{$estado->estado}} </td>
             <td class="warning"> 
-                 <a href="/estados/{{$estado->id}}" class="btn btn-success btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
+                 <a href="/estados/{{$estado->id}}" class="btn btn-success btn-xs fa fa-pencil system-icons">
+                     <span class="glyphicon glyphicon-remove-circle"></span> Actualizar</a>
             </td>
         </tr>
 

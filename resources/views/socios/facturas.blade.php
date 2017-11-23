@@ -4,7 +4,7 @@
 
 @include('mensajes.alertas')
 
-<button class="btn btn-success btn-md mt-3 fa fa-search" data-toggle="modal" data-target="#filtrar_facturas_socio"> Realizar una búsqueda</button>
+<button class="btn btn-success btn-md mt-3 fa fa-search system-icons" data-toggle="modal" data-target="#filtrar_facturas_socio"> Realizar una búsqueda</button>
 @include('socios.filtrar_facturas')
  
 <!--_______________________________ Tabla _____________________________-->
@@ -36,7 +36,7 @@
     </li>
    <li class="nav-item">
       <div class="col-md-12 mt-2">
-        <a href="/facturas/index" class="btn btn-warning btn-md">
+        <a href="/facturas/index" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
    </div>

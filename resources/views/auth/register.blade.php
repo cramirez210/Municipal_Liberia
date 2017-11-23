@@ -280,11 +280,11 @@
                        
             <div class="row-fluid text-center mt-2">
 
-             <button type="submit" class="btn btn-success fa fa-check" style="color: white;">
+             <button type="submit" class="btn btn-success fa fa-check system-icons" style="color: white;">
                 Registrar
             </button>
-              <a href="/usuarios/home" class="btn btn-danger fa fa-times">
-              <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+              <a href="/usuarios/home" class="btn btn-danger fa fa-times system-icons">
+              <span class="glyphicon glyphicon-remove-circle "></span> Cancelar</a>
 
              
                 

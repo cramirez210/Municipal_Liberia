@@ -244,12 +244,12 @@
 
                         <div class="row-fluid">
 
-                            <button type="submit" class="btn btn-warning btn-xs" style="color: white;">
+                            <button type="submit" class="btn btn-warning btn-xs fa fa-pencil system-icons" style="color: white;">
                                 Actualizar
                             </button>
 
                             <a href="{{URL::previous()}}" class="btn btn-danger btn-xs ml-2">
-                            <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+                            <span class="glyphicon glyphicon-remove-circle fa fa-times system-icons "></span> Cancelar</a>
                 
                         </div>
                     </center>
