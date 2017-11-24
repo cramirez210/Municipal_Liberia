@@ -15,4 +15,9 @@ class ReportesController extends Controller
     {
         return view('/reportes/reporte');
     }
+
+    public function allUsuario()
+    {
+    	return view('/reportes/tiposReportes/reporteUsuarios');
+    }
 }

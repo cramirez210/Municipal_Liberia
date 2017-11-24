@@ -23,7 +23,7 @@
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Todos los usuarios</a>
+               <a class="dropdown-item" href="/reportes/allUser" target="_blank">Todos los usuarios</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="/reportes/reporte" target="_blank">Usuarios activos</a>
                <div class="dropdown-divider"></div>
