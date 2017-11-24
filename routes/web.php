@@ -184,6 +184,6 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	
 });
 
-
-
+Route::get('/reportes/index','ReportesController@index');
+Route::get('/reportes/reporte','ReportesController@home');
 
