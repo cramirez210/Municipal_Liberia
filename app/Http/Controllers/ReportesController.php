@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\SociosController;
+use App\Http\Controllers\UsuariosController;
+use App\Persona;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,12 +52,20 @@ class ReportesController extends Controller
     	return view('/reportes/tiposReportes/reporteUsuarios',compact('listas','tipoReporte','hora'));	
     }
 
-    public function sociosByUsuario($id)
+    public function sociosByUsuario(Request $request)
     {	
-    	$user = User::where('id',$id)->first();
-    	$listas = SociosController::sociosPorUsuarioId($id);
-    	$tipoReporte = 'Socios del Usuarios '.$user->nombre_usuario;
+    	$usuario = UsuariosController::obtenerUsuarioPorCriterio($request->input('Criterio'), $request->input('valor'));
+    	//dd($usuario->all());
+    	$listas = SociosController::sociosPorUsuarioId($usuario[0]->id);
+    	$tipoReporte = 'Socios del Usuarios '.$usuario[0]->primer_nombre." ".$usuario[0]->primer_apellido." ".$usuario[0]->segundo_apellido;
     	$hora = Carbon::now();
-    	return view('/reportes/tiposReportes/reporteUsuarios',compact('listas','tipoReporte','hora'));
+    	if (count($listas)) {
+    		return view('/reportes/tiposReportes/reporteSocios',compact('listas','tipoReporte','hora'));
+    	} else {
+    		return redirect('/reportes/index')->with('info','No se encontro ningun resultado evaluado el criterio de busqueda');
+    	}
+    	
+    	
     }
+
 }

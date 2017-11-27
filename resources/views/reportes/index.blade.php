@@ -2,6 +2,11 @@
 
 @section('content')
 
+<div class="col-md-8 offset-md-2">
+
+@include('mensajes.alertas')
+
+</div>
 <br>
 <div class="card text-center">
   <div class="card-header text-primary">
@@ -18,7 +23,8 @@
         <h3 class="card-title"><b>Usuarios</b></h3>
         <p class="card-text">Reportes de usuarios por su condicion y tipo.</p>
         <div class="py-3">
-          <a href="/reportes/sociosbyUser" class="list-group-item" target="_blank">Socios de un usuario ejecutivo</a>
+          <a href="#" class="list-group-item" target="_blank" data-toggle="modal" data-target="#buscar_usuario">Socios de un usuario ejecutivo</a>
+          @include('reportes.tiposReportes.buscar_usuario')
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>

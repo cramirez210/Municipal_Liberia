@@ -161,7 +161,7 @@ class UsuariosController extends Controller
             ]);
     }
 
-     public function obtenerUsuarioPorCriterio($criterio, $valor)
+     public static function obtenerUsuarioPorCriterio($criterio, $valor)
     {
         if ($criterio == 1) {
 
