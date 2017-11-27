@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card text-center mt-4 py-5">
+<!-- <div class="card text-center mt-4 py-5">
   <div class="card-header">
     
     <label class="text-primary"> Filtro de Busqueda </label>
@@ -40,9 +40,14 @@
         @endif
   </span>
 </div>
-@endif
+@endif -->
+
 
 @include('mensajes.alertas')
+
+<button class="btn btn-success btn-md mt-3 fa fa-search system-icons" data-toggle="modal" data-target="#filtrar_users"> Realizar una búsqueda</button>
+@include('socios.filtrarEjecutivo')
+
 <!--_______________________________ Tabla _____________________________-->
 <form method="GET" action="/socios/home" >
   {{ csrf_field() }}

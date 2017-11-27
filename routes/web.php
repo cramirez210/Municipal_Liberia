@@ -97,7 +97,9 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/socios/show/edit/{socio}','SociosController@edit');
 	Route::post('/socios/update/{socio}','SociosController@update');
 	Route::get('/socios/filtrar', 'SociosController@RequestFiltrar');
+	Route::get('/usuarios/filtrar/ejecutivo', 'UsuariosController@RequestFiltrarEjecutivo');
 	Route::get('/socios/filtrar/{criterio}/{valor}/{estado}', 'SociosController@filtrar');
+	Route::get('/usuarios/filtrar/ejecutivo/{criterio}/{valor}/{estado}/{rol}', 'UsuariosController@filtrarEjecutivo');
 	Route::get('/socio/facturas/filtrar', 'FacturaController@RequestFiltrarSocio');
 	Route::get('/socio/facturas/filtrar/{id}/{criterio}/{valor}/{estado}', 'FacturaController@filtrar_socio');
 
