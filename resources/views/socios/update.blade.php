@@ -271,12 +271,12 @@
                                 
                     <select class="form-control" id="categoriaOption" name="categoria_id">
                         
-                    <option selected>{{ $categoria->categoria }}</option>
-
                     @foreach($categorias as $categoria)
-
+                        @if($categoria == $socio->categoria)
+                        <option selected>{{ $categoria->categoria }}</option>
+                        @else
                         <option>{{ $categoria->categoria }}</option>
-                
+                        @endif
                     @endforeach
 
                     </select>

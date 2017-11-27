@@ -2,6 +2,11 @@
 
 @section('content')
 
+<div class="col-md-8 offset-md-2">
+
+@include('mensajes.alertas')
+
+</div>
 <br>
 <div class="card text-center">
   <div class="card-header text-primary">
@@ -18,16 +23,17 @@
         <h3 class="card-title"><b>Usuarios</b></h3>
         <p class="card-text">Reportes de usuarios por su condicion y tipo.</p>
         <div class="py-3">
-          <a href="#" class="list-group-item" target="_blank">Socios de un usuario ejecutivo</a>
+          <a href="#" class="list-group-item" target="_blank" data-toggle="modal" data-target="#buscar_usuario">Socios de un usuario ejecutivo</a>
+          @include('reportes.tiposReportes.buscar_usuario')
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
                <a class="dropdown-item" href="/reportes/allUser" target="_blank">Todos los usuarios</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Usuarios activos</a>
+               <a class="dropdown-item" href="/reportes/estadoUser/1" target="_blank">Usuarios activos</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Usuarios inactivos</a>
+               <a class="dropdown-item" href="/reportes/estadoUser/2" target="_blank">Usuarios inactivos</a>
                </div>
             </li>
           </ul>
@@ -71,7 +77,7 @@
         <h3 class="card-title"><b>Facturas</b></h3>
         <p class="card-text">Reportes asociados a la facturacion del sistema.</p>
         <div class="py-3">
-          <a href="/reportes/reporte" class="list-group-item" target="_blank">Factura en especifico</a>
+          <a href="/usuarios/showCreate" class="list-group-item" target="_blank">Factura en especifico</a>
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
