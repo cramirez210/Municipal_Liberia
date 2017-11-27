@@ -97,6 +97,7 @@
          @forelse($sociosInactivos as $socioInactivo)
                        
         <tr>
+          <td class="info" >{{ $socioInactivo->id }}</td>
             <td class="info" >{{ $socioInactivo->persona->cedula }}</td>
             <td class="info" >{{ $socioInactivo->persona->primer_nombre }} {{ $socioInactivo->persona->primer_apellido }} {{ $socioInactivo->persona->segundo_apellido }}</td>
             <td class="info"> 

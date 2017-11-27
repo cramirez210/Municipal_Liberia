@@ -15,6 +15,7 @@
     <option value="1">Usuario</option>
     <option value="2">Nombre completo</option>
   </select>
+  
   <label class=" ">
         <input type="text" class="form-control" placeholder="Ejemplo: 506840523" type="text" name="valor" value="{{ old('valor') }}" required autofocus> 
         @if(isset($estado_id))
