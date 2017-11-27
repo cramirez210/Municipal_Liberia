@@ -24,7 +24,7 @@ class Factura extends Model
      * @var array
      */
     protected $fillable = [
-        'meses_cancelados', 'monto', 'forma_pago', 'transaccion_bancaria',
+        'meses_cancelados', 'monto', 'forma_pago', 'transaccion_bancaria', 'estado_id',
     ];
 
     public function socio()

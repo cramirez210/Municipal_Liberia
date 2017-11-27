@@ -2,31 +2,22 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-8 offset-md-2 mt-5">
 
 @include('mensajes.alertas')
 
-           </div>
-
-              <div class="card" style="width: 100%; height: auto;">
-                <div class="card-header">
-                  <ul class="nav nav-pills card-header-pills ml-5">
-
-                    <li class="nav-item">
-                       <h5 class="text-primary">Registrar nueva factura</h5>
-                    </li>
+              <div class="card">
+                <div class="card-header text-center">
+                  <div class="card-tittle text-primary"><b>Editar la factura</b></div>
                 </div>
 
               <div class="card-block">
 
-                <div class="col-md-10  mt-5">
+                <div class="col-md-12">
             
                     <form class="form-horizontal" action="/facturas/update/{{$factura->id}}" method="POST">
                         {{ csrf_field() }}
 
-            <div class="float-left" style="background-color: ;
-              width: 50%; margin-left: 10%; height: auto">
+            <div class="float-left col-md-6">
 
 <!--_________________________________Socio_______________________________________-->
                <h4 class="card-title col-md-8 mt-2">Información de socio</h4>
@@ -45,13 +36,10 @@
                 <b>Categoría:</b> 
                 {{$factura->categoria}}
               </div>
-      
-              <div class="card-block">
-            </div>
        </div>
 
 
-              <div class="float-right " style="width: 50%; height: auto;  margin-right: -10%;">
+              <div class="float-right col-md-6">
 
                 <h4 class="card-title col-md-8 mt-2">Información de factura</h4>
 
@@ -67,13 +55,29 @@
                
                <div class="col-md-10 mt-3">
                  <b>Fecha:</b> 
-                 {{$factura->created_at}}
+                 {{date('d-m-Y', strtotime($factura->created_at))}}
                </div>
 
                <div class="col-md-10 mt-3">
                  <b>Periodo:</b> 
-                 {{$factura->periodo}}
+                 {{date('m-Y', strtotime($factura->periodo))}}
                </div>
+
+               @if(isset($editar))
+                  <div class="form-group mt-3">
+                            <label class="col-md-4 from-control-label" for="estado">Estado</label>
+                             <div class="col-md-6 ml-5">
+                              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="estado">
+                                <option value="3">Pendiente</option>
+                                <option selected value="4">Pago</option>
+                              </select>
+                             </div>
+                    </div>
+                    <input type="hidden" name="tipo" value="edit">
+                @else
+                <input type="hidden" name="estado" value="4">
+                <input type="hidden" name="tipo" value="pago">
+                @endif
 
                 <div class="form-group mt-3">
                             <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
@@ -84,23 +88,22 @@
                               </select>
                              </div>
                         </div>
-              </div>
+              </div>    
 
 
-              <center class="form-group mt-3">
-                <div class="form-group">
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-success btn-lg mt-5">
+               <div class="form-group ml-lg-5">
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-success btn-md mt-3">
                                     Registrar
                                 </button>
+                                <a href="{{URL::previous()}}" class="btn btn-warning btn-md mt-3">
+                                    Cancelar
+                                </a>
                             </div>
                         </div>
-              </center>
-                        
                     </form>
               </div>         
            </div>
         </div>
-      </div>
    
 @endsection

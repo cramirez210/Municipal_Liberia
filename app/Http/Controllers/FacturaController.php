@@ -111,7 +111,7 @@ class FacturaController extends Controller
 
         $query = DB::table('facturas')->where('facturas.socio_id', $socio_id);
 
-        $ultima_factura = $query->orderBy('periodo', 'asc')->first();
+        $ultima_factura = $query->orderBy('periodo', 'desc')->first();
 
         if($ultima_factura){
             $pago_hasta = new Carbon($ultima_factura->periodo);
@@ -176,14 +176,18 @@ class FacturaController extends Controller
              ->where('facturas.id', $id)
             ->first();
 
-        return view('facturas.pagar', compact('factura'));
+        return view('facturas.edit', compact('factura'));
     }
 
    public function edit($id)
     {
         $factura = new Factura;
 
-        return view('facturas.edit', compact('factura'));
+        $factura = $factura->ObtenerPorId($id);
+
+        $editar = true;
+
+        return view('facturas.edit', compact('factura', 'editar'));
     }
 
     public function update($id)
@@ -195,12 +199,18 @@ class FacturaController extends Controller
         $socio = Socio::find($facturaBD->socio_id);
         $user_id = Auth::user()->id;
         $forma_pago = request('forma_pago');
+        $estado = request('estado');
+        $estado_facturaBD = $facturaBD->estado_id;
 
         $categoria = $factura->ObtenerCategoriaDeSocio($socio->id);
 
-        $factura->store($facturaBD, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, $facturaBD->periodo, Carbon::now(), 4);
+        $factura->store($facturaBD, $socio->id, 1, $categoria->precio_categoria, $forma_pago, null, $facturaBD->periodo, Carbon::now(), $estado);
 
+        if(request('tipo') == 'pago')
         $cobro->GenerarCobroUsuario($facturaBD->id, 3);
+
+        elseif ($estado_facturaBD == 4 && $estado == 3)
+                DB::table('cobros')->where('factura_id', $id)->delete();
 
 		 return redirect('/facturas/index')->with('info', 'Operación exitosa');
     }
