@@ -63,6 +63,19 @@ class CobroController extends Controller
 
     }
 
+    public function PendientesUsuario($user_id)
+    {
+     $cobro = new Cobro;
+
+     $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, 3)
+                ->paginate(5);
+
+     $user = $cobro->select_user()->where('users.id', $user_id)->first();
+        
+     return view('usuarios.cobros_pendientes', compact('cobros', 'user'));
+
+    }
+
     public function parse_periodo($valor){
 
         if(strlen($valor) == 7){

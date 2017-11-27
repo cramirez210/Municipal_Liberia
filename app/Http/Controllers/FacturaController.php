@@ -111,7 +111,45 @@ class FacturaController extends Controller
 
         $query = DB::table('facturas')->where('facturas.socio_id', $socio_id);
 
-        $ultima_factura = $query->orderBy('periodo', 'desc')->first();
+        $numero_pendientes = DB::table('facturas')->where('facturas.socio_id', $socio_id)
+                            ->where('estado_id', 3)->count();
+
+        if ($numero_pendientes >= 2) {
+            $ultima_factura = $query->orderBy('periodo', 'asc')->first();
+        }else {
+            $ultima_factura = $query->orderBy('periodo', 'desc')->first();
+        }
+
+        $pago_hasta = $this->CalcularUltimoPago($ultima_factura, $meses_cancelados);
+
+           if(!$pendientes)
+            $monto_descuento = $descuento->ObtenerMontoDescuento($socio->categoria_id, $meses_cancelados); 
+           else $monto_descuento = 0;
+
+           $monto_total = $meses_cancelados*$socio->precio_categoria;
+           $monto_pagar = $monto_total - ($monto_descuento*$meses_cancelados);
+
+           $pendientes = $pendientes - $meses_cancelados;
+
+            if($pendientes > 0)
+            $periodos_pendientes = DB::table('facturas')->select('periodo')
+                 ->where('socio_id', $socio_id)->orderBy('periodo', 'desc')
+                 ->limit($pendientes)->get();
+            else $periodos_pendientes = array();
+
+
+        $var = array('meses_cancelados' => $meses_cancelados,
+            'monto' => $monto_pagar,
+            'fecha_pago' => Carbon::now()->format('d-m-Y'),
+            'forma_pago' => request('forma_pago'),
+            'nombre_usuario' => $user->nombre_usuario,
+            'pago_hasta' => $pago_hasta
+            );
+
+        return view('facturas.pago', compact('socio', 'var', 'periodos_pendientes'));
+    }
+
+    public function CalcularUltimoPago($ultima_factura, $meses_cancelados){
 
         if($ultima_factura){
             $pago_hasta = new Carbon($ultima_factura->periodo);
@@ -125,7 +163,7 @@ class FacturaController extends Controller
                 $pago_hasta->addMonth();
         }
         }
-            
+            return $pago_hasta;
         }
         else{
             $pago_hasta = Carbon::createFromDate(null, null, 1);
@@ -133,40 +171,11 @@ class FacturaController extends Controller
              for ($i=1; $i < $meses_cancelados; $i++) { 
                 $pago_hasta->addMonth();
                 }
+
+                return $pago_hasta;
         }
-
-
-           if(!$pendientes)
-            $monto_descuento = $descuento->ObtenerMontoDescuento($socio->categoria_id, $meses_cancelados); 
-           else $monto_descuento = 0;
-
-           $monto_total = $meses_cancelados*$socio->precio_categoria;
-           $monto_pagar = $monto_total - ($monto_descuento*$meses_cancelados);
-
-           $pendientes = $pendientes - $meses_cancelados;
-           $periodos_pendientes = array();
-           $ultimo_pago = new Carbon($pago_hasta);
-           
-           if($pendientes){
-            for ($i=0; $i < $pendientes; $i++) { 
-                
-                $periodo = new Carbon($ultimo_pago->addMonth());
-
-                $periodos_pendientes = array_add($periodos_pendientes, 
-                    $i, $periodo);
-            }
-           }
-
-        $var = array('meses_cancelados' => $meses_cancelados,
-            'monto' => $monto_pagar,
-            'fecha_pago' => Carbon::now()->format('d-m-Y'),
-            'forma_pago' => request('forma_pago'),
-            'nombre_usuario' => $user->nombre_usuario,
-            'pago_hasta' => $pago_hasta
-            );
-
-        return view('facturas.pago', compact('socio', 'var', 'periodos_pendientes'));
     }
+
 
     public function pagar($id)
     {

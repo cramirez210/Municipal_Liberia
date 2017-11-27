@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AgragarUrlImagenATablaSocios extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AgragarUrlImagenATablaSocios extends Migration
      */
     public function up()
     {
-        Schema::table('socios', function (Blueprint $table) {
-            //
-            $table->string('urlImagen')->nullable();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('rol');
+            $table->string('descripcion');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +28,6 @@ class AgragarUrlImagenATablaSocios extends Migration
      */
     public function down()
     {
-        Schema::table('socios', function (Blueprint $table) {
-            //
-            $table->dropColumn('urlImagen');
-        });
+         Schema::dropIfExists('roles');
     }
 }

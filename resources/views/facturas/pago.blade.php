@@ -2,12 +2,7 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-8 offset-md-2 mt-5">
-
 @include('mensajes.alertas')
-
-           </div>
 
               <div class="card mx-auto" style="width: 75%; height: auto;">
                 <div class="card-header text-center text-primary">
@@ -85,15 +80,15 @@
                 <b>Pendientes:</b> 
               @forelse($periodos_pendientes as $periodo)
                 <div class="col-md-15 mt-3">
-                  {{date('m-Y', strtotime($periodo))}}
+                  {{date('m-Y', strtotime($periodo->periodo))}}
                 </div> 
               @empty
-              </div>
              
               <div class="col-md-15 mt-3">
                   El socio queda sin facturas pendientes
                 </div>
               @endforelse
+              </div>
 
               <div class="col-md-15 mt-3">
                 <b>Fecha de pago:</b> 
@@ -113,6 +108,5 @@
            </div>
         </div>
       </div>
-    </div>
    
 @endsection

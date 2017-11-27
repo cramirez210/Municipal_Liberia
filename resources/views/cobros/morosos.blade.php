@@ -57,7 +57,7 @@
                        
         <tr>
             <td class="info"> {{ $moroso->primer_nombre }} {{ $moroso->primer_apellido }} {{ $moroso->segundo_apellido }} </td>
-            <td class="info"> <a href="/cobros/list/{{$moroso->id}}/3">{{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}</a>  </td>
+            <td class="info"> <a href="/cobros/pendientes/{{$moroso->id}}">{{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}</a>  </td>
             <td class="info"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
         </tr>

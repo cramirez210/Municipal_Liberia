@@ -22,6 +22,7 @@ class CreateFacturasTable extends Migration
             $table->string('forma_pago');
             $table->string('transaccion_bancaria')->nullable();
             $table->integer('estado_id')->unsigned();
+            $table->foreign('estado_id')->references('id')->on('estados');
             $table->date('periodo');
             $table->date('fecha_pago')->nullable();
             $table->timestamps();

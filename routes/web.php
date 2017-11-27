@@ -138,6 +138,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/cobros/list/{id}', 'CobroController@ListarPorEstado');
 	Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
 	Route::get('/cobros/list/{user}/{id}','CobroController@ListarPorUsuarioEstado');
+	Route::get('/cobros/pendientes/{id}','CobroController@PendientesUsuario');
 	Route::get('/cobros/list', 'CobroController@list');
 	Route::get('/cobros/liquidar/{id}', 'CobroController@liquidarPorEstado');
 	Route::get('/cobros/liquidar/{user}/{id}', 'CobroController@liquidarPorUsuarioEstado');

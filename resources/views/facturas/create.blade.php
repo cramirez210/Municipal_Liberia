@@ -2,12 +2,7 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-8 offset-md-2 mt-5">
-
 @include('mensajes.alertas')
-
-           </div>
 
               <div class="card" style="width: 100%; height: auto;">
                 <div class="card-header text-center text-primary">
@@ -118,19 +113,12 @@
               <span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
             </div>
 
-             
-       
-     
-
             </div>
 
-
-         
                     </form>
               </div>         
            </div>
         </div>
       </div>
-    </div>
    
 @endsection
