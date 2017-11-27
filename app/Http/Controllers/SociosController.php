@@ -364,6 +364,12 @@ class SociosController extends Controller
             ]);
     }
 
+    public function sociosPorUsuarioId($id)
+    {
+        $DB = new Socio;
+        $query = $DB->select()->where('socios.user_id',$id)->get();
+       return $query;
+    }
     public function paginate($items, $perPages)
     {
         //$sociosPaginados = $this->paginate($socios->toArray(),10);

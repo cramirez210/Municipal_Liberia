@@ -18,8 +18,8 @@
 		<label><b><h5>Generado por:</h5></b></label>
 	</div>
 	<div class="col-6 d-flex flex-column text-right pr-5">
-		<label>Reporte socios</label>
-		<label><b>DateTime()->format('d-m-Y H:i:s')</b></label>
+		<label><b>{{ $tipoReporte }}</b></label>
+		<label><b>{{ $hora }}</b></label>
 		<label><b>{{ Auth::user()->nombre_usuario }}</b></label>
 	</div>
 </div>

@@ -13,24 +13,35 @@
     <table id="table" class="table table-hover ">
         <thead>
             <tr>
-            <th class="text-center">Carnet</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Apellidos</th>
-            <th class="text-center">Categoria</th>
-            <th class="text-center">Ejecutivo</th>
+            <th class="text-center">Cedula</th>
+            <th class="text-center">Nombre Completo</th>
+            <th class="text-center">Rol</th>
             <th class="text-center">Estado</th>
+            <th class="text-center">Correo Electronico</th>
             </tr>
         </thead>
     <tbody>
-          
+        
+        @if($listas != null)
+         @forelse($listas as $lista)
+
         <tr>
-            <td class="info text-center"> socio->id </td>
-            <td class="info text-center"> socio->primer_nombre </td>
-            <td class="info text-center"> socio->primer_apellido </td>
-            <td class="info text-center"> socio->categoria </td>
-            <td class="info text-center"> socio->nombre_usuario </td>
-            <td class="info text-center"> socio->estado </td>
+            <td class="info text-center"> {{ $lista->cedula }} </td>
+            <td class="info text-center"> {{ $lista->primer_nombre }} {{ $lista->primer_apellido }} {{ $lista->segundo_apellido }} </td>
+            <td class="info text-center"> {{ $lista->rol }} </td>
+            <td class="info text-center"> {{ $lista->estado }} </td>
+            <td class="info text-center"> {{ $lista->email }} </td>
         </tr>
+        @empty
+        <div class="alert alert-warning">
+       
+        <span class="card-text text-warning "> No se encontraron datos..</span>
+
+        </div>
+        <br>
+        @endforelse
+
+        @endif
     </tbody>
     </table>  
     </div>
