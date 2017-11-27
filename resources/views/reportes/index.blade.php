@@ -54,11 +54,11 @@
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Todos los socios</a>
+               <a class="dropdown-item" href="/reportes/todosLosSocios" target="_blank">Todos los socios</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Socios activos</a>
+               <a class="dropdown-item" href="/reportes/sociosActividad/1" target="_blank">Socios activos</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Socios inactivos</a>
+               <a class="dropdown-item" href="/reportes/sociosActividad/2" target="_blank">Socios inactivos</a>
                </div>
             </li>
           </ul>

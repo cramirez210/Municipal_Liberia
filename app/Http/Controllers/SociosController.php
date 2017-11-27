@@ -367,9 +367,10 @@ class SociosController extends Controller
     public static function sociosPorUsuarioId($id)
     {
         $DB = new Socio;
-        $query = $DB->select()->where('socios.user_id',$id)->orderBy('categoriasId')->get();
+        $query = $DB->select()->where('socios.user_id',$id)->latest()->orderBy('created_at')->get();
        return $query;
     }
+
     public function paginate($items, $perPages)
     {
         //$sociosPaginados = $this->paginate($socios->toArray(),10);

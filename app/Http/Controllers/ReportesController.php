@@ -6,6 +6,7 @@ use App\Http\Controllers\SociosController;
 use App\Http\Controllers\UsuariosController;
 use App\Persona;
 use App\User;
+use App\Socio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,10 +55,12 @@ class ReportesController extends Controller
 
     public function sociosByUsuario(Request $request)
     {	
+
+
     	$usuario = UsuariosController::obtenerUsuarioPorCriterio($request->input('Criterio'), $request->input('valor'));
     	//dd($usuario->all());
-    	$listas = SociosController::sociosPorUsuarioId($usuario[0]->id);
-    	$tipoReporte = 'Socios del Usuarios '.$usuario[0]->primer_nombre." ".$usuario[0]->primer_apellido." ".$usuario[0]->segundo_apellido;
+    	$listas = SociosController::sociosPorUsuarioId($usuario[0]->id); 
+    	$tipoReporte = 'Socio sdel Usuarios '.$usuario[0]->primer_nombre." ".$usuario[0]->primer_apellido." ".$usuario[0]->segundo_apellido;
     	$hora = Carbon::now();
     	if (count($listas)) {
     		return view('/reportes/tiposReportes/reporteSocios',compact('listas','tipoReporte','hora'));
@@ -65,7 +68,51 @@ class ReportesController extends Controller
     		return redirect('/reportes/index')->with('info','No se encontro ningun resultado evaluado el criterio de busqueda');
     	}
     	
-    	
+    }
+
+
+     public function todosLosSocios()
+    {   
+        $listas = $this->consultarSocios()->orderBy('id_categoria')->get();
+        $tipoReporte = 'Todos los socios.';
+        $hora = Carbon::now();
+        return view('/reportes/tiposReportes/reporteSocios',compact('listas','tipoReporte','hora'));
+    }
+
+    public function consultarSocios()
+    {
+        return DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias','socios.categoria_id', '=', 'categorias.id')
+            ->join('estados','socios.estado_id', '=', 'estados.id')
+            ->select('personas.*', 'socios.*','estados.estado','categorias.*','categorias.categoria','categorias.id as id_categoria');
+    }
+
+     public function sociosActividad($id)
+    {   
+
+       // $listas = Socio::where("estado_id","=",$id)->latest()->orderBy('created_at')->get();
+
+        $listas = $this->consultarActividad($id)->orderBy('id_categoria')->get();
+    
+        if ($id==1) 
+             $tipoReporte = 'Socios activos.';
+        else
+             $tipoReporte = 'Socios inactivos.';
+       
+        $hora = Carbon::now();
+
+        return view('/reportes/tiposReportes/reporteSocios',compact('listas','tipoReporte','hora'));
+    }
+
+    public function consultarActividad($id)
+    {
+        return DB::table('socios')
+            ->join('personas', 'socios.persona_id', '=', 'personas.id')
+            ->join('categorias','socios.categoria_id', '=', 'categorias.id')
+            ->join('estados','socios.estado_id', '=', 'estados.id')
+            ->select('personas.*', 'socios.*','estados.estado','categorias.*','categorias.categoria','categorias.id as id_categoria')
+            ->where('socios.estado_id',$id);
     }
 
 }

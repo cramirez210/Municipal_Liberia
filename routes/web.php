@@ -192,3 +192,9 @@ Route::get('/reportes/sociosbyUser','ReportesController@sociosByUsuario');
 Route::get('/reportes/allUser','ReportesController@allUsuario');
 Route::get('/reportes/estadoUser/{id}','ReportesController@estadoUsuarios');
 
+Route::get('/reportes/todosLosSocios','ReportesController@todosLosSocios');
+Route::get('/reportes/sociosActividad/{id}','ReportesController@sociosActividad');
+
+
+	
+
