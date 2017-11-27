@@ -12,7 +12,7 @@
     </div>
     
    <div class="col-md-2 ml-3 float-right">
-        <a href="/cobros/recuento" class="btn btn-warning btn-md">
+        <a href="/cobros/recuento" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
    </div>

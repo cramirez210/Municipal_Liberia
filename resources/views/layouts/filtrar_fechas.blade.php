@@ -3,7 +3,8 @@
 
                             <div class="col-md-auto ml-3">
                               <div class="form-group">
-                                <input placeholder="Ejemplo: 1997-09-06" type="text" class="form-control" id="desde" name="desde" />
+                       
+                                <input type="date" name="desde" class="form-control" id="desde" value="2017-01-01" autofocus required>
                               </div>
                               
                             </div>
@@ -11,14 +12,9 @@
 
                             <div class="col-md-auto ml-3">
                               <div class="form-group">
-                                <input placeholder="Ejemplo: 2010-09-06" type="text" class="form-control" id="hasta" name="hasta" />
+                                  <input type="date" name="hasta" class="form-control" id="hasta" value="2017-12-31" autofocus required>
                               </div>
                               
                             </div>
-
-        <script>
-                    $('#desde').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    $('#hasta').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    </script>
 </div>
      

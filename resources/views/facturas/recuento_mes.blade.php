@@ -8,8 +8,8 @@
   <div class="card-header text-primary">
     <b>Recuento de facturación del {{date('m-Y', strtotime($desde))}} al {{date('m-Y', strtotime($hasta))}}</b>
       <div class="col-md-2 ml-3 float-right">
-        <a href="/facturas/recuento" class="btn btn-warning btn-md">
-           Regresar
+        <a href="/facturas/recuento" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
+            Regresar
         </a>
    </div>
   </div>

@@ -23,7 +23,7 @@
             <td class="info" > {{$usuario->cedula}} </td>
             <td class="info" >  {{$usuario->rol}} </td>
             <td class="info"> 
-                 <button type="button" class="btn btn-info btn-sm detail-user" data-toggle="modal" data-target="#modal">Detalle</button>
+                 <button type="button" class="btn btn-info btn-sm detail-user fa fa-info-circle system-icons" data-toggle="modal" data-target="#modal"> Detalle</button>
             </td>
         </tr>
         @empty

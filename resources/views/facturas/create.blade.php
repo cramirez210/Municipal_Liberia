@@ -108,25 +108,14 @@
                  
               </div>
 
-                     <!--    <div class="form-group ">
-                            <div class="col-md-6 mt-5">
-                                <button type="submit" class="btn btn-success btn-md">
-                                    Continuar
-                                </button>
-
-                                 <a href="/facturas/pagar/buscar" class="btn btn-danger btn-md float-right mr-5">Cancelar</a>
-                            </div>
-                        </div> -->
-
-
             <div>
               
-              <button type="submit" class="btn btn-success btn-xs mt-4 ml-3" style="color: white;">
+              <button type="submit" class="btn btn-success btn-xs mt-4 ml-3 fa fa-check system-icons" style="color: white;">
                 Registrar
             </button>
 
-              <a href="/facturas/index" class="btn btn-danger btn-xs mt-4 ml-3">
-              <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+              <a href="/facturas/index" class="btn btn-danger btn-xs mt-4 ml-3 fa fa-times system-icons">
+              <span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
             </div>
 
              

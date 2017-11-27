@@ -25,7 +25,7 @@
             <td class="info text-center"> {{ $socio->nombre_usuario }} </td>
             <td class="info text-center"> {{ $socio->estado }} </td>
             <td class="warning text-center"> 
-              <button type="button" class="btn btn-info btn-sm detail-socio" data-toggle="modal" data-target="#modal">Detalle</button>
+              <button type="button" class="btn btn-info btn-sm detail-socio fa fa-info-circle system-icons" data-toggle="modal" data-target="#modal"> Detalle</button>
             </td>
         </tr>
 

@@ -5,7 +5,7 @@
 
 @include('mensajes.alertas') 
 
-<button class="btn btn-success btn-md mt-3 fa fa-search" data-toggle="modal" data-target="#filtrar_users"> Realizar una búsqueda</button>
+<button class="btn btn-success btn-md mt-3 fa fa-search system-icons" data-toggle="modal" data-target="#filtrar_users"> Realizar una búsqueda</button>
 @include('usuarios.filtrar')
         
 <!--_______________________________ Tabla _____________________________-->
@@ -34,12 +34,12 @@
   </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link text-primary fa fa-user-plus" href="/usuarios/showCreate">  Nuevo usuario</a>
+        <a class="nav-link text-primary fa fa-user-plus system-icons" href="/usuarios/showCreate">  Nuevo usuario</a>
       </li>
 
 
       <li class="nav-item dropdown mt-2">
-            <a class="dropdown-toggle fa fa-list" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Listar</a>
+            <a class="dropdown-toggle fa fa-list system-icons" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Listar</a>
 
         <div class="dropdown-menu">
           <a class="dropdown-item" href="/usuarios/listarTodos">Todos los usuarios</a>

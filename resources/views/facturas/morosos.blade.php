@@ -13,12 +13,12 @@
   </div>
     <ul class="nav nav-tabs nav-fill card-header-tabs float-right mr-5 mb-1" id="outerTab" role="tablist">
     <li class="nav-item mr-1">
-        <a href="/facturas/reporte/morosos" target="_blank" class="btn btn-success btn-sm">
+        <a href="/facturas/reporte/morosos" target="_blank" class="btn btn-success btn-sm fa fa-download system-icons">
           <b>Descargar lista</b> 
         </a>
     </li>
     <li class="nav-item">
-        <a href="/facturas/index" class="btn btn-warning btn-sm">
+        <a href="/facturas/index" class="btn btn-warning btn-sm fa fa-exclamation-triangle system-icons">
            <b>Regresar</b> 
         </a>
     </li>

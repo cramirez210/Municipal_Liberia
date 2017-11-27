@@ -40,7 +40,7 @@
         <center class="form-group mt-3">
             <div class="row-fluid">
 
-                <a href="{{ URL::previous() }}" class="btn btn-info">
+                <a href="{{ URL::previous() }}" class="btn btn-info fa fa-exclamation-triangle system-icons">
                 <span class="glyphicon glyphicon-remove-circle"></span>Regresar</a>
 
             </div>

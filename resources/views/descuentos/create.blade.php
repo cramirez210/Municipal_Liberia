@@ -135,8 +135,8 @@
             <td class="info"> {{ $descuento->semestral }} </td>
             <td class="info"> {{ $descuento->anual }} </td>
             <td class="warning"> 
-                 <a href="/descuentos/show/{{ $descuento->id }}" class="btn btn-success btn-xs">
-                     <span class="glyphicon glyphicon-remove-circle"></span>Actualizar</a>
+                 <a href="/descuentos/show/{{ $descuento->id }}" class="btn btn-success btn-xs fa fa-pencil system-icons">
+                     <span class="glyphicon glyphicon-remove-circle"></span> Actualizar</a>
             </td>
         </tr>
 

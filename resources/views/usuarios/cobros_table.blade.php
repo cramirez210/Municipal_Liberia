@@ -23,7 +23,7 @@
             <td class="info"> {{ $cobro->monto }} </td>
             <td class="info"> {{ $cobro->estado }} </td>
             <td class="warning"> 
-              <button type="button" class="btn btn-info btn-sm detail-cobro" data-toggle="modal" data-target="#modal">Detalle</button>
+              <button type="button" class="btn btn-info btn-sm detail-cobro fa fa-info-circle system-icons" data-toggle="modal" data-target="#modal"> Detalle</button>
             </td>
         </tr>
 

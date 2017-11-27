@@ -4,7 +4,7 @@
 
 @include('mensajes.alertas') 
 
-<button class="btn btn-success btn-md mt-3 fa fa-search" data-toggle="modal" data-target="#filtrar_cobros_user"> Realizar una búsqueda</button>
+<button class="btn btn-success btn-md mt-3 fa fa-search system-icons" data-toggle="modal" data-target="#filtrar_cobros_user"> Realizar una búsqueda</button>
 @include('usuarios.filtrar_cobros')
 <!--_______________________________ Tabla _____________________________-->
 
@@ -19,7 +19,7 @@
     <ul class="nav nav-pills card-header-pills float-right mr-4">
     <li class="nav-item">
       <div class="col-md-2 mr-5">
-        <a href="/cobros/reporte/user/{{$user->id}}" class="btn btn-warning btn-md">
+        <a href="/cobros/reporte/user/{{$user->id}}" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
    </div>

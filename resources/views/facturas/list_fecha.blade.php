@@ -23,7 +23,7 @@
 <div class="card-header text-primary">
    <b>Facturación del {{date('m-Y', strtotime($desde))}} al {{date('m-Y', strtotime($hasta))}}</b>
       <div class="col-md-2 float-right">
-        <a href="/facturas/mostrar/recuento/{{$desde}}/{{$hasta}}" class="btn btn-warning btn-md">
+        <a href="/facturas/mostrar/recuento/{{$desde}}/{{$hasta}}" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
    </div>

@@ -48,7 +48,7 @@
             <td class="info" >{{ $socioActivo->persona->cedula }}</td>
             <td class="info" >{{ $socioActivo->persona->primer_nombre }} {{ $socioActivo->persona->primer_apellido }} {{ $socioActivo->persona->segundo_apellido }}</td>
             <td class="info"> 
-              <button type="button" class="btn btn-info btn-sm detail-socio" data-toggle="modal" data-target="#modal">Ver socio</button>
+              <button type="button" class="btn btn-info btn-sm detail-socio fa fa-info-circle system-icons" data-toggle="modal" data-target="#modal"> Ver socio</button>
             </td>
         </tr>   
 
@@ -97,6 +97,7 @@
          @forelse($sociosInactivos as $socioInactivo)
                        
         <tr>
+          <td class="info" >{{ $socioInactivo->id }}</td>
             <td class="info" >{{ $socioInactivo->persona->cedula }}</td>
             <td class="info" >{{ $socioInactivo->persona->primer_nombre }} {{ $socioInactivo->persona->primer_apellido }} {{ $socioInactivo->persona->segundo_apellido }}</td>
             <td class="info"> 

@@ -15,7 +15,7 @@
                   <ul class="nav nav-pills card-header-pills float-right">
                   <li class="nav-item">
                   <div class="col-md-2 mr-3">
-                  <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
+                  <a href="{{URL::previous()}}" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
                       Regresar
                   </a>
              </div>
@@ -104,7 +104,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <button type="submit" class="btn btn-success btn-md">
+                                <button type="submit" class="btn btn-success btn-md fa fa-check system-icons">
                                     Confirmar
                                 </button>
                             </div>

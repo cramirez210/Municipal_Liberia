@@ -23,8 +23,8 @@
 
     @include('layouts.filtrar_fechas')
 
-        <button class="btn btn-success " type="submit">Buscar</button>
-        <a href="/facturas/index" class="btn btn-danger ">Cancelar</a>
+        <button class="btn btn-success fa fa-search system-icons" type="submit"> Buscar</button>
+        <a href="/facturas/index" class="btn btn-danger  fa fa-times system-icons"> Cancelar</a>
       
   </form>  
 

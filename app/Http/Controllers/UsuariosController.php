@@ -134,9 +134,18 @@ class UsuariosController extends Controller
 
     public function show(User $user)
     {
-        $socios = $user->socios;
-        $sociosActivos = Socio::where("estado_id","=",1)->paginate(10);
-        $sociosInactivos = Socio::where("estado_id","=",2)->paginate(10);
+       
+
+        $sociosActivos = Socio::where([
+                        ["user_id","=",$user->id],
+                        ["estado_id","=",1],
+                        ])->paginate(10);
+
+
+        $sociosInactivos = Socio::where([
+                        ["user_id","=",$user->id],
+                        ["estado_id","=",2],
+                        ])->paginate(10);
 
 
         return view('usuarios.listarSociosDeUsuario', [
@@ -161,7 +170,7 @@ class UsuariosController extends Controller
             ]);
     }
 
-     public function obtenerUsuarioPorCriterio($criterio, $valor)
+     public static function obtenerUsuarioPorCriterio($criterio, $valor)
     {
         if ($criterio == 1) {
 
@@ -316,4 +325,46 @@ class UsuariosController extends Controller
                compact('reporte'));
     }
 
+
+
+    public function RequestFiltrarEjecutivo(){
+
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+        $rol = request("rol");
+
+      return redirect("/usuarios/filtrar/ejecutivo/".$criterio."/".$valor."/".$estado."/".$rol);   
+    }
+
+   public function filtrarEjecutivo($criterio, $valor, $estado_id, $rol_id){
+
+        $user = new User;
+        $query = DB::table('users')
+        ->join('personas', 'users.persona_id', '=', 'personas.id')
+        ->join('roles','users.rol_id', '=', 'roles.id')
+        ->select('users.id as user_id', 'personas.*','users.nombre_usuario', 'roles.rol')
+        ->where('users.rol_id', '=', 3);
+      
+    if ($criterio == 0) 
+        $query->where('personas.cedula', 'like', '%'.$valor.'%') ;
+ 
+    elseif ($criterio == 1)
+        $query->where('users.nombre_usuario', 'like', '%'.$valor.'%');
+    elseif ($criterio == 2) 
+        $query->where(DB::raw("CONCAT(personas.primer_nombre, ' ', personas.primer_apellido, ' ', personas.segundo_apellido)"), 'like', '%'.$valor.'%');
+
+
+    $usuarios = $this->filtrar_rol_estado($query, $estado_id, $rol_id);
+
+
+
+    
+    if($estado_id != 0)
+        return view('socios.asignarEjecutivo', compact('usuarios', 'estado_id'));
+    elseif ($rol_id != 0) 
+        return view('socios.asignarEjecutivo', compact('usuarios', 'rol_id'));
+    else
+        return view('socios.asignarEjecutivo', compact('usuarios'));
+    }   
 }

@@ -25,8 +25,8 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <a href="/cobros/index" class="btn btn-warning btn-md">
-                                   Regresar
+                                <a href="/cobros/index" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
+                                    Regresar
                                 </a>
                             </div>
                         </div>

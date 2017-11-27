@@ -20,7 +20,7 @@
     <ul class="nav nav-pills card-header-pills float-right">
     <li class="nav-item">
       <div class="col-md-2 mr-3">
-        <a href="{{URL::previous()}}" class="btn btn-warning btn-md">
+        <a href="{{URL::previous()}}" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
    </div>

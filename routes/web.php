@@ -97,7 +97,9 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/socios/show/edit/{socio}','SociosController@edit');
 	Route::post('/socios/update/{socio}','SociosController@update');
 	Route::get('/socios/filtrar', 'SociosController@RequestFiltrar');
+	Route::get('/usuarios/filtrar/ejecutivo', 'UsuariosController@RequestFiltrarEjecutivo');
 	Route::get('/socios/filtrar/{criterio}/{valor}/{estado}', 'SociosController@filtrar');
+	Route::get('/usuarios/filtrar/ejecutivo/{criterio}/{valor}/{estado}/{rol}', 'UsuariosController@filtrarEjecutivo');
 	Route::get('/socio/facturas/filtrar', 'FacturaController@RequestFiltrarSocio');
 	Route::get('/socio/facturas/filtrar/{id}/{criterio}/{valor}/{estado}', 'FacturaController@filtrar_socio');
 
@@ -184,6 +186,15 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	
 });
 
+Route::get('/reportes/index','ReportesController@index');
+Route::get('/reportes/reporte','ReportesController@home');
+Route::get('/reportes/sociosbyUser','ReportesController@sociosByUsuario');
+Route::get('/reportes/allUser','ReportesController@allUsuario');
+Route::get('/reportes/estadoUser/{id}','ReportesController@estadoUsuarios');
+
+Route::get('/reportes/todosLosSocios','ReportesController@todosLosSocios');
+Route::get('/reportes/sociosActividad/{id}','ReportesController@sociosActividad');
 
 
+	
 

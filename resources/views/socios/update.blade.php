@@ -162,12 +162,8 @@
                 <label for="fecha_nacimiento" class="form-control-label">Fecha de nacimiento</label>
 
                 <div class="col-md-auto  ml-lg-5 ml-xl-5">
-
-                    <input placeholder="2017-09-06" type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ $persona->fecha_nacimiento }}" />
-                    <script>
-                    $('#fecha_nacimiento').datepicker({ uiLibrary: 'bootstrap4',format: "yyyy-mm-dd",language: "es",iconsLibrary: 'fontawesome',});
-                    </script>
-                 
+                    
+                         <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="{{ $persona->fecha_nacimiento }}" />
    
                         @if ($errors->has('fecha_nacimiento'))
                             <span class="form-control-feedback">
@@ -275,12 +271,12 @@
                                 
                     <select class="form-control" id="categoriaOption" name="categoria_id">
                         
-                    <option selected>{{ $categoria->categoria }}</option>
-
                     @foreach($categorias as $categoria)
-
+                        @if($categoria == $socio->categoria)
+                        <option selected>{{ $categoria->categoria }}</option>
+                        @else
                         <option>{{ $categoria->categoria }}</option>
-                
+                        @endif
                     @endforeach
 
                     </select>
@@ -294,12 +290,12 @@
         <center class="form-group mt-3">
             <div class="row-fluid">
 
-             <button type="submit" class="btn btn-warning btn-xs" style="color: white;">
+             <button type="submit" class="btn btn-warning btn-xs fa fa-pencil system-icons" style="color: white;">
                 Actualizar
             </button>
 
-              <a href="{{URL::previous()}}" class="btn btn-danger btn-xs ml-2">
-              <span class="glyphicon glyphicon-remove-circle"></span>Cancelar</a>
+              <a href="{{URL::previous()}}" class="btn btn-danger btn-xs ml-2 fa fa-times system-icons">
+              <span class="glyphicon glyphicon-remove-circle "></span> Cancelar</a>
                 
             </div>
         </center>

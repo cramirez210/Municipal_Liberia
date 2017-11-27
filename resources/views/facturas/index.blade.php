@@ -15,7 +15,7 @@
             <div class="col-sm-12 col-md-6 pt-sm-3 pt-md-3">
                 <div class="card text-center fondo-cards">
                     <div class="card-block">
-                      <div contenteditable="py-3">
+                      <div class="py-3">
                           <i class="fa fa-file-text-o iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1 class="py-3">Facturas</h1>
@@ -65,7 +65,7 @@
             <div class="col-sm-12 col-md-6 pt-sm-3 pt-md-3">
                 <div class="card text-center fondo-cards">
                     <div class="card-block">
-                      <div contenteditable="py-3">
+                      <div class="py-3">
                           <i class="fa fa-money iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1 class="py-3">Liquidacion de Cobros</h1>
