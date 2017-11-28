@@ -62,7 +62,7 @@
                </div>
             </li>
           </ul>
-          <a href="#" class="list-group-item" target="_blank">Morocidad</a>
+          <a href="/reportes/sociosMorosos" class="list-group-item" target="_blank">Morocidad</a>
         </div>
       </div>
     </div>
@@ -77,16 +77,15 @@
         <h3 class="card-title"><b>Facturas</b></h3>
         <p class="card-text">Reportes asociados a la facturacion del sistema.</p>
         <div class="py-3">
-          <a href="/usuarios/showCreate" class="list-group-item" target="_blank">Factura en especifico</a>
+          <a href="#" class="list-group-item" target="_blank" data-toggle="modal" data-target="#buscar_factura" target="_blank">Factura en especifico</a>
+          @include('reportes.tiposReportes.buscar_factura')
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Facturas mes expesifico</a>
+               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Facturas rago de Fecha</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="/reportes/reporte" target="_blank">Facturas pendientes</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Facturas en...</a>
                </div>
             </li>
           </ul>
@@ -107,15 +106,24 @@
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Todos los </a>
+               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Cobros por fecha</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank"> activos</a>
+               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Cobros Liquidados</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank"> inactivos</a>
+               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Cobros Pendientes</a>
                </div>
             </li>
           </ul>
-          <a href="#" class="list-group-item" target="_blank">Morocidad</a>
+          <ul class="list-group-item">
+            <li class="list-unstyled dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morocidad:</a>
+              <div class="dropdown-menu">
+               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Todos los ejecutivos</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Un ejecutivo</a>
+               </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

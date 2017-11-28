@@ -194,8 +194,10 @@ Route::get('/reportes/allUser','ReportesController@allUsuario');
 Route::get('/reportes/estadoUser/{id}','ReportesController@estadoUsuarios');
 
 Route::get('/reportes/todosLosSocios','ReportesController@todosLosSocios');
-Route::get('/reportes/sociosActividad/{id}','ReportesController@sociosActividad');
+Route::get('/reportes/sociosActividad/{id}','ReportesController@sociosActividad'); 
+Route::get('/reportes/sociosMorosos','ReportesController@morocidadSocios');
 
+Route::get('/reportes/unaFactura','ReportesController@factura');
 
 	
 

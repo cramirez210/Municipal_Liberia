@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Factura;
 use App\Http\Controllers\SociosController;
 use App\Http\Controllers\UsuariosController;
 use App\Persona;
-use App\User;
 use App\Socio;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -113,6 +114,44 @@ class ReportesController extends Controller
             ->join('estados','socios.estado_id', '=', 'estados.id')
             ->select('personas.*', 'socios.*','estados.estado','categorias.*','categorias.categoria','categorias.id as id_categoria')
             ->where('socios.estado_id',$id);
+    }
+
+    public function morocidadSocios()
+    {
+    	$DB = new Factura;
+
+    	$listas = $DB->ObtenerSociosMorosos();
+        $tipoReporte = 'Todos los socios morosos';
+        $hora = Carbon::now();
+        if (count($listas)) {
+        	return view('/reportes/tiposReportes/reporteSocios',compact('listas','tipoReporte','hora'));
+        } else {
+        	return redirect('/reportes/index')->with('warning','No se encontro ningun resultado evaluado el criterio de busqueda');
+        }
+    }
+
+    public function factura(Request $request)
+    {
+    	//dd($request->all());
+    	if(is_numeric($request->input('valor')))
+    	{
+    		
+	    	$DB = new Factura;
+
+	    	$listas = $DB->ObtenerPorId($request->input('valor'));
+	        $tipoReporte = 'Todos los socios morosos';
+	        $hora = Carbon::now();
+
+	        if ($listas!=null) {
+	        	return view('/reportes/tiposReportes/reporteFactura',compact('listas','tipoReporte','hora'));
+	        } else {
+	        	return redirect('/reportes/index')->with('warning','No se encontro ningun resultado evaluado el criterio de busqueda');
+	        } 
+    	}else{
+    		return redirect('/reportes/index')->with('warning','El campo Numero Factura solo acepta numeros.');
+    	}
+
+    	
     }
 
 }
