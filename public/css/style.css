@@ -84,3 +84,13 @@
     width: 6.25rem;
 }
 
+
+@media print 
+{
+   
+   .print
+   {
+    display: none;
+   }
+}
+

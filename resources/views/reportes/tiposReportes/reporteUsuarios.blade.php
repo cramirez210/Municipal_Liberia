@@ -10,12 +10,12 @@
 
 <div class="table-responsive">
         
-    <table id="table" class="table table-hover ">
+    <table id="table" class="table table-hover">
         <thead>
             <tr>
             <th class="text-center">Cedula</th>
             <th class="text-center">Nombre Completo</th>
-            <th class="text-center">Rol</th>
+            <th class="text-center print">Rol</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Correo Electronico</th>
             </tr>
@@ -28,7 +28,7 @@
         <tr>
             <td class="info text-center"> {{ $lista->cedula }} </td>
             <td class="info text-center"> {{ $lista->primer_nombre }} {{ $lista->primer_apellido }} {{ $lista->segundo_apellido }} </td>
-            <td class="info text-center"> {{ $lista->rol }} </td>
+            <td class="info text-center print"> {{ $lista->rol }} </td>
             <td class="info text-center"> {{ $lista->estado }} </td>
             <td class="info text-center"> {{ $lista->email }} </td>
         </tr>

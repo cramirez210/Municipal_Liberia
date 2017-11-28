@@ -11,6 +11,7 @@
   <form class="form col-md-6" method="POST" action="/reportes/cobros_fechas"> 
     {{ csrf_field() }}
 
+
     @include('layouts.filtrar_fechas')
     
         <button class="btn btn-success fa fa-check system-icons" type="submit"> Buscar</button>
