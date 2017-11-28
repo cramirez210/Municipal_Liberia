@@ -8,7 +8,7 @@
                           </div>
                           <div class="modal-body text-left">
 
-    <form class="form col-md-6" method="POST" action="/reportes/user/morosidad"> 
+    <form class="form col-md-6" method="POST" action="/reportes/user/morosidad" target="_blank"> 
     {{ csrf_field() }}
 
   <select id="select_ejec" class="custom-select" name="Criterio">

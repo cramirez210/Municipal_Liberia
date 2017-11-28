@@ -173,8 +173,11 @@ class ReportesController extends Controller
         $tipoReporte = 'Facturas desde '.$desde.' hasta '.$hasta;
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
-
+        if (count($facturas)) {
+            return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron facturas en las fechas indicadas');
+        }
     }
 
     public function facturasPendientes(){
@@ -186,7 +189,11 @@ class ReportesController extends Controller
         $tipoReporte = 'Todas las facturas pendientes';
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
+        if (count($facturas)) {
+            return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron facturas pendientes');
+        }
 
     }
 
@@ -208,7 +215,11 @@ class ReportesController extends Controller
         $tipoReporte = 'Cobros desde '.$desde.' hasta '.$hasta;
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+        if (count($cobros)) {
+           return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron cobros en las fechas indicadas');
+        }
 
     }
 
@@ -221,7 +232,11 @@ class ReportesController extends Controller
         $tipoReporte = 'Todos los cobros pendientes';
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+         if (count($cobros)) {
+            return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron cobros pendientes');
+        }
 
     }
 
@@ -234,8 +249,12 @@ class ReportesController extends Controller
         $tipoReporte = 'Todos los cobros liquidados';
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
 
+        if (count($cobros)) {
+           return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron cobros liquidados');
+        }
     }
 
     public function morocidadUsuarios()
@@ -246,7 +265,13 @@ class ReportesController extends Controller
         $tipoReporte = 'Todos los usuarios morosos';
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteUsuariosMorosos', compact('morosos', 'tipoReporte', 'hora', 'DB'));
+        if (count($morosos)) {
+           return view('reportes.tiposReportes.reporteUsuariosMorosos', 
+                        compact('morosos', 'tipoReporte', 'hora', 'DB'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron usuarios morosos');
+        }
+        
     }
 
     public function morocidadUsuario(){
@@ -264,7 +289,12 @@ class ReportesController extends Controller
         $tipoReporte = 'Cobros pendientes del usuario '.$user->primer_nombre.' '.$user->primer_apellido.' '.$user->segundo_apellido;
         $hora = Carbon::now();
 
-        return view('reportes.tiposReportes.reporteUsuarioMoroso', compact('cobros', 'tipoReporte', 'hora'));
+        if (count($cobros)) {
+          return view('reportes.tiposReportes.reporteUsuarioMoroso', compact('cobros', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')
+                    ->with('info','No se encontraron cobros pendientes para el usuario '.$user->primer_nombre.' '.$user->primer_apellido.' '.$user->segundo_apellido);
+        }
     }else 
        return redirect('/reportes/index')->with('warning','El valor ingresado no coincide con ningún usuario.');
 

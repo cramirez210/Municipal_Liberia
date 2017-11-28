@@ -8,7 +8,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                           <div class="modal-body text-left">
-  <form class="form col-md-6" method="POST" action="/reportes/cobros_fechas"> 
+  <form class="form col-md-6" method="POST" action="/reportes/cobros_fechas" target="_blank"> 
     {{ csrf_field() }}
 
 
