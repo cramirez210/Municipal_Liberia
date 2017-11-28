@@ -523,7 +523,7 @@ class FacturaController extends Controller
         $factura = new Factura;
 
         $facturas = $factura->ObtenerPorCriterio('facturas.estado_id', 3)
-                    ->paginate(5);
+                    ->get();
 
         return view('facturas.pendientes', compact('facturas'));
     }

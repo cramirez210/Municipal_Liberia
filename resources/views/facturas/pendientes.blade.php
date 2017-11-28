@@ -1,4 +1,4 @@
-  @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 
@@ -13,7 +13,7 @@
   <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
     <option value="1">Nombre</option>
-    <option value="2">Fecha</option>
+    <option value="2">Periodo</option>
   </select>
 
   <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: 1.8%;">
@@ -57,7 +57,7 @@
 <div class="row">
   <div class="table-responsive mr-5">
         
-    <table class="table table-hover ">
+    <table id="table" class="table table-hover ">
         <thead>
             <tr>
             <th class="text-center">N° factura</th>
@@ -95,14 +95,6 @@
     </div>
 
  </div>
-
-<div class="mt-2 mx-auto">
-        @if(count($facturas))
-
-       {{ $facturas->links('pagination::bootstrap-4') }}
-
-        @endif 
-    </div>
 
     <div class="card-footer text-muted">
         Se encontraron {{ count($facturas) }} resultados.
