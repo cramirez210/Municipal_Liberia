@@ -2,7 +2,7 @@
 	<div class="col-4 d-flex justify-content-center">
 		<img class="reporte-imagen" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia">
 	</div>
-	<div class="col-8 text-center">
+	<div class="col-8 text-center print">
 		<h3>Asociacion Deportiva Municipal Liberia</h3>
 		<small class="lead text-muted">Institución deportiva dedicada a crear espacios dentro de una sana convivencia con el fin de deleitar a nuestros socios de un espectaculo deportivo de primer nivel.</small>	
 	</div>

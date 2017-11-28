@@ -17,7 +17,6 @@
             <th class="text-center">Nombre Completo</th>
             <th class="text-center">Categoria</th>
             <th class="text-center">Telefono</th>
-            <th class="text-center">Correo Electronico</th>
             <th class="text-center">Estado</th>
             </tr>
         </thead>
@@ -31,7 +30,6 @@
             <td class="info text-center"> {{ $lista->primer_nombre }} {{ $lista->primer_apellido }} {{ $lista->segundo_apellido }} </td>
             <td class="info text-center"> {{ $lista->categoria }} </td>
             <td class="info text-center"> {{ $lista->telefono }} </td>
-            <td class="info text-center"> {{ $lista->email }} </td>
             <td class="info text-center"> {{ $lista->estado }} </td>
         </tr>
         @empty
@@ -47,5 +45,7 @@
     </tbody>
     </table>  
     </div>
+
+    @include('reportes.imprimir')
 
 @endsection
