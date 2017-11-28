@@ -19,7 +19,7 @@
 	</div>
 	<div class="col-6 d-flex flex-column text-right pr-5">
 		<label><b>{{ $tipoReporte }}</b></label>
-		<label><b>{{ date('d-m-Y h:m:s', strtotime($hora)) }}</b></label>
+		<label><b>{{ date('d-m-Y', strtotime($hora)) }}</b></label>
 		<label><b>{{ Auth::user()->nombre_usuario }}</b></label>
 	</div>
 </div>
