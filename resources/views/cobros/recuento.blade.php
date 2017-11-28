@@ -1,60 +1,26 @@
-@extends('layouts.app')
 
-@section('content')
+<div id="buscar_recuento_cobros" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-md">
 
-@include('mensajes.alertas') 
-
-    @if(count($errors))
-<div> 
-<br>
-<span class="text-danger mt-4">
-        @if($errors->has('desde'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('desde') }}</strong>
-          </span>
-        @endif
-        <br>
-        @if($errors->has('hasta'))
-          <span class="form-control-feedback">
-            <strong>{{ $errors->first('hasta') }}</strong>
-          </span>
-        @endif
-    </span>
-</div>
-@endif
-
-	<!-- Si la sesión tiene algo guardado, muestrelo -->
-
-<div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
-  </div>
-
-
-  
- <div class="card-body">
-
-    <center>
-
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Buscar cobros</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body text-left">
   <form class="form col-md-6" method="POST" action="/cobros/recuento"> 
     {{ csrf_field() }}
 
     @include('layouts.filtrar_fechas')
     
         <button class="btn btn-success fa fa-check system-icons" type="submit"> Buscar</button>
-        <a href="/cobros/index" class="btn btn-danger fa fa-times system-icons "> Cancelar</a>
 
   </form>  
-</center>
-</div>
+   </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger fa fa-times system-icons" data-dismiss="modal"> Cerrar</button>
+                          </div>
+                        </div>
 
-
-
-</div>
-
-
-@endsection
-
-@section('titulo')
-    Cobros
-@endsection
+                      </div>
+                    </div>

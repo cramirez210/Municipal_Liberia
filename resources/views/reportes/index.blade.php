@@ -83,12 +83,13 @@
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Facturas rago de Fecha</a>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_facturas_fechas" target="_blank">Facturas rago de Fecha</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Facturas pendientes</a>
+               <a class="dropdown-item" href="/reportes/facturas_pendientes" target="_blank">Facturas pendientes</a>
                </div>
             </li>
           </ul>
+               @include('reportes.tiposReportes.buscar_facturas_fechas')
         </div>
       </div>
     </div>
@@ -106,24 +107,26 @@
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Cobros por fecha</a>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_cobros_fechas" target="_blank">Cobros por fecha</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Cobros Liquidados</a>
+               <a class="dropdown-item" href="/reportes/cobros_liquidados" target="_blank">Cobros Liquidados</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Cobros Pendientes</a>
+               <a class="dropdown-item" href="/reportes/cobros_pendientes" target="_blank">Cobros Pendientes</a>
                </div>
             </li>
           </ul>
+          @include('reportes.tiposReportes.buscar_cobros_fechas')
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morocidad:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Todos los ejecutivos</a>
+               <a class="dropdown-item" href="/reportes/users_morosos" target="_blank">Todos los ejecutivos</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="/reportes/reporte" target="_blank">Un ejecutivo</a>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_ejemoroso" target="_blank">Un ejecutivo</a>
                </div>
             </li>
           </ul>
+          @include('reportes.tiposReportes.buscar_usuario_moroso')
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Factura;
+use App\Cobro;
 use App\Http\Controllers\SociosController;
 use App\Http\Controllers\UsuariosController;
 use App\Persona;
@@ -153,5 +154,121 @@ class ReportesController extends Controller
 
     	
     }
+
+    public function facturasFechas(){
+
+        $this->validate(request(),
+            [
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            ]);
+
+        $desde = request('desde');
+        $hasta = request('hasta');
+
+        $factura = new Factura;
+
+        $facturas = $factura->ObtenerPorFecha($desde, $hasta)->get();
+
+        $tipoReporte = 'Facturas desde '.$desde.' hasta '.$hasta;
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
+
+    }
+
+    public function facturasPendientes(){
+
+        $factura = new Factura;
+
+        $facturas = $factura->ObtenerPorCriterio('facturas.estado_id', 3)->get();
+
+        $tipoReporte = 'Todas las facturas pendientes';
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
+
+    }
+
+        public function cobrosFechas(){
+
+        $this->validate(request(),
+            [
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            ]);
+
+        $desde = request('desde');
+        $hasta = request('hasta');
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorFecha($desde, $hasta)->get();
+
+        $tipoReporte = 'Cobros desde '.$desde.' hasta '.$hasta;
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+
+    }
+
+     public function cobrosPendientes(){
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', 3)->get();
+
+        $tipoReporte = 'Todos los cobros pendientes';
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+
+    }
+
+     public function cobrosLiquidados(){
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', 4)->get();
+
+        $tipoReporte = 'Todos los cobros liquidados';
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteCobros', compact('cobros', 'tipoReporte', 'hora'));
+
+    }
+
+    public function morocidadUsuarios()
+    {
+        $DB = new Cobro;
+
+        $morosos = $DB->ObtenerUsuariosMorosos();
+        $tipoReporte = 'Todos los usuarios morosos';
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteUsuariosMorosos', compact('morosos', 'tipoReporte', 'hora', 'DB'));
+    }
+
+    public function morocidadUsuario(){
+       $criterio = request('Criterio');
+       $valor = request('valor');
+
+       $cobro = new Cobro;
+
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       if($user){
+        $user = $cobro->select_user()->where('users.id', $user->id)->first();
+
+        $cobros = $cobro->ObtenerPorUsuarioEstado($user->id, 3)->get();
+        $tipoReporte = 'Cobros pendientes del usuario '.$user->primer_nombre.' '.$user->primer_apellido.' '.$user->segundo_apellido;
+        $hora = Carbon::now();
+
+        return view('reportes.tiposReportes.reporteUsuarioMoroso', compact('cobros', 'tipoReporte', 'hora'));
+    }else 
+       return redirect('/reportes/index')->with('warning','El valor ingresado no coincide con ningún usuario.');
+
+
+}
 
 }

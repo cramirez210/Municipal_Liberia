@@ -47,6 +47,7 @@
             <tr>
             <th class="text-center">Nombre completo</th>
             <th class="text-center">Cobros a liquidar</th>
+            <th class="text-center">Monto total</th>
             <th class="text-center">Email</th>
             <th class="text-center">Teléfono</th>
             </tr>
@@ -58,6 +59,7 @@
         <tr>
             <td class="info"> {{ $moroso->primer_nombre }} {{ $moroso->primer_apellido }} {{ $moroso->segundo_apellido }} </td>
             <td class="info"> <a href="/cobros/pendientes/{{$moroso->id}}">{{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}</a>  </td>
+            <td class="info"> {{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->sum('monto') }}  </td>
             <td class="info"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
         </tr>

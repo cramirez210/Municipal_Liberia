@@ -122,7 +122,8 @@ class Cobro extends Model
           return DB::table('cobros')
                     ->join('users', 'cobros.user_id', 'users.id')
                     ->join('personas', 'users.persona_id', 'personas.id')
-                    ->select('users.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono')
+                    ->join('facturas', 'cobros.factura_id', 'facturas.id')
+                    ->select('users.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono', 'facturas.monto')
                     ->distinct()
                     ->where('cobros.estado_id', 3)
                     ->get();

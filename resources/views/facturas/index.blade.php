@@ -41,7 +41,8 @@
                               </ul>
                              <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar">Buscar facturas de un socio específico</a>
                               @include('facturas.buscar')
-                             <a href="/facturas/recuento" class="list-group-item">Reporte de facturación</a>
+                             <a href="/facturas/recuento" class="list-group-item" data-toggle="modal" data-target="#buscar_recuento_facturas">Reporte de facturación</a>
+                             @include('facturas.recuento')
                              <ul class="list-group-item">
                               <li class="list-unstyled dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morosidad</a>
@@ -90,7 +91,8 @@
                             </ul>
                             <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_ejec">Buscar cobros de un ejecutivo específico</a>
                             @include('cobros.buscar')
-                            <a href="/cobros/recuento" class="list-group-item">Reporte de cobros</a>
+                            <a href="/cobros/recuento" class="list-group-item" data-toggle="modal" data-target="#buscar_recuento_cobros">Reporte de cobros</a>
+                            @include('cobros.recuento')
                             <ul class="list-group-item">
                               <li class="list-unstyled dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morosidad</a>
