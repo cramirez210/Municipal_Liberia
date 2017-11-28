@@ -14,13 +14,13 @@
               </ul>
             </div> <!--End seccion 1 -->
 
-            <!-- seccion 2 -->
+             <!-- seccion 2 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
                 <h5 class="py-2">Facturacion</h5>
                 <ul>
-                  <li><a href="#">Pago de Facturas</a></li>
-                  <li><a href="#">Facturas</a></li>
-                  <li><a href="#">Morocidad</a></li>
+                  <li><a id="as" href="/facturas/list/3">Facturas Pendientes</a></li>
+                  <li><a id="as" href="/facturas/list">Facturas</a></li>
+                  <li><a id="as" href="/facturas/morosos">Morocidad</a></li>
                 </ul>
               </div> <!--End seccion 2 -->
 
@@ -28,9 +28,9 @@
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
                 <h5 class="py-2">Liquidación Cobros</h5>
                 <ul>
-                  <li><a href="#">Liquidaciones</a></li>
-                  <li><a href="#">Reporte de Cobro</a></li>
-                  <li><a href="#">Morocidad</a></li>
+                  <li><a id="as" href="/cobros/list/4">Liquidaciones</a></li>
+                  <li><a id="as" href="/cobros/list">Reporte de Cobro</a></li>
+                  <li><a id="as" href="/cobros/morosos">Morocidad</a></li>
                 </ul>
               </div> <!--End seccion 3 -->
 

@@ -185,27 +185,29 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/socios/listarTodos','SociosController@listarTodosLosSocios');
 	Route::get('/socios/showImagen/{socio}','SociosController@showImagen');
 	
+	//Rutas de Reportes.
+	Route::get('/reportes/index','ReportesController@index');
+	Route::get('/reportes/reporte','ReportesController@home');
+	Route::get('/reportes/sociosbyUser','ReportesController@sociosByUsuario');
+	Route::get('/reportes/allUser','ReportesController@allUsuario');
+	Route::get('/reportes/estadoUser/{id}','ReportesController@estadoUsuarios');
+	Route::get('/reportes/users_morosos','ReportesController@morocidadUsuarios');
+	Route::post('/reportes/user/morosidad','ReportesController@morocidadUsuario');
+
+	Route::get('/reportes/todosLosSocios','ReportesController@todosLosSocios');
+	Route::get('/reportes/sociosActividad/{id}','ReportesController@sociosActividad'); 
+	Route::get('/reportes/sociosMorosos','ReportesController@morocidadSocios');
+
+	Route::get('/reportes/unaFactura','ReportesController@factura');
+	Route::post('/reportes/facturas_fechas','ReportesController@facturasFechas');
+	Route::get('/reportes/facturas_pendientes','ReportesController@facturasPendientes');
+
+	Route::post('/reportes/cobros_fechas','ReportesController@cobrosFechas');
+	Route::get('/reportes/cobros_pendientes','ReportesController@cobrosPendientes');
+	Route::get('/reportes/cobros_liquidados','ReportesController@cobrosLiquidados');
 });
 
-Route::get('/reportes/index','ReportesController@index');
-Route::get('/reportes/reporte','ReportesController@home');
-Route::get('/reportes/sociosbyUser','ReportesController@sociosByUsuario');
-Route::get('/reportes/allUser','ReportesController@allUsuario');
-Route::get('/reportes/estadoUser/{id}','ReportesController@estadoUsuarios');
-Route::get('/reportes/users_morosos','ReportesController@morocidadUsuarios');
-Route::post('/reportes/user/morosidad','ReportesController@morocidadUsuario');
 
-Route::get('/reportes/todosLosSocios','ReportesController@todosLosSocios');
-Route::get('/reportes/sociosActividad/{id}','ReportesController@sociosActividad'); 
-Route::get('/reportes/sociosMorosos','ReportesController@morocidadSocios');
-
-Route::get('/reportes/unaFactura','ReportesController@factura');
-Route::post('/reportes/facturas_fechas','ReportesController@facturasFechas');
-Route::get('/reportes/facturas_pendientes','ReportesController@facturasPendientes');
-
-Route::post('/reportes/cobros_fechas','ReportesController@cobrosFechas');
-Route::get('/reportes/cobros_pendientes','ReportesController@cobrosPendientes');
-Route::get('/reportes/cobros_liquidados','ReportesController@cobrosLiquidados');
 
 	
 

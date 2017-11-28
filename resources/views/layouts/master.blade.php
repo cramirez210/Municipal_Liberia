@@ -46,6 +46,9 @@
                   <a class="nav-link" href="/facturas/index"> <i class="fa fa-file-text-o .iconos-nav" aria-hidden="true"></i> Facturacion</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="/reportes/index"> <i class="fa fa-bar-chart .iconos-nav" aria-hidden="true"></i> Reportes</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/conf/index"><i class="fa fa-cogs .iconos-nav" aria-hidden="true"></i> Configuracion</a>
                   </li>
                 <li class="nav-item dropdown">
@@ -196,13 +199,13 @@
               </ul>
             </div> <!--End seccion 1 -->
 
-            <!-- seccion 2 -->
+             <!-- seccion 2 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
                 <h5 class="py-2">Facturacion</h5>
                 <ul>
-                  <li><a id="as" href="#">Pago de Facturas</a></li>
-                  <li><a id="as" href="#">Facturas</a></li>
-                  <li><a id="as" href="#">Morocidad</a></li>
+                  <li><a id="as" href="/facturas/list/3">Facturas Pendientes</a></li>
+                  <li><a id="as" href="/facturas/list">Facturas</a></li>
+                  <li><a id="as" href="/facturas/morosos">Morocidad</a></li>
                 </ul>
               </div> <!--End seccion 2 -->
 
@@ -210,9 +213,9 @@
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
                 <h5 class="py-2">Liquidación Cobros</h5>
                 <ul>
-                  <li><a id="as" href="#">Liquidaciones</a></li>
-                  <li><a id="as" href="#">Reporte de Cobro</a></li>
-                  <li><a id="as" href="#">Morocidad</a></li>
+                  <li><a id="as" href="/cobros/list/4">Liquidaciones</a></li>
+                  <li><a id="as" href="/cobros/list">Reporte de Cobro</a></li>
+                  <li><a id="as" href="/cobros/morosos">Morocidad</a></li>
                 </ul>
               </div> <!--End seccion 3 -->
 
