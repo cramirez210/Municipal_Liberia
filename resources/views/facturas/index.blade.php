@@ -24,8 +24,16 @@
                         <div class="col-12">
                            <h3 class="py-3">Navegacion</h3>
                            <div>
-                            <a href="/facturas/imprimir" class="list-group-item">Imrpimir facturas</a>
-                             <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_socio">Pago de facturas</a>
+                              <ul class="list-group-item">
+                                <li class="list-unstyled dropdown">
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Facturas</a>
+                                  <div class="dropdown-menu">
+                                    <a href="/facturas/imprimir" class="dropdown-item">Imrpimir facturas</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#buscar_socio">Pago de facturas</a>
+                                  </div>
+                                </li>
+                              </ul>
                               @include('facturas.buscar_socio')
                              <ul class="list-group-item">
                                 <li class="list-unstyled dropdown">

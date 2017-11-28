@@ -19,7 +19,9 @@ function deseleccionar_todo(){
       if(document.form_liquidar_cobro.elements[i].type == "checkbox")
          document.form_liquidar_cobro.elements[i].checked=0
 } 
-/*  function filtrar() {
+
+
+function filtrar() {
   var select, valor_select, input, filter, table, tr, td, i;
   select = document.getElementById("select");
   valor_select = select.options[select.selectedIndex].value;
@@ -38,4 +40,4 @@ function deseleccionar_todo(){
       }
     }
   }
-}*/
+}
