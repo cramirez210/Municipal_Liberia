@@ -15,11 +15,12 @@
             <tr>
             <th class="text-center">Cedula</th>
             <th class="text-center">Nombre Completo</th>
-            <th class="text-center print">Rol</th>
+            <th class="text-center">Rol</th>
             <th class="text-center">Estado</th>
-            <th class="text-center">Correo Electronico</th>
+            <th class="text-center print">Correo Electronico</th>
             </tr>
         </thead>
+
     <tbody>
         
         @if($listas != null)
@@ -28,14 +29,14 @@
         <tr>
             <td class="info text-center"> {{ $lista->cedula }} </td>
             <td class="info text-center"> {{ $lista->primer_nombre }} {{ $lista->primer_apellido }} {{ $lista->segundo_apellido }} </td>
-            <td class="info text-center print"> {{ $lista->rol }} </td>
+            <td class="info text-center"> {{ $lista->rol }} </td>
             <td class="info text-center"> {{ $lista->estado }} </td>
-            <td class="info text-center"> {{ $lista->email }} </td>
+            <td class="info text-center print"> {{ $lista->email }} </td>
         </tr>
         @empty
         <div class="alert alert-warning">
        
-        <span class="card-text text-warning "> No se encontraron datos..</span>
+        <span class="card-text text-warning "> No se encontraron datos... </span>
 
         </div>
         <br>
@@ -43,7 +44,14 @@
 
         @endif
     </tbody>
+
     </table>  
     </div>
+
+    <div class="print">
+    @include('reportes.imprimir')
+    </div>
+
+    
 
 @endsection

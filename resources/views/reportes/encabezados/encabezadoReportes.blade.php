@@ -2,9 +2,9 @@
 	<div class="col-4 d-flex justify-content-center">
 		<img class="reporte-imagen" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia">
 	</div>
-	<div class="col-8 text-center print">
+	<div class="col-8 text-center">
 		<h3>Asociacion Deportiva Municipal Liberia</h3>
-		<small class="lead text-muted">Institución deportiva dedicada a crear espacios dentro de una sana convivencia con el fin de deleitar a nuestros socios de un espectaculo deportivo de primer nivel.</small>	
+		<small class="lead text-muted print">Institución deportiva dedicada a crear espacios dentro de una sana convivencia con el fin de deleitar a nuestros socios de un espectaculo deportivo de primer nivel.</small>	
 	</div>
 </div>
 	<div class="d-flex justify-content-center pb-4">
@@ -19,7 +19,7 @@
 	</div>
 	<div class="col-6 d-flex flex-column text-right pr-5">
 		<label><b>{{ $tipoReporte }}</b></label>
-		<label><b>{{ $hora }}</b></label>
+		<label><b>{{ date('d-m-Y h:m:s', strtotime($hora)) }}</b></label>
 		<label><b>{{ Auth::user()->nombre_usuario }}</b></label>
 	</div>
 </div>

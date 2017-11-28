@@ -13,11 +13,13 @@
     <table id="table" class="table table-hover ">
         <thead>
             <tr>
-            <th class="text-center">Cedula</th>
+            <th class="text-center print">Cedula</th>
             <th class="text-center">Nombre Completo</th>
             <th class="text-center">Categoria</th>
             <th class="text-center">Telefono</th>
+            <th class="text-center print">Correo</th>
             <th class="text-center">Estado</th>
+
             </tr>
         </thead>
     <tbody>
@@ -26,10 +28,11 @@
          @forelse($listas as $lista)
 
         <tr>
-            <td class="info text-center"> {{ $lista->cedula }} </td>
+            <td class="info text-center print"> {{ $lista->cedula }} </td>
             <td class="info text-center"> {{ $lista->primer_nombre }} {{ $lista->primer_apellido }} {{ $lista->segundo_apellido }} </td>
             <td class="info text-center"> {{ $lista->categoria }} </td>
             <td class="info text-center"> {{ $lista->telefono }} </td>
+            <td class="info text-center print"> {{ $lista->email }} </td>
             <td class="info text-center"> {{ $lista->estado }} </td>
         </tr>
         @empty
@@ -46,6 +49,8 @@
     </table>  
     </div>
 
+    <div class="print"> 
     @include('reportes.imprimir')
+    </div>
 
 @endsection

@@ -84,6 +84,10 @@
     width: 6.25rem;
 }
 
+@page
+{
+  size: landscape;
+}
 
 @media print 
 {

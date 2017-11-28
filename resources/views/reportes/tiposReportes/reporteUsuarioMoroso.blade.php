@@ -45,5 +45,8 @@
     </tbody>
     </table>  
     </div>
+    <div class="print"> 
+    @include('reportes.imprimir')
+    </div>
 
 @endsection

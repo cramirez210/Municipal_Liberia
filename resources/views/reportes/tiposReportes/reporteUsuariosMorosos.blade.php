@@ -16,7 +16,7 @@
             <th class="text-center">Nombre completo</th>
             <th class="text-center">Cobros a liquidar</th>
             <th class="text-center">Monto</th>
-            <th class="text-center">Email</th>
+            <th class="text-center print">Email</th>
             <th class="text-center">Teléfono</th>
             </tr>
         </thead>
@@ -28,7 +28,7 @@
             <td class="info"> {{ $moroso->primer_nombre }} {{ $moroso->primer_apellido }} {{ $moroso->segundo_apellido }} </td>
             <td class="info"> {{ $DB->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}  </td>
             <td class="info"> {{ $DB->ObtenerPorUsuarioEstado($moroso->id, 3)->sum('monto') }}  </td>
-            <td class="info"> {{ $moroso->email }} </td>
+            <td class="info print"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
         </tr>
 
@@ -44,6 +44,10 @@
     </tbody>
     </table>  
 
+    </div>
+
+    <div class="print"> 
+    @include('reportes.imprimir')
     </div>
 
 @endsection
