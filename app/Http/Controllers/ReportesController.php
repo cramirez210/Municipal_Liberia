@@ -139,12 +139,12 @@ class ReportesController extends Controller
     		
 	    	$DB = new Factura;
 
-	    	$listas = $DB->ObtenerPorId($request->input('valor'));
+	    	$factura = $DB->ObtenerPorId($request->input('valor'));
 	        $tipoReporte = 'Todos los socios morosos';
 	        $hora = Carbon::now();
 
-	        if ($listas!=null) {
-	        	return view('/reportes/tiposReportes/reporteFactura',compact('listas','tipoReporte','hora'));
+	        if ($factura!=null) {
+	        	return view('/reportes/tiposReportes/reporteFactura',compact('factura','tipoReporte','hora'));
 	        } else {
 	        	return redirect('/reportes/index')->with('warning','No se encontro ningun resultado evaluado el criterio de busqueda');
 	        } 
