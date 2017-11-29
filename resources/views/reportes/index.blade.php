@@ -50,6 +50,7 @@
         <h3 class="card-title"><b>Socios</b></h3>
         <p class="card-text">Reportes de socios por condicion y categoria.</p>
         <div class="py-3">
+          <a href="/reportes/sociosMorosos" class="list-group-item" target="_blank">Morocidad</a>
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
@@ -62,7 +63,7 @@
                </div>
             </li>
           </ul>
-          <a href="/reportes/sociosMorosos" class="list-group-item" target="_blank">Morocidad</a>
+          
         </div>
       </div>
     </div>
@@ -103,6 +104,17 @@
         <h3 class="card-title"><b>Liquidacion de Cobros</b></h3>
         <p class="card-text">Reportes sobre la liquidacion de cobros de los usuarios ejecutivos.</p>
         <div class="py-3">
+           <ul class="list-group-item">
+            <li class="list-unstyled dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morocidad:</a>
+              <div class="dropdown-menu">
+               <a class="dropdown-item" href="/reportes/users_morosos" target="_blank">Todos los ejecutivos</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_ejemoroso" target="_blank">Un ejecutivo</a>
+               </div>
+            </li>
+          </ul>
+          @include('reportes.tiposReportes.buscar_usuario_moroso')
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
@@ -116,17 +128,6 @@
             </li>
           </ul>
           @include('reportes.tiposReportes.buscar_cobros_fechas')
-          <ul class="list-group-item">
-            <li class="list-unstyled dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morocidad:</a>
-              <div class="dropdown-menu">
-               <a class="dropdown-item" href="/reportes/users_morosos" target="_blank">Todos los ejecutivos</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_ejemoroso" target="_blank">Un ejecutivo</a>
-               </div>
-            </li>
-          </ul>
-          @include('reportes.tiposReportes.buscar_usuario_moroso')
         </div>
       </div>
     </div>
