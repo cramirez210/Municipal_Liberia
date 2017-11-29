@@ -188,7 +188,8 @@ class Factura extends Model
                     ->join('socios', 'facturas.socio_id', 'socios.id')
                     ->join('personas', 'socios.persona_id', 'personas.id')
                     ->join('categorias','socios.categoria_id', '=', 'categorias.id')
-                    ->select('socios.id','socios.estado_id','personas.cedula' ,'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono','categorias.categoria')
+                    ->join('estados','socios.estado_id','=','estados.estado')
+                    ->select('socios.id','socios.estado_id','personas.cedula' ,'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono','categorias.categoria','estados.estado')
                     ->distinct()
                     ->where('facturas.estado_id', 3)
                     ->get();
