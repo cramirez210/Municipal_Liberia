@@ -114,7 +114,7 @@ class SociosController extends Controller
            $ruta = $filename;
         }else
         {
-           $ruta = '/socios/default.jpg';
+           $ruta = 'default.jpg';
         }
            $socio = Socio::create([
 
@@ -143,7 +143,7 @@ class SociosController extends Controller
 
         }else
         {
-            $ruta = '/socios/default.jpg';
+            $ruta = 'default.jpg';
         }
 
         $NuevaPersona = new Persona;
