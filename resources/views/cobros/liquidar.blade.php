@@ -7,12 +7,21 @@
 @if(count($cobros))
    <div class="card text-center mt-4">
   <div class="card-header text-primary">
-    Filtro de Busqueda
+    <b>Filtro de Busqueda</b> 
   </div>
 
   <div class="card-block">
 
-  @include('cobros.filtrar')
+     <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
+    <option selected value="0">N° de factura</option>
+    <option value="1">Usuario</option>
+    <option value="2">Periodo</option>
+    <option value="3">Fecha de cobro</option>
+  </select>
+
+  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: 1.8%;">
+        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
+  </label>
 </div>
 </div>
 @endif
@@ -52,7 +61,7 @@
 <div class="row">
 
 
- <div class="table-responsive">
+ <div class="table-responsive scroll">
         
     <table id="table" class="table table-hover ">
         <thead>
