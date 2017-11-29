@@ -26,7 +26,7 @@
 
 @include('mensajes.alertas')
 <!--_______________________________ Tabla _____________________________-->
-<form name="form_liquidar_cobro" class="form mr-5" method="POST" action="/facturas/imprimir" style="width: 100%;"> 
+<form name="form_liquidar_cobro" class="form mr-5" method="POST" action="/facturas/imprimir" target="_blank" style="width: 100%;"> 
     {{ csrf_field() }}
 
 <div class="card text-center mt-4">
