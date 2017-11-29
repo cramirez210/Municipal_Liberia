@@ -21,7 +21,7 @@
     </head>
     <body>
         <!-- Encabesado -->
-        <div id="barra" class="container-fluid navbar-light">
+        <div id="barra" class="container-fluid navbar-light print">
             <nav class="navbar navbar-toggleable-md container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -77,7 +77,7 @@
      </div>
      <!-- End contenido --> 
         <!-- footer -->
-    <footer class="text-white">
+    <footer class="text-white print">
       <div class="container-fluid footer-info d-flex align-items-center d-flex justify-content-center py-5">
         <div class="container">
           <div class="row text-center">

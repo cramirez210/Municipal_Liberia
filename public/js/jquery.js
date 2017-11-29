@@ -15,8 +15,8 @@ $('#gj').on('click', function(){
 
 $('#confirmar').on('click', function(){
 
-  var ficha=document.documentElement;
-       var ventimp=window.open(' ','popimpr');
+        var ficha=document.documentElement;
+        var ventimp=window.open(' ','popimpr');
         ventimp.document.write(ficha.innerHTML);
         ventimp.document.close();
         ventimp.print();

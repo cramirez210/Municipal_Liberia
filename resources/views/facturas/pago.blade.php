@@ -5,7 +5,7 @@
 @include('mensajes.alertas')
 
               <div class="card mx-auto" style="width: 75%; height: auto;">
-                <div class="card-header text-center text-primary">
+                <div class="card-header text-center text-primary print">
                   <b>Confirmar pago</b>
                   <ul class="nav nav-pills card-header-pills float-right">
                   <li class="nav-item">
@@ -85,7 +85,7 @@
               @empty
              
               <div class="col-md-15 mt-3">
-                  El socio queda sin facturas pendientes
+                  No tiene pendientes.
                 </div>
               @endforelse
               </div>
@@ -98,7 +98,7 @@
 
 
                         <div class="form-group">
-                            <div class="col-md-6 mt-4 ml-3 float-right">
+                            <div class="col-md-6 mt-4 ml-3 float-right  print">
                                 <button id="confirmar" type="submit" class="btn btn-success btn-md fa fa-check system-icons">
                                     Confirmar
                                 </button>
