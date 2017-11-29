@@ -23,7 +23,7 @@
      Municipal Liberia
     @endcomponent
 
-    <p>Este mensaje se envió automáticamente, por favor no responder. Más información al número de teléfono: +(506) 2666-0169</p>
+    <p>Este mensaje se envió automáticamente, por favor no responder. Más información al número de teléfono: +(506) 4700-5179</p>
 </body>
 
 @endcomponent
