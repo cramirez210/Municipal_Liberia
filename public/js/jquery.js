@@ -1,7 +1,6 @@
  $(document).ready(function(){
 
-$('.imprimir').on('click', function(){
-    var id = $(this).parents("tr").find("td").eq(0).text();
+$('#gj').on('click', function(){
 
     $.get('/imprimir/factura/'+id, function(result){
     
@@ -11,6 +10,17 @@ $('.imprimir').on('click', function(){
         ventimp.print();
         ventimp.close(); 
        });
+    
+  });
+
+$('#confirmar').on('click', function(){
+
+  var ficha=document.documentElement;
+       var ventimp=window.open(' ','popimpr');
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close(); 
     
   });
 

@@ -18,7 +18,7 @@
               </ul>
                 </div>
 
-             <div class="card-block">
+             <div id="prueba" class="card-block">
     <div class="container-fluid mt-4 w-100">
       <form class="form-horizontal" action="/facturas/liquidar/{{$socio->socio_id}}" method="POST">
                         {{ csrf_field() }}
@@ -99,7 +99,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right">
-                                <button type="submit" class="btn btn-success btn-md fa fa-check system-icons">
+                                <button id="confirmar" type="submit" class="btn btn-success btn-md fa fa-check system-icons">
                                     Confirmar
                                 </button>
                             </div>
