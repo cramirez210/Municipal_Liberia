@@ -308,7 +308,7 @@ class SociosController extends Controller
           return redirect('/socios/show/'.$id)->with('info','Socio Activado Exitosamente!');
 
         } else {
-          if (count($facturas)>1) {
+          if (count($facturas)>=1) {
                 return redirect('/socios/show/'.$id)->with('error','ERROR -- Socio con facturas perdientes!');
             } else {   
                 $socio->estado_id = 2;

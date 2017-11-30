@@ -19,7 +19,7 @@ class CreatePersonasTable extends Migration
             $table->string('segundo_nombre')->nullable();
             $table->string('primer_apellido');
             $table->string('segundo_apellido');
-            $table->integer('cedula')->unique();
+            $table->string('cedula')->unique();
             $table->date('fecha_nacimiento');
             $table->string('email');
             $table->string('telefono');

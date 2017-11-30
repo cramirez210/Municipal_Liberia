@@ -32,7 +32,7 @@ class CrearUsuariosRequest extends FormRequest
             'primer_apellido' => ['required','max:25'],
             'segundo_apellido' => ['required','max:25'],
             'fecha_nacimiento' => ['required','date_format:Y-m-d'],
-            'cedula' => ['required','max:30'],
+            'cedula' => ['required', 'numeric','min:9', 'max:30'],
             'email' => ['required','max:150'],
             'telefono' => ['required','numeric','min:8'],
             'direccion' => ['required','max:260']
@@ -61,6 +61,8 @@ class CrearUsuariosRequest extends FormRequest
 
             'cedula.required'=> 'Por favor, escribir la cédula.',
             'cedula.max'=>'La cédula no puede ser mayor a 30 caracteres.',
+            'cedula.numeric'=> 'El campo cédula solo acepta números.',
+            'cedula.min'=>'La cédula debe contener al menos 9 caracteres.',
 
             'email.required'=> 'Por favor, escribir el correo electrónico.',
             'email.max'=>'El correo electrónico no puede ser mayor a 150 caracteres.',

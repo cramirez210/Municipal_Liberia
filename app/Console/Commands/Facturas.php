@@ -67,6 +67,15 @@ class Facturas extends Command
             if(count($facturas_pendientes) == 3){
 
                 $model_factura->InactivarSocio($socio->id);
+
+                foreach ($facturas_pendientes as $factura) {
+
+                    $facturaBD = Factura::find($factura->id);
+
+                    $facturaBD->estado_id = 5;
+
+                    $facturaBD->save();
+                }
             }
             else{
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\SociosController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class Cobro extends Model
 {
@@ -16,13 +17,19 @@ class Cobro extends Model
 
         $user_id = Auth::user()->id;
 
+        $user = User::find($user_id);
+
+        if($user->rol_id != 1){
+
         $cobro = new Cobro;
 
         $cobro->user_id = $user_id;
         $cobro->factura_id = $factura_id;
         $cobro->estado_id = $estado_id;
 
-        $cobro->save();
+        $cobro->save();            
+        }
+
     }
 
     public function select()

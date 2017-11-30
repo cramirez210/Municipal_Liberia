@@ -30,7 +30,7 @@ class CreateSocioRequest extends FormRequest
             'primer_apellido' => ['required','max:25'],
             'segundo_apellido' => ['required','max:25'],
             'fecha_nacimiento' => ['required','date'],
-            'cedula' => ['required','max:10','min:9'],
+            'cedula' => ['required', 'numeric','min:9', 'max:30'],
             'email' => ['required','max:150'],
             'telefono' => ['required','max:50','min:8'],
             'direccion' => ['required','max:260'],
