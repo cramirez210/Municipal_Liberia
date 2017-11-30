@@ -1,17 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="card text-center mt-5">
+ <div class="card-header "  id="barra">
+    <h4>Bienvenido(a) {{ Auth::user()->nombre_usuario}}</h4>
+ </div>
+  <div class="card-block">
+    <blockquote class="card-blockquote">
+      <p>Ha ingresado sesión.</p>
+      
+    </blockquote>
+     <a href="/" class="btn btn-success fa fa-home system-icons"> Página Principal</a>
+  </div>
 </div>
+@endsection
+
+@section('titulo')
+    Bienvenido(a)
 @endsection
