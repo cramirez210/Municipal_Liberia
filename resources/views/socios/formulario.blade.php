@@ -113,7 +113,7 @@
 
                 <div class="col-md-auto  ml-lg-5 ml-xl-5">
 
-                    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="2000-12-01" autofocus required>
+                    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" autofocus required>
    
                         @if ($errors->has('fecha_nacimiento'))
                             <span class="form-control-feedback">
@@ -170,7 +170,7 @@
                 <label for="direccion" class=" form-control-label">Dirección</label>
 
                 <div class="col-md-auto  ml-lg-5 ml-xl-5">
-                    <textarea id="direccion" type="textarea" placeholder="Ejemplo: Guanacaste, Liberia, del parque central 300m sur ..." class="form-control" name="direccion" value="{{ old('direccion') }}" required autofocus></textarea>
+                    <textarea id="direccion" type="textarea" placeholder="Ejemplo: Guanacaste, Liberia, del parque central 300m sur ..." class="form-control" name="direccion" required autofocus>{{ old('direccion') }}</textarea>
 
                         @if ($errors->has('direccion'))
                             <span class="form-control-feedback">
