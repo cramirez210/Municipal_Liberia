@@ -18,7 +18,6 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tabb" aria-controls="tabb" role="tab">Inactivos </a>
       </li>
-      
     </ul>
   </div>
   <div class="card-body tab-content">

@@ -210,7 +210,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/reportes/cobros_liquidados','ReportesController@cobrosLiquidados');
 });
 
-
-
-	
+Route::get('/usuarios/transferir/{id}','UsuariosController@transferir');
+Route::get('/usuarios/seleccionarNuevoEjecutivo','UsuariosController@seleccionarNuevoEjecutivo');
+Route::get('/usuarios/finalizarTransferencia/{idSocio}','UsuariosController@finalizarTransferencia');	
 

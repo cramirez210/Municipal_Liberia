@@ -371,5 +371,43 @@ class UsuariosController extends Controller
         return view('socios.asignarEjecutivo', compact('usuarios', 'rol_id'));
     else
         return view('socios.asignarEjecutivo', compact('usuarios'));
-    }   
+    }
+
+    public function transferir($id)
+       {
+            $usuario = User::find($id);
+
+            $socios = $sociosActivos = Socio::where([
+                        ["user_id","=",$id],
+                        ["estado_id","=",1],
+                        ])->paginate(15);
+
+           return view('/usuarios/transferirSocios', compact('usuario', 'socios')); 
+       }
+
+    public function seleccionarNuevoEjecutivo(Request $request)
+       {
+
+        $socio = Socio::find($request->input('radio'));
+        $idSocio = $socio->id;
+        $usuarios = $usuarios = DB::table('users')
+        ->join('personas', 'users.persona_id', '=', 'personas.id')
+        ->select('users.id', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
+        ->where('users.rol_id',3)
+        ->where('users.estado_id',1)
+        ->whereNotIn('users.id',[$socio->user_id])
+        ->paginate(10);
+
+            return view('/usuarios/seleccionarEjecutivo',compact('usuarios','idSocio'));
+       }
+
+    public function finalizarTransferencia($idSocio,Request $request)
+       {
+            //dd($request->all(),$idSocio);
+           $socio = Socio::find($idSocio);
+           $socio->user_id = $request->input('idNuevoEjecutivo');
+           $socio->save();
+
+           return redirect('/usuarios/home/')->with('info','Socio transferido exitosamente!');
+       }   
 }

@@ -17,7 +17,8 @@
 
          <div class="dropdown-divider"></div>
             <a class="dropdown-item text-info" href="/usuarios/socios/{{ $usuario->id }}">Ver socios relacionados</a>
-
+        <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="/usuarios/transferir/{{ $usuario->id }}">Transferir socio</a>
         <div class="dropdown-divider"></div>
             <a class="dropdown-item text-success" href="/usuarios/cobros/{{ $usuario->id }}">Ver cobros efectuados</a>
         </div>
