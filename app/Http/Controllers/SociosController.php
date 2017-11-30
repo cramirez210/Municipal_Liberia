@@ -8,6 +8,7 @@ use App\Factura;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Requests\CreateSocioRequest;
+use Illuminate\Support\Facades\Input;
 use App\Persona;
 use App\Socio;
 use App\User;
@@ -70,6 +71,11 @@ class SociosController extends Controller
 
     public function create(CreateSocioRequest $request)
     {
+        if (request('identificacion') == 0) {
+            return back()->withInput(Input::all())
+                    ->with('error', 'Por favor seleccione el tipo de identificación.');
+        }
+
         $objeto = new UsuariosController;
         $categoria = $this->FindIdCategoriaSocio($request->input('categoria_id'));
         $ejecutivo = $objeto->obtenerUsuarioPorCriterio(2,$request->input('ejecutivo'));

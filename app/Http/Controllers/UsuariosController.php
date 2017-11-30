@@ -12,6 +12,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class UsuariosController extends Controller
 {
@@ -72,6 +73,10 @@ class UsuariosController extends Controller
      */
     public function create(CrearUsuariosRequest $request)
     {
+        if (request('identificacion') == 0) {
+            return back()->withInput(Input::all())
+                    ->with('error', 'Por favor seleccione el tipo de identificación.');
+        }
 
           $persona = new Persona;
             $persona = $this->encontrarPorCedula($request);

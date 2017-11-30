@@ -55,7 +55,7 @@
   </div> 
 <div class="col-md-10 offset-md-1 mt-4">
 <div class="row">
-  <div class="table-responsive mr-5">
+  <div class="table-responsive mr-5 scroll">
         
     <table id="table" class="table table-hover ">
         <thead>

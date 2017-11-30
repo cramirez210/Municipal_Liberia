@@ -304,7 +304,7 @@ class FacturaController extends Controller
 
         if ($estado != 0) 
             return $query->whereIn('facturas.estado_id', [$estado])->paginate(5);
-        else return $query->paginate(5);
+        else return $query->paginate(10);
     }
 
     public function list(){
@@ -312,7 +312,7 @@ class FacturaController extends Controller
         $factura = new Factura;
 
         $facturas = $factura->select()
-            ->paginate(5);
+            ->paginate(10);
 
         return view('facturas.list', compact('facturas'));
     }
@@ -322,7 +322,7 @@ class FacturaController extends Controller
         $factura = new Factura;
 
         $facturas = $factura->ObtenerPorCriterio('facturas.socio_id', $socio_id)
-                    ->paginate(5);
+                    ->paginate(10);
 
         $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
@@ -346,7 +346,7 @@ class FacturaController extends Controller
      $factura = new Factura;
 
      $facturas = $factura->ObtenerPorSocioEstado($socio_id,$estado_id)
-                 ->paginate(5);
+                 ->paginate(10);
         
      $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
@@ -360,7 +360,7 @@ class FacturaController extends Controller
      $factura = new Factura;
 
      $facturas = $factura->ObtenerPorSocioEstado($socio_id, $estado_id)
-                 ->paginate(5);
+                 ->paginate(10);
     
      $socio = $factura->select_socio()
             ->where('socios.id', $socio_id)
@@ -503,7 +503,7 @@ class FacturaController extends Controller
         $factura = new Factura;
 
         $facturas = $factura->ObtenerPorFecha($desde, $hasta)
-                    ->paginate(5);
+                    ->paginate(10);
         
         return view('facturas.list_fecha', compact('facturas', 'desde', 'hasta'));
     }
@@ -513,7 +513,7 @@ class FacturaController extends Controller
         $factura =  new Factura;
 
         $facturas = $factura->ObtenerPorFechaCriterio($desde, $hasta, 'facturas.estado_id', $estado_id)
-                    ->paginate(5);
+                    ->paginate(10);
         
         return view('facturas.list_fecha', compact('facturas', 'desde', 'hasta'));
     }

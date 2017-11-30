@@ -23,7 +23,7 @@ class CobroController extends Controller
         $cobro = new Cobro;
 
         $cobros = $cobro->select()
-                  ->paginate(5);
+                  ->paginate(10);
 
         return view('cobros.list', compact('cobros'));
     }
@@ -33,7 +33,7 @@ class CobroController extends Controller
         $cobro = new Cobro;
 
         $cobros = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id)
-                    ->paginate(5);
+                    ->paginate(10);
 
         $user = $cobro->select_user()->where('users.id', $user_id)->first();
         
@@ -45,7 +45,7 @@ class CobroController extends Controller
         $cobro = new Cobro;
 
         $cobros = $cobro->ObtenerPorCriterio('cobros.estado_id', $estado_id)
-                    ->paginate(5);
+                    ->paginate(10);
         
         return view('cobros.list', compact('cobros', 'estado_id'));
     }
@@ -55,7 +55,7 @@ class CobroController extends Controller
      $cobro = new Cobro;
 
      $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
-                ->paginate(5);
+                ->paginate(10);
 
      $user = $cobro->select_user()->where('users.id', $user_id)->first();
         
@@ -68,7 +68,7 @@ class CobroController extends Controller
      $cobro = new Cobro;
 
      $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, 3)
-                ->paginate(5);
+                ->paginate(10);
 
      $user = $cobro->select_user()->where('users.id', $user_id)->first();
         
@@ -178,7 +178,7 @@ class CobroController extends Controller
 
         if ($estado != 0) 
             $cobros = $query->whereIn('cobros.estado_id', [$estado])->paginate(5);
-        else $cobros = $query->paginate(5);
+        else $cobros = $query->paginate(10);
 
         return $cobros;
     }
@@ -350,7 +350,7 @@ class CobroController extends Controller
         $cobro = new Cobro;
 
         $cobros = $cobro->ObtenerPorFecha($desde, $hasta)
-                    ->paginate(5);
+                    ->paginate(10);
         
         return view('cobros.list_fecha', compact('cobros', 'desde', 'hasta'));
     }
@@ -360,7 +360,7 @@ class CobroController extends Controller
         $cobro = new Cobro;
 
         $cobros = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.estado_id', $estado_id)
-                    ->paginate(5);
+                    ->paginate(10);
         
         return view('cobros.list_fecha', compact('cobros', 'desde', 'hasta'));
     }
