@@ -20,8 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () { return view('layouts/master'); });
 
 
-Route::get('/usuarios/showCreate','UsuariosController@showCreate');
-Route::post('/usuarios/create','UsuariosController@create');
+
 Route::get('/correo/enviar','CorreoController@notificar');
 
 Route::get('/usuarios/get/links/{id}', function ($id) {
@@ -43,6 +42,8 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/personas/editar/{user}','PersonasController@update');
 	Route::get('/usuarios/cobros/{id}','UsuariosController@ReporteDeCobros');
 	Route::get('/usuario/estado/{user}','UsuariosController@cambiarEstado');
+	Route::get('/usuarios/showCreate','UsuariosController@showCreate');
+	Route::post('/usuarios/create','UsuariosController@create');
 
 	Route::get('/conf/index', 'ConfiguracionController@index');
 	Route::get('/roles/index', 'RolesController@index');
@@ -85,6 +86,8 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/categoria/create', 'CategoriaController@create');
 	Route::get('/categoria/{categoria}', 'CategoriaController@show');
 	Route::post('/categoria/update/{categoria}', 'CategoriaController@update');
+
+
 
 
 });
