@@ -16,11 +16,12 @@ class CreateComisionesTable extends Migration
             Schema::create('comisiones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->date('fecha');
-            $table->float('monto');
-            $table->float('comision');
+            $table->double('monto');
+            $table->double('comision');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
