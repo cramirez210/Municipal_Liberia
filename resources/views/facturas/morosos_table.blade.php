@@ -24,7 +24,7 @@
         @empty
         <div class="alert alert-warning">
        
-        <span class="card-text text-warning "> No se encontraron facturas </span>
+        <span class="card-text text-warning "> No se encontraron socios morosos </span>
 
         </div>
         <br>

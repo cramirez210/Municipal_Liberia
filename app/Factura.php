@@ -187,10 +187,9 @@ class Factura extends Model
           return DB::table('facturas')
                     ->join('socios', 'facturas.socio_id', 'socios.id')
                     ->join('personas', 'socios.persona_id', 'personas.id')
-                    ->join('categorias','socios.categoria_id', '=', 'categorias.id')
-                    ->join('estados','socios.estado_id','=','estados.estado')
-                    ->select('socios.id','socios.estado_id','personas.cedula' ,'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono','categorias.categoria','estados.estado')
-                    ->distinct()
+                    ->join('categorias','socios.categoria_id', 'categorias.id')
+                    ->join('estados','socios.estado_id','estados.id')
+                    ->select('socios.id','socios.estado_id','personas.*', 'personas.id as persona_id','categorias.categoria','estados.estado')
                     ->where('facturas.estado_id', 3)
                     ->get();
     }

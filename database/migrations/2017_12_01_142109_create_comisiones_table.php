@@ -4,21 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDescuentosTable extends Migration
+class CreateComisionesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-     public function up()
+    public function up()
     {
-        Schema::create('descuentos', function (Blueprint $table) {
+            Schema::create('comisiones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('categoria_id')->unsigned();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
-            $table->float('semestral');
-            $table->float('anual');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->date('fecha');
+            $table->float('monto');
+            $table->float('comision');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateDescuentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('descuentos');
+        Schema::dropIfExists('comisiones');
     }
 }
