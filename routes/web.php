@@ -1,4 +1,3 @@
-
 <?php
 
 
@@ -209,4 +208,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 });
 	
 Auth::routes();	
+
+
+
 
