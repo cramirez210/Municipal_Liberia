@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/facturas/pendientes/{socio}/{id}','FacturaController@ListarPendientesSocio');
 	//Route::get('/facturas/buscar','FacturaController@BuscarPorSocio');
 	Route::post('/facturas/buscar','FacturaController@BuscarSocio');
-	Route::get('/facturas/list', 'FacturaController@list');
+	Route::get('/facturas/list', 'FacturaController@lista');
 	Route::get('/facturas/morosos', 'FacturaController@ListarSociosMorosos');
 	//Route::get('/facturas/socios/morosos/consultar', 'FacturaController@ConsultarMorosidad');
 	Route::get('/facturas/socios/morosos/consultar/{criterio}/{valor}', 'FacturaController@BuscarMoroso');
@@ -140,7 +140,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/cobros/user/{id}','CobroController@ListarPorUsuario');
 	Route::get('/cobros/list/{user}/{id}','CobroController@ListarPorUsuarioEstado');
 	Route::get('/cobros/pendientes/{id}','CobroController@PendientesUsuario');
-	Route::get('/cobros/list', 'CobroController@list');
+	Route::get('/cobros/list', 'CobroController@lista');
 	Route::get('/cobros/liquidar/{id}', 'CobroController@liquidarPorEstado');
 	Route::get('/cobros/liquidar/{user}/{id}', 'CobroController@liquidarPorUsuarioEstado');
 	Route::post('/cobros/confirmar', 'CobroController@confirmar');

@@ -18,7 +18,7 @@ class CobroController extends Controller
         return view('facturas.index');
     }
 
-    public function list()
+    public function lista()
     {
         $cobro = new Cobro;
 
