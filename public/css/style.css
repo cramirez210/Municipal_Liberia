@@ -101,4 +101,5 @@
 .scroll{
     max-height:900px;
     overflow-x:scroll;
+    overflow-x: hidden;
 }
