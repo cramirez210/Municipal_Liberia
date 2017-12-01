@@ -10,7 +10,7 @@
 
 <div class="card text-center mt-4">
 <div class="card-header">
-  <div class="card-tittle text-primary">
+  <div class="card-tittle text-primary h3">
     @if(isset($estado_id))
         @if($estado_id == 3) <b>Facturas pendientes</b> @endif
         @if($estado_id == 4) <b>Facturas pagadas</b> @endif
@@ -18,12 +18,13 @@
     @else <b>Todas las facturas</b>
     @endif
   </div>
-    <ul class="nav nav-tabs nav-fill card-header-tabs" id="outerTab" role="tablist">
-      <li class="nav-item">
+
+    <ul class="row" id="outerTab" role="tablist">
+      <li class="col-md-4">
         <a class="nav-link text-primary" href="/facturas/list">Listado de Facturas</a>
       </li>
   
-         <li class="nav-item dropdown ">
+         <li class="col-md-4 dropdown ">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/list">Todas las facturas</a>
@@ -33,8 +34,8 @@
             <a class="dropdown-item" href="/facturas/list/4">Facturas pagadas</a>
         </div>
     </li>
-    <li class="nav-item">
-      <center class="col-md-2 mr-5">
+    <li class="col-md-4 ">
+      <center class="col-12">
         <a href="/facturas/index" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
@@ -48,21 +49,11 @@
 
 <div  class="row">
 
-<div class="card-body tab-content">
-    <div class="tab-pane active" id="tabc" role="tabpanel">
-    
-    <div class="container-fluid col-md-12">
-<div class="row">
 
- <div class="table-responsive ml-4">
 
   @include('facturas.table')
 
-    </div>
 
- </div>
-</div>
-</div>
   <div class="mt-2 mx-auto float-right">
         @if(count($facturas))
 
@@ -70,7 +61,7 @@
 
         @endif 
     </div>
-</div>
+
     </div>
 
  </div>

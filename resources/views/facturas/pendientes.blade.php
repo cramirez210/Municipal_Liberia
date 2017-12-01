@@ -5,7 +5,7 @@
 @if(count($facturas))
   <div class="card text-center mt-2">
   <div class="card-header text-primary">
-    Filtro de Busqueda
+    Filtro de búsqueda
   </div>
 
   <div class="card-block">
@@ -63,7 +63,7 @@
             <th class="text-center">N° factura</th>
             <th class="text-center">Nombre completo</th>
             <th class="text-center">Periodo</th>
-            <th class="text-center">Opcion</th>
+            <th class="text-center">Opción</th>
             </tr>
         </thead>
     <tbody>

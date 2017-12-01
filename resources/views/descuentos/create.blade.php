@@ -13,7 +13,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link text-primary" href="/conf/index"> <h5> Regresar a Configuracion </h5></a>
+        <a class="nav-link text-primary" href="/conf/index"> <h5> Regresar a configuración </h5></a>
       </li>
 
 
@@ -120,7 +120,7 @@
     <table class="table table-hover ">
         <thead>
             <tr>
-            <th class="text-center">Categoria</th>
+            <th class="text-center">Categoría</th>
             <th class="text-center">Semestral</th>
             <th class="text-center">Anual</th>
             <th class="text-center">Opciones</th>

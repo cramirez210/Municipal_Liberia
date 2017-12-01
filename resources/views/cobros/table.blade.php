@@ -10,7 +10,7 @@
             <th class="text-center">Fecha cobro</th>
             <th class="text-center">Monto</th>
             <th class="text-center">Estado</th>
-            <th class="text-center">Opcion</th>
+            <th class="text-center">Opción</th>
             </tr>
         </thead>
     <tbody>
