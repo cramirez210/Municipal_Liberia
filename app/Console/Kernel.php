@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('facturas:generar')
-                  ->monthlyOn(1, '08:00');
+                  ->monthlyOn(1, '01:00');
     }
 
     /**

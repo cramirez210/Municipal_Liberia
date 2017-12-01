@@ -403,7 +403,6 @@ class UsuariosController extends Controller
 
     public function finalizarTransferencia($idSocio,Request $request)
        {
-            //dd($request->all(),$idSocio);
            $socio = Socio::find($idSocio);
            $socio->user_id = $request->input('idNuevoEjecutivo');
            $socio->save();

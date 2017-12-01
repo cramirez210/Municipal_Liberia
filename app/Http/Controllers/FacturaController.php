@@ -23,6 +23,7 @@ class FacturaController extends Controller
 {
 
     public function index(){
+
         return view('facturas.index');
     }
 
@@ -307,7 +308,7 @@ class FacturaController extends Controller
         else return $query->paginate(10);
     }
 
-    public function list(){
+    public function lista(){
 
         $factura = new Factura;
 

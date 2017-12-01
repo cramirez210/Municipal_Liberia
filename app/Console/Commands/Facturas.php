@@ -54,7 +54,7 @@ class Facturas extends Command
         $socios_controller = new SociosController;
 
         $correo = new CorreoController;
-
+0
         $socios_activos = $socios_controller->sociosPorEstado(1);
 
         if(count($socios_activos)){

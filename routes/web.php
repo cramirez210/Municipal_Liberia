@@ -13,8 +13,6 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () { return view('layouts/master'); });
@@ -87,9 +85,9 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/categoria/{categoria}', 'CategoriaController@show');
 	Route::post('/categoria/update/{categoria}', 'CategoriaController@update');
 
-
-
-
+	Route::get('/usuarios/transferir/{id}','UsuariosController@transferir');
+	Route::get('/usuarios/seleccionarNuevoEjecutivo','UsuariosController@seleccionarNuevoEjecutivo');
+	Route::get('/usuarios/finalizarTransferencia/{idSocio}','UsuariosController@finalizarTransferencia');
 });
 
 	Route::group(['middleware' => ['auth','EjecutivoyAdministrador']], function() {
@@ -209,8 +207,6 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/reportes/cobros_pendientes','ReportesController@cobrosPendientes');
 	Route::get('/reportes/cobros_liquidados','ReportesController@cobrosLiquidados');
 });
-
-Route::get('/usuarios/transferir/{id}','UsuariosController@transferir');
-Route::get('/usuarios/seleccionarNuevoEjecutivo','UsuariosController@seleccionarNuevoEjecutivo');
-Route::get('/usuarios/finalizarTransferencia/{idSocio}','UsuariosController@finalizarTransferencia');	
+	
+Auth::routes();	
 
