@@ -180,7 +180,8 @@ class ReportesController extends Controller
         }
     }
 
-    public function facturasPendientes(){
+    public function facturasPendientes()
+    {
 
         $factura = new Factura;
 
@@ -299,6 +300,22 @@ class ReportesController extends Controller
        return redirect('/reportes/index')->with('warning','El valor ingresado no coincide con ningún usuario.');
 
 
-}
+    }
+
+    public function facturasPagadas($value='')
+    {
+        $factura = new Factura;
+
+        $facturas = $factura->ObtenerPorCriterio('facturas.estado_id', 4)->get();
+
+        $tipoReporte = 'Todas las facturas pagadas';
+        $hora = Carbon::now();
+
+        if (count($facturas)) {
+            return view('reportes.tiposReportes.reporteFacturas', compact('facturas', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron facturas pagadas.');
+        }
+    }
 
 }

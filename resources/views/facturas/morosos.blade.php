@@ -29,9 +29,9 @@
     <div class="tab-pane active" id="tabc" role="tabpanel">
     
     <div class="container-fluid col-md-9">
-<div class="row">
+<div class="row scroll" >
 
- <div class="table-responsive ml-4">
+ <div class="table-responsive ml-4 ">
 
      
  @include('facturas.morosos_table')

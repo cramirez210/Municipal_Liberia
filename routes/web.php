@@ -201,6 +201,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/reportes/unaFactura','ReportesController@factura');
 	Route::post('/reportes/facturas_fechas','ReportesController@facturasFechas');
 	Route::get('/reportes/facturas_pendientes','ReportesController@facturasPendientes');
+	Route::get('/reportes/facturasPagadas','ReportesController@facturasPagadas');
 
 	Route::post('/reportes/cobros_fechas','ReportesController@cobrosFechas');
 	Route::get('/reportes/cobros_pendientes','ReportesController@cobrosPendientes');

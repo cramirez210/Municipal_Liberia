@@ -87,6 +87,8 @@
                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_facturas_fechas" target="_blank">Facturas rago de fecha</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="/reportes/facturas_pendientes" target="_blank">Facturas pendientes</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="/reportes/facturasPagadas" target="_blank">Facturas pagadas</a>
                </div>
             </li>
           </ul>
