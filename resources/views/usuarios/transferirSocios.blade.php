@@ -102,16 +102,7 @@
     
     </tbody>
 
-    </table>
-
-     <div class="mt-2 mx-auto">
-        @if(count($socios))
-
-       {{ $socios->links('pagination::bootstrap-4') }}
-
-        @endif 
-
-    </div>   
+    </table>  
 
     @endif
 

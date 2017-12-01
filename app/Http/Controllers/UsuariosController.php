@@ -380,7 +380,7 @@ class UsuariosController extends Controller
             $socios = $sociosActivos = Socio::where([
                         ["user_id","=",$id],
                         ["estado_id","=",1],
-                        ])->paginate(15);
+                        ])->get();
 
            return view('/usuarios/transferirSocios', compact('usuario', 'socios')); 
        }
@@ -388,8 +388,11 @@ class UsuariosController extends Controller
     public function seleccionarNuevoEjecutivo(Request $request)
        {
 
-        $socio = Socio::find($request->input('radio'));
-        $idSocio = $socio->id;
+        $socios = Input::except('_token');
+
+        if($socios){
+            $socio = Socio::find(array_values($socios)[0]);
+
         $usuarios = $usuarios = DB::table('users')
         ->join('personas', 'users.persona_id', '=', 'personas.id')
         ->select('users.id', 'personas.cedula','personas.primer_nombre','personas.segundo_nombre', 'personas.primer_apellido', 'personas.segundo_apellido','users.nombre_usuario')
@@ -398,15 +401,25 @@ class UsuariosController extends Controller
         ->whereNotIn('users.id',[$socio->user_id])
         ->paginate(10);
 
-            return view('/usuarios/seleccionarEjecutivo',compact('usuarios','idSocio'));
+            return view('/usuarios/seleccionarEjecutivo',compact('usuarios','socios'));
+        }else
+          return back()->with('warning', 'No ha seleccionado a ningún socio.');
        }
 
-    public function finalizarTransferencia($idSocio,Request $request)
+    public function finalizarTransferencia(Request $request)
        {
-           $socio = Socio::find($idSocio);
+        if($request->input('idNuevoEjecutivo') != null){
+
+                    $socios = Input::except('_token');
+
+        foreach ($socios as $socio_id) {
+           $socio = Socio::find($socio_id);
            $socio->user_id = $request->input('idNuevoEjecutivo');
            $socio->save();
+        }
 
            return redirect('/usuarios/home/')->with('info','Socio transferido exitosamente!');
+        }else
+          return back()->with('warning', 'No ha seleccionado a ningún usuario.'); 
        }   
 }

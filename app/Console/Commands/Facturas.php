@@ -82,7 +82,7 @@ class Facturas extends Command
          $factura = new Factura; 
          $ultima_factura = DB::table('facturas')
                    ->where('facturas.socio_id', $socio->id)
-                   ->latest()
+                   ->orderBy('periodo', 'desc')
                    ->first();    
 
          $categoria = $model_factura->ObtenerCategoriaDeSocio($socio->id);
@@ -104,7 +104,7 @@ class Facturas extends Command
          }
          else{
          
-         $fecha_ultima_factura = new Carbon($ultima_factura->created_at);
+         $fecha_ultima_factura = new Carbon($ultima_factura->periodo);
          $fecha_actual = Carbon::now();
 
          if($fecha_ultima_factura->month < $fecha_actual->month){
@@ -125,6 +125,8 @@ class Facturas extends Command
          }
          }
             }
+
+        sleep(10);
         }
         }
 
