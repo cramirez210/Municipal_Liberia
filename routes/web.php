@@ -1,4 +1,3 @@
-
 <?php
 
 
@@ -87,7 +86,7 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 
 	Route::get('/usuarios/transferir/{id}','UsuariosController@transferir');
 	Route::get('/usuarios/seleccionarNuevoEjecutivo','UsuariosController@seleccionarNuevoEjecutivo');
-	Route::get('/usuarios/finalizarTransferencia/{idSocio}','UsuariosController@finalizarTransferencia');
+	Route::get('/usuarios/finalizarTransferencia','UsuariosController@finalizarTransferencia');
 });
 
 	Route::group(['middleware' => ['auth','EjecutivoyAdministrador']], function() {

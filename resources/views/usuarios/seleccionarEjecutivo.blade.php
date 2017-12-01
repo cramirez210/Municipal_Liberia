@@ -4,15 +4,35 @@
 
 @include('mensajes.alertas')
 
-<button class="btn btn-success btn-md mt-3 fa fa-search system-icons mb-2" data-toggle="modal" data-target="#filtrar_users"> Realizar una búsqueda</button>
-@include('socios.filtrarEjecutivo')
+@if(count($usuarios))
+  <div class="card text-center mt-2">
+  <div class="card-header text-primary">
+    Filtro de Busqueda
+  </div>
+
+  <div class="card-block">
+
+  <select id="select" class="custom-select mb-2 mb-sm-0" name="Criterio">
+    <option selected value="0">Nombre de usuario</option>
+    <option value="1">Nombre completo</option>
+    <option value="2">Cédula</option>
+  </select>
+
+  <label class="custom-control custom-checkbox mb-2 mb-sm-0" style="margin-left: 1.8%;">
+        <input id="valor" type="text" class="form-control" placeholder="Buscar" type="text" name="valor" value="{{ old('valor') }}" onkeyup="filtrar()" required autofocus>
+  </label>
+</div>
+</div>
+@endif
 
 <!--_______________________________ Tabla _____________________________-->
-<form method="GET" action="/usuarios/finalizarTransferencia/{{ $idSocio }}" >
+<form method="GET" action="/usuarios/finalizarTransferencia" >
   {{ csrf_field() }}
 <div class="card text-center ">
 
-
+  @foreach ($socios as $socio)
+    <input type="hidden" name="{{$socio}}" value="{{$socio}}">
+@endforeach
 
 
   <div class="card-header">
