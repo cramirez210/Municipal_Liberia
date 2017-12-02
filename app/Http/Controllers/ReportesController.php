@@ -62,7 +62,7 @@ class ReportesController extends Controller
     	$usuario = UsuariosController::obtenerUsuarioPorCriterio($request->input('Criterio'), $request->input('valor'));
     	//dd($usuario->all());
     	$listas = SociosController::sociosPorUsuarioId($usuario[0]->id); 
-    	$tipoReporte = 'Socio sdel Usuarios '.$usuario[0]->primer_nombre." ".$usuario[0]->primer_apellido." ".$usuario[0]->segundo_apellido;
+    	$tipoReporte = 'Socios del usuario '.$usuario[0]->primer_nombre." ".$usuario[0]->primer_apellido." ".$usuario[0]->segundo_apellido;
     	$hora = Carbon::now();
     	if (count($listas)) {
     		return view('/reportes/tiposReportes/reporteSocios',compact('listas','tipoReporte','hora'));
@@ -140,7 +140,7 @@ class ReportesController extends Controller
 	    	$DB = new Factura;
 
 	    	$factura = $DB->ObtenerPorId($request->input('valor'));
-	        $tipoReporte = 'Todos los socios morosos';
+	        $tipoReporte = 'Factura de un socio específico';
 	        $hora = Carbon::now();
 
 	        if ($factura!=null) {
@@ -263,7 +263,7 @@ class ReportesController extends Controller
         $DB = new Cobro;
 
         $morosos = $DB->ObtenerUsuariosMorosos();
-        $tipoReporte = 'Todos los usuarios morosos';
+        $tipoReporte = 'Morocidad de usuarios ejecutivos';
         $hora = Carbon::now();
 
         if (count($morosos)) {
