@@ -14,7 +14,7 @@
        <input class="text-danger text-center round" type="text" value="Nº {{$factura->id}}" readonly>
       </div>
       <div class="col-12">
-        <input class="text-center sdisabled round" type="text" value="{{$factura->created_at}}" readonly>
+        <input class="text-center sdisabled round" type="text" value="{{$hora}}" readonly>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@
             <p class="pt-2"><b>PERIODO:</b></p>
           </div>
           <div class="col-7">
-            <p class="pt-2">{{$factura->periodo}}</p>
+            <p class="pt-2"> {{date('m-Y', strtotime($factura->periodo))}}</p>
           </div>
         </div>
       </td>

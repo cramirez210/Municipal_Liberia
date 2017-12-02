@@ -142,7 +142,10 @@ class ReportesController extends Controller
 
 	    	$factura = $DB->ObtenerPorId($request->input('valor'));
 	        $tipoReporte = 'Factura de un socio específico';
-	        $hora = Carbon::now();
+	        $hora =  Carbon::now()->format('d-m-Y');
+
+
+
 
 	        if ($factura!=null) {
 	        	return view('/reportes/tiposReportes/reporteFactura',compact('factura','tipoReporte','hora'));
