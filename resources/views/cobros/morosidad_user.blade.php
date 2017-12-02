@@ -1,5 +1,23 @@
+@extends('layouts.app')
 
-        <div class="float-left col-md-6">
+@section('content')
+
+@include('mensajes.alertas')
+
+  <div class="card mt-4">
+  <div class="card-header text-center text-primary">
+    <div class="card-title h3"><b>Morosidad de un usuario</b></div>
+
+          <div class="col-md-4 float-right mr-5">
+        <a href="/facturas/index" class="btn btn-warning btn-xs mb-2 fa fa-exclamation-triangle system-icons">
+            Regresar
+        </a>
+   </div>
+  </div>
+
+  <div class="card-block">
+
+           <div class="float-left col-md-6">
 
           <h4 class="card-title col-md-12 mt-2">Información de usuario</h4>
 
@@ -48,3 +66,6 @@
               </div>
               @endif
 </div>
+</div>
+</div>
+@endsection

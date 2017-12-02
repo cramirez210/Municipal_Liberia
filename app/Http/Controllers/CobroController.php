@@ -296,7 +296,7 @@ class CobroController extends Controller
 
         $cobro = new Cobro;
 
-        $reporte = $cobro->ObtenerReporte($id);
+        $reporte = $cobro->ObtenerReporteFechas($id, $desde, $hasta);
 
         $user = $cobro->select_user()
                     ->where('users.id', $id)->first();
@@ -390,7 +390,10 @@ class CobroController extends Controller
 
     }
 
-    public function BuscarMoroso($criterio, $valor){
+    public function BuscarMoroso(){
+
+        $criterio = request('Criterio');
+        $valor = request('valor');
 
        $cobro = new Cobro;
 
@@ -403,7 +406,7 @@ class CobroController extends Controller
         $query = DB::table('cobros')
                             ->join('facturas', 'cobros.factura_id', 'facturas.id')
                             ->select('facturas.monto')
-                            ->where('cobros.user_id', $user->id)
+                            ->where('cobros.user_id', $user->user_id)
                             ->where('cobros.estado_id', 3);
         
         $pendientes = $query->count();
@@ -412,8 +415,7 @@ class CobroController extends Controller
         return view('cobros.morosidad_user', compact('user', 'pendientes', 'monto'));
        }
        else
-        return with("<div class='alert alert-warning text-center text-warning'>".
-            " <b> El dato no coinside con ningún ejecutivo </b> </div>");
+        return back()->with('warning', 'El dato ingresado no coinside con ningún ejecutivo');
     }
 
     public function ListarUsuariosMorosos(){
