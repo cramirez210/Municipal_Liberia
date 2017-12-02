@@ -31,13 +31,8 @@
     <div class="container-fluid col-md-9">
 <div class="row scroll" >
 
-<<<<<<< HEAD
  <div class="table-responsive ml-4 scroll">
-=======
- <div class="table-responsive ml-4 ">
->>>>>>> 6fa3bb67b9045d0c73e2f66d3acf7c9b3cd62546
 
-     
  @include('facturas.morosos_table')
     </div>
 

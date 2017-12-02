@@ -110,17 +110,30 @@ $('.modal').on('hidden.bs.modal', function(){
     var monto = $('#monto').val();
     var comision = $('#comision').val();
 
-    if(comision == ""){
+
+    $("#pagar_comision").modal('toggle');
+
+    if($('#comision').val().length <= 0){
 
          $("#modal_tittle").text("Mensaje");
          $("#modal_content").html("<div class='alert alert-warning text-warning'>"+
           "<b>Por favor llene el campo porcentaje de comision</b></div>");
+         $('#modal').on('hidden.bs.modal', function(){
+    $("#pagar_comision").modal('toggle');
+});
+    }else if(isNaN($('#comision').val())){
+
+      $("#modal_tittle").text("Mensaje");
+         $("#modal_content").html("<div class='alert alert-warning text-warning'>"+
+          "<b>El campo porcentaje de comisión solo acepta números</b></div>");
+          $('#modal').on('hidden.bs.modal', function(){
+    $("#pagar_comision").modal('toggle');
+});
     }else{
+
       $.get("/comisiones/usuario/"+ user +"/"+ desde +"/"+ hasta +"/"+ monto +"/"+ comision, 
       function(result){
          
-
-         $("#pagar_comision").modal('toggle');
          $("#modal_tittle").text("Confirmar pago de comisión");
          $("#modal_content").html(result);
     });

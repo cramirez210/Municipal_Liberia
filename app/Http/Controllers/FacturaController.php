@@ -562,6 +562,25 @@ class FacturaController extends Controller
         
     }
 
+    public function generarCobros(){
+
+        $facturas = Input::except('_token');
+
+        $cobro = new Cobro;
+
+        foreach ($facturas as $factura) {
+            $facturaBD = Factura::find($factura);
+
+            $facturaBD->estado_id = 4;
+
+            $facturaBD->save();
+
+            $cobro->GenerarCobroUsuario($factura, 3);
+        }
+
+        return redirect('/facturas/index')->with('info', 'Operación exitosa!');
+    }
+
     public function destroy($id)
     {
     	$factura = Factura::find($id);

@@ -2,11 +2,13 @@
 
 @section('content')
 <!--    <img src=" {{ asset('/storage/socios/default.png') }}"> -->
-    <div class="print">
-    <div class="py-4 d-flex justify-content-center ">
-    <a href='javascript:window.print(); void 0;' class="btn btn-success btn-lg">Imprimir</a>
-    <a href='{{URL::previous()}}' class="btn btn-warning btn-lg ml-2">Volver</a> 
-</div>
+<form method="POST" action="/facturas/imprimir/generar/cobro">
+    {{ csrf_field() }}
+<div class="print">
+        <div class="py-4 d-flex justify-content-center ">
+            <button id="confirmar" type="submit" class="btn btn-success btn-lg">Imprimir</button>
+            <a href='{{URL::previous()}}' class="btn btn-warning btn-lg ml-2">Volver</a> 
+        </div>
     </div>
 
     <div class="container">
@@ -14,6 +16,7 @@
         
         @include('reportes.tiposReportes.machoteFactura')
         
+        <input type="hidden" name="{{$factura->id}}" value="{{$factura->id}}">
         @empty
         <div class="alert alert-warning">
        
@@ -23,5 +26,7 @@
         <br>
         @endforelse
     </div>
+</form>
+
 
 @endsection
