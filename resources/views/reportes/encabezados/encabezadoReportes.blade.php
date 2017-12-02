@@ -13,9 +13,9 @@
 
 <div class="row pb-3">
 	<div class="col-4 d-flex flex-column pl-5">
-		<label><b><h5>Reporte de:</h5></b></label>
-		<label><b><h5>Fecha:</h5></b></label>
-		<label><b><h5>Generado por:</h5></b></label>
+		<label><b><h6>Reporte de:</h6></b></label>
+		<label><b><h6>Fecha:</h6></b></label>
+		<label><b><h6>Generado por:</h6></b></label>
 	</div>
 	<div class="col-8 d-flex flex-column text-right pr-5">
 		<label><b>{{ $tipoReporte }}</b></label>
