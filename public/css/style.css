@@ -80,8 +80,55 @@
 }
 
 .reporte-imagen{
-   height: 6.25rem;
-    width: 6.25rem;
+   height: 4.25rem;
+    width: 4.25rem;
+}
+
+.reporte-imagen-factura{
+   height: 4rem;
+    width: 4rem;
+}
+
+.p-factura{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.p-factura-titulo{
+  margin-bottom: .1rem;
+}
+
+.p-factura-titulo-infe{
+  margin-top: .1rem;
+  margin-bottom: 0;
+}
+
+.round{
+
+ background-color: #fff;
+ width: auto;
+ height: auto;
+ margin: 0 auto 9px auto;
+ padding: 5px;
+ border: 1px solid #ccc;
+
+ -moz-border-radius: 11px;
+ -webkit-border-radius: 11px;
+ border-radius: 11px;
+ behavior: url(border-radius.htc);
+}
+
+.table-bordered {
+  border: 1px solid  #020202 !important;
+}
+
+.tabla-tamaño{
+  width:  78%;
+  height: auto;
+}
+
+.texto-peque{
+  font-size: 0.8rem;
 }
 
 @page
@@ -95,6 +142,15 @@
    .print
    {
     display: none;
+   }
+
+   .tabla-imprimir{
+    width:  100%;
+    height: auto;
+   }
+
+   .texto-imprimir{
+    margin-left: 0.1rem !important;
    }
 }
 

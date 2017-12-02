@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="/css/font-awesome.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css"/>
   </head>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="container-fluid">
-        <div class="container py-2">
+        <div class="container">
             @yield('contenido')
         </div>
     </div>

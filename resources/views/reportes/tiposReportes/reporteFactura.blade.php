@@ -1,11 +1,5 @@
 @extends('reportes.reporte')
 
-@section('header')
-
-@include('reportes.encabezados.encabezadoReportes')
-
-@endsection
-
 @section('contenido')
 
 <div class="py-4">
