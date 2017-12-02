@@ -83,8 +83,21 @@
                         <div class="col-12">
                           <h3 class="py-3">Navegación</h3>
                           <div>
-                            <a class="list-group-item" href="#" data-toggle="modal" data-target="#buscar_liquidar">Liquidación de cobros de un ejecutivo</a>
-                            @include('cobros.buscar_liquidar')
+                            <ul class="list-group-item">
+                              <li class="list-unstyled dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cobros de un ejecutivo</a>
+                                  <div class="dropdown-menu">
+                                      
+                                    <a class=" dropdown-item " href="#" data-toggle="modal" data-target="#buscar_liquidar">Liquidar cobros</a>
+                                
+                                   <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item " href="#" data-toggle="modal" data-target="#buscar_anular">Anular cobros</a>
+                                  </div>
+                              </li>
+                            </ul>
+                               @include('cobros.buscar_liquidar')
+                               @include('cobros.buscar_anular')
+
                             <ul class="list-group-item">
                               <li class="list-unstyled dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>

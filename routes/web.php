@@ -142,13 +142,17 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/cobros/list', 'CobroController@lista');
 	Route::get('/cobros/liquidar/{id}', 'CobroController@liquidarPorEstado');
 	Route::get('/cobros/liquidar/{user}/{id}', 'CobroController@liquidarPorUsuarioEstado');
+	Route::get('/cobros/anular/{user}/{id}', 'CobroController@anularPorEstadoDeUsuario');
 	Route::post('/cobros/confirmar', 'CobroController@confirmar');
+	Route::post('/cobros/anularFactura', 'CobroController@anularFactura');
 	Route::post('/cobros/liquidar', 'CobroController@liquidar');
+	Route::post('/cobros/realizarAnulacion', 'CobroController@realizarAnulacion');
 	//Route::get('/cobros/buscar','CobroController@BuscarPorUsuario');
 	Route::post('/cobros/buscar/user','CobroController@BuscarUsuario');
 	Route::get('/cobros/reporte/user/{id}','CobroController@ReporteCobrosDeEjecutivo');
 	//Route::get('/cobros/buscar/liquidar','CobroController@BuscarParaliquidar');
 	Route::post('/cobros/buscar/liquidar','CobroController@Buscarliquidar');
+	Route::post('/cobros/buscar/anular','CobroController@buscarAnular');
 	Route::get('/cobros/morosos', 'CobroController@ListarUsuariosMorosos');
 	//Route::get('/cobros/usuarios/morosos/consultar', 'CobroController@ConsultarMorosidad');
 	Route::get('/cobros/usuarios/morosos/consultar/{criterio}/{valor}', 'CobroController@BuscarMoroso');
