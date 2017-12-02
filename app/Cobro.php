@@ -124,6 +124,39 @@ class Cobro extends Model
         return $reporte;
     }
 
+        public function ObtenerReporteFechas($id, $desde, $hasta){
+
+        $user = DB::table('users')
+                ->join('personas', 'users.persona_id', 'personas.id')
+                ->select('personas.*', 'users.id as user_id', 'users.nombre_usuario')
+                ->where('users.id', $id)
+                ->first();
+
+        $cobro = new Cobro;
+       
+        $total_cobros = $cobro->select()
+                    ->where('cobros.user_id', $id)
+                    ->whereBetween('cobros.created_at', array($desde, $hasta))
+                    ->count();
+
+        $total_recaudado = $cobro->select()
+                    ->where('cobros.user_id', $id)
+                    ->where('cobros.estado_id', 4)
+                    ->whereBetween('cobros.created_at', array($desde, $hasta))
+                    ->sum('monto');
+
+        $monto_pendiente =  $cobro->select()
+                    ->where('cobros.user_id', $id)
+                   ->where('cobros.estado_id', 3)
+                   ->whereBetween('cobros.created_at', array($desde, $hasta))
+                   ->sum('monto');
+
+        $reporte = array('user' => $user , 'total_cobros' => $total_cobros ,
+        'total_recaudado' => $total_recaudado , 'monto_pendiente' => $monto_pendiente , );
+
+        return $reporte;
+    }
+
     public function ObtenerUsuariosMorosos(){
 
           return DB::table('cobros')

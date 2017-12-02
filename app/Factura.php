@@ -190,6 +190,7 @@ class Factura extends Model
                     ->join('categorias','socios.categoria_id', 'categorias.id')
                     ->join('estados','socios.estado_id','estados.id')
                     ->select('socios.id','socios.estado_id','personas.*', 'personas.id as persona_id','categorias.categoria','estados.estado')
+                    ->distinct()
                     ->where('facturas.estado_id', 3)
                     ->get();
     }

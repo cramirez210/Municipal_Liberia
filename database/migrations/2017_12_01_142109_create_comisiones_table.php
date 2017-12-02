@@ -13,10 +13,11 @@ class CreateComisionesTable extends Migration
      */
     public function up()
     {
-            Schema::create('comisiones', function (Blueprint $table) {
+            Schema::create('comisions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->date('fecha');
+            $table->date('desde');
+            $table->date('hasta');
             $table->double('monto');
             $table->double('comision');
             $table->timestamps();
@@ -32,6 +33,6 @@ class CreateComisionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comisiones');
+        Schema::dropIfExists('comisions');
     }
 }

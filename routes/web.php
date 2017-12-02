@@ -87,6 +87,9 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/usuarios/transferir/{id}','UsuariosController@transferir');
 	Route::get('/usuarios/seleccionarNuevoEjecutivo','UsuariosController@seleccionarNuevoEjecutivo');
 	Route::get('/usuarios/finalizarTransferencia','UsuariosController@finalizarTransferencia');
+
+   Route::get('/comisiones/usuario/{user}/{desde}/{hasta}/{monto}/{comision}', 'ComisionController@comision');
+	Route::post('/comisiones/pagar', 'ComisionController@pagar_comision');
 });
 
 	Route::group(['middleware' => ['auth','EjecutivoyAdministrador']], function() {
@@ -155,6 +158,10 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/cobros/filtrar', 'CobroController@RequestFiltrar');
 	Route::get('/cobros/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar');
 	Route::get('/cobros/user/{id}/filtrar/{criterio}/{valor}/{estado}', 'CobroController@filtrar_user');
+	Route::post('/cobros/user/fechas', 'CobroController@BuscarPorUsuarioFechas');
+	Route::get('/cobros/user/fechas/{user}/{desde}/{hasta}', 'CobroController@CobrosUserFechas');
+	Route::get('/cobros/user/fechas/list/{user}/{desde}/{hasta}', 'CobroController@ListarPorUserFechas');
+	Route::get('/cobros/user/fechas/list/{user}/{desde}/{hasta}/{estado}', 'CobroController@ListarPorUserFechasEstado');
 
 });
 

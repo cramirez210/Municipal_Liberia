@@ -102,4 +102,31 @@ $('.modal').on('hidden.bs.modal', function(){
          $("#modal_content").html(result);
        });
   });
+
+  $('#confirmar_comision').on('click', function(){
+    var user = $('#user').val();
+    var desde = $('#desde').val();
+    var hasta = $('#hasta').val();
+    var monto = $('#monto').val();
+    var comision = $('#comision').val();
+
+    if(comision == ""){
+
+         $("#modal_tittle").text("Mensaje");
+         $("#modal_content").html("<div class='alert alert-warning text-warning'>"+
+          "<b>Por favor llene el campo porcentaje de comision</b></div>");
+    }else{
+      $.get("/comisiones/usuario/"+ user +"/"+ desde +"/"+ hasta +"/"+ monto +"/"+ comision, 
+      function(result){
+         
+
+         $("#pagar_comision").modal('toggle');
+         $("#modal_tittle").text("Confirmar pago de comisión");
+         $("#modal_content").html(result);
+    });
+    }
+
+
+    
+  });
 });

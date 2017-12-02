@@ -97,8 +97,19 @@
                                   </div>
                               </li>
                             </ul>
-                            <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_ejec">Buscar cobros de un ejecutivo específico</a>
+                            <ul class="list-group-item">
+                              <li class="list-unstyled dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cobros de un ejecutivo</a>
+                                  <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="/cobros/morosos" data-toggle="modal" data-target="#buscar_ejec">Todos los cobros</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_cobros_fechas">Cobros en un rango de fechas</a>
+                                  </div>
+                              </li>
+                            </ul>
+                            <!-- <a href="#" class="list-group-item" data-toggle="modal" data-target="#buscar_ejec">Buscar cobros de un ejecutivo específico</a> -->
                             @include('cobros.buscar')
+                            @include('usuarios.buscar_cobros_fechas')
                             <a href="/cobros/recuento" class="list-group-item" data-toggle="modal" data-target="#buscar_recuento_cobros">Reporte de cobros</a>
                             @include('cobros.recuento')
                             <ul class="list-group-item">

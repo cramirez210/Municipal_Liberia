@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Cobro;
 use App\User;
+use App\Comision;
 use Carbon\Carbon;
 
 class CobroController extends Controller
@@ -238,6 +239,84 @@ class CobroController extends Controller
 
         return view('cobros.cobros_ejecutivo', 
                compact('reporte'));
+    }
+
+    public function ListarPorUserFechas($user_id, $desde, $hasta){
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.user_id', $user_id)
+                    ->paginate(10);
+
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+        
+        return view('usuarios.cobros_fecha', compact('cobros', 'user', 'desde', 'hasta'));
+    }
+
+        public function ListarPorUserFechasEstado($user_id, $desde, $hasta, $estado_id){
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.user_id', $user_id)
+                    ->where('cobros.estado_id', $estado_id)
+                    ->paginate(10);
+
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+        
+        return view('usuarios.cobros_fecha', compact('cobros', 'user', 'desde', 'hasta', 'estado_id'));
+    }
+
+           public function BuscarPorUsuarioFechas(Request $request)
+    {
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            'desde' => 'required',
+            'hasta' => 'required',
+            ]);
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+       $desde = $request->input('desde');
+       $hasta = $request->input('hasta');
+
+       $cobro = new Cobro;
+
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       if($user)
+       return redirect('/cobros/user/fechas/'.$user->id.'/'.$desde.'/'.$hasta);
+        else
+        return back()->with('warning', 'El dato ingresado no coincide con ningún usuario');
+
+    }
+
+    public function CobrosUserFechas($id, $desde, $hasta){
+
+        $cobro = new Cobro;
+
+        $reporte = $cobro->ObtenerReporte($id);
+
+        $user = $cobro->select_user()
+                    ->where('users.id', $id)->first();
+
+        return view('usuarios.reporte_cobros_fechas', 
+               compact('reporte', 'user', 'desde', 'hasta'));
+    }
+
+        public function comision($user_id, $desde, $hasta, $monto, $comision){
+
+        $cobro = new Cobro;
+
+        $user = $cobro->select_user()
+                    ->where('users.id', $user_id)->first();
+
+        $monto_recaudado = $monto;
+        $monto_comision = $monto * ($comision / 100);
+        
+        return view('cobros.confirmar_pago_comision', 
+            compact('user', 'desde', 'hasta', 'monto_recaudado', 'monto_comision'));   
     }
 
      public function BuscarRecuento(){

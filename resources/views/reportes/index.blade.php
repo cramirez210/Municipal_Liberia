@@ -124,6 +124,21 @@
                <a class="dropdown-item" href="/reportes/cobros_liquidados" target="_blank">Cobros Liquidados</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="/reportes/cobros_pendientes" target="_blank">Cobros Pendientes</a>
+               <div class="dropdown-divider"></div>
+               <div class="dropdown-submenu col-12" style="">  
+                <a id="subRoles" tabindex="-1" href="#" style="">Comisiones</a>
+                <ul class="dropdown-menu col-12">
+                 
+                  <li><a id="subRoles" tabindex="-1" href="/usuarios/listarPorRole/1">Todas</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a  id="subRoles" href="/usuarios/listarPorRole/2">Por fecha</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a  id="subRoles" href="/usuarios/listarPorRole/2">Por ejecutivo</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a id="subRoles" href="/usuarios/listarPorRole/3">Por fecha y ejecutivo</a></li>
+             
+                </ul>
+            </div>
                </div>
             </li>
           </ul>
