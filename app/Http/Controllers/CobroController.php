@@ -175,6 +175,41 @@ class CobroController extends Controller
         return view('usuarios.cobros', compact('cobros', 'user', 'estado_id'));
     }
 
+        public function RequestFiltrarUserFecha(){
+
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+        $user_id = request("user_id");
+        $desde = request("desde");
+        $hasta = request("hasta");
+
+     return redirect("/cobros/usuario/filtrar/fecha/".$user_id."/".$criterio."/".$valor."/".$estado."/".$desde."/".$hasta);   
+    }
+
+    public function filtrar_user_fecha($user_id, $criterio, $valor, $estado_id, $desde, $hasta){
+
+        $cobro = new Cobro;
+        $query = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id)
+                 ->whereBetween('cobros.created_at', array($desde, $hasta));
+
+        if ($criterio == 0)
+            $query->where('facturas.id', $valor);
+
+        elseif ($criterio == 1) {
+            $fecha = $this->parse_periodo($valor);
+            $query->where('facturas.periodo', 'like', '%'.$fecha.'%');
+    }  
+        elseif ($criterio == 2) {
+            $fecha = $this->parse_fecha_cobro($valor);
+            $query->where('cobros.created_at', 'like', '%'.$fecha.'%');
+    }
+
+        $cobros = $this->filtrar_estado($query, $estado_id);
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+
+        return view('usuarios.cobros_fecha', compact('cobros', 'user', 'estado_id', 'desde', 'hasta'));
+    }
    public function filtrar_estado($query, $estado){
 
         if ($estado != 0) 

@@ -4,6 +4,9 @@
 
 @include('mensajes.alertas') 
 
+<button class="btn btn-success btn-md mt-3 fa fa-search system-icons" data-toggle="modal" data-target="#filtrar_cobros__user_fecha"> Realizar una búsqueda</button>
+@include('usuarios.filtrar_cobros_fecha')
+
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
@@ -17,7 +20,7 @@
     <ul class="nav nav-pills card-header-pills float-right mr-4">
     <li class="nav-item">
       <div class="col-md-2 mr-5">
-        <a href="{{URL::previous()}}" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
+        <a href="/cobros/user/fechas/{{$user->user_id}}/{{$desde}}/{{$hasta}}" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar
         </a>
    </div>

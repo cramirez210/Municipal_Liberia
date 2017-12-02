@@ -186,6 +186,8 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::get('/usuarios/filtrar/{criterio}/{valor}/{estado}/{rol}', 'UsuariosController@filtrar');
 	Route::get('/cobros/usuario/filtrar', 'CobroController@RequestFiltrarUser');
 	Route::get('/cobros/usuario/filtrar/{id}/{criterio}/{valor}/{estado}', 'CobroController@filtrar_user');
+	Route::get('/cobros/usuario/filtrar/fecha', 'CobroController@RequestFiltrarUserFecha');
+	Route::get('/cobros/usuario/filtrar/fecha/{id}/{criterio}/{valor}/{estado}/{desde}/{hasta}', 'CobroController@filtrar_user_fecha');
 
 	// Rutas del objeto socio.
 	Route::get('/socios/home', 'SociosController@home');
