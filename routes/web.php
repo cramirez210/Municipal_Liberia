@@ -217,6 +217,11 @@ Route::group(['middleware' => ['auth','SoloAdministrador']], function() {
 	Route::post('/reportes/cobros_fechas','ReportesController@cobrosFechas');
 	Route::get('/reportes/cobros_pendientes','ReportesController@cobrosPendientes');
 	Route::get('/reportes/cobros_liquidados','ReportesController@cobrosLiquidados');
+
+	Route::get('/reportes/comisiones','ReportesController@TodasLasComisiones');
+	Route::post('/reportes/comisiones/fechas','ReportesController@ComisionesPorFechas');
+	Route::post('/reportes/comisiones/user','ReportesController@ComisionesPorUser');
+	Route::post('/reportes/comisiones/fechas/user','ReportesController@ComisionesPorFechasUser');
 });
 	
 Auth::routes();	

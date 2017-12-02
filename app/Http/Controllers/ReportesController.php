@@ -9,6 +9,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Persona;
 use App\Socio;
 use App\User;
+use App\Comision;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -170,7 +171,7 @@ class ReportesController extends Controller
 
         $facturas = $factura->ObtenerPorFecha($desde, $hasta)->get();
 
-        $tipoReporte = 'Facturas desde '.$desde.' hasta '.$hasta;
+        $tipoReporte = 'Facturas del '.date('d-m-Y', strtotime($desde)).' al '.date('d-m-Y', strtotime($hasta));
         $hora = Carbon::now();
 
         if (count($facturas)) {
@@ -213,7 +214,7 @@ class ReportesController extends Controller
 
         $cobros = $cobro->ObtenerPorFecha($desde, $hasta)->get();
 
-        $tipoReporte = 'Cobros desde '.$desde.' hasta '.$hasta;
+        $tipoReporte = 'Cobros del '.date('d-m-Y', strtotime($desde)).' al '.date('d-m-Y', strtotime($hasta));
         $hora = Carbon::now();
 
         if (count($cobros)) {
@@ -316,6 +317,123 @@ class ReportesController extends Controller
         } else {
             return redirect('/reportes/index')->with('info','No se encontraron facturas pagadas.');
         }
+    }
+
+   public function TodasLasComisiones(){
+
+        $comision = new Comision;
+
+        $comisiones = $comision->select()->get();
+
+        $tipoReporte = 'Todas las comisiones';
+        $hora = Carbon::now();
+
+
+        if (count($comisiones)) {
+           return view('reportes.tiposReportes.reporteComisiones', compact('comisiones', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron comisiones');
+        }
+    }
+
+
+   public function ComisionesPorFechas(){
+
+        $this->validate(request(),
+            [
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            ]);
+
+        $desde = request('desde');
+        $hasta = request('hasta');
+
+        $comision = new Comision;
+
+        $comisiones = $comision->ObtenerPorFecha($desde, $hasta)->get();
+
+        $tipoReporte = 'Comisiones del '.date('d-m-Y', strtotime($desde)).' al '.date('d-m-Y', strtotime($hasta));
+        $hora = Carbon::now();
+
+        if (count($comisiones)) {
+            return view('reportes.tiposReportes.reporteComisiones', compact('comisiones', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('info','No se encontraron comisiones en las fechas indicadas');
+        }
+    }
+
+   public function ComisionesPorUser(){
+
+       $this->validate(request(),
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            ]);
+
+       $criterio = request('Criterio');
+       $valor = request('valor');
+
+        $comision = new Comision;
+
+        $user = $comision->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+        if($user){
+
+        $comisiones = $comision->ObtenerPorUser($user->id)->get();
+
+        $tipoReporte = 'Comisiones del ejecutivo '.$user->primer_nombre.' '.$user->primer_apellido.' '.$user->segundo_apellido;
+        $hora = Carbon::now();
+
+        if (count($comisiones)) {
+            return view('reportes.tiposReportes.reporteComisiones', compact('comisiones', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('warning','No se encontraron comisiones del ejecutivo');
+        }
+
+        }else {
+            return redirect('/reportes/index')->with('warning','El valor ingresado no coincide con ningún ejecutivo');
+        }
+
+
+    }
+
+   public function ComisionesPorFechasUser(){
+
+       $this->validate(request(),
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            ]);
+
+        $desde = request('desde');
+        $hasta = request('hasta');
+        $criterio = request('Criterio');
+        $valor = request('valor');
+
+        $comision = new Comision;
+
+        $user = $comision->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+        if($user){
+
+        $comisiones = $comision->ObtenerPorFechaUser($user->id, $desde, $hasta)->get();
+
+        $tipoReporte = 'Comisiones del ejecutivo '.$user->primer_nombre.' '.$user->primer_apellido.' '.$user->segundo_apellido.' del '.date('d-m-Y', strtotime($desde)).' al '.date('d-m-Y', strtotime($hasta));
+        $hora = Carbon::now();
+
+        if (count($comisiones)) {
+            return view('reportes.tiposReportes.reporteComisiones', compact('comisiones', 'tipoReporte', 'hora'));
+        } else {
+            return redirect('/reportes/index')->with('warning','No se encontraron comisiones del ejecutivo en la fecha indicada');
+        }
+
+        }else {
+            return redirect('/reportes/index')->with('warning','El valor ingresado no coincide con ningún ejecutivo');
+        }
+
+
     }
 
 }

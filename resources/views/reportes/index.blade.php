@@ -131,13 +131,13 @@
                 <a id="subRoles" tabindex="-1" href="#" style="">Comisiones</a>
                 <ul class="dropdown-menu col-12">
                  
-                  <li><a id="subRoles" tabindex="-1" href="/usuarios/listarPorRole/1">Todas</a></li>
+                  <li><a id="subRoles" tabindex="-1" href="/reportes/comisiones" target="_blank">Todas</a></li>
                   <div class="dropdown-divider"></div>
-                  <li><a  id="subRoles" href="/usuarios/listarPorRole/2">Por fecha</a></li>
+                  <li><a  id="subRoles" href="#" data-toggle="modal" data-target="#buscar_comisiones_fechas" target="_blank">Por fecha</a></li>
                   <div class="dropdown-divider"></div>
-                  <li><a  id="subRoles" href="/usuarios/listarPorRole/2">Por ejecutivo</a></li>
+                  <li><a  id="subRoles" href="#" data-toggle="modal" data-target="#buscar_comisiones_user" target="_blank">Por ejecutivo</a></li>
                   <div class="dropdown-divider"></div>
-                  <li><a id="subRoles" href="/usuarios/listarPorRole/3">Por fecha y ejecutivo</a></li>
+                  <li><a id="subRoles" href="#" data-toggle="modal" data-target="#buscar_comisiones_fechas_user" target="_blank">Por fecha y ejecutivo</a></li>
              
                 </ul>
             </div>
@@ -145,6 +145,9 @@
             </li>
           </ul>
           @include('reportes.tiposReportes.buscar_cobros_fechas')
+          @include('reportes.tiposReportes.buscar_comisiones_fechas')
+          @include('reportes.tiposReportes.buscar_comisiones_usuario')
+          @include('reportes.tiposReportes.buscar_comisiones_fechas_user')
         </div>
       </div>
     </div>
