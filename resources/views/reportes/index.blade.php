@@ -10,7 +10,7 @@
 <br>
 <div class="card text-center">
   <div class="card-header text-primary">
-    Menu de Reportes
+    Menú de reportes
   </div>
   <div class="card-block">
     <div class="row py-4">
@@ -21,7 +21,7 @@
             <i class="fa fa-user-o iconos" aria-hidden="true"></i>                          
         </div>
         <h3 class="card-title"><b>Usuarios</b></h3>
-        <p class="card-text">Reportes de usuarios por su condicion y tipo.</p>
+        <p class="card-text">Reportes de usuarios por su condición y tipo.</p>
         <div class="py-3">
           <a href="#" class="list-group-item" target="_blank" data-toggle="modal" data-target="#buscar_usuario">Socios de un usuario ejecutivo</a>
           @include('reportes.tiposReportes.buscar_usuario')
@@ -48,7 +48,7 @@
             <i class="fa fa-users iconos" aria-hidden="true"></i>                          
         </div>
         <h3 class="card-title"><b>Socios</b></h3>
-        <p class="card-text">Reportes de socios por condicion y categoria.</p>
+        <p class="card-text">Reportes de socios por condición y categoría.</p>
         <div class="py-3">
           <a href="/reportes/sociosMorosos" class="list-group-item" target="_blank">Morocidad</a>
           <ul class="list-group-item">
@@ -76,17 +76,19 @@
             <i class="fa fa-file-text-o iconos" aria-hidden="true"></i>                          
         </div>
         <h3 class="card-title"><b>Facturas</b></h3>
-        <p class="card-text">Reportes asociados a la facturacion del sistema.</p>
+        <p class="card-text">Reportes asociados a la facturación del sistema.</p>
         <div class="py-3">
-          <a href="#" class="list-group-item" target="_blank" data-toggle="modal" data-target="#buscar_factura" target="_blank">Factura en especifico</a>
+          <a href="#" class="list-group-item" target="_blank" data-toggle="modal" data-target="#buscar_factura" target="_blank">Factura en específico</a>
           @include('reportes.tiposReportes.buscar_factura')
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
               <div class="dropdown-menu">
-               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_facturas_fechas" target="_blank">Facturas rago de Fecha</a>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#buscar_facturas_fechas" target="_blank">Facturas rago de fecha</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="/reportes/facturas_pendientes" target="_blank">Facturas pendientes</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="/reportes/facturasPagadas" target="_blank">Facturas pagadas</a>
                </div>
             </li>
           </ul>
@@ -101,8 +103,8 @@
         <div class="py-3">
             <i class="fa fa-money iconos" aria-hidden="true"></i>                          
         </div>
-        <h3 class="card-title"><b>Liquidacion de Cobros</b></h3>
-        <p class="card-text">Reportes sobre la liquidacion de cobros de los usuarios ejecutivos.</p>
+        <h3 class="card-title"><b>Liquidación de Cobros</b></h3>
+        <p class="card-text">Reportes sobre la liquidación de cobros de los usuarios ejecutivos.</p>
         <div class="py-3">
            <ul class="list-group-item">
             <li class="list-unstyled dropdown">
@@ -154,7 +156,7 @@
   
   </div>
   <div class="card-footer text-muted">
-    Todo reporte esta sujeto a una fecha espesifica.
+    Todo reporte esta sujeto a una fecha específica.
   </div>
 </div>
 

@@ -1,9 +1,9 @@
-<div id="buscar_liquidar" class="modal fade" role="dialog">
+<div id="buscar_anular" class="modal fade" role="dialog">
                       <div class="modal-dialog modal-lg">
 
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title">Buscar usuario a liquidar</h4>
+                            <h4 class="modal-title">Buscar usuario a anular</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
  
@@ -11,7 +11,7 @@
 
 
 
-  <form method="POST" action="/cobros/buscar/liquidar"> 
+  <form method="POST" action="/cobros/buscar/anular"> 
     {{ csrf_field() }}
 
    <center>

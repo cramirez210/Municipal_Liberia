@@ -18,7 +18,7 @@
                  </span>
 
                     @endif 
-                            <h1 class="display-4">Iniciar Seción</h1>
+                            <h1 class="display-4">Iniciar Sesión</h1>
 
                         <div class="form-group{{ $errors->has('nombre_usuario') ? ' has-danger' : '' }} pt-2s">
                             <label for="nombre_usuario" class="col-md-6 form-control-label">Nombre de usuario</label>
@@ -53,7 +53,7 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 
-                                        Recuerdame.
+                                        Recuérdame.
                                     </label>
                                 </div>
                             </div>

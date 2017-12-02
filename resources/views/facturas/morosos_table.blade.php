@@ -8,6 +8,7 @@
             <th class="text-center">Facturas pendientes</th>
             <th class="text-center">Email</th>
             <th class="text-center">Teléfono</th>
+             <th class="text-center"></th>
             </tr>
         </thead>
     <tbody>
@@ -19,6 +20,7 @@
             <td class="info"> <a href="/facturas/pendientes/{{$moroso->id}}/3">{{ $factura->ObtenerPorSocioEstado($moroso->id, 3)->count() }}</a>  </td>
             <td class="info"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
+            <td></td>
         </tr>
 
         @empty

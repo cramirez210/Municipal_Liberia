@@ -5,18 +5,18 @@
           <div class="row text-center">
             <!-- seccion 1 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-              <h5 class="py-2">Navegacion</h5>
+              <h5 class="py-2">Navegación</h5>
               <ul>
                 <li><a href="#">Socios</a></li>
                 <li><a href="#">Usuarios</a></li>
-                <li><a href="#">Facturacion</a></li>
-                <li><a href="#">Configuracion</a></li>
+                <li><a href="#">Facturación</a></li>
+                <li><a href="#">Configuración</a></li>
               </ul>
             </div> <!--End seccion 1 -->
 
              <!-- seccion 2 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-                <h5 class="py-2">Facturacion</h5>
+                <h5 class="py-2">Facturación</h5>
                 <ul>
                   <li><a id="as" href="/facturas/list/3">Facturas Pendientes</a></li>
                   <li><a id="as" href="/facturas/list">Facturas</a></li>
@@ -36,7 +36,7 @@
 
               <!-- seccion 4 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-                <h5 class="py-2">Informacion</h5>
+                <h5 class="py-2">Información</h5>
                 
                 <p class="title-card">Municipal Liberia.</p>
                 <p><b>Sitio Oficial: </b><a class="links" href="http://municipalliberia.com/">www.municipalliberia.com</a></p>
@@ -61,7 +61,7 @@
             <p class="text-footer"> Municipal Liberia © Copyright - UCR </p>
           </div>
           <div class="col-sm-12 text-sm-center col-md-6 text-md-right">
-            <p class="text-footer">Proyecto Universitario: / <a href="https://www.facebook.com/josue.barrantes.18" class="links">Josué Barrantes</a> / <a href="https://www.facebook.com/carlos.r.ramirez.35" class="links">Carlos Ramirez</a> / <a href="https://www.facebook.com/jafet.chevez.7" class="links">Jafet Chevez</a></p>
+            <p class="text-footer">Proyecto Universitario: / <a href="https://www.facebook.com/josue.barrantes.18" class="links">Josué Barrantes</a> / <a href="https://www.facebook.com/carlos.r.ramirez.35" class="links">Carlos Ramírez</a> / <a href="https://www.facebook.com/jafet.chevez.7" class="links">Jafet Chevez</a></p>
           </div>
         </div> 
       </div>

@@ -26,7 +26,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img id="imagen-logo" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia"><span class="hidden-sm-down">Gestor de Membresias</span></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img id="imagen-logo" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia"><span class="hidden-sm-down">Gestor de Membresías</span></a>
             
             <div class="collapse navbar-collapse" id="menu">
               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -43,13 +43,13 @@
                   <a class="nav-link" href="/socios/index"><i class="fa fa-users .iconos-nav" aria-hidden="true"></i> Socios</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/facturas/index"> <i class="fa fa-file-text-o .iconos-nav" aria-hidden="true"></i> Facturacion</a>
+                  <a class="nav-link" href="/facturas/index"> <i class="fa fa-file-text-o .iconos-nav" aria-hidden="true"></i> Facturación</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/reportes/index"> <i class="fa fa-bar-chart .iconos-nav" aria-hidden="true"></i> Reportes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/conf/index"><i class="fa fa-cogs .iconos-nav" aria-hidden="true"></i> Configuracion</a>
+                    <a class="nav-link" href="/conf/index"><i class="fa fa-cogs .iconos-nav" aria-hidden="true"></i> Configuración</a>
                   </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,7 +58,7 @@
                     <div class="dropdown-menu dropdown-menu-app" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item dropdown-item-app" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                                     Cerrar Secion
+                                                     Cerrar sesión
                       </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
@@ -77,8 +77,8 @@
          <div class="container-fluid fondo-slider-opaco">
             <div class="container d-flex flex-column justify-content-center h-100 text-white align-items-center animacion">
 
-                <h1 class="pb-4">Bienvenidos al Programa de Control de Membresias</h1>
-                <p class="pb-4">Proyecto con la finalidad de agilizar, monitoriar y controlar devidamente las membresias asociadas a la Asociacion Deportiva Municipal Liberia !</p>
+                <h1 class="pb-4">Bienvenidos al Programa de Control de Membresías</h1>
+                <p class="pb-4">Proyecto con la finalidad de agilizar, monitorear y controlar devidamente las membresías asociadas a la Asociacion Deportiva Municipal Liberia !</p>
                 <div>
                     <a href="http://municipalliberia.com/" class="btn btn-danger px-4">Leer más...</a>
                 </div>
@@ -95,7 +95,7 @@
         <div class="row align-items-center text-right py-5 " id="tip1">
           <div class="col-sm-12 col-md-6">
             <h2 class="display-3 pb-5">Misión</h2>
-            <p class="lead text-justify">Somos una Institución deportiva dedicada a crear espacios dentro de una sana convivencia con el fin de deleitar a nuestros socios de un espectaculo deportivo de primer nivel al mejor estilo guanacasteco.</p>
+            <p class="lead text-justify">Somos una Institución deportiva dedicada a crear espacios dentro de una sana convivencia con el fin de deleitar a nuestros socios de un espectáculo deportivo de primer nivel al mejor estilo guanacasteco.</p>
           </div>
           <div class="col-sm-12 col-md-6">
               <img class="img-fluid" src="{{ asset('storage/img/foto-mision.jpg') }}" alt="Aficionados Liberianos" width="500px">
@@ -130,7 +130,7 @@
                           <i class="fa fa-user-o iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1>Usuarios</h1>
-                      <p class="card-text lead">Seccion donde se puede gestionar los usuarios del sistema.</p>
+                      <p class="card-text lead">Sección donde se puede gestionar los usuarios del sistema.</p>
                     </div>
                     <a class="card-footer btn bg-warning text-white" href="/usuarios/home">Acceder</a>
                   </div>
@@ -144,7 +144,7 @@
                           <i class="fa fa-users iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1>Socios</h1>
-                      <p class="card-text lead">Seccion donde se puede gestionar los Socios del Municipal Liberia.</p>
+                      <p class="card-text lead">Sección donde se puede gestionar los socios del Municipal Liberia.</p>
                     </div>
                     <a class="card-footer btn bg-warning text-white" href="/socios/index">Acceder</a>
                   </div>
@@ -158,7 +158,7 @@
                           <i class="fa fa-file-text-o iconos" aria-hidden="true"></i>                         
                       </div>
                       <h1>Facturacion</h1>
-                      <p class="card-text lead">Seccion donde se puede gestionar el cobro de las membrecias.</p>
+                      <p class="card-text lead">Sección donde se puede gestionar el cobro de las membresías.</p>
                     </div>
                     <a class="card-footer btn bg-warning text-white" href="/facturas/index">Acceder</a>
                   </div>
@@ -172,7 +172,7 @@
                           <i class="fa fa-cogs iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1>Ajustes</h1>           
-                      <p class="card-text lead">Seccion donde se puede gestionar los ajustes del sistema.</p>
+                      <p class="card-text lead">Sección donde se puede gestionar los ajustes del sistema.</p>
                     </div>
                     <a class="card-footer btn bg-warning text-white" href="/conf/index">Acceder</a>
                   </div>
@@ -194,8 +194,8 @@
               <ul>
                 <li><a id="as" href="/socios/index">Socios</a></li>
                 <li><a id="as" href="/usuarios/home">Usuarios</a></li>
-                <li><a id="as" href="/facturas/index">Facturacion</a></li>
-                <li><a id="as" href="/conf/index">Configuracion</a></li>
+                <li><a id="as" href="/facturas/index">Facturación</a></li>
+                <li><a id="as" href="/conf/index">Configuración</a></li>
               </ul>
             </div> <!--End seccion 1 -->
 
@@ -213,7 +213,7 @@
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
                 <h5 class="py-2">Liquidación Cobros</h5>
                 <ul>
-                  <li><a id="as" href="/cobros/list/4">Liquidaciones</a></li>
+                  <li><a id="as" href="/cobros/list/4">Liquidaciónes</a></li>
                   <li><a id="as" href="/cobros/list">Reporte de Cobro</a></li>
                   <li><a id="as" href="/cobros/morosos">Morocidad</a></li>
                 </ul>
@@ -221,7 +221,7 @@
 
               <!-- seccion 4 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3 text-left">
-                <h5 class="py-2">Informacion</h5>
+                <h5 class="py-2">Información</h5>
                 
                 <p class="title-card">Municipal Liberia.</p>
                 <p><b>Sitio Oficial: </b><a id="as" class="links" href="http://municipalliberia.com/">www.municipalliberia.com</a></p>

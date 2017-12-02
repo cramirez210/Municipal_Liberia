@@ -491,4 +491,84 @@ class CobroController extends Controller
 
         return view('cobros.detail', compact('cobro'));
     }
+
+
+    public function buscarAnular(Request $request)
+    {
+
+
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            ]);
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $cobro = new Cobro;
+
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       if($user)
+       return redirect('/cobros/anular/'.$user->id.'/3');
+        else
+            return back()->with('warning', 'El dato ingresado no coincide con ningún usuario');
+    }
+
+    public function anularPorEstadoDeUsuario($user_id, $estado_id)
+    {
+
+     $cobro = new Cobro;
+
+     $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
+                ->get();
+        
+     return view('cobros.anular', compact('cobros'));
+
+    }
+
+      public function anularFactura(){
+        $cobro = new Cobro;
+
+        $cobros = Input::except('_token', 'user_id');
+
+        if($cobros){
+ 
+        $user = $cobro->select()
+        ->where('facturas.id', head($cobros))
+        ->first();
+
+        $monto = DB::table('cobros')
+        ->join('facturas', 'cobros.factura_id', 'facturas.id')
+        ->whereIn('facturas.id', $cobros)
+        ->sum('facturas.monto');
+
+        $fecha = Carbon::now()->format('Y-m-d');
+
+        return view('cobros.anularFactura', compact('cobros', 'user', 'monto', 'fecha'));
+        } else{
+            $user_id = request('user_id');
+
+            return redirect('/cobros/anular/'.$user_id.'/3')->with('warning', 'Por favor seleccione los cobros que desea liquidar');
+        }
+    }
+
+
+    public function realizarAnulacion(){
+        $cobros = Input::except('_token');
+
+        foreach ($cobros as $cobro)
+         {
+            DB::table('cobros')
+            ->where('factura_id', $cobro)
+            ->delete();
+
+            DB::table('facturas')
+            ->where('id', $cobro)
+            ->update(array('estado_id' => 3));
+        }
+
+        return view('facturas.index')->with('info', 'Operación realizada con éxito');
+    }
 }

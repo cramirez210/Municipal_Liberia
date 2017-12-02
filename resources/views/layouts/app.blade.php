@@ -26,7 +26,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}"><img id="imagen-logo" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia"><span class="hidden-sm-down">Gestor de Membresias</span></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img id="imagen-logo" src="{{ asset('storage/img/logo.png') }}" alt="Logo Municipal Liberia"><span class="hidden-sm-down">Gestor de Membresías</span></a>
             
             <div class="collapse navbar-collapse" id="menu">
               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -42,13 +42,13 @@
                   <a class="nav-link" href="/socios/index"><i class="fa fa-users .iconos-nav" aria-hidden="true"></i> Socios</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/facturas/index"> <i class="fa fa-file-text-o .iconos-nav" aria-hidden="true"></i> Facturacion</a>
+                  <a class="nav-link" href="/facturas/index"> <i class="fa fa-file-text-o .iconos-nav" aria-hidden="true"></i> Facturación</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/reportes/index"> <i class="fa fa-bar-chart .iconos-nav" aria-hidden="true"></i> Reportes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/conf/index"><i class="fa fa-cogs .iconos-nav" aria-hidden="true"></i> Configuracion</a>
+                    <a class="nav-link" href="/conf/index"><i class="fa fa-cogs .iconos-nav" aria-hidden="true"></i> Configuración</a>
                   </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
                     <div class="dropdown-menu dropdown-menu-app" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item dropdown-item-app" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                                     Cerrar Secion
+                                                     Cerrar sesión
                       </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
@@ -83,18 +83,18 @@
           <div class="row text-center">
             <!-- seccion 1 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-              <h5 class="py-2">Navegacion</h5>
+              <h5 class="py-2">Navegación</h5>
               <ul>
                 <li><a id="as" href="/socios/index">Socios</a></li>
                 <li><a id="as" href="/usuarios/home">Usuarios</a></li>
-                <li><a id="as" href="/facturas/index">Facturacion</a></li>
-                <li><a id="as" href="/conf/index">Configuracion</a></li>
+                <li><a id="as" href="/facturas/index">Facturación</a></li>
+                <li><a id="as" href="/conf/index">Configuración</a></li>
               </ul>
             </div> <!--End seccion 1 -->
 
             <!-- seccion 2 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-                <h5 class="py-2">Facturacion</h5>
+                <h5 class="py-2">Facturación</h5>
                 <ul>
                   <li><a id="as" href="/facturas/list/3">Facturas Pendientes</a></li>
                   <li><a id="as" href="/facturas/list">Facturas</a></li>
@@ -106,7 +106,7 @@
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
                 <h5 class="py-2">Liquidación Cobros</h5>
                 <ul>
-                  <li><a id="as" href="/cobros/list/4">Liquidaciones</a></li>
+                  <li><a id="as" href="/cobros/list/4">Liquidaciónes</a></li>
                   <li><a id="as" href="/cobros/list">Reporte de Cobro</a></li>
                   <li><a id="as" href="/cobros/morosos">Morocidad</a></li>
                 </ul>
@@ -114,7 +114,7 @@
 
               <!-- seccion 4 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-                <h5 class="py-2">Informacion</h5>
+                <h5 class="py-2">Información</h5>
                 
                 <p class="title-card">Municipal Liberia.</p>
                 <p><b>Sitio Oficial: </b><a id="as" class="links" href="http://municipalliberia.com/">www.municipalliberia.com</a></p>
@@ -139,7 +139,7 @@
             <p class="text-footer"> Municipal Liberia © Copyright - UCR </p>
           </div>
           <div class="col-sm-12 text-sm-center col-md-6 text-md-right">
-            <p class="text-footer">Proyecto Universitario: / <a id="as" href="https://www.facebook.com/josue.barrantes.18" class="links">Josué Barrantes</a> / <a id="as" href="https://www.facebook.com/carlos.r.ramirez.35" class="links">Carlos Ramirez</a> / <a id="as" href="https://www.facebook.com/jafet.chevez.7" class="links">Jafet Chevez</a></p>
+            <p class="text-footer">Proyecto Universitario: / <a id="as" href="https://www.facebook.com/josue.barrantes.18" class="links">Josué Barrantes</a> / <a id="as" href="https://www.facebook.com/carlos.r.ramirez.35" class="links">Carlos Ramírez</a> / <a id="as" href="https://www.facebook.com/jafet.chevez.7" class="links">Jafet Chevez</a></p>
           </div>
         </div> 
       </div>
