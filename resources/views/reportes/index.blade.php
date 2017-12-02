@@ -126,10 +126,28 @@
                <a class="dropdown-item" href="/reportes/cobros_liquidados" target="_blank">Cobros Liquidados</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="/reportes/cobros_pendientes" target="_blank">Cobros Pendientes</a>
+               <div class="dropdown-divider"></div>
+               <div class="dropdown-submenu col-12" style="">  
+                <a id="subRoles" tabindex="-1" href="#" style="">Comisiones</a>
+                <ul class="dropdown-menu col-12">
+                 
+                  <li><a id="subRoles" tabindex="-1" href="/reportes/comisiones" target="_blank">Todas</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a  id="subRoles" href="#" data-toggle="modal" data-target="#buscar_comisiones_fechas" target="_blank">Por fecha</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a  id="subRoles" href="#" data-toggle="modal" data-target="#buscar_comisiones_user" target="_blank">Por ejecutivo</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a id="subRoles" href="#" data-toggle="modal" data-target="#buscar_comisiones_fechas_user" target="_blank">Por fecha y ejecutivo</a></li>
+             
+                </ul>
+            </div>
                </div>
             </li>
           </ul>
           @include('reportes.tiposReportes.buscar_cobros_fechas')
+          @include('reportes.tiposReportes.buscar_comisiones_fechas')
+          @include('reportes.tiposReportes.buscar_comisiones_usuario')
+          @include('reportes.tiposReportes.buscar_comisiones_fechas_user')
         </div>
       </div>
     </div>

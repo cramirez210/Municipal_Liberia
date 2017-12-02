@@ -35,17 +35,6 @@ $('#buscar_moroso').on('click', function(){
     
   });
 
-$('#buscar_ejec_moroso').on('click', function(){
-    var criterio = $('#select_ejec').val();
-    var valor = $('#valor_ejec').val();
-
-  $.get('/cobros/usuarios/morosos/consultar/' + criterio + "/" + valor, function(result){
-
-    $('#ejecutivo_moroso').html(result);
-       });
-    
-  });
-
 $('.modal').on('hidden.bs.modal', function(){
     $('#socio_moroso').html("");
     $('#ejecutivo_moroso').html("");
@@ -101,5 +90,45 @@ $('.modal').on('hidden.bs.modal', function(){
        });
          $("#modal_content").html(result);
        });
+  });
+
+  $('#confirmar_comision').on('click', function(){
+    var user = $('#user').val();
+    var desde = $('#desde').val();
+    var hasta = $('#hasta').val();
+    var monto = $('#monto').val();
+    var comision = $('#comision').val();
+
+
+    $("#pagar_comision").modal('toggle');
+
+    if($('#comision').val().length <= 0){
+
+         $("#modal_tittle").text("Mensaje");
+         $("#modal_content").html("<div class='alert alert-warning text-warning'>"+
+          "<b>Por favor llene el campo porcentaje de comision</b></div>");
+         $('#modal').on('hidden.bs.modal', function(){
+    $("#pagar_comision").modal('toggle');
+});
+    }else if(isNaN($('#comision').val())){
+
+      $("#modal_tittle").text("Mensaje");
+         $("#modal_content").html("<div class='alert alert-warning text-warning'>"+
+          "<b>El campo porcentaje de comisión solo acepta números</b></div>");
+          $('#modal').on('hidden.bs.modal', function(){
+    $("#pagar_comision").modal('toggle');
+});
+    }else{
+
+      $.get("/comisiones/usuario/"+ user +"/"+ desde +"/"+ hasta +"/"+ monto +"/"+ comision, 
+      function(result){
+         
+         $("#modal_tittle").text("Confirmar pago de comisión");
+         $("#modal_content").html(result);
+    });
+    }
+
+
+    
   });
 });

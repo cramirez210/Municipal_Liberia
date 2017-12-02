@@ -27,13 +27,13 @@
 @endif
  
 <!--_______________________________ Tabla _____________________________-->
-<form name="form_liquidar_cobro" class="container-fluid mt-4 w-100" method="POST" action="/cobros/confirmar" enctype="multipart/form-data">
+<form name="form_liquidar_cobro" class="container-fluid mt-4 w-100" method="POST" action="/cobros/anularFactura" enctype="multipart/form-data">
                         
     {{ csrf_field() }}
 
 <div class="card text-center mt-4">
 <div class="card-header">
-    <div class="card-tittle text-primary"><b>Liquidar cobros</b></div>
+    <div class="card-tittle text-primary"><b>Anular cobros</b></div>
     <a href="/facturas/index" class="btn btn-warning btn-xs float-right mr-5 fa fa-exclamation-triangle system-icons"> Regresar</a>
     @if(count($cobros))
     <input type="hidden" name="user_id" value="{{$cobros[0]->user_id}}">

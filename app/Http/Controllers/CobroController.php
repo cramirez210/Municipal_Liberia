@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Cobro;
 use App\User;
+use App\Comision;
 use Carbon\Carbon;
 
 class CobroController extends Controller
@@ -174,6 +175,41 @@ class CobroController extends Controller
         return view('usuarios.cobros', compact('cobros', 'user', 'estado_id'));
     }
 
+        public function RequestFiltrarUserFecha(){
+
+        $criterio = request("Criterio");
+        $valor = request("valor");
+        $estado = request("estado");
+        $user_id = request("user_id");
+        $desde = request("desde");
+        $hasta = request("hasta");
+
+     return redirect("/cobros/usuario/filtrar/fecha/".$user_id."/".$criterio."/".$valor."/".$estado."/".$desde."/".$hasta);   
+    }
+
+    public function filtrar_user_fecha($user_id, $criterio, $valor, $estado_id, $desde, $hasta){
+
+        $cobro = new Cobro;
+        $query = $cobro->ObtenerPorCriterio('cobros.user_id', $user_id)
+                 ->whereBetween('cobros.created_at', array($desde, $hasta));
+
+        if ($criterio == 0)
+            $query->where('facturas.id', $valor);
+
+        elseif ($criterio == 1) {
+            $fecha = $this->parse_periodo($valor);
+            $query->where('facturas.periodo', 'like', '%'.$fecha.'%');
+    }  
+        elseif ($criterio == 2) {
+            $fecha = $this->parse_fecha_cobro($valor);
+            $query->where('cobros.created_at', 'like', '%'.$fecha.'%');
+    }
+
+        $cobros = $this->filtrar_estado($query, $estado_id);
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+
+        return view('usuarios.cobros_fecha', compact('cobros', 'user', 'estado_id', 'desde', 'hasta'));
+    }
    public function filtrar_estado($query, $estado){
 
         if ($estado != 0) 
@@ -238,6 +274,84 @@ class CobroController extends Controller
 
         return view('cobros.cobros_ejecutivo', 
                compact('reporte'));
+    }
+
+    public function ListarPorUserFechas($user_id, $desde, $hasta){
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.user_id', $user_id)
+                    ->paginate(10);
+
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+        
+        return view('usuarios.cobros_fecha', compact('cobros', 'user', 'desde', 'hasta'));
+    }
+
+        public function ListarPorUserFechasEstado($user_id, $desde, $hasta, $estado_id){
+
+        $cobro = new Cobro;
+
+        $cobros = $cobro->ObtenerPorFechaCriterio($desde, $hasta, 'cobros.user_id', $user_id)
+                    ->where('cobros.estado_id', $estado_id)
+                    ->paginate(10);
+
+        $user = $cobro->select_user()->where('users.id', $user_id)->first();
+        
+        return view('usuarios.cobros_fecha', compact('cobros', 'user', 'desde', 'hasta', 'estado_id'));
+    }
+
+           public function BuscarPorUsuarioFechas(Request $request)
+    {
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            'desde' => 'required',
+            'hasta' => 'required',
+            ]);
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+       $desde = $request->input('desde');
+       $hasta = $request->input('hasta');
+
+       $cobro = new Cobro;
+
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       if($user)
+       return redirect('/cobros/user/fechas/'.$user->id.'/'.$desde.'/'.$hasta);
+        else
+        return back()->with('warning', 'El dato ingresado no coincide con ningún usuario');
+
+    }
+
+    public function CobrosUserFechas($id, $desde, $hasta){
+
+        $cobro = new Cobro;
+
+        $reporte = $cobro->ObtenerReporteFechas($id, $desde, $hasta);
+
+        $user = $cobro->select_user()
+                    ->where('users.id', $id)->first();
+
+        return view('usuarios.reporte_cobros_fechas', 
+               compact('reporte', 'user', 'desde', 'hasta'));
+    }
+
+        public function comision($user_id, $desde, $hasta, $monto, $comision){
+
+        $cobro = new Cobro;
+
+        $user = $cobro->select_user()
+                    ->where('users.id', $user_id)->first();
+
+        $monto_recaudado = $monto;
+        $monto_comision = $monto * ($comision / 100);
+        
+        return view('cobros.confirmar_pago_comision', 
+            compact('user', 'desde', 'hasta', 'monto_recaudado', 'monto_comision'));   
     }
 
      public function BuscarRecuento(){
@@ -311,7 +425,10 @@ class CobroController extends Controller
 
     }
 
-    public function BuscarMoroso($criterio, $valor){
+    public function BuscarMoroso(){
+
+        $criterio = request('Criterio');
+        $valor = request('valor');
 
        $cobro = new Cobro;
 
@@ -324,7 +441,7 @@ class CobroController extends Controller
         $query = DB::table('cobros')
                             ->join('facturas', 'cobros.factura_id', 'facturas.id')
                             ->select('facturas.monto')
-                            ->where('cobros.user_id', $user->id)
+                            ->where('cobros.user_id', $user->user_id)
                             ->where('cobros.estado_id', 3);
         
         $pendientes = $query->count();
@@ -333,8 +450,7 @@ class CobroController extends Controller
         return view('cobros.morosidad_user', compact('user', 'pendientes', 'monto'));
        }
        else
-        return with("<div class='alert alert-warning text-center text-warning'>".
-            " <b> El dato no coinside con ningún ejecutivo </b> </div>");
+        return back()->with('warning', 'El dato ingresado no coinside con ningún ejecutivo');
     }
 
     public function ListarUsuariosMorosos(){
@@ -411,5 +527,85 @@ class CobroController extends Controller
                 ->first();
 
         return view('cobros.detail', compact('cobro'));
+    }
+
+
+    public function buscarAnular(Request $request)
+    {
+
+
+       $this->validate($request,
+            [
+            'Criterio' => 'required',
+            'valor' => 'required|max:999999999',
+            ]);
+
+       $criterio = $request->input('Criterio');
+       $valor = $request->input('valor');
+
+       $cobro = new Cobro;
+
+       $user = $cobro->ObtenerUsuarioPorCriterio($criterio, $valor);
+
+       if($user)
+       return redirect('/cobros/anular/'.$user->id.'/3');
+        else
+            return back()->with('warning', 'El dato ingresado no coincide con ningún usuario');
+    }
+
+    public function anularPorEstadoDeUsuario($user_id, $estado_id)
+    {
+
+     $cobro = new Cobro;
+
+     $cobros = $cobro->ObtenerPorUsuarioEstado($user_id, $estado_id)
+                ->get();
+        
+     return view('cobros.anular', compact('cobros'));
+
+    }
+
+      public function anularFactura(){
+        $cobro = new Cobro;
+
+        $cobros = Input::except('_token', 'user_id');
+
+        if($cobros){
+ 
+        $user = $cobro->select()
+        ->where('facturas.id', head($cobros))
+        ->first();
+
+        $monto = DB::table('cobros')
+        ->join('facturas', 'cobros.factura_id', 'facturas.id')
+        ->whereIn('facturas.id', $cobros)
+        ->sum('facturas.monto');
+
+        $fecha = Carbon::now()->format('Y-m-d');
+
+        return view('cobros.anularFactura', compact('cobros', 'user', 'monto', 'fecha'));
+        } else{
+            $user_id = request('user_id');
+
+            return redirect('/cobros/anular/'.$user_id.'/3')->with('warning', 'Por favor seleccione los cobros que desea liquidar');
+        }
+    }
+
+
+    public function realizarAnulacion(){
+        $cobros = Input::except('_token');
+
+        foreach ($cobros as $cobro)
+         {
+            DB::table('cobros')
+            ->where('factura_id', $cobro)
+            ->delete();
+
+            DB::table('facturas')
+            ->where('id', $cobro)
+            ->update(array('estado_id' => 3));
+        }
+
+        return view('facturas.index')->with('info', 'Operación realizada con éxito');
     }
 }

@@ -1,4 +1,4 @@
-<div id="buscar_ejemoroso" class="modal fade" role="dialog">
+<div id="buscar_comisiones_user" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -6,7 +6,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body text-left">
-        <form method="POST" action="/reportes/user/morosidad" target="_blank"> 
+        <form method="POST" action="/reportes/comisiones/user" target="_blank"> 
           {{ csrf_field() }}
           <center>
             <select  class="custom-select " name="Criterio">

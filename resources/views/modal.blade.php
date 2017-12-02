@@ -4,13 +4,13 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <h4 id="modal_tittle" class="modal-title"></h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close print" data-dismiss="modal">&times;</button>
                           </div>
                           <div class="modal-body text-left">
                             <div id="modal_content"></div>
                         </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger fa fa-times system-icons" data-dismiss="modal"> Cerrar</button>
+                            <button type="button" class="btn btn-danger fa fa-times system-icons print" data-dismiss="modal"> Cerrar</button>
                           </div>
                         </div>
                       </div>

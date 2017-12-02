@@ -31,9 +31,8 @@
     <div class="container-fluid col-md-9">
 <div class="row scroll" >
 
- <div class="table-responsive ml-4 ">
+ <div class="table-responsive ml-4 scroll">
 
-     
  @include('facturas.morosos_table')
     </div>
 

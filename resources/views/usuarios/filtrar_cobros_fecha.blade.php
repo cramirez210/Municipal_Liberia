@@ -1,4 +1,4 @@
-<div id="filtrar_cobros_user" class="modal fade" role="dialog">
+<div id="filtrar_cobros__user_fecha" class="modal fade" role="dialog">
                       <div class="modal-dialog modal-lg">
 
                         <div class="modal-content">
@@ -10,11 +10,12 @@
                                   @if($estado_id == 0) <b>todos los cobros</b> @endif
                               @else <b>todos los cobros</b>
                               @endif
+                              del {{date('d-m-Y', strtotime($desde))}} al {{date('d-m-Y', strtotime($hasta))}}
                             </h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                           <div class="modal-body text-left">
-    <form method="GET" action="/cobros/usuario/filtrar">
+    <form method="GET" action="/cobros/usuario/filtrar/fecha">
       <select class="custom-select mb-2 mb-sm-0" name="Criterio">
     <option selected value="0">N° de factura</option>
     <option value="1">Periodo</option>
@@ -29,6 +30,8 @@
         <input name="estado" type="hidden" value="0">
         @endif
 
+        <input name="desde" type="hidden" value="{{$desde}}">
+        <input name="hasta" type="hidden" value="{{$hasta}}">
         <input name="user_id" type="hidden" value="{{$user->user_id}}">
         <button type="submit" class="btn btn-success ml-2 fa fa-search system-icons" >Buscar</button>
   </label>
