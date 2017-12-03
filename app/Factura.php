@@ -119,8 +119,7 @@ class Factura extends Model
             ->join('categorias', 'socios.categoria_id', 'categorias.id')
             ->join('users', 'facturas.user_id', 'users.id')
             ->join('estados', 'facturas.estado_id', 'estados.id')
-            ->select('socios.id as socio_id', 'personas.*', 'personas.id as persona_id', 'facturas.*', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria', 'users.nombre_usuario', 'estados.estado')
-            ->orderBy('facturas.id');
+            ->select('socios.id as socio_id', 'personas.*', 'personas.id as persona_id', 'facturas.*', 'categorias.id as categoria_id', 'categorias.categoria', 'categorias.precio_categoria', 'users.nombre_usuario', 'estados.estado');
 
 
     }

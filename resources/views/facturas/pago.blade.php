@@ -99,7 +99,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 mt-4 ml-3 float-right  print">
-                                <button id="confirmar" type="submit" class="btn btn-success btn-md fa fa-check system-icons">
+                                <button type="submit" class="btn btn-success btn-md fa fa-check system-icons">
                                     Confirmar
                                 </button>
                             </div>
