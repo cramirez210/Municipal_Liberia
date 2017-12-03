@@ -95,7 +95,15 @@ class Factura extends Model
          $fecha->addMonth();
          }
 
-         $monto = $categoria->precio_categoria - $monto_descuento;
+         if($meses_cancelar >= 6 && $meses_cancelar < 12){
+          if($i+1 <= 6)
+            $monto = $categoria->precio_categoria - $monto_descuento;
+          else $monto = $categoria->precio_categoria;
+          } elseif ($meses_cancelar == 12) {
+            $monto = $categoria->precio_categoria - $monto_descuento;
+          }else $monto = $categoria->precio_categoria;
+
+         $monto = number_format($monto, 2, '.', '');
 
          $factura = $this->store($factura, $socio_id, 1, $monto, $forma_pago, null, $fecha, Carbon::now(), 4);
 

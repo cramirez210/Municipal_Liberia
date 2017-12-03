@@ -128,7 +128,11 @@ class FacturaController extends Controller
            else $monto_descuento = 0;
 
            $monto_total = $meses_cancelados*$socio->precio_categoria;
+
+           if($meses_cancelados == 6 || $meses_cancelados == 12)
            $monto_pagar = $monto_total - ($monto_descuento*$meses_cancelados);
+           elseif ($meses_cancelados > 6 && $meses_cancelados < 12)
+           $monto_pagar = $monto_total - ($monto_descuento*6);
 
            $pendientes = $pendientes - $meses_cancelados;
 
@@ -547,7 +551,9 @@ class FacturaController extends Controller
         $facturas_imprimir = $factura->select()->whereIn('facturas.id', $facturas)->get();
 
         if(count($facturas_imprimir)){
-           return view('facturas.imprimir', compact('facturas_imprimir'));
+            $hora = Carbon::now();
+
+           return view('facturas.imprimir', compact('facturas_imprimir', 'hora'));
         } else
         return back()->with('warning', 'No se han seleccionado facturas para imprimir');
 
