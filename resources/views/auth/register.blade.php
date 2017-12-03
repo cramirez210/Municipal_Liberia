@@ -105,16 +105,21 @@
 
 
                      <div class=" col-md-auto  form-group{{ $errors->has('cedula') ? ' has-danger' : '' }}">
-                            <label for="cedula" class="form-control-label col-md-auto">
-                                <select class="form-control float-right" name="identificacion" id="identificacion">
-                                 <option selected value="0"> Tipo de identificación </option>
-                                 <option value="1"> Cedula </option>
-                                 <option value="2"> Extranjero </option>
-                            </select>
+
+                            <label for="cedula" class="form-control-label col-md-auto">Identificación
+                               
                             </label>
 
                             <div class="col-md-auto ml-lg-5 ml-xl-5">
-                                <input id="cedula" placeholder="Ejemplo: 101110111" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+                                <select class="form-control float-right" name="identificacion" id="identificacion">
+                                 <option selected value="0"> Tipo de identificación </option>
+                                 <option value="1"> Nacional </option>
+                                 <option value="2"> Extranjero </option>
+                            </select>
+                            </div>
+
+                            <div class="col-md-auto ml-lg-5 ml-xl-5 ">
+                                <input id="cedula" placeholder="Ejemplo: 101110111" type="text" class="form-control mt-1" name="cedula" value="{{ old('cedula') }}" required autofocus>
 
                                 @if ($errors->has('cedula'))
                                     <span class="form-control-feedback">
