@@ -93,7 +93,13 @@ class FacturaController extends Controller
            if($meses_cancelar > 0)
             $factura->PagarAdelantado($socio_id, $meses_cancelar, $forma_pago);
 
-        return redirect('/facturas/index')->with('info', 'Operación exitosa');
+          $facturas_imprimir = $factura->select()->orderBy('facturas.id', 'desc')
+                    ->where('facturas.socio_id', $socio_id)->where('facturas.estado_id', 4)
+                    ->limit($meses_cancelados)->get();
+
+          $hora = Carbon::now();
+
+           return view('facturas.imprimir_facturas_pago', compact('facturas_imprimir', 'hora'));
     }
 
     public function ConfirmarPago($socio_id){
@@ -133,6 +139,8 @@ class FacturaController extends Controller
            $monto_pagar = $monto_total - ($monto_descuento*$meses_cancelados);
            elseif ($meses_cancelados > 6 && $meses_cancelados < 12)
            $monto_pagar = $monto_total - ($monto_descuento*6);
+           else 
+           $monto_pagar = $monto_total - ($monto_descuento*$meses_cancelados);
 
            $pendientes = $pendientes - $meses_cancelados;
 

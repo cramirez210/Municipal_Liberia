@@ -30,7 +30,7 @@
           <div class="col-12">
             <div class="row">
               <div class="col-3 ml-5 texto-imprimir">
-                <p class="pt-2"><b>RESIVIMOS DE:</b></p>
+                <p class="pt-2"><b>RESIBIMOS DE:</b></p>
               </div>
               <div class="col-5">
                 <p class="pt-2">{{$factura->primer_nombre}} {{$factura->primer_apellido}} {{$factura->segundo_apellido}}</p>
