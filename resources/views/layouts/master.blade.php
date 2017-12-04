@@ -78,7 +78,7 @@
             <div class="container d-flex flex-column justify-content-center h-100 text-white align-items-center animacion">
 
                 <h1 class="pb-4">Bienvenidos al Programa de Control de Membresías</h1>
-                <p class="pb-4">Proyecto con la finalidad de agilizar, monitorear y controlar devidamente las membresías asociadas a la Asociacion Deportiva Municipal Liberia !</p>
+                <p class="pb-4">Este proyecto posee la finalidad de agilizar, monitorear y controlar debidamente las membresías asociadas a la Asociación Deportiva Municipal Liberia.</p>
                 <div>
                     <a href="http://municipalliberia.com/" class="btn btn-danger px-4">Leer más...</a>
                 </div>
@@ -157,7 +157,7 @@
                       <div contenteditable="py-3">
                           <i class="fa fa-file-text-o iconos" aria-hidden="true"></i>                         
                       </div>
-                      <h1>Facturacion</h1>
+                      <h1>Facturación</h1>
                       <p class="card-text lead">Sección donde se puede gestionar el cobro de las membresías.</p>
                     </div>
                     <a class="card-footer btn bg-warning text-white" href="/facturas/index">Acceder</a>
@@ -201,7 +201,7 @@
 
              <!-- seccion 2 -->
             <div class="col-sm-12 col-md-6 col-xl-3 pt-sm-3 pt-md-3">
-                <h5 class="py-2">Facturacion</h5>
+                <h5 class="py-2">Facturación</h5>
                 <ul>
                   <li><a id="as" href="/facturas/list/3">Facturas Pendientes</a></li>
                   <li><a id="as" href="/facturas/list">Facturas</a></li>
