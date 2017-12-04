@@ -8,6 +8,10 @@
 
 @section('contenido')
 
+    <div class="print">
+    @include('reportes.imprimir')
+    </div>
+    
 @include('reportes.tiposReportes.table_facturas')
 
 @endsection

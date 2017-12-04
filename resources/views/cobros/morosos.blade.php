@@ -4,17 +4,6 @@
 
 @include('mensajes.alertas')
     
-@if(count($morosos))
-  <div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
-  </div>
-
-  <div class="card-block">
-    @include('cobros.filtrar')
-</div>
-</div>
-@endif
 <!--_______________________________ Tabla _____________________________-->
 
 <div class="card text-center mt-4">
@@ -59,7 +48,7 @@
         <tr>
             <td class="info"> {{ $moroso->primer_nombre }} {{ $moroso->primer_apellido }} {{ $moroso->segundo_apellido }} </td>
             <td class="info"> <a href="/cobros/pendientes/{{$moroso->id}}">{{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}</a>  </td>
-            <td class="info"> {{ $cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->sum('monto') }}  </td>
+            <td class="info"> {{ round($cobro->ObtenerPorUsuarioEstado($moroso->id, 3)->sum('monto'), 0, PHP_ROUND_HALF_UP) }}  </td>
             <td class="info"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
         </tr>

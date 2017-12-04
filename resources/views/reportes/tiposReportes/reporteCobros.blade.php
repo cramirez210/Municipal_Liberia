@@ -8,11 +8,13 @@
 
 @section('contenido')
 
- @include('reportes.tiposReportes.table_cobros')
-
  <div class="print"> 
     @include('reportes.imprimir')
     </div>
+
+ @include('reportes.tiposReportes.table_cobros')
+
+
 
 @endsection
 

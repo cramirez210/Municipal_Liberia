@@ -13,6 +13,31 @@ $('#gj').on('click', function(){
     
   });
 
+$("input:checkbox").on('click', function(){
+
+    var monto_liquidar = 0;
+   
+   $('.check:checked').each(
+
+    function() {
+      monto_liquidar = monto_liquidar + parseFloat($(this).parents("tr").find("td").eq(4).text());
+    }
+);
+    var monto =  Math.floor(monto_liquidar);
+    $('#monto_liquidar').html(monto);
+});
+
+    var monto_liquidar = 0;
+   
+   $('.check:checked').each(
+
+    function() {
+      monto_liquidar = monto_liquidar + parseFloat($(this).parents("tr").find("td").eq(4).text());
+    }
+);
+    var monto =  Math.floor(monto_liquidar);
+    $('#monto_liquidar').html(monto);
+
 $('#confirmar').on('click', function(){
 
         var ficha=document.documentElement;

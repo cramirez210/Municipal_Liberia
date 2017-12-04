@@ -19,13 +19,13 @@
               @else <b>Todas las facturas</b>
      @endif 
       del socio: {{$socio->primer_nombre}} {{$socio->primer_apellido}} {{$socio->segundo_apellido}} N° {{$socio->socio_id}}</b></div>
-    <ul class="nav nav-pills nav-fill card-header-pills">
-      <li class="nav-item">
+    <ul class="row mt-2" id="outerTab" role="tablist">
+      <li class="col-md-4">
         <a class="nav-link text-primary" href="/facturas/socio/{{$socio->socio_id}}">Listado de Facturas</a>
       </li>
   
-         <li class="nav-item dropdown mt-2">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px;">Listar</a>
+         <li class="col-md-4 dropdown mt-2">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/facturas/socio/{{$socio->socio_id}}">Todas las facturas</a>
             <div class="dropdown-divider"></div>
@@ -34,7 +34,7 @@
             <a class="dropdown-item" href="/facturas/{{$socio->socio_id}}/4">Facturas canceladas</a>
         </div>
     </li>
-   <li class="nav-item">
+   <li class="col-md-4">
       <div class="col-md-12 mt-2">
         <a href="/facturas/index" class="btn btn-warning btn-md fa fa-exclamation-triangle system-icons">
            Regresar

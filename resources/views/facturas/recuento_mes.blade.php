@@ -38,7 +38,7 @@
         <tr>
             <td ><b>Emitidas</b> </td>
             <td > {{$facturas_fecha}}</td>
-            <td > {{$monto_recaudado + $monto_sin_liquidar}}</td>
+            <td > {{round($monto_recaudado + $monto_sin_liquidar, 0, PHP_ROUND_HALF_UP)}}</td>
             <td > 100.00%</td>
             <td>
               <a href="/facturas/recuento/{{$desde}}/{{$hasta}}">Ver lista</a> </td>
@@ -46,7 +46,7 @@
         <tr>
             <td ><b>Cobradas</b> </td>
             <td > {{$facturas_pagas}}</td>
-            <td > {{$monto_recaudado}}</td>
+            <td > {{round($monto_recaudado, 0, PHP_ROUND_HALF_UP)}}</td>
             <td > {{$porcentaje_pagas}}%</td>
             <td >
                <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/4">Ver lista</a> </td>
@@ -54,7 +54,7 @@
         <tr>
             <td > <b>Pendientes</b> </td>
             <td > {{$facturas_pendientes}}</td>
-            <td > {{$monto_sin_liquidar}}</td>
+            <td > {{round($monto_sin_liquidar, 0, PHP_ROUND_HALF_UP)}}</td>
             <td > {{$porcentaje_pendientes}}%</td>
             <td > 
               <a href="/facturas/recuento/{{$desde}}/{{$hasta}}/3">Ver lista</a></td>

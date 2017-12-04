@@ -8,6 +8,10 @@
 
 @section('contenido')
 
+    <div class="print">
+    @include('reportes.imprimir')
+    </div>
+
  <div class="table-responsive ml-4">
         
     <table id="table" class="table table-hover text-center">
@@ -27,7 +31,7 @@
         <tr>
             <td class="info"> {{ $moroso->primer_nombre }} {{ $moroso->primer_apellido }} {{ $moroso->segundo_apellido }} </td>
             <td class="info"> {{ $DB->ObtenerPorUsuarioEstado($moroso->id, 3)->count() }}  </td>
-            <td class="info"> {{ $DB->ObtenerPorUsuarioEstado($moroso->id, 3)->sum('monto') }}  </td>
+            <td class="info"> {{ round($DB->ObtenerPorUsuarioEstado($moroso->id, 3)->sum('monto'), 0, PHP_ROUND_HALF_UP) }}  </td>
             <td class="info print"> {{ $moroso->email }} </td>
             <td class="info"> {{ $moroso->telefono }} </td>
         </tr>
@@ -44,10 +48,6 @@
     </tbody>
     </table>  
 
-    </div>
-
-    <div class="print"> 
-    @include('reportes.imprimir')
     </div>
 
 @endsection
