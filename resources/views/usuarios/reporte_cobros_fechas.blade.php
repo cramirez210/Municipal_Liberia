@@ -14,12 +14,14 @@
                    <b>Reporte de cobros</b>  
                 </div>
 
+                @if($reporte['total_recaudado'] != 0)
                 <div class="col-md-6 mt-2 ml-3 float-right">
                                 <a href="#" class="btn btn-success btn-md fa fa-exclamation-triangle system-icons" data-toggle="modal" data-target="#pagar_comision">
                                     Pagar comisión
                                 </a>
                                 @include('cobros.pagar_comision')
                             </div>
+                @endif
                 </div>
 
              <div class="card-block">
