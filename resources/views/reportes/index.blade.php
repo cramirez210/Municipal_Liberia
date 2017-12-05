@@ -50,7 +50,7 @@
         <h3 class="card-title"><b>Socios</b></h3>
         <p class="card-text">Reportes de socios por condición y categoría.</p>
         <div class="py-3">
-          <a href="/reportes/sociosMorosos" class="list-group-item" target="_blank">Morocidad</a>
+          <a href="/reportes/sociosMorosos" class="list-group-item" target="_blank">Morosidad</a>
           <ul class="list-group-item">
             <li class="list-unstyled dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte de:</a>
@@ -108,7 +108,7 @@
         <div class="py-3">
            <ul class="list-group-item">
             <li class="list-unstyled dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morocidad:</a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Morosidad:</a>
               <div class="dropdown-menu">
                <a class="dropdown-item" href="/reportes/users_morosos" target="_blank">Todos los ejecutivos</a>
                <div class="dropdown-divider"></div>

@@ -19,7 +19,7 @@
                           <i class="fa fa-file-text-o iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1 class="py-3">Facturas</h1>
-                      <p class="card-text lead">Sección de historial, morocidad y facturación de los socios.</p>
+                      <p class="card-text lead">Sección de historial, morosidad y facturación de los socios.</p>
                       <div class="row">
                         <div class="col-12">
                            <h3 class="py-3">Navegación</h3>
@@ -78,7 +78,7 @@
                           <i class="fa fa-money iconos" aria-hidden="true"></i>                          
                       </div>
                       <h1 class="py-3">Liquidacion de Cobros</h1>
-                      <p class="card-text lead">Sección de historial, morocidad y liquidación de los usuarios ejecutivos.</p>
+                      <p class="card-text lead">Sección de historial, morosidad y liquidación de los usuarios ejecutivos.</p>
                       <div class="row">
                         <div class="col-12">
                           <h3 class="py-3">Navegación</h3>

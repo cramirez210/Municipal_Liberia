@@ -98,7 +98,7 @@
                 <ul>
                   <li><a id="as" href="/facturas/list/3">Facturas Pendientes</a></li>
                   <li><a id="as" href="/facturas/list">Facturas</a></li>
-                  <li><a id="as" href="/facturas/morosos">Morocidad</a></li>
+                  <li><a id="as" href="/facturas/morosos">Morosidad</a></li>
                 </ul>
               </div> <!--End seccion 2 -->
 
@@ -108,7 +108,7 @@
                 <ul>
                   <li><a id="as" href="/cobros/list/4">Liquidaciónes</a></li>
                   <li><a id="as" href="/cobros/list">Reporte de Cobro</a></li>
-                  <li><a id="as" href="/cobros/morosos">Morocidad</a></li>
+                  <li><a id="as" href="/cobros/morosos">Morosidad</a></li>
                 </ul>
               </div> <!--End seccion 3 -->
 

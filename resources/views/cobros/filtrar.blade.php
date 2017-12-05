@@ -8,7 +8,7 @@
                                   @if($estado_id == 3) <b>cobros pendientes de liquidar</b> @endif
                                   @if($estado_id == 4) <b>cobros liquidados</b> @endif
                                   @if($estado_id == 0) <b>todos los cobros</b> @endif
-                              @else <b>tod0s los cobros</b>
+                              @else <b>todos los cobros</b>
                               @endif
                             </h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
