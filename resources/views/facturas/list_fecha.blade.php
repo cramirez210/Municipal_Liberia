@@ -3,19 +3,6 @@
 @section('content')
 
 @include('mensajes.alertas')
-
-@if(count($facturas))
-  <div class="card text-center mt-4">
-  <div class="card-header text-primary">
-    Filtro de Busqueda
-  </div>
-
-  <div class="card-block">
-
-    @include('facturas.filtrar')
-</div>
-</div>
-@endif
   
 <!--_______________________________ Tabla _____________________________-->
 

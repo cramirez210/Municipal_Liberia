@@ -19,16 +19,16 @@ class Cobro extends Model
 
         $user = User::find($user_id);
 
-        if($user->rol_id != 1){
-
         $cobro = new Cobro;
 
         $cobro->user_id = $user_id;
         $cobro->factura_id = $factura_id;
-        $cobro->estado_id = $estado_id;
 
-        $cobro->save();            
-        }
+        if($user->rol_id != 1)
+        $cobro->estado_id = $estado_id;
+        else $cobro->estado_id = 4;
+
+        $cobro->save(); 
 
     }
 
@@ -163,7 +163,7 @@ class Cobro extends Model
                     ->join('users', 'cobros.user_id', 'users.id')
                     ->join('personas', 'users.persona_id', 'personas.id')
                     ->join('facturas', 'cobros.factura_id', 'facturas.id')
-                    ->select('users.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono', 'facturas.monto')
+                    ->select('users.id', 'personas.primer_nombre', 'personas.primer_apellido', 'personas.segundo_apellido', 'personas.email', 'personas.telefono')
                     ->distinct()
                     ->where('cobros.estado_id', 3)
                     ->get();

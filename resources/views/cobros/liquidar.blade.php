@@ -32,20 +32,16 @@
     {{ csrf_field() }}
 
 <div class="card text-center mt-4">
-<div class="card-header">
-    <div class="card-tittle text-primary"><b>Liquidar cobros</b></div>
-    <a href="/facturas/index" class="btn btn-warning btn-xs float-right mr-5 fa fa-exclamation-triangle system-icons"> Regresar</a>
-    @if(count($cobros))
-    <input type="hidden" name="user_id" value="{{$cobros[0]->user_id}}">
-    <div class="float-right mr-2">
-      <button type="submit" class="btn btn-success btn-xs fa fa-arrow-right system-icons" style="color: white;">
-                      Continuar
-      </button>
-    </div>
-   @endif   
+<div class="card-header text-primary">
+    <div class="card-tittle"><b>Liquidar cobros</b></div>
+  
+   <ul class="row mt-2" id="outerTab" role="tablist">
    @if(count($cobros))
-   <ul class="float-right mr-3 mt-1">
-    <li class="list-unstyled dropdown">
+    <input type="hidden" name="user_id" value="{{$cobros[0]->user_id}}">
+    <li class="col-md-3 mt-2">
+        <div><b>Monto total a liquidar: <span id="monto_liquidar"></span></b></div> 
+    </li>
+    <li class="col-md-3 mt-2">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opciones</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="javascript:seleccionar_todo()">Marcar todo</a>
@@ -53,8 +49,16 @@
             <a class="dropdown-item" href="javascript:deseleccionar_todo()">Desmarcar todo</a>
         </div>
     </li>
-  </ul>  
-  @endif             
+    <li class="col-md-3 mt-2">
+      <button type="submit" class="btn btn-success btn-xs fa fa-arrow-right system-icons" style="color: white;">
+                      Continuar
+      </button>
+    </li>
+  @endif
+  <li class="col-md-3 mt-2">
+    <a href="/facturas/index" class="btn btn-warning btn-xs fa fa-exclamation-triangle system-icons"> Regresar</a>
+  </li>
+  </ul>              
   </div> 
 <div class="col-md-10 offset-md-1 mt-4">
 
@@ -87,7 +91,7 @@
             <td class="info"> {{ date('d-m-Y', strtotime($cobro->created_at)) }} </td>
             <td class="info"> {{ $cobro->monto }} </td>
             <td class="warning"> 
-              <input type="checkbox" value="{{$cobro->factura_id}}" name="{{$cobro->factura_id}}">
+              <input class="check" type="checkbox" value="{{$cobro->factura_id}}" name="{{$cobro->factura_id}}">
             </td>
         </tr>
 

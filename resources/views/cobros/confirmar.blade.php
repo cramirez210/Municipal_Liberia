@@ -55,7 +55,7 @@
               
               <div class="col-md-15 mt-3">
                 <b>Monto total:</b> 
-                {{$monto}}
+                {{round($monto, 0, PHP_ROUND_HALF_UP)}}
               </div>
 
               <div class="col-md-15 mt-3">
@@ -73,7 +73,7 @@
             </button>
 
 
-              <a href="/cobros/index" class="btn btn-danger  btn-xs mt-4 fa fa-times system-icons">
+              <a href="{{URL::previous()}}" class="btn btn-danger  btn-xs mt-4 fa fa-times system-icons">
               <span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
 
              

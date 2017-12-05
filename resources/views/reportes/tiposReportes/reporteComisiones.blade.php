@@ -8,6 +8,10 @@
 
 @section('contenido')
 
+    <div class="print">
+    @include('reportes.imprimir')
+    </div>
+
 <div class="table-responsive">
         
     <table id="table" class="table table-hover ">
@@ -47,10 +51,6 @@
         @endif
     </tbody>
     </table>  
-    </div>
-
-    <div class="print"> 
-    @include('reportes.imprimir')
     </div>
 
 @endsection

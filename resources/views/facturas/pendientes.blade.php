@@ -32,26 +32,26 @@
 <div class="card text-center mt-4">
 <div class="card-header">
   <div class="card-tittle text-primary"><b>Imprimir facturas</b></div>
-    <a href="/facturas/index" class="btn btn-warning btn-xs float-right mr-5 fa fa-exclamation-triangle system-icons"> Regresar</a>
-    @if(count($facturas))
-    <div class="float-right mr-2">
-      <button type="submit" class="btn btn-success btn-xs fa fa-arrow-right system-icons" style="color: white;">
-                      Continuar
-      </button>
-    </div>
-   @endif   
+   <ul class="row mt-2" id="outerTab" role="tablist">
    @if(count($facturas))
-   <ul class="float-right mr-3 mt-1">
-    <li class="list-unstyled dropdown">
+    <li class="col-md-4 mt-2 dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opciones</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="javascript:seleccionar_todo()">Marcar todo</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript:deseleccionar_todo()">Desmarcar todo</a>
         </div>
+    </li> 
+    <li class="col-md-4 mt-2">
+      <button type="submit" class="btn btn-success btn-xs fa fa-arrow-right system-icons" style="color: white;">
+                      Continuar
+      </button>
     </li>
-  </ul>  
   @endif
+  <li class="col-md-4 mt-2">
+        <a href="/facturas/index" class="btn btn-warning btn-xs fa fa-exclamation-triangle system-icons"> Regresar</a>  
+  </li>
+  </ul> 
   </div> 
 <div class="col-md-10 offset-md-1 mt-4">
 <div class="row">
