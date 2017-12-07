@@ -65,11 +65,11 @@
 
                @if(isset($editar))
                   <div class="form-group mt-3">
-                            <label class="col-md-4 from-control-label" for="estado">Estado</label>
+                            <label class="col-md-4 from-control-label" for="estado"><b>Estado</b></label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="estado">
-                                <option value="3">Pendiente</option>
-                                <option selected value="4">Pago</option>
+                                <option value="4">Pago</option>
+                                <option selected value="5">Cancelado</option>
                               </select>
                              </div>
                     </div>
@@ -80,14 +80,14 @@
                 @endif
 
                 <div class="form-group mt-3">
-                            <label class="col-md-4 from-control-label" for="forma_pago">Forma de pago</label>
+                            <label class="col-md-4 from-control-label" for="forma_pago"><b>Forma de pago</b> </label>
                              <div class="col-md-6 ml-5">
                               <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="forma_pago">
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Depósito">Depósito</option>
                               </select>
                              </div>
-                        </div>
+                </div>
               </div>    
 
 
@@ -97,7 +97,7 @@
                                     Registrar
                                 </button>
                                 <a href="{{URL::previous()}}" class="btn btn-warning btn-md mt-3">
-                                    Cancelar
+                                    Editar
                                 </a>
                             </div>
                         </div>
