@@ -80,7 +80,7 @@
 
                               @if(Auth::user()->rol_id == 1)
                                 <a href="/facturas/edit/{{$factura->id}}" class="btn btn-warning btn-md mt-2">
-                                   Cancelar
+                                   Editar
                                 </a>
                               @endif
                               @endif
